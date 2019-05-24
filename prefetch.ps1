@@ -4,8 +4,22 @@
 # It looks like {"var1":[],"var2":[]]
 # after loaded and decoded, 0 would be prefetch folder, 1 would be exclude folder
 $configFile = (Get-Content ".\Prefetch.json" -Raw) | ConvertFrom-Json
+
+# Loop mode, set to true for unlimited loop with loop interval
+$unlimitedMode = $false
+
+# Loop interval, the value between two loop, by second
+# Only useful if unlimited mode is true
+$loopInterval = 50
+
+
+
+# Other default values
 $prefetchFolderArray = $configFile.prefetchFolderArray
 $excludeFolderArray = $configFile.excludeFolderArray
+# User interaction text
+$prefetchingDisplay = "Prefetching..."
+$idleDisplay = "Idle."
 
 # The actual method to read a file from disk
 # This method is allowed to run failed and ignore any error
@@ -85,9 +99,16 @@ function Itr_Prefetch {
     }
 }
 
-Write-Output "Prefetching..."
+do {
+    Write-Output $prefetchingDisplay
 
-foreach ($rootFolderToPrefetch in $prefetchFolderArray) {
-    Itr_Prefetch -Folder $rootFolderToPrefetch
+    foreach ($rootFolderToPrefetch in $prefetchFolderArray) {
+        Itr_Prefetch -Folder $rootFolderToPrefetch
+    }
+
+    Write-Output $idleDisplay
+    start-sleep $loopInterval
 }
+while ($unlimitedMode)
+
 exit
