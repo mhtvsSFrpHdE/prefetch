@@ -18,11 +18,11 @@ function ReadMyFile {
     try {
         # method 4 fastest but
         # have question about is the file indeed loaded into ram?
-        $File = [system.io.file]::OpenRead($FilePath)
-        $File.Close()
+        #$File = [system.io.file]::OpenRead($FilePath)
+        #$File.Close()
         
         # method 2 relatively fast but it will make sure the file is loaded
-        #$myReadedBytes = [System.IO.File]::ReadAllBytes("$myFileFullPath")
+        $myReadedBytes = [System.IO.File]::ReadAllBytes("$myFileFullPath")
         
         # method 3 slow
         #Get-ChildItem $myFileFullPath | Get-Content | Out-Null
