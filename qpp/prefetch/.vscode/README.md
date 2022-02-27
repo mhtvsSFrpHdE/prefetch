@@ -12,3 +12,7 @@ This settings tell VSCode where to find:
 ## compilerPath
 
 Contains necessary information help finding which compiler is used during develop.
+
+## c/cppStandard
+
+Most recent standard supported by compiler.
