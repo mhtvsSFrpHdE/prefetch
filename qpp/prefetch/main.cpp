@@ -23,6 +23,7 @@ int main(int argc, char *argv[])
     }
 
     Setting::init();
+    auto configGroups = Setting::setting->childGroups();
 
     QTextStream consoleOutput(stdout);
     consoleOutput << QObject::tr("translate example") << endl;

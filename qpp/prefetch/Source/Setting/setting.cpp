@@ -1,9 +1,12 @@
 #include <QDir>
+#include <QCoreApplication>
 
 #include "setting.h"
 
-QSettings Setting::setting(QDir::currentPath() + "/prefetch.ini", QSettings::IniFormat);
+QSettings *Setting::setting;
 
-void Setting::init(){
-    QStringList keys = setting.childKeys();
+void Setting::init()
+{
+    // Read ini from exe stored folder
+    setting = new QSettings(QCoreApplication::applicationDirPath() + "/prefetch.ini", QSettings::IniFormat);
 }
