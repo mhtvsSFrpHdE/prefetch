@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"extensions": {
+		"recommendations": [
+			"shardulm94.trailing-spaces",
+			"tabnine.tabnine-vscode",
+			"esbenp.prettier-vscode",
+			"ms-vscode.cpptools-extension-pack"
+		]
+	}
+}
