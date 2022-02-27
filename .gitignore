@@ -1,14 +1,17 @@
 # Build
-q++/build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Debug
-q++/build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Release
+qpp/build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Debug
+qpp/build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Release
 
 # Ide setting
 
 # Qt Creator
-q++/prefetch/prefetch.pro.user
+qpp/prefetch/prefetch.pro.user
 
 # VSCode
-q++/prefetch/.vscode/c_cpp_properties.json
+qpp/prefetch/.vscode/c_cpp_properties.json
 
 # Tool environment
-q++/prefetch/Tool/env.bat
+qpp/prefetch/Tool/env.bat
+
+# Python venv
+qpp/prefetch/.venv

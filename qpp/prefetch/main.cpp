@@ -4,6 +4,8 @@
 #include <QStringList>
 #include <QTextStream>
 
+#include "Source\Setting\setting.h"
+
 QTextStream out(stdout);
 
 int main(int argc, char *argv[])
@@ -19,6 +21,8 @@ int main(int argc, char *argv[])
             break;
         }
     }
+
+    Setting::init();
 
     QTextStream consoleOutput(stdout);
     consoleOutput << QObject::tr("translate example") << endl;
