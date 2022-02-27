@@ -26,7 +26,23 @@ int main(int argc, char *argv[])
     auto configGroups = Setting::setting->childGroups();
 
     QTextStream consoleOutput(stdout);
-    consoleOutput << QObject::tr("translate example") << endl;
+
+    foreach(auto rootGroupName, configGroups)
+    {
+        Setting::setting->beginGroup(rootGroupName);
+        consoleOutput << rootGroupName
+            << endl;
+
+        auto configKeys = Setting::setting->childKeys();
+        foreach(auto configKey, configKeys)
+        {
+            consoleOutput << Setting::setting->value(configKey).toString()
+                << endl;
+        }
+
+        Setting::setting->endGroup();
+    };
+
 
     return a.exec();
 }
