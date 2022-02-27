@@ -19,3 +19,8 @@ CONFIG += embed_translations
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+# My setting
+
+# Enable c++11 for QT 4.8.7
+QMAKE_CXXFLAGS += -std=c++11
