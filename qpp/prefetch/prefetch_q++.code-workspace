@@ -12,5 +12,21 @@
 			"ms-vscode.cpptools-extension-pack",
 			"ms-python.python"
 		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Python: Current File(Tool)",
+				"type": "python",
+				"request": "launch",
+				"program": "${file}",
+				"console": "integratedTerminal",
+				"cwd": "${fileDirname}"
+			}
+		]
+	},
+	"settings": {
+		"python.languageServer": "Pylance"
 	}
 }
