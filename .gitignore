@@ -1,0 +1,9 @@
+# Build
+q++/build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Debug
+q++/build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Release
+
+# Ide setting
+q++/prefetch/prefetch.pro.user
+
+# Tool environment
+q++/prefetch/Tool/env.bat
