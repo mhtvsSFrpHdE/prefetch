@@ -9,7 +9,7 @@ import logging
 cwd = Path(os.getcwd()).parent
 
 # Log
-#logging.basicConfig(filename='copy_resource.log', encoding='utf-8', level=logging.INFO)
+logging.basicConfig(filename='copy_resource.log', encoding='utf-8', level=logging.INFO)
 
 # Input
 buildType = "Debug"
