@@ -1,10 +1,9 @@
 #include <QCoreApplication>
-#include <QLocale>
-#include <QTranslator>
 #include <QStringList>
 #include <QTextStream>
 
 #include "Source\Global\global.h"
+#include "Source\Translate\translate.h"
 #include "Source\Setting\setting.h"
 
 QTextStream out(stdout);
@@ -14,15 +13,7 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
     Global::qCoreApplication = &a;
 
-    QTranslator translator;
-    const QStringList uiLanguages = QLocale::system().uiLanguages();
-    for (const QString &locale : uiLanguages) {
-        const QString baseName = "prefetch_" + QLocale(locale).name();
-        if (translator.load(":/i18n/" + baseName)) {
-            a.installTranslator(&translator);
-            break;
-        }
-    }
+    Translate::init();
 
     Setting::init();
     auto configGroups = Setting::setting->childGroups();
