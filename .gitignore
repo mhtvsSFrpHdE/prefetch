@@ -11,6 +11,7 @@ qpp/prefetch/prefetch.pro.user
 qpp/prefetch/.vscode/c_cpp_properties.json
 qpp/prefetch/.vscode/launch.json
 qpp/prefetch/.vscode/tasks.json
+qpp/prefetch/env.bat
 
 # Tool environment
 qpp/prefetch/Tool/env.bat

@@ -18,3 +18,7 @@ Qt Creator: `6.0.2` for debugging, VSCode for coding.
 Strongly recommend VSCode extension `TabNine` while diving into the Q++ hell.  
 There are other suggest extensions added to workspace recommendations.  
 IDE settings uploaded to `.vscode`, see `.vscode\README.md` for more information.
+
+Duplicate `envExample.bat` as `env.bat` and change variables inside,  
+then run `start_vscode.bat` to open VSCode.  
+`env.bat` tells VSCode where to find gcc compiler files.
