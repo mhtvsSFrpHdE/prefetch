@@ -9,6 +9,8 @@ qpp/prefetch/prefetch.pro.user
 
 # VSCode
 qpp/prefetch/.vscode/c_cpp_properties.json
+qpp/prefetch/.vscode/launch.json
+qpp/prefetch/.vscode/tasks.json
 
 # Tool environment
 qpp/prefetch/Tool/env.bat
@@ -18,3 +20,6 @@ qpp/prefetch/Tool/copy_resource.log
 
 # Python venv
 qpp/prefetch/.venv
+
+# DLL
+qpp/prefetch/requirements
