@@ -9,6 +9,7 @@ CONFIG -= app_bundle
 
 SOURCES += \
         Source/Global/global.cpp \
+        Source/Output/stdout.cpp \
         Source/Setting/setting.cpp \
         Source/Translate/translate.cpp \
         main.cpp
@@ -30,6 +31,7 @@ QMAKE_CXXFLAGS += -std=c++11
 
 HEADERS += \
     Source/Global/global.h \
+    Source/Output/stdout.h \
     Source/Setting/setting.h \
     Source/Translate/translate.h
 
