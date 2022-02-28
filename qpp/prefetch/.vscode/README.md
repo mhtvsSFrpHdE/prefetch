@@ -45,6 +45,8 @@ For `copy_resource`, `python.exe` need add to PATH.
 
 #### visualizerFile doesn't work when using gdb with Qt 4.8.7 for example Qt4.natvis
 
+`-var-create: unable to create variable object`
+
 The negative effect is VSCode can't decode QString and other Qt object to puretext.  
 Such defect make VSCode unuseable for debugging in most case.  
 Switch back to Qt Creator if these information is necessary for debugging.
