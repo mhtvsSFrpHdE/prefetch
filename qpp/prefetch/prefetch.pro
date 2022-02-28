@@ -8,6 +8,7 @@ CONFIG -= app_bundle
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        Source/Global/global.cpp \
         Source/Setting/setting.cpp \
         main.cpp
 
@@ -27,7 +28,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 QMAKE_CXXFLAGS += -std=c++11
 
 HEADERS += \
-    Source/Setting/setting.h
+    Source/Global/global.h \
+    Source/Setting/setting.h \
 
 DISTFILES += \
     prefetch.ini

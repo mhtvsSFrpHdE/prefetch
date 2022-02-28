@@ -4,6 +4,7 @@
 #include <QStringList>
 #include <QTextStream>
 
+#include "Source\Global\global.h"
 #include "Source\Setting\setting.h"
 
 QTextStream out(stdout);
@@ -11,6 +12,7 @@ QTextStream out(stdout);
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
+    Global::qCoreApplication = &a;
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();
