@@ -45,7 +45,53 @@ def getOutputPath(targetFileName):
 
     return outputPath
 
-sourceFileName = "prefetch.ini"
-sourceFilePath = cwd.joinpath(sourceFileName)
-targetFilePath = getOutputPath(sourceFileName)
-compare(sourceFilePath, targetFilePath, copy)
+def process(sourceFileName, copyWithFolder=False):
+    sourceFilePath = cwd.joinpath(sourceFileName)
+
+    if copyWithFolder:
+        targetFilePath = getOutputPath(sourceFileName)
+    else:
+        targetFilePath = getOutputPath(Path(sourceFilePath.name))
+
+    compare(sourceFilePath, targetFilePath, copy)
+
+# File list
+
+# Config
+process(Path("prefetch.ini"))
+
+# DLL
+process(Path("requirements").joinpath("libgcc_s_dw2-1.dll"))
+process(Path("requirements").joinpath("libstdc++-6.dll"))
+process(Path("requirements").joinpath("libwinpthread-1.dll"))
+process(Path("requirements").joinpath("QtCore4.dll"))
+
+# Debug DLL
+if buildType == "Debug":
+    qtPath = Path("C:\Qt\\4.8.7\\bin")
+
+    process(qtPath.joinpath("QtCored4.dll"))
+
+    # process(qtPath.joinpath("QtDesignerComponentsd4.dll"))
+    # process(qtPath.joinpath("QtDesignerd4.dll"))
+    # process(qtPath.joinpath("QtHelpd4.dll"))
+    # process(qtPath.joinpath("QtCLucened4.dll"))
+    # process(qtPath.joinpath("QtScriptToolsd4.dll"))
+    # process(qtPath.joinpath("QtWebKitd4.dll"))
+    # process(qtPath.joinpath("QtDeclaratived4.dll"))
+    # process(qtPath.joinpath("QtScriptd4.dll"))
+    # process(qtPath.joinpath("QtSvgd4.dll"))
+    # process(qtPath.joinpath("QtMultimediad4.dll"))
+    # process(qtPath.joinpath("phonond4.dll"))
+    # process(qtPath.joinpath("QtXmlPatternsd4.dll"))
+    # process(qtPath.joinpath("QtOpenGLd4.dll"))
+    # process(qtPath.joinpath("Qt3Supportd4.dll"))
+    # process(qtPath.joinpath("QtGuid4.dll"))
+    # process(qtPath.joinpath("QtDBusd4.dll"))
+    # process(qtPath.joinpath("QtTestd4.dll"))
+    # process(qtPath.joinpath("QtSqld4.dll"))
+    # process(qtPath.joinpath("QtNetworkd4.dll"))
+    # process(qtPath.joinpath("QtXmld4.dll"))
+
+    # pass: Let editor fold code until here
+    pass
