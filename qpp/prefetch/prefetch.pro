@@ -34,6 +34,3 @@ HEADERS += \
     Source/Output/stdout.h \
     Source/Setting/setting.h \
     Source/Translate/translate.h
-
-DISTFILES += \
-    prefetch.ini
