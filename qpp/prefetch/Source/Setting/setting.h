@@ -4,7 +4,6 @@
 class Setting
 {
 public:
-    // Global QSettings object, it's a pointer
     static QSettings *setting;
 
     // Any init code

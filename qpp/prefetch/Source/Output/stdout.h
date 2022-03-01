@@ -4,7 +4,6 @@
 class StdOut
 {
 public:
-    // Global QTextStream object, it's a pointer
     static QTextStream *consoleOutput;
 
     // Any init code

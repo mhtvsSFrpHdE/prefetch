@@ -4,7 +4,6 @@
 class Translate
 {
 public:
-    // Global QTranslator object, it's a pointer
     static QTranslator *translator;
 
     // Any init code

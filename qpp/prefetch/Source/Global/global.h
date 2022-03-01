@@ -4,11 +4,10 @@
 class Global
 {
 public:
-    // Global QCoreApplication object, it's a pointer
     static QCoreApplication *qCoreApplication;
 
     // Any init code
-    static void init();
+    static void init(int argc, char *argv[]);
 
 private:
     // Disallow creating an instance of this object

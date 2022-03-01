@@ -1,4 +1,3 @@
-#include <QCoreApplication>
 #include <QStringList>
 
 #include "Source\Global\global.h"
@@ -8,14 +7,8 @@
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
-    Global::qCoreApplication = &a;
+    Global::init(argc, argv);
 
-    StdOut::init();
-
-    Translate::init();
-
-    Setting::init();
     auto configGroups = Setting::setting->childGroups();
 
     foreach (auto rootGroupName, configGroups)
@@ -34,5 +27,5 @@ int main(int argc, char *argv[])
         Setting::setting->endGroup();
     };
 
-    return a.exec();
+    return 0;
 }
