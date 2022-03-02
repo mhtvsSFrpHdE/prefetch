@@ -1,25 +1,59 @@
-#include <QStringList>
-#include <QDir>
-
 #include "read_file.h"
 #include "..\Setting\setting.h"
 #include "..\Output\stdout.h"
+#include "Thread\read_thread.h"
 
-// Read all file in QFileInfoList
-void start_readFile(QDir *prefetchFolder)
+int ReadFile::count_start_scanFolder;
+QList<QRunnable *> ReadFile::readThreadQueue;
+QThreadPool *ReadFile::readThreadPool;
+
+void ReadFile::init()
+{
+    count_start_scanFolder = 0;
+    readThreadQueue = QList<QRunnable *>();
+    readThreadPool = QThreadPool::globalInstance();
+}
+
+void ReadFile::start()
+{
+    // Get prefetch folder
+    QStringList prefetchFolders = Setting::getArray("PrefetchFolder", Setting::setting);
+
+    // Get exclude folder
+    QStringList excludeFolders = Setting::getArray("ExcludeFolder", Setting::setting);
+
+    for (int i = 0; i < prefetchFolders.size(); ++i)
+    {
+        auto prefetchFolderName = prefetchFolders[i];
+
+        ReadFile::start_scanFolder(prefetchFolderName);
+    }
+
+    auto readThreadQueueRef = readThreadQueue;
+
+    bool doNothing = true;
+}
+
+void ReadFile::start_readFile_ququeThread(QString filePath)
+{
+    auto readThread = new ReadThread(filePath);
+    ReadFile::readThreadQueue.append(readThread);
+}
+
+void ReadFile::start_readFile(QDir *prefetchFolder)
 {
     prefetchFolder->setFilter(QDir::Files);
     auto subFileList = prefetchFolder->entryInfoList();
 
     for (int i = 0; i < subFileList.size(); ++i)
     {
-        *StdOut::consoleOutput << subFileList[i].absoluteFilePath()
-                               << endl;
+        auto filePath = subFileList[i].absoluteFilePath();
+
+        start_readFile_ququeThread(filePath);
     }
 }
 
-// iterated function
-void start_scanFolder(QString prefetchFolderName)
+void ReadFile::start_scanFolder(QString prefetchFolderName)
 {
     // ReadFile::count_start_scanFolder++;
     // *StdOut::consoleOutput << "Enter start_scanFolder times: "
@@ -55,22 +89,9 @@ void start_scanFolder(QString prefetchFolderName)
     start_readFile(&prefetchFolder);
 };
 
-void ReadFile::start()
+void ReadFile::start_runThread()
 {
-    // Get prefetch folder
-    QStringList prefetchFolders = Setting::getArray("PrefetchFolder", Setting::setting);
-
-    // Get exclude folder
-    QStringList excludeFolders = Setting::getArray("ExcludeFolder", Setting::setting);
-
-    for (int i = 0; i < prefetchFolders.size(); ++i)
-    {
-        auto prefetchFolderName = prefetchFolders[i];
-
-        start_scanFolder(prefetchFolderName);
-    }
-
-    bool doNothing = true;
+    // TODO: Consume thread(simply print file name for now)
+    // TODO: Clear thread allocated memory after thread done
+    // TODO: Clear thread queue
 }
-
-int ReadFile::count_start_scanFolder = 0;

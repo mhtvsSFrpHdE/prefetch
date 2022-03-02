@@ -8,6 +8,7 @@ CONFIG -= app_bundle
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        Source/Core/Thread/read_thread.cpp \
         Source/Core/read_file.cpp \
         Source/Global/global.cpp \
         Source/Output/stdout.cpp \
@@ -31,6 +32,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 QMAKE_CXXFLAGS += -std=c++11
 
 HEADERS += \
+    Source/Core/Thread/read_thread.h \
     Source/Core/read_file.h \
     Source/Global/global.h \
     Source/Output/stdout.h \
