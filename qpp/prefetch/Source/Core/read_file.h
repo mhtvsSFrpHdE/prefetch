@@ -7,18 +7,27 @@ class ReadFile
 {
 public:
     // Start read file
+    // while(true)
     static void start();
-
-    // Any init code
-    static void init();
 
 private:
     // Disallow creating an instance of this object
     ReadFile() {}
 
+    // How many times entered start_scanFolder function
+    // Help identify iterate problems
     static int count_start_scanFolder;
+
+    // Created QRunnable object pointers
     static QList<QRunnable *> readThreadQueue;
+
+    // Shortcut to default thread pool
     static QThreadPool *readThreadPool;
+
+    // How many times all thread done
+    // Before start a new task, if this value equals to RescanInterval
+    // Clean previous created thread and rescan folder to create new
+    static int count_taskComplete;
 
     // Queue thread for later use
     // Start threadpool after iterate complete to reduce I/O fragment
@@ -31,5 +40,8 @@ private:
     static void start_scanFolder(QString prefetchFolderName);
 
     // Consume thread queue and empty queue after done
-    static void start_runThreadPool();
+    // Return
+    //     true: No need to rescan folder
+    //     false: Reached rescan interval, must rescan folder
+    static bool start_runThreadPool(int rescanInterval);
 };

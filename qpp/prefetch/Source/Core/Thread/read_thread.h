@@ -7,6 +7,10 @@ class ReadThread : public QRunnable
 public:
     ReadThread(QString filePath);
 
+    // Everytime creating a new instance, call set setAutoDelete
+    // Default: true
+    static bool autoDeletePreset;
+
     void run();
 
 private:

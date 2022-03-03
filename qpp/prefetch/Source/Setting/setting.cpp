@@ -23,7 +23,8 @@ Setting::GetIntResult Setting::getInt(QString groupName, QString keyName, QSetti
     qSettings->endGroup();
 
     getIntResult.success = success;
-    getIntResult.result = result;
+    getIntResult.result = success ? result
+                                  : 0;
 
     return getIntResult;
 }

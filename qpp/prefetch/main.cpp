@@ -6,7 +6,6 @@ int main(int argc, char *argv[])
 {
     Global::init(argc, argv);
 
-    ReadFile::init();
     ReadFile::start();
 
     return 0;

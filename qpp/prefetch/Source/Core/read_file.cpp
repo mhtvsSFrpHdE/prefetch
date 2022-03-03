@@ -3,24 +3,18 @@
 #include "..\Output\stdout.h"
 #include "Thread\read_thread.h"
 
-int ReadFile::count_start_scanFolder;
-QList<QRunnable *> ReadFile::readThreadQueue;
-QThreadPool *ReadFile::readThreadPool;
-
-void ReadFile::init()
-{
-    count_start_scanFolder = 0;
-    readThreadQueue = QList<QRunnable *>();
-    readThreadPool = QThreadPool::globalInstance();
-}
+int ReadFile::count_start_scanFolder = 0;
+QList<QRunnable *> ReadFile::readThreadQueue = QList<QRunnable *>();
+QThreadPool *ReadFile::readThreadPool = QThreadPool::globalInstance();
+int ReadFile::count_taskComplete = 0;
 
 void ReadFile::start()
 {
     // Get and set thread number
-    auto threadNumber = Setting::getInt("Thread", "MaxThreadCount", Setting::setting);
-    if (threadNumber.success && threadNumber.result >= 1)
+    auto getThreadNumber = Setting::getInt("Thread", "MaxThreadCount", Setting::setting);
+    if (getThreadNumber.success && getThreadNumber.result >= 1)
     {
-        readThreadPool->setMaxThreadCount(threadNumber.result);
+        readThreadPool->setMaxThreadCount(getThreadNumber.result);
     }
 
     // Get prefetch folder
@@ -29,20 +23,43 @@ void ReadFile::start()
     // Get exclude folder
     QStringList excludeFolders = Setting::getArray("ExcludeFolder", Setting::setting);
 
-    for (int i = 0; i < prefetchFolders.size(); ++i)
+    // Get rescan interval
+    auto getRescanInterval = Setting::getInt("Thread", "RescanInterval", Setting::setting);
+
+    // Set do not auto delete for thread instance
+    ReadThread::autoDeletePreset = false;
+
+    // Repeat task loop
+    while (true)
     {
-        auto prefetchFolderName = prefetchFolders[i];
+        for (int i = 0; i < prefetchFolders.size(); ++i)
+        {
+            auto prefetchFolderName = prefetchFolders[i];
 
-        ReadFile::start_scanFolder(prefetchFolderName);
+            ReadFile::start_scanFolder(prefetchFolderName);
+        }
+
+        while (true)
+        {
+            bool runResult = start_runThreadPool(getRescanInterval.result);
+            if (runResult == false)
+            {
+                break;
+            }
+        }
     }
-
-    start_runThreadPool();
 }
 
 void ReadFile::start_createReadFileThread_ququeThread(QString filePath)
 {
     auto readThread = new ReadThread(filePath);
-    // readThread->setAutoDelete(false);
+
+    auto rescanInterval = Setting::getInt("Thread", "RescanInterval", Setting::setting);
+    if (rescanInterval.success && rescanInterval.result > 0)
+    {
+        readThread->setAutoDelete(false);
+    }
+
     ReadFile::readThreadQueue.append(readThread);
 }
 
@@ -95,19 +112,51 @@ void ReadFile::start_scanFolder(QString prefetchFolderName)
     start_createReadFileThread(&prefetchFolder);
 };
 
-void ReadFile::start_runThreadPool()
+bool ReadFile::start_runThreadPool(int rescanInterval)
 {
     // Consume thread queue
     for (int i = 0; i < readThreadQueue.size(); ++i)
     {
-        // readThreadQueue[i]->run();
         readThreadPool->start(readThreadQueue[i]);
     }
+
     readThreadPool->waitForDone();
+    count_taskComplete++;
 
-    *StdOut::consoleOutput << readThreadPool->maxThreadCount()
+    *StdOut::consoleOutput << count_taskComplete
                            << endl;
+    StdOut::consoleOutput->flush();
 
-    // TODO: Clear thread allocated memory after thread done
-    // TODO: Clear thread queue
+    // No rescan interval founded
+    if (rescanInterval <= 0)
+    {
+        // Reset count avoid int overflow
+        count_taskComplete = 0;
+
+        return true;
+    }
+
+    // Reach rescan interval
+    if (count_taskComplete >= rescanInterval)
+    {
+        // Clear thread allocated memory
+        for (int i = 0; i < readThreadQueue.size(); ++i)
+        {
+            delete readThreadQueue[i];
+        }
+
+        // Clear thread queue
+        readThreadQueue.clear();
+
+        // Reset count
+        count_taskComplete = 0;
+
+        return false;
+    }
+    // Not reach rescan interval
+    else if (count_taskComplete < rescanInterval)
+    {
+        // Do nothing wait next loop
+        return true;
+    }
 }
