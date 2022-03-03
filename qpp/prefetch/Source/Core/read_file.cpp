@@ -16,6 +16,13 @@ void ReadFile::init()
 
 void ReadFile::start()
 {
+    // Get and set thread number
+    auto threadNumber = Setting::getInt("Thread", "MaxThreadCount", Setting::setting);
+    if (threadNumber.success && threadNumber.result >= 1)
+    {
+        readThreadPool->setMaxThreadCount(threadNumber.result);
+    }
+
     // Get prefetch folder
     QStringList prefetchFolders = Setting::getArray("PrefetchFolder", Setting::setting);
 

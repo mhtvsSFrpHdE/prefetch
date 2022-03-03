@@ -11,7 +11,24 @@ void Setting::init()
     setting = new QSettings(QCoreApplication::applicationDirPath() + "/prefetch.ini", QSettings::IniFormat);
 }
 
-QStringList Setting::getArray(const QString &groupName, QSettings *qSettings)
+Setting::GetIntResult Setting::getInt(QString groupName, QString keyName, QSettings *qSettings)
+{
+    GetIntResult getIntResult;
+
+    qSettings->beginGroup(groupName);
+
+    bool success;
+    int result = qSettings->value(keyName).toInt(&success);
+
+    qSettings->endGroup();
+
+    getIntResult.success = success;
+    getIntResult.result = result;
+
+    return getIntResult;
+}
+
+QStringList Setting::getArray(QString groupName, QSettings *qSettings)
 {
     QStringList values;
 

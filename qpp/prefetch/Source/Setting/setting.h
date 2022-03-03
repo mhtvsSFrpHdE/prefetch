@@ -1,4 +1,5 @@
 #include <QSettings>
+#include <QString>
 
 // Static class
 class Setting
@@ -8,6 +9,14 @@ public:
 
     // Any init code
     static void init();
+
+    struct GetIntResult
+    {
+        int result = 0;
+        bool success = true;
+    };
+    // Give setting group name and key name, return value as int
+    static GetIntResult getInt(QString groupName, QString keyName, QSettings *qSettings);
 
     // Give a setting group name, return all values under that group
     // Use case: retrieve user input array
@@ -20,7 +29,7 @@ public:
     //         value3=3
     //     auto myArray = getArray("Array");
     //         myArray content: {1,2,3}
-    static QStringList getArray(const QString &groupName, QSettings *qSettings);
+    static QStringList getArray(QString groupName, QSettings *qSettings);
 
 private:
     // Disallow creating an instance of this object
