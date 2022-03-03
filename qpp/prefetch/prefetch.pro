@@ -38,3 +38,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 # Enable c++11 for QT 4.8.7
 QMAKE_CXXFLAGS += -std=c++11
+
+# Compiler -Ofast here we go again
+QMAKE_CFLAGS_RELEASE -= -O
+QMAKE_CFLAGS_RELEASE -= -O1
+QMAKE_CFLAGS_RELEASE -= -O2
+QMAKE_CFLAGS_RELEASE -= -O3
+QMAKE_CFLAGS_RELEASE *= -Ofast
