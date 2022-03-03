@@ -31,10 +31,15 @@ void ReadFile::start()
     }
 
     // Get prefetch folder
-    QStringList prefetchFolders = Setting::getArray("PrefetchFolder", Setting::setting);
+    auto prefetchFolders = Setting::getArray("PrefetchFolder", Setting::setting);
 
     // Get exclude folder
-    QStringList excludeFolders = Setting::getArray("ExcludeFolder", Setting::setting);
+    auto excludeFolders = Setting::getArray("ExcludeFolder", Setting::setting);
+    for (int i = 0; i < excludeFolders.size(); ++i)
+    {
+        auto excludeFolderName = QDir(excludeFolders[i]).absolutePath();
+        ReadThread::excludeFolders.append(excludeFolderName);
+    }
 
     // Get rescan interval
     auto getRescanInterval = Setting::getInt("Thread", "RescanInterval", Setting::setting);
