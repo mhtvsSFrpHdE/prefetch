@@ -1,4 +1,6 @@
 #include <QThread>
+#include <QElapsedTimer>
+#include <QTime>
 
 #include "read_file.h"
 #include "..\Setting\setting.h"
@@ -159,6 +161,10 @@ bool ReadFile::start_runThreadPool(int rescanInterval)
                            << endl;
     StdOut::consoleOutput->flush();
 
+    // Create timer
+    QElapsedTimer threadPoolTimer;
+    threadPoolTimer.start();
+
     // Consume thread queue
     for (int i = 0; i < readThreadQueue.size(); ++i)
     {
@@ -166,9 +172,20 @@ bool ReadFile::start_runThreadPool(int rescanInterval)
     }
 
     readThreadPool->waitForDone();
+
+    // Get code execute time
+    auto threadPoolTimeConsumedMiliseconds = threadPoolTimer.elapsed();
+    auto threadPoolTimeConsumedFormatedString = QTime()
+                                                    .addMSecs(threadPoolTimeConsumedMiliseconds)
+                                                    .toString("ss.zzz");
+    threadPoolTimeConsumedFormatedString.chop(1);
+
+    // Increase task count
     count_taskComplete++;
 
-    *StdOut::consoleOutput << "Idle"
+    *StdOut::consoleOutput << "Idle, Time: "
+                           << threadPoolTimeConsumedFormatedString
+                           << " Sec"
                            << endl;
     StdOut::consoleOutput->flush();
 
