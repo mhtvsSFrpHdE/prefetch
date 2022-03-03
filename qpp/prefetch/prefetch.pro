@@ -7,6 +7,14 @@ CONFIG -= app_bundle
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+HEADERS += \
+    Source/Core/Thread/read_thread.h \
+    Source/Core/read_file.h \
+    Source/Global/global.h \
+    Source/Output/stdout.h \
+    Source/Setting/setting.h \
+    Source/Translate/translate.h
+
 SOURCES += \
         Source/Core/Thread/read_thread.cpp \
         Source/Core/read_file.cpp \
@@ -30,11 +38,3 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 # Enable c++11 for QT 4.8.7
 QMAKE_CXXFLAGS += -std=c++11
-
-HEADERS += \
-    Source/Core/Thread/read_thread.h \
-    Source/Core/read_file.h \
-    Source/Global/global.h \
-    Source/Output/stdout.h \
-    Source/Setting/setting.h \
-    Source/Translate/translate.h

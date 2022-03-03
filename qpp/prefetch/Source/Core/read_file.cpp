@@ -1,3 +1,5 @@
+#include <QThread>
+
 #include "read_file.h"
 #include "..\Setting\setting.h"
 #include "..\Output\stdout.h"
@@ -7,6 +9,17 @@ int ReadFile::count_start_scanFolder = 0;
 QList<QRunnable *> ReadFile::readThreadQueue = QList<QRunnable *>();
 QThreadPool *ReadFile::readThreadPool = QThreadPool::globalInstance();
 int ReadFile::count_taskComplete = 0;
+
+// Wrapper to access QThread functions
+class start_ReadSleep : public QThread
+{
+public:
+    static void sleep(int secs) { QThread::sleep(secs); }
+
+private:
+    // Disallow creating an instance of this object
+    start_ReadSleep();
+};
 
 void ReadFile::start()
 {
@@ -26,12 +39,21 @@ void ReadFile::start()
     // Get rescan interval
     auto getRescanInterval = Setting::getInt("Thread", "RescanInterval", Setting::setting);
 
+    // Get prefetch interval
+    auto getPrefetchInterval = Setting::getInt("Thread", "PrefetchInterval", Setting::setting);
+    int prefetchIntervalInSecond = 60;
+    if (getPrefetchInterval.success && getPrefetchInterval.result > 0)
+    {
+        prefetchIntervalInSecond = getPrefetchInterval.result;
+    }
+
     // Set do not auto delete for thread instance
     ReadThread::autoDeletePreset = false;
 
-    // Repeat task loop
+    // Repeat root task loop
     while (true)
     {
+        // Scan folder and queue threads that read each file
         for (int i = 0; i < prefetchFolders.size(); ++i)
         {
             auto prefetchFolderName = prefetchFolders[i];
@@ -39,13 +61,22 @@ void ReadFile::start()
             ReadFile::start_scanFolder(prefetchFolderName);
         }
 
+        // Repeat read file loop
+        // Once break, will rescan folder
+        // If not break, simply repeat exist threads again
         while (true)
         {
             bool runResult = start_runThreadPool(getRescanInterval.result);
             if (runResult == false)
             {
+                // Wait for a while
+                start_ReadSleep::sleep(prefetchIntervalInSecond);
+
                 break;
             }
+
+            // Wait for a while
+            start_ReadSleep::sleep(prefetchIntervalInSecond);
         }
     }
 }
