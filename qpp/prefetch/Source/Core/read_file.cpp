@@ -59,6 +59,11 @@ void ReadFile::start()
     while (true)
     {
         // Scan folder and queue threads that read each file
+
+        *StdOut::consoleOutput << "Scan folder..."
+                               << endl;
+        StdOut::consoleOutput->flush();
+
         for (int i = 0; i < prefetchFolders.size(); ++i)
         {
             auto prefetchFolderName = prefetchFolders[i];
@@ -150,6 +155,10 @@ void ReadFile::start_scanFolder(QString prefetchFolderName)
 
 bool ReadFile::start_runThreadPool(int rescanInterval)
 {
+    *StdOut::consoleOutput << "Prefetching..."
+                           << endl;
+    StdOut::consoleOutput->flush();
+
     // Consume thread queue
     for (int i = 0; i < readThreadQueue.size(); ++i)
     {
@@ -159,7 +168,7 @@ bool ReadFile::start_runThreadPool(int rescanInterval)
     readThreadPool->waitForDone();
     count_taskComplete++;
 
-    *StdOut::consoleOutput << count_taskComplete
+    *StdOut::consoleOutput << "Idle"
                            << endl;
     StdOut::consoleOutput->flush();
 
