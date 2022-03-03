@@ -1,7 +1,9 @@
-#include <QThread>
+#include <QMutexLocker>
 
 #include "read_thread.h"
 #include "..\..\Output\stdout.h"
+
+QMutex ReadThread::printLock(QMutex::NonRecursive);
 
 ReadThread::ReadThread(QString filePath)
 {
@@ -10,7 +12,9 @@ ReadThread::ReadThread(QString filePath)
 
 void ReadThread::run()
 {
-    //  *StdOut::consoleOutput << filePath
-    //                         << endl;
-    //bool iJustDoNothingToConfirmThreadpoolIsFine = true;
+    QMutexLocker locker(&printLock);
+
+    *StdOut::consoleOutput << filePath
+                           << endl;
+    StdOut::consoleOutput->flush();
 }

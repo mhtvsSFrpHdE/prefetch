@@ -93,8 +93,13 @@ void ReadFile::start_runThreadPool()
     // Consume thread queue
     for (int i = 0; i < readThreadQueue.size(); ++i)
     {
+        // readThreadQueue[i]->run();
         readThreadPool->start(readThreadQueue[i]);
     }
+    readThreadPool->waitForDone();
+
+    *StdOut::consoleOutput << readThreadPool->maxThreadCount()
+                           << endl;
 
     // TODO: Clear thread allocated memory after thread done
     // TODO: Clear thread queue
