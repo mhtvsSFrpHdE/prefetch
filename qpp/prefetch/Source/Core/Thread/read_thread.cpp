@@ -10,6 +10,7 @@ ReadThread::ReadThread(QString filePath)
 
 void ReadThread::run()
 {
-    *StdOut::consoleOutput << "hello from worker thread " << QThread::currentThread()
-                           << endl;
+    //  *StdOut::consoleOutput << filePath
+    //                         << endl;
+    //bool iJustDoNothingToConfirmThreadpoolIsFine = true;
 }

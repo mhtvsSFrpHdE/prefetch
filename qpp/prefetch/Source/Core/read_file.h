@@ -22,12 +22,14 @@ private:
 
     // Queue thread for later use
     // Start threadpool after iterate complete to reduce I/O fragment
-    static void start_readFile_ququeThread(QString filePath);
+    static void start_createReadFileThread_ququeThread(QString filePath);
 
     // Read all file in QFileInfoList
-    static void start_readFile(QDir *prefetchFolder);
+    static void start_createReadFileThread(QDir *prefetchFolder);
 
-    // iterated function
+    // Iterated function
     static void start_scanFolder(QString prefetchFolderName);
-    static void start_runThread();
+
+    // Consume thread queue and empty queue after done
+    static void start_runThreadPool();
 };

@@ -29,18 +29,17 @@ void ReadFile::start()
         ReadFile::start_scanFolder(prefetchFolderName);
     }
 
-    auto readThreadQueueRef = readThreadQueue;
-
-    bool doNothing = true;
+    start_runThreadPool();
 }
 
-void ReadFile::start_readFile_ququeThread(QString filePath)
+void ReadFile::start_createReadFileThread_ququeThread(QString filePath)
 {
     auto readThread = new ReadThread(filePath);
+    // readThread->setAutoDelete(false);
     ReadFile::readThreadQueue.append(readThread);
 }
 
-void ReadFile::start_readFile(QDir *prefetchFolder)
+void ReadFile::start_createReadFileThread(QDir *prefetchFolder)
 {
     prefetchFolder->setFilter(QDir::Files);
     auto subFileList = prefetchFolder->entryInfoList();
@@ -49,7 +48,7 @@ void ReadFile::start_readFile(QDir *prefetchFolder)
     {
         auto filePath = subFileList[i].absoluteFilePath();
 
-        start_readFile_ququeThread(filePath);
+        start_createReadFileThread_ququeThread(filePath);
     }
 }
 
@@ -86,12 +85,17 @@ void ReadFile::start_scanFolder(QString prefetchFolderName)
     }
 
     // Folder tree scan complete, create read file threads
-    start_readFile(&prefetchFolder);
+    start_createReadFileThread(&prefetchFolder);
 };
 
-void ReadFile::start_runThread()
+void ReadFile::start_runThreadPool()
 {
-    // TODO: Consume thread(simply print file name for now)
+    // Consume thread queue
+    for (int i = 0; i < readThreadQueue.size(); ++i)
+    {
+        readThreadPool->start(readThreadQueue[i]);
+    }
+
     // TODO: Clear thread allocated memory after thread done
     // TODO: Clear thread queue
 }
