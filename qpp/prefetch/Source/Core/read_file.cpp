@@ -6,6 +6,7 @@
 #include "..\Setting\setting.h"
 #include "..\Output\stdout.h"
 #include "Thread\read_thread.h"
+#include "startup.h"
 
 int ReadFile::count_start_scanFolder = 0;
 QList<QRunnable *> ReadFile::readThreadQueue = QList<QRunnable *>();
@@ -179,6 +180,11 @@ bool ReadFile::start_runThreadPool(int rescanInterval)
                                                     .addMSecs(threadPoolTimeConsumedMiliseconds)
                                                     .toString("ss.zzz");
     threadPoolTimeConsumedFormatedString.chop(1);
+
+    *StdOut::consoleOutput << "Run startup items..."
+                           << endl;
+    StdOut::consoleOutput->flush();
+    Startup::startOnce();
 
     // Increase task count
     count_taskComplete++;
