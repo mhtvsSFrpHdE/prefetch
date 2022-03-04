@@ -6,13 +6,14 @@
 #include "..\..\Output\stdout.h"
 
 bool ReadThread::autoDeletePreset = true;
-bool skip = false;
 QMutex ReadThread::printLock(QMutex::NonRecursive);
 QStringList ReadThread::excludeFolders = QStringList();
 
 ReadThread::ReadThread(QString filePath)
 {
     ReadThread::filePath = filePath;
+    ReadThread::skip = false;
+
     setAutoDelete(autoDeletePreset);
 }
 
