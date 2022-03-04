@@ -13,6 +13,19 @@ Some setting group used to read multiple values together, called array.
 - Key name is not matter, you can add your own
 - One key have one value, for multiple value, add new key for it
 
+## Command line arguments
+
+### \_.ini
+
+When start, type setting file name after `prefetch.exe` to load different settings.  
+If no ini provided, default is `prefetch.ini`.
+
+```
+>prefetch.exe iexplore.ini
+
+new QSettings(<your value goes here>, QSettings::IniFormat);
+```
+
 ## PrefetchFolder - Array
 
 Array and:
@@ -72,6 +85,7 @@ Example:
 
 - 0 to disable rescan
 - 1 to rescan everytime
+- 2 and more to rescan every a period of times
 
 After folder scanned, all file path founded will cache to RAM,  
 so future prefetch no need to scan what files to prefetch again,  
@@ -81,11 +95,9 @@ When a prefetch task is done, increase completed task counter.
 If completed task greater than or equal to RescanInterval,  
 file path cache will be erased and rescan from folder.
 
-For files not often change (_.dll, _.exe, etc), set to 0.  
-For user data, set to 1.
-
-For different folder types,  
-deploy multiple prefetch instance is required in current version.
+For files not often change (\_.dll, \_.exe, etc), set to 0.  
+For user data, set to 1.  
+You can create multiple instance for different folder types.
 
 ### PrefetchInterval
 
