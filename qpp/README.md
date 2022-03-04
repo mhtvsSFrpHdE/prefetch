@@ -5,15 +5,37 @@ putting wrong value in prefetch.ini will crash the program.
 
 ## PrefetchFolder
 
-Treat this config group as Array:  
+Treat this config group as Array:
 
 - Config under this group is key/value pair
 - Key name is not matter, you can add your own
 - One key have one value, for multiple folder, add new key for it
+- Path splitter must be escaped, like `C:\\`
 
 ## ExcludeFolder
 
 Same as `PrefetchFolder`.
+
+## AfterPrefetch
+
+These are startup items and will only run once after first prefetch  
+in order to ensure they're startup in cached environment.
+
+Same as `PrefetchFolder` and something to notice:
+
+```
+Example1=\"C:\\Program Files\\Mozilla Firefox\\firefox.exe\" https://www.mozilla.org
+Example2=explorer Firefox.lnk
+```
+
+Example1 shows how do you put space in exe path and pass arguments,  
+a lot things required to escape `\"` properly.
+
+Example2 shows a smart way to isolate details from `prefetch`:
+
+- Create or copy a lnk shortcut along with `prefetch.exe`
+- Remove space from lnk name
+- Write `explorer ` before lnk name in `prefetch.ini`
 
 ## Thread
 
@@ -36,15 +58,15 @@ Example:
 - 0 to disable rescan
 - 1 to rescan everytime
 
-After folder scanned, files founded will cache to RAM,  
+After folder scanned, all file path founded will cache to RAM,  
 so future prefetch no need to scan what files to prefetch again,  
 but prefetch them directly.
 
 When a prefetch task is done, increase completed task counter.  
-If RescanInterval greater than or equal to completed task,  
-file path cache will invalid and rescan from folder.
+If completed task greater than or equal to RescanInterval,  
+file path cache will be erased and rescan from folder.
 
-For files not often change (*.dll, *.exe, etc), set to 0.  
+For files not often change (_.dll, _.exe, etc), set to 0.  
 For user data, set to 1.
 
 For different folder types,  
