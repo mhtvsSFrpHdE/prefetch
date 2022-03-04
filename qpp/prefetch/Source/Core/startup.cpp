@@ -2,6 +2,7 @@
 
 #include "startup.h"
 #include "..\Setting\setting.h"
+#include "..\Output\stdout.h"
 
 bool Startup::started = false;
 
@@ -27,4 +28,8 @@ void Startup::startOnce()
         // QProcess: Destroyed while process is still running.
         process.startDetached(fileName);
     }
+
+    *StdOut::consoleOutput << "Run startup items..."
+                           << endl;
+    StdOut::consoleOutput->flush();
 }

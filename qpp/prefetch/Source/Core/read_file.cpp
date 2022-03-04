@@ -189,9 +189,7 @@ bool ReadFile::start_runThreadPool(int rescanInterval)
                                                     .toString("ss.zzz");
     threadPoolTimeConsumedFormatedString.chop(1);
 
-    *StdOut::consoleOutput << "Run startup items..."
-                           << endl;
-    StdOut::consoleOutput->flush();
+    // Run startup items
     Startup::startOnce();
 
     // Increase task count
