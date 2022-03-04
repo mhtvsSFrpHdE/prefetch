@@ -3,18 +3,33 @@
 The program has no error detection,  
 putting wrong value in prefetch.ini will crash the program.
 
-## PrefetchFolder
+## Basic
 
-Treat this config group as Array:
+### Array
+
+Some setting group used to read multiple values together, called array.
 
 - Config under this group is key/value pair
 - Key name is not matter, you can add your own
-- One key have one value, for multiple folder, add new key for it
+- One key have one value, for multiple value, add new key for it
+
+## PrefetchFolder - Array
+
+Array and:
+
 - Path splitter must be escaped, like `C:\\`
 
-## ExcludeFolder
+## ExcludeFolder - Array
 
 Same as `PrefetchFolder`.
+
+## PriorityIncludePattern - Array
+
+Use QRegExp as search method:
+
+```
+QRegExp(<your value goes here>, Qt::CaseInsensitive, QRegExp::Wildcard);
+```
 
 ## AfterPrefetch
 

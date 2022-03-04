@@ -44,6 +44,14 @@ void ReadFile::start()
         ReadThread::excludeFolders.append(excludeFolderName);
     }
 
+    // Get priority include search patterns
+    auto priorityIncludePatterns = Setting::getArray("PriorityIncludePattern", Setting::setting);
+    for (int i = 0; i < priorityIncludePatterns.size(); ++i)
+    {
+        auto priorityIncludePattern = priorityIncludePatterns[i];
+        ReadThread::priorityIncludePatterns.append(priorityIncludePattern);
+    }
+
     // Get rescan interval
     auto getRescanInterval = Setting::getInt("Thread", "RescanInterval", Setting::setting);
 

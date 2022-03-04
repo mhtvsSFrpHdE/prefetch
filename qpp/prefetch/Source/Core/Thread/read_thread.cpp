@@ -8,6 +8,7 @@
 bool ReadThread::autoDeletePreset = true;
 QMutex ReadThread::printLock(QMutex::NonRecursive);
 QStringList ReadThread::excludeFolders = QStringList();
+QStringList ReadThread::priorityIncludePatterns = QStringList();
 
 ReadThread::ReadThread(QString filePath)
 {
@@ -48,6 +49,26 @@ bool ReadThread::run_SearchExclude()
     return false;
 }
 
+bool ReadThread::run_SearchInclude()
+{
+    // Extract search pattern from priority include patterns
+    for (int i = 0; i < priorityIncludePatterns.size(); ++i)
+    {
+        auto searchPattern = QRegExp(priorityIncludePatterns[i], Qt::CaseInsensitive, QRegExp::Wildcard);
+        auto searchResult = filePath.indexOf(searchPattern);
+
+        // Assume file not match search patterns
+        // Search should always not found
+        // Otherwize this file is included
+        if (searchResult != -1)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 void ReadThread::run_read()
 {
     // Read file
@@ -75,9 +96,15 @@ void ReadThread::run()
         return;
     }
 
-    if (run_SearchExclude())
+    bool priorityInclude = run_SearchInclude();
+
+    // Only search excluded if file not priority included
+    if (priorityInclude == false)
     {
-        return;
+        if (run_SearchExclude())
+        {
+            return;
+        }
     }
 
     run_read();

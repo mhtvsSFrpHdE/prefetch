@@ -15,6 +15,9 @@ public:
     // File under exclude folders will not prefetch
     static QStringList excludeFolders;
 
+    // File match search pattern will ignore exclude folders
+    static QStringList priorityIncludePatterns;
+
     void run();
 
 private:
@@ -30,7 +33,13 @@ private:
     // Prevent access stdio at same time
     static QMutex printLock;
 
+    // Confirm file path is included or not
+    // Return
+    //     true: File path is included
+    bool run_SearchInclude();
+
     // Confirm file path is excluded or not
+    // Return
     //     true: File is excluded
     bool run_SearchExclude();
 
