@@ -31,7 +31,7 @@ Use QRegExp as search method:
 QRegExp(<your value goes here>, Qt::CaseInsensitive, QRegExp::Wildcard);
 ```
 
-## AfterPrefetch
+## AfterPrefetch - Array
 
 These are startup items and will only run once after first prefetch  
 in order to ensure they're startup in cached environment.
