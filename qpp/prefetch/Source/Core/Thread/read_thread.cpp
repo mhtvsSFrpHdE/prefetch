@@ -21,16 +21,8 @@ ReadThread::ReadThread(QString filePath)
 //                        << endl;
 // StdOut::consoleOutput->flush();
 
-void ReadThread::run()
+bool ReadThread::run_SearchExclude()
 {
-    // QMutexLocker locker(&printLock);
-
-    // Thread is known to skip
-    if (skip)
-    {
-        return;
-    }
-
     // %1: Qt format path, something like "C:/"
     auto searchPatternTemplate = QString("%1*");
 
@@ -49,10 +41,15 @@ void ReadThread::run()
             // Cache search result
             skip = true;
 
-            return;
+            return true;
         }
     }
 
+    return false;
+}
+
+void ReadThread::run_read()
+{
     // Read file
     QFile file(filePath);
     if (file.open(QIODevice::ReadOnly))
@@ -65,7 +62,23 @@ void ReadThread::run()
     {
         // Cache result
         skip = true;
+    }
+}
 
+void ReadThread::run()
+{
+    // QMutexLocker locker(&printLock);
+
+    // Thread is known to skip
+    if (skip)
+    {
         return;
     }
+
+    if (run_SearchExclude())
+    {
+        return;
+    }
+
+    run_read();
 }

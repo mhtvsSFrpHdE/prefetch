@@ -29,4 +29,11 @@ private:
 
     // Prevent access stdio at same time
     static QMutex printLock;
+
+    // Confirm file path is excluded or not
+    //     true: File is excluded
+    bool run_SearchExclude();
+
+    // Prefetch file
+    void run_read();
 };
