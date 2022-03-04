@@ -5,10 +5,42 @@
 
 QSettings *Setting::setting;
 
-void Setting::init()
+struct TryGetSettingFilePath
 {
+    bool success = false;
+    QString filePath = NULL;
+};
+
+TryGetSettingFilePath init_getSettingFilePath(int argc, QStringList argv)
+{
+    TryGetSettingFilePath tryGetSettingFilePath;
+
+    if (argc != 2)
+    {
+        return tryGetSettingFilePath;
+    }
+
+    tryGetSettingFilePath.filePath = QCoreApplication::arguments()[1];
+    tryGetSettingFilePath.success = true;
+
+    return tryGetSettingFilePath;
+}
+
+void Setting::init(int argc, QStringList argv)
+{
+    // Setting file default value
+    QString settingFilePath = "prefetch.ini";
+
+    // Get setting file path
+    auto getSettingFilePath = init_getSettingFilePath(argc, argv);
+    if (getSettingFilePath.success)
+    {
+        settingFilePath = getSettingFilePath.filePath;
+    }
+    settingFilePath = QCoreApplication::applicationDirPath() + "/" + settingFilePath;
+
     // Read ini from exe stored folder
-    setting = new QSettings(QCoreApplication::applicationDirPath() + "/prefetch.ini", QSettings::IniFormat);
+    setting = new QSettings(settingFilePath, QSettings::IniFormat);
 }
 
 Setting::GetIntResult Setting::getInt(QString groupName, QString keyName, QSettings *qSettings)

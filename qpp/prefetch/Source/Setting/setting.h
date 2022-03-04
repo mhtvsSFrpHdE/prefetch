@@ -8,7 +8,7 @@ public:
     static QSettings *setting;
 
     // Any init code
-    static void init();
+    static void init(int argc, QStringList argv);
 
     struct GetIntResult
     {
