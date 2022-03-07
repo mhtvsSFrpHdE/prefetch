@@ -1,0 +1,33 @@
+JUST DON'T BOTHER ME PUBLIC LICENSE
+
+Copyright (c) 2019 mhtvsSFrpHdE
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "source code").
+
+This special license is based on MIT and WTFPL, and named as JDBM license (just don't bother me).
+It is equivalent to MIT license (protecting source code maintainers) but has extra permission directly granted to "you" (the "developers who can choose to use source code").
+It nearly releases the source code to the public domain, but keep version management ability to source code maintainers,
+and free them from legal responsibilities and consequences.
+
+MIT requires you to include the copyright notice and the permission notice in all copies or substantial portions of the "Software".
+WTFPL granted you to do almost anything include commercial use but does not protect maintainers from legal responsibilities and consequences.
+To combine both of the advantages, JDBM and you agreed to:
+
+- You do not have to tell the "source code usage" on the product's user interface or any text shown to end-user, either JDBM and MIT.
+  The license files do not have to put in a conspicuous position like the executable file in the root install folder.
+  That means, the license files just need to be included in final distribute program files and a meaningful file name, but no matter how if you hide it from end-users.
+  Treat it as an "agreement between developers" and have nothing to do with the end-users.
+  If no license provided in final distribute, the source code considered as your results of the work.
+  In this case, the source code behavior has nothing to do with source code maintainers.
+
+- Any responsibilities and consequences must not have a relationship with the source code maintainers.
+  The person who decided to use source code must take any responsibility and consequences.
+  You are not entitled to any accident compensation from the source code maintainers.
+
+- You are not granted to make a copy of the source code, apply for patent rights and sue the source code maintainers.
+
+- You did can use the source code for any purpose, but keep in mind if anything happens, "just don't bother me".
+
+All of the above terms must be agreed to use the licensed source code.
+If you disagree with the terms, stop the plan to use the source code and remove any local changes.
+And contact the source maintainers if you still wish to negotiate with.
