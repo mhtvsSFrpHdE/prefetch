@@ -54,7 +54,7 @@ bool ReadThread::run_SearchInclude()
     // Extract search pattern from priority include patterns
     for (int i = 0; i < priorityIncludePatterns.size(); ++i)
     {
-        auto searchPattern = QRegExp(priorityIncludePatterns[i], Qt::CaseInsensitive, QRegExp::Wildcard);
+        auto searchPattern = QRegExp(priorityIncludePatterns[i], Qt::CaseInsensitive);
         auto searchResult = filePath.indexOf(searchPattern);
 
         // Assume file not match search patterns
