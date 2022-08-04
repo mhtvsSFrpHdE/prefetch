@@ -1,3 +1,5 @@
+# Tested on Python 3.9.10
+
 import os  # nopep8
 import sys  # nopep8
 from pathlib import Path  # nopep8
