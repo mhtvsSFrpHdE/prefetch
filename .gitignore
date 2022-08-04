@@ -16,11 +16,14 @@ qpp/prefetch/env.bat
 # Tool environment
 qpp/prefetch/Tool/env.bat
 
-# Tool log
-qpp/prefetch/Tool/copy_resource.log
+# Log
+*.log
 
 # Python venv
 qpp/prefetch/.venv
 
 # DLL
 qpp/prefetch/requirements
+
+# Python compile cache
+*.pyc
