@@ -1,76 +1,39 @@
-import os
-import shutil
-import sys
+import os  # nopep8
+import sys  # nopep8
+from pathlib import Path  # nopep8
 
-from pathlib import Path
+# Log
 import logging
+logging.basicConfig(filename='copy_resource.log', encoding='utf-8', level=logging.INFO)
+
+# Append source code folder
+srcPath = Path(os.path.dirname(__file__)).joinpath("src")  # nopep8
+sys.path.append(srcPath)  # nopep8
+
+# pToolCore
+from Src import pToolCore  # nopep8
 
 # Environment
 cwd = Path(os.getcwd()).parent
-
-# Log
-logging.basicConfig(filename='copy_resource.log', encoding='utf-8', level=logging.INFO)
-
-# Input
-buildType = "Debug"
-if (len(sys.argv) > 1):
-    buildType = sys.argv[1]
-
-# Function
-def compare(sourceFilePath, targetFilePath, action=None):
-    # Only check if target file already exist to avoid error
-    if targetFilePath.is_file():
-        sourceFileTime = os.path.getmtime(sourceFilePath)
-        targetFileTime = os.path.getmtime(targetFilePath)
-
-        if sourceFileTime > targetFileTime:
-            action(sourceFilePath, targetFilePath)
-    # Target file not exist copy directly
-    else:
-        action(sourceFilePath, targetFilePath)
-
-def copy(sourceFilePath, targetFilePath):
-    shutil.copyfile(sourceFilePath, targetFilePath)
-
-def getOutputPath(targetFileName):
-    navigate1 = "build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Debug"
-    navigate2 = "debug"
-    if buildType == "Release":
-        navigate1 = "build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Release"
-        navigate2 = "release"
-
-    outputPath = cwd.parent.joinpath(navigate1)
-    outputPath = outputPath.joinpath(navigate2)
-    outputPath = outputPath.joinpath(targetFileName)
-
-    return outputPath
-
-def process(sourceFileName, copyWithFolder=False):
-    sourceFilePath = cwd.joinpath(sourceFileName)
-
-    if copyWithFolder:
-        targetFilePath = getOutputPath(sourceFileName)
-    else:
-        targetFilePath = getOutputPath(Path(sourceFilePath.name))
-
-    compare(sourceFilePath, targetFilePath, copy)
+buildType = pToolCore.BuildType.Debug
+pToolCore.Init(cwd, buildType)
 
 # File list
 
 # Config
-process(Path("prefetch.ini"))
+pToolCore.Function.processFile(Path("prefetch.ini"))
 
 # DLL
-process(Path("requirements").joinpath("libgcc_s_dw2-1.dll"))
-process(Path("requirements").joinpath("libstdc++-6.dll"))
-process(Path("requirements").joinpath("libwinpthread-1.dll"))
-process(Path("requirements").joinpath("QtCore4.dll"))
+pToolCore.Function.processFile(Path("requirements").joinpath("libgcc_s_dw2-1.dll"))
+pToolCore.Function.processFile(Path("requirements").joinpath("libstdc++-6.dll"))
+pToolCore.Function.processFile(Path("requirements").joinpath("libwinpthread-1.dll"))
+pToolCore.Function.processFile(Path("requirements").joinpath("QtCore4.dll"))
 
 # Debug DLL
-if buildType == "Debug":
+if buildType == pToolCore.BuildType.Debug:
     qtPath = Path("C:\Qt\\4.8.7\\bin")
 
-    process(qtPath.joinpath("QtCored4.dll"))
+    pToolCore.Function.processFile(qtPath.joinpath("QtCored4.dll"))
 
     # process(qtPath.joinpath("QtDesignerComponentsd4.dll"))
     # process(qtPath.joinpath("QtDesignerd4.dll"))

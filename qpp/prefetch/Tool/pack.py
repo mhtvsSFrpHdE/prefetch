@@ -15,10 +15,8 @@ from Src import pToolCore  # nopep8
 
 # Environment
 cwd = Path(os.getcwd()).parent
-pToolCore.Init(cwd)
-
-# Input
 buildType = pToolCore.BuildType.Release
+pToolCore.Init(cwd, buildType)
 
 # File list
 
