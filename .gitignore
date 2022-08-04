@@ -30,3 +30,6 @@ qpp/prefetch/requirements
 
 # Tool ParseProcmonLog.py user data
 qpp/prefetch/Tool/Logfile.CSV
+
+# Wiki
+wiki/prefetch.wiki/
