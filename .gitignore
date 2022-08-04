@@ -27,3 +27,6 @@ qpp/prefetch/requirements
 
 # Python compile cache
 *.pyc
+
+# Tool ParseProcmonLog.py user data
+qpp/prefetch/Tool/Logfile.CSV
