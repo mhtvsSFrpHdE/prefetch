@@ -29,6 +29,9 @@ private:
     // Clean previous created thread and rescan folder to create new
     static int count_taskComplete;
 
+    // Convert config file option to QT thread enum
+    static QMap<QString, QThread::Priority> priorityMap;
+
     // Queue thread for later use
     // Start threadpool after iterate complete to reduce I/O fragment
     static void start_createReadFileThread_ququeThread(QString filePath);

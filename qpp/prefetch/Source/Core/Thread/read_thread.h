@@ -2,6 +2,7 @@
 #include <QString>
 #include <QMutex>
 #include <QStringList>
+#include <QMap>
 
 class ReadThread : public QRunnable
 {

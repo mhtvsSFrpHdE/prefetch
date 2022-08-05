@@ -12,6 +12,18 @@ int ReadFile::count_start_scanFolder = 0;
 QList<QRunnable *> ReadFile::readThreadQueue = QList<QRunnable *>();
 QThreadPool *ReadFile::readThreadPool = QThreadPool::globalInstance();
 int ReadFile::count_taskComplete = 0;
+// Cool stuff: https://stackoverflow.com/questions/8157625/how-do-i-populate-values-of-a-static-qmap-in-c-qt
+// Use initializer list and one of the QMap constructor
+QMap<QString, QThread::Priority> ReadFile::priorityMap(
+    std::map<QString, QThread::Priority>{
+        {"IdlePriority", QThread::IdlePriority},
+        {"LowestPriority", QThread::LowestPriority},
+        {"LowPriority", QThread::LowPriority},
+        {"NormalPriority", QThread::NormalPriority},
+        {"HighPriority", QThread::HighPriority},
+        {"HighestPriority", QThread::HighestPriority},
+        {"TimeCriticalPriority", QThread::TimeCriticalPriority},
+        {"InheritPriority", QThread::InheritPriority}});
 
 // Wrapper to access QThread functions
 class start_ReadSleep : public QThread
@@ -63,6 +75,10 @@ void ReadFile::start()
         prefetchIntervalInSecond = getPrefetchInterval.result;
     }
 
+    // Get read thread priority
+    auto getReadThreadPriority = Setting::getString("Thread", "ReadThreadPriority", Setting::setting);
+    QThread::Priority readThreadPriority = priorityMap[getReadThreadPriority];
+
     // Set do not auto delete for thread instance
     ReadThread::autoDeletePreset = false;
 
@@ -82,6 +98,14 @@ void ReadFile::start()
             ReadFile::start_scanFolder(prefetchFolderName);
         }
 
+        // Save current thread priority and restore later
+        auto currentThreadPrioritySnapshot = QThread::currentThread()->priority();
+
+        // Set thread priority
+        // Only change priority while read files
+        // No need to throttle cpu usage during scan folder
+        QThread::currentThread()->setPriority(readThreadPriority);
+
         // Repeat read file loop
         // Once break, will rescan folder
         // If not break, simply repeat exist threads again
@@ -99,6 +123,9 @@ void ReadFile::start()
             // Wait for a while
             start_ReadSleep::sleep(prefetchIntervalInSecond);
         }
+
+        // Restore thread priority
+        QThread::currentThread()->setPriority(currentThreadPrioritySnapshot);
     }
 }
 
