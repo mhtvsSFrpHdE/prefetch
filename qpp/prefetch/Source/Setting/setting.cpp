@@ -61,6 +61,17 @@ Setting::GetIntResult Setting::getInt(QString groupName, QString keyName, QSetti
     return getIntResult;
 }
 
+QString Setting::getString(QString groupName, QString keyName, QSettings *qSettings)
+{
+    qSettings->beginGroup(groupName);
+
+    QString result = qSettings->value(keyName).toString();
+
+    qSettings->endGroup();
+
+    return result;
+}
+
 QStringList Setting::getArray(QString groupName, QSettings *qSettings)
 {
     QStringList values;

@@ -19,6 +19,10 @@ public:
     // If fail to parse int, result will set to 0
     static GetIntResult getInt(QString groupName, QString keyName, QSettings *qSettings);
 
+    // Give setting group name and key name, return value as QString
+    // This one return result directly no matter what it is
+    static QString getString(QString groupName, QString keyName, QSettings *qSettings);
+
     // Give a setting group name, return all values under that group
     // Use case: retrieve user input array
     //
