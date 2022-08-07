@@ -13,7 +13,7 @@ public:
     static void start();
 
     // Save running sleep thread address for later access on other thread
-    static SleepThread* sleepThreadAddress;
+    static SleepThread *sleepThreadAddress;
 
 private:
     // Disallow creating an instance of this object
