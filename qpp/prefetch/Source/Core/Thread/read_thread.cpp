@@ -9,6 +9,7 @@ bool ReadThread::autoDeletePreset = true;
 QMutex ReadThread::printLock(QMutex::NonRecursive);
 QStringList ReadThread::excludeFolders = QStringList();
 QStringList ReadThread::priorityIncludePatterns = QStringList();
+bool ReadThread::pause = false;
 
 ReadThread::ReadThread(QString filePath)
 {
