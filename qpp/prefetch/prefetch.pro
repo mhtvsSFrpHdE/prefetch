@@ -9,6 +9,7 @@ CONFIG -= app_bundle
 
 HEADERS += \
     Source/Core/Thread/read_thread.h \
+    Source/Core/Thread/sleep_thread.h \
     Source/Core/read_file.h \
     Source/Core/startup.h \
     Source/Global/global.h \
@@ -18,6 +19,7 @@ HEADERS += \
 
 SOURCES += \
         Source/Core/Thread/read_thread.cpp \
+        Source/Core/Thread/sleep_thread.cpp \
         Source/Core/read_file.cpp \
         Source/Core/startup.cpp \
         Source/Global/global.cpp \

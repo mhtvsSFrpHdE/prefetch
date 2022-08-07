@@ -7,6 +7,7 @@
 #include "..\Output\stdout.h"
 #include "Thread\read_thread.h"
 #include "startup.h"
+#include "Thread\sleep_thread.h"
 
 int ReadFile::count_start_scanFolder = 0;
 QList<QRunnable *> ReadFile::readThreadQueue = QList<QRunnable *>();
@@ -26,10 +27,15 @@ QMap<QString, QThread::Priority> ReadFile::priorityMap(
         {"InheritPriority", QThread::InheritPriority}});
 
 // Wrapper to access QThread functions
-class start_ReadSleep : public QThread
+class start_ReadSleep
 {
 public:
-    static void sleep(int secs) { QThread::sleep(secs); }
+    static void sleep(unsigned long secs)
+    {
+        SleepThread sleepThread(secs);
+        sleepThread.start();
+        sleepThread.wait();
+    }
 
 private:
     // Disallow creating an instance of this object
@@ -68,8 +74,8 @@ void ReadFile::start()
     auto getRescanInterval = Setting::getInt("Thread", "RescanInterval", Setting::setting);
 
     // Get prefetch interval
-    auto getPrefetchInterval = Setting::getInt("Thread", "PrefetchInterval", Setting::setting);
-    int prefetchIntervalInSecond = 60;
+    auto getPrefetchInterval = Setting::getUnsignedLong("Thread", "PrefetchInterval", Setting::setting);
+    unsigned long prefetchIntervalInSecond = 60;
     if (getPrefetchInterval.success && getPrefetchInterval.result > 0)
     {
         prefetchIntervalInSecond = getPrefetchInterval.result;
