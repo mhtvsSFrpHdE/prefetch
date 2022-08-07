@@ -7,7 +7,6 @@
 #include "..\Output\stdout.h"
 #include "Thread\read_thread.h"
 #include "startup.h"
-#include "Thread\sleep_thread.h"
 
 int ReadFile::count_start_scanFolder = 0;
 QList<QRunnable *> ReadFile::readThreadQueue = QList<QRunnable *>();
@@ -33,6 +32,8 @@ public:
     static void sleep(unsigned long secs)
     {
         SleepThread sleepThread(secs);
+        ReadFile::sleepThreadAddress = &sleepThread;
+
         sleepThread.start();
         sleepThread.wait();
     }

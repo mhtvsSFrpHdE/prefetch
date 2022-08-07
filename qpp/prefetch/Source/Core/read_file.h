@@ -2,6 +2,8 @@
 #include <QStringList>
 #include <QDir>
 
+#include "Thread\sleep_thread.h"
+
 // Static class
 class ReadFile
 {
@@ -9,6 +11,9 @@ public:
     // Start read file
     // while(true)
     static void start();
+
+    // Save running sleep thread address for later access on other thread
+    static SleepThread* sleepThreadAddress;
 
 private:
     // Disallow creating an instance of this object
