@@ -3,6 +3,7 @@
 #include "loop_thread.h"
 #include "..\..\Input\stdin.h"
 #include "..\..\Output\stdout.h"
+#include "..\..\Core\Thread\read_thread.h"
 
 LoopThread::LoopThread() {}
 
@@ -36,6 +37,8 @@ namespace ConsoleCommandFunction
         *StdOut::consoleOutput << "Trying to pause prefetch"
                                << endl;
         StdOut::consoleOutput->flush();
+
+        ReadThread::pause = true;
     };
 }
 
