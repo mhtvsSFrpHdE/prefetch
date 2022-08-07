@@ -13,6 +13,8 @@ HEADERS += \
     Source/Core/read_file.h \
     Source/Core/startup.h \
     Source/Global/global.h \
+    Source/Input/Thread/loop_thread.h \
+    Source/Input/stdin.h \
     Source/Output/stdout.h \
     Source/Setting/setting.h \
     Source/Translate/translate.h
@@ -23,6 +25,8 @@ SOURCES += \
         Source/Core/read_file.cpp \
         Source/Core/startup.cpp \
         Source/Global/global.cpp \
+        Source/Input/Thread/loop_thread.cpp \
+        Source/Input/stdin.cpp \
         Source/Output/stdout.cpp \
         Source/Setting/setting.cpp \
         Source/Translate/translate.cpp \
