@@ -1,4 +1,3 @@
-// #include <QMutexLocker>
 #include <QFile>
 #include <QRegExp>
 
@@ -18,10 +17,6 @@ ReadThread::ReadThread(QString filePath)
 
     setAutoDelete(autoDeletePreset);
 }
-
-// *StdOut::consoleOutput << filePath
-//                        << endl;
-// StdOut::consoleOutput->flush();
 
 bool ReadThread::run_SearchExclude()
 {
@@ -89,8 +84,6 @@ void ReadThread::run_read()
 
 void ReadThread::run()
 {
-    // QMutexLocker locker(&printLock);
-
     // Thread is known to skip
     if (skip)
     {
