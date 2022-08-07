@@ -14,7 +14,7 @@ bool ReadThread::pause = false;
 ReadThread::ReadThread(QString filePath)
 {
     ReadThread::filePath = filePath;
-    ReadThread::skip = false;
+    ReadThread::skip = pause;
 
     setAutoDelete(autoDeletePreset);
 }
