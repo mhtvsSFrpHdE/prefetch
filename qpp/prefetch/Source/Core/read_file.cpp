@@ -119,13 +119,18 @@ void ReadFile::start()
         // If not break, simply repeat exist threads again
         while (true)
         {
-            bool runResult = start_runThreadPool(getRescanInterval.result);
-            if (runResult == false)
+            // Only enter read file loop if not pausing
+            // If paused, skip this time and wait for next inerval
+            if (ReadThread::pause == false)
             {
-                // Wait for a while
-                start_ReadSleep::sleep(prefetchIntervalInSecond);
+                bool runResult = start_runThreadPool(getRescanInterval.result);
+                if (runResult == false)
+                {
+                    // Wait for a while
+                    start_ReadSleep::sleep(prefetchIntervalInSecond);
 
-                break;
+                    break;
+                }
             }
 
             // Wait for a while
