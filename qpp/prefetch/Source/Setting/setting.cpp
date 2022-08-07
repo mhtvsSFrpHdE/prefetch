@@ -43,22 +43,43 @@ void Setting::init(int argc, QStringList argv)
     setting = new QSettings(settingFilePath, QSettings::IniFormat);
 }
 
-Setting::GetIntResult Setting::getInt(QString groupName, QString keyName, QSettings *qSettings)
+Setting::GetGenericResult<int> Setting::getInt(QString groupName, QString keyName, QSettings *qSettings)
 {
-    GetIntResult getIntResult;
+    // Result template
+    GetGenericResult<int> getIntResult;
 
-    qSettings->beginGroup(groupName);
+    auto qvariant = getQVariant(groupName, keyName, qSettings);
 
+    // Parse
     bool success;
-    int result = qSettings->value(keyName).toInt(&success);
+    int result = qvariant.toInt(&success);
 
-    qSettings->endGroup();
-
+    // Fill result template
     getIntResult.success = success;
     getIntResult.result = success ? result
                                   : 0;
 
     return getIntResult;
+}
+
+Setting::GetGenericResult<unsigned long> Setting::getUnsignedLong(QString groupName, QString keyName, QSettings *qSettings)
+{
+    // Result template
+    GetGenericResult<unsigned long> getUnsignedlongResult;
+
+    auto qvariant = getQVariant(groupName, keyName, qSettings);
+
+    // Parse
+    bool success;
+    // Warning: implicit conversion from `unsigned long long` to `unsigned long`
+    auto result = qvariant.toULongLong(&success);
+
+    // Fill result template
+    getUnsignedlongResult.success = success;
+    getUnsignedlongResult.result = success ? result
+                                           : 0;
+
+    return getUnsignedlongResult;
 }
 
 QString Setting::getString(QString groupName, QString keyName, QSettings *qSettings)
@@ -91,4 +112,15 @@ QStringList Setting::getArray(QString groupName, QSettings *qSettings)
     qSettings->endGroup();
 
     return values;
+}
+
+QVariant Setting::getQVariant(QString groupName, QString keyName, QSettings *qSettings)
+{
+    qSettings->beginGroup(groupName);
+
+    QVariant result = qSettings->value(keyName);
+
+    qSettings->endGroup();
+
+    return result;
 }

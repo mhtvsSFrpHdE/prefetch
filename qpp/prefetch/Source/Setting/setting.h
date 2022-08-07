@@ -10,17 +10,25 @@ public:
     // Any init code
     static void init(int argc, QStringList argv);
 
-    struct GetIntResult
+    template <class T>
+    struct GetGenericResult
     {
-        int result = 0;
+        T result;
         bool success = true;
     };
+
     // Give setting group name and key name, return value as int
     // If fail to parse int, result will set to 0
-    static GetIntResult getInt(QString groupName, QString keyName, QSettings *qSettings);
+    static GetGenericResult<int> getInt(QString groupName, QString keyName, QSettings *qSettings);
+
+    // Same as getInt, return value as unsigned long
+    //     success: The value will first parse to `ULongLong`, success or not depending on parse result
+    //     result: `ULongLong` implicit convert to `unsigned long`
+    static GetGenericResult<unsigned long> getUnsignedLong(QString groupName, QString keyName, QSettings *qSettings);
 
     // Give setting group name and key name, return value as QString
     // This one return result directly no matter what it is
+    //     because QVariant.toString() has no success check
     static QString getString(QString groupName, QString keyName, QSettings *qSettings);
 
     // Give a setting group name, return all values under that group
@@ -37,6 +45,13 @@ public:
     static QStringList getArray(QString groupName, QSettings *qSettings);
 
 private:
+    // Give setting group name and key name, return value as raw QVariant
+    // So later can convert to other type manually
+    // The reason to not use template to convert format:
+    //     Qt convert use named function instead of generic type
+    //     It's too hard to write correct and maintainable template code right now
+    static QVariant getQVariant(QString groupName, QString keyName, QSettings *qSettings);
+
     // Disallow creating an instance of this object
     Setting() {}
 };
