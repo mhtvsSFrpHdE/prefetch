@@ -8,7 +8,7 @@
 #include "Thread\read_thread.h"
 #include "startup.h"
 
-SleepThread *ReadFile::sleepThreadAddress;
+SleepThread *ReadFile::sleepThreadAddress = NULL;
 int ReadFile::count_start_scanFolder = 0;
 QList<QRunnable *> ReadFile::readThreadQueue = QList<QRunnable *>();
 QThreadPool *ReadFile::readThreadPool = QThreadPool::globalInstance();
