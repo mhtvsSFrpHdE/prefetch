@@ -24,7 +24,28 @@
 			"map": "cpp",
 			"array": "cpp",
 			"tuple": "cpp",
-			"utility": "cpp"
+			"utility": "cpp",
+			"cstdlib": "cpp",
+			"cctype": "cpp",
+			"clocale": "cpp",
+			"cmath": "cpp",
+			"cstdarg": "cpp",
+			"cstdint": "cpp",
+			"cstdio": "cpp",
+			"cwchar": "cpp",
+			"cwctype": "cpp",
+			"deque": "cpp",
+			"list": "cpp",
+			"unordered_map": "cpp",
+			"vector": "cpp",
+			"exception": "cpp",
+			"initializer_list": "cpp",
+			"new": "cpp",
+			"numeric": "cpp",
+			"stdexcept": "cpp",
+			"type_traits": "cpp",
+			"typeinfo": "cpp",
+			"qcoreapplication": "cpp"
 		}
 	}
 }
