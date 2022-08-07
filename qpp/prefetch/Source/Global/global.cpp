@@ -7,7 +7,7 @@
 #include "..\Translate\translate.h"
 #include "..\Setting\setting.h"
 
-QCoreApplication *Global::qCoreApplication;
+QCoreApplication *Global::qCoreApplication = NULL;
 
 void Global::init(int argc, char *argv[])
 {
