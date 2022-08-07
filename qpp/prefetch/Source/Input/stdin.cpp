@@ -1,13 +1,16 @@
 #include "stdin.h"
 
-LoopThread *StdIn::loopThreadAddress = NULL;
+#include "..\Global\global.h"
+
+QTextStream *StdIn::consoleInput;
 
 void StdIn::init()
 {
-    loopThreadAddress = new LoopThread();
+    consoleInput = new QTextStream(stdin);
+    Global::inputLoopThreadAddress = new LoopThread();
 }
 
 void StdIn::start()
 {
-    loopThreadAddress->start();
+    Global::inputLoopThreadAddress->start();
 }

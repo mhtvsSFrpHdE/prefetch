@@ -1,10 +1,10 @@
-#include "Thread\loop_thread.h"
+#include <QTextStream>
 
 // Static class
 class StdIn
 {
 public:
-    static LoopThread *loopThreadAddress;
+    static QTextStream *consoleInput;
 
     // Any init code
     static void init();

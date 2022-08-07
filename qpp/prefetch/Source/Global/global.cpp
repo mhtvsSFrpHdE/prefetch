@@ -8,6 +8,7 @@
 #include "..\Setting\setting.h"
 
 QCoreApplication *Global::qCoreApplication = NULL;
+LoopThread *Global::inputLoopThreadAddress = NULL;
 
 void Global::init(int argc, char *argv[])
 {
