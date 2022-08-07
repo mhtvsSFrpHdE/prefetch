@@ -4,16 +4,27 @@
 			"path": "."
 		}
 	],
-	"extensions": {
-		"recommendations": [
-			"shardulm94.trailing-spaces",
-			"tabnine.tabnine-vscode",
-			"esbenp.prettier-vscode",
-			"ms-vscode.cpptools-extension-pack",
-			"ms-python.python"
-		]
-	},
 	"settings": {
-		"python.languageServer": "Pylance"
+		"python.languageServer": "Pylance",
+		"files.associations": {
+			"*.tcc": "cpp",
+			"fstream": "cpp",
+			"iosfwd": "cpp",
+			"istream": "cpp",
+			"limits": "cpp",
+			"sstream": "cpp",
+			"streambuf": "cpp",
+			"ostream": "cpp",
+			"algorithm": "cpp",
+			"qthread": "cpp",
+			"qstringlist": "cpp",
+			"iostream": "cpp",
+			"qmutexlocker": "cpp",
+			"functional": "cpp",
+			"map": "cpp",
+			"array": "cpp",
+			"tuple": "cpp",
+			"utility": "cpp"
+		}
 	}
 }
