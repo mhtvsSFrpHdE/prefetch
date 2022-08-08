@@ -23,6 +23,9 @@ public:
     //     each read will not happen but return immediately
     static bool pause;
 
+    // A thread that report it can be delete goes here
+    static QList<QRunnable *> pendingDeleteThread;
+
     void run() override;
 
 private:
@@ -47,6 +50,9 @@ private:
     // Return
     //     true: File is excluded
     bool run_SearchExclude();
+
+    // This file is excluded, delete read thread after first run
+    void run_RequestDelete();
 
     // Prefetch file
     void run_read();

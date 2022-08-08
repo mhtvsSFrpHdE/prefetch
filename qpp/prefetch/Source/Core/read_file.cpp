@@ -213,7 +213,17 @@ bool ReadFile::start_runThreadPool(int rescanInterval)
         readThreadPool->start(readThreadQueue[i]);
     }
 
+    // Delete excluded file thread
     readThreadPool->waitForDone();
+
+    auto dbg_PendingDeleteThread = &ReadThread::pendingDeleteThread;
+    for (int i = 0; i < ReadThread::pendingDeleteThread.size(); ++i)
+    {
+        auto threadPointer = ReadThread::pendingDeleteThread[i];
+        readThreadQueue.removeOne(threadPointer);
+        delete threadPointer;
+    }
+    ReadThread::pendingDeleteThread.clear();
 
     // Get code execute time
     auto threadPoolTimeConsumedMiliseconds = threadPoolTimer.elapsed();
