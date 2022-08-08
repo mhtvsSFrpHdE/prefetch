@@ -145,13 +145,6 @@ void ReadFile::start()
 void ReadFile::start_createReadFileThread_ququeThread(QString filePath)
 {
     auto readThread = new ReadThread(filePath);
-
-    auto rescanInterval = Setting::getInt("Thread", "RescanInterval", Setting::setting);
-    if (rescanInterval.success && rescanInterval.result > 0)
-    {
-        readThread->setAutoDelete(false);
-    }
-
     ReadFile::readThreadQueue.append(readThread);
 }
 
