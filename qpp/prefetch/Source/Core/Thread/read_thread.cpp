@@ -14,7 +14,6 @@ QList<QRunnable *> ReadThread::pendingDeleteThread = QList<QRunnable *>();
 ReadThread::ReadThread(QString filePath)
 {
     ReadThread::filePath = filePath;
-    ReadThread::skip = false;
 
     setAutoDelete(autoDeletePreset);
 }
@@ -37,7 +36,7 @@ bool ReadThread::run_SearchExclude()
         if (searchResult != -1)
         {
             // Cache search result
-            skip = true;
+            run_RequestDelete();
 
             return true;
         }
@@ -85,14 +84,14 @@ void ReadThread::run_read()
     else
     {
         // Cache result
-        skip = true;
+        run_RequestDelete();
     }
 }
 
 void ReadThread::run()
 {
     // Thread is known to skip
-    if (skip || pause)
+    if (pause)
     {
         return;
     }
@@ -104,7 +103,6 @@ void ReadThread::run()
     {
         if (run_SearchExclude())
         {
-            run_RequestDelete();
             return;
         }
     }
