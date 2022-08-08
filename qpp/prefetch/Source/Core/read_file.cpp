@@ -273,4 +273,7 @@ bool ReadFile::start_runThreadPool(int rescanInterval)
         // Do nothing wait next loop
         return true;
     }
+
+    // Default: Do nothing wait next loop
+    return true;
 }

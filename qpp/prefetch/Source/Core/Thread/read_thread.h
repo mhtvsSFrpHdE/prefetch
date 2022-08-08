@@ -23,7 +23,7 @@ public:
     //     each read will not happen but return immediately
     static bool pause;
 
-    void run();
+    void run() override;
 
 private:
     // Save file path

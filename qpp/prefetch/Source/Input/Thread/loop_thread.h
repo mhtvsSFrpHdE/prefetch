@@ -7,7 +7,7 @@ class LoopThread : public QThread
 public:
     LoopThread();
 
-    void run();
+    void run() override;
 
 private:
     // Convert stdin command to function pointer
