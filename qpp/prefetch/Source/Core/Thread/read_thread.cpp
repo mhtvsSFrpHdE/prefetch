@@ -85,7 +85,7 @@ void ReadThread::run_read()
 void ReadThread::run()
 {
     // Thread is known to skip
-    if (skip)
+    if (skip || pause)
     {
         return;
     }

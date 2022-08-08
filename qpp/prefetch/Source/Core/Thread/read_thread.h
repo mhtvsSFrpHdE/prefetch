@@ -19,11 +19,8 @@ public:
     // File match search pattern will ignore exclude folders
     static QStringList priorityIncludePatterns;
 
-    // Default is false, and will use as `skip` default value
-    //     when create each instance of read thread
-    // If set to true from other thread,
-    //     new instance of read thread will have `skip = true`,
-    //     thus read will not happen but return immediately
+    // Default is false, if set to true from other thread,
+    //     each read will not happen but return immediately
     static bool pause;
 
     void run();
