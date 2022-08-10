@@ -1,5 +1,4 @@
 #include "Source\Global\global.h"
-#include "Source\Core\read_file.h"
 #include "Source\Input\stdin.h"
 #include "Source\Interface\tray_icon.h"
 
@@ -9,9 +8,9 @@ int main(int argc, char *argv[])
 
     StdIn::start();
 
-    ReadFile::start();
+    Global::readFileLoopThreadAddress->start();
 
-    return 0;
     TrayIcon::start();
 
+    return Global::qGuiApplication->exec();
 }

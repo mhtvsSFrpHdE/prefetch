@@ -4,21 +4,19 @@
 
 #include "Thread\sleep_thread.h"
 
-// Static class
-class ReadFile
+class ReadFile : public QThread
 {
 public:
+    ReadFile() {}
+
     // Start read file
-    // while(true)
-    static void start();
+    // while(true), do not run directly on main thread
+    void run() override;
 
     // Save running sleep thread address for later access on other thread
     static SleepThread *sleepThreadAddress;
 
 private:
-    // Disallow creating an instance of this object
-    ReadFile() {}
-
     // How many times entered start_scanFolder function
     // Help identify iterate problems
     static int count_start_scanFolder;

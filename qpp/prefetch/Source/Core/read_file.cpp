@@ -43,7 +43,7 @@ private:
     start_ReadSleep();
 };
 
-void ReadFile::start()
+void ReadFile::run()
 {
     // Get and set thread number
     auto getThreadNumber = Setting::getInt("Thread", "MaxThreadCount", Setting::setting);

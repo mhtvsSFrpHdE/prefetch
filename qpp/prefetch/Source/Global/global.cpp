@@ -9,6 +9,7 @@
 
 QApplication *Global::qGuiApplication = NULL;
 LoopThread *Global::inputLoopThreadAddress = NULL;
+ReadFile *Global::readFileLoopThreadAddress = NULL;
 
 void Global::init(int argc, char *argv[])
 {
@@ -23,6 +24,9 @@ void Global::init(int argc, char *argv[])
     Translate::init();
 
     Setting::init(argc, commandLineArguments);
+
+    // ReadFile thread instance
+    readFileLoopThreadAddress = new ReadFile();
 
     TrayIcon::init();
 }
