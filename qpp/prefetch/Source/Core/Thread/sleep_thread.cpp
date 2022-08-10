@@ -1,6 +1,6 @@
 #include "sleep_thread.h"
 
-SleepThread::SleepThread(unsigned long sleepTimeInSeconds)
+SleepThread::SleepThread()
 {
     SleepThread::sleepTimeInSeconds = sleepTimeInSeconds;
 }

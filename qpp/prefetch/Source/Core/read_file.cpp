@@ -8,7 +8,7 @@
 #include "Thread\read_thread.h"
 #include "startup.h"
 
-SleepThread *ReadFile::sleepThreadAddress = NULL;
+SleepThread *ReadFile::sleepThreadAddress = new SleepThread();
 int ReadFile::count_start_scanFolder = 0;
 QList<QRunnable *> ReadFile::readThreadQueue = QList<QRunnable *>();
 QThreadPool *ReadFile::readThreadPool = QThreadPool::globalInstance();
@@ -32,11 +32,10 @@ class start_ReadSleep
 public:
     static void sleep(unsigned long secs)
     {
-        SleepThread sleepThread(secs);
-        ReadFile::sleepThreadAddress = &sleepThread;
+        ReadFile::sleepThreadAddress->sleepTimeInSeconds = secs;
 
-        sleepThread.start();
-        sleepThread.wait();
+        ReadFile::sleepThreadAddress->start();
+        ReadFile::sleepThreadAddress->wait();
     }
 
 private:

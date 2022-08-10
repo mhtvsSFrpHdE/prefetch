@@ -53,6 +53,7 @@ namespace ConsoleCommandFunction
         StdOut::consoleOutput->flush();
 
         ReadThread::pause = false;
+
         if (ReadFile::sleepThreadAddress->isRunning())
         {
             ReadFile::sleepThreadAddress->terminate();

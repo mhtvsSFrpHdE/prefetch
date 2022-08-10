@@ -4,7 +4,7 @@ class SleepThread : public QThread
 {
     Q_OBJECT
 public:
-    SleepThread(unsigned long sleepTimeInMilliseconds);
+    SleepThread();
 
     unsigned long sleepTimeInSeconds;
 
