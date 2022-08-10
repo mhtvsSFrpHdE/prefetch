@@ -20,7 +20,7 @@ TryGetSettingFilePath init_getSettingFilePath(int argc, QStringList argv)
         return tryGetSettingFilePath;
     }
 
-    tryGetSettingFilePath.filePath = QCoreApplication::arguments()[1];
+    tryGetSettingFilePath.filePath = argv[1];
     tryGetSettingFilePath.success = true;
 
     return tryGetSettingFilePath;
