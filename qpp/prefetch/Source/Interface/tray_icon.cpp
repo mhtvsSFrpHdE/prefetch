@@ -10,5 +10,6 @@ void TrayIcon::init()
 
 void TrayIcon::start()
 {
+    TrayIcon::systemTrayIcon->setIcon(QIcon(":/qrc/Resource/icon/main/prefetch.png"));
     TrayIcon::systemTrayIcon->show();
 }

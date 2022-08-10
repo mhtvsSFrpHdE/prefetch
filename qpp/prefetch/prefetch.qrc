@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/qrc">
+        <file>Resource/icon/main/prefetch.png</file>
+    </qresource>
+</RCC>

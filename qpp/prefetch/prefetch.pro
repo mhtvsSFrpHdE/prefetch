@@ -53,3 +53,9 @@ QMAKE_CFLAGS_RELEASE -= -O1
 QMAKE_CFLAGS_RELEASE -= -O2
 QMAKE_CFLAGS_RELEASE -= -O3
 QMAKE_CFLAGS_RELEASE *= -Ofast
+
+# Icon
+RC_FILE = prefetch.rc
+
+RESOURCES += \
+    prefetch.qrc
