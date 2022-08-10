@@ -1,4 +1,3 @@
-#include <QCoreApplication>
 #include <QStringList>
 
 #include "global.h"
@@ -7,14 +6,14 @@
 #include "..\Translate\translate.h"
 #include "..\Setting\setting.h"
 
-QCoreApplication *Global::qCoreApplication = NULL;
+QApplication *Global::qGuiApplication = NULL;
 LoopThread *Global::inputLoopThreadAddress = NULL;
 
 void Global::init(int argc, char *argv[])
 {
-    // QCoreApplication
-    qCoreApplication = new QCoreApplication(argc, argv);
-    auto commandLineArguments = QCoreApplication::arguments();
+    // QApplication
+    qGuiApplication = new QApplication(argc, argv);
+    auto commandLineArguments = QApplication::arguments();
 
     StdIn::init();
 

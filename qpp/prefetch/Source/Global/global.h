@@ -1,4 +1,4 @@
-#include <QCoreApplication>
+#include <QApplication>
 
 #include "..\Input\Thread\loop_thread.h"
 
@@ -6,7 +6,7 @@
 class Global
 {
 public:
-    static QCoreApplication *qCoreApplication;
+    static QApplication *qGuiApplication;
 
     static LoopThread *inputLoopThreadAddress;
 

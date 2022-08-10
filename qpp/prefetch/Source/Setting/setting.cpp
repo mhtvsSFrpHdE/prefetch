@@ -1,5 +1,5 @@
 #include <QDir>
-#include <QCoreApplication>
+#include <QApplication>
 
 #include "setting.h"
 
@@ -37,7 +37,7 @@ void Setting::init(int argc, QStringList argv)
     {
         settingFilePath = getSettingFilePath.filePath;
     }
-    settingFilePath = QCoreApplication::applicationDirPath() + "/" + settingFilePath;
+    settingFilePath = QApplication::applicationDirPath() + "/" + settingFilePath;
 
     // Read ini from exe stored folder
     setting = new QSettings(settingFilePath, QSettings::IniFormat);

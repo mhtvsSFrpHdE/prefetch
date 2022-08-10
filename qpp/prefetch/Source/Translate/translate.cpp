@@ -17,7 +17,7 @@ void Translate::init()
         const QString baseName = "prefetch_" + QLocale(locale).name();
         if (translator->load(":/i18n/" + baseName))
         {
-            Global::qCoreApplication->installTranslator(translator);
+            Global::qGuiApplication->installTranslator(translator);
             break;
         }
     }
