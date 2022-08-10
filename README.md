@@ -8,7 +8,8 @@ https://github.com/mhtvsSFrpHdE/prefetch/releases
 
 ## How to use
 
-https://github.com/mhtvsSFrpHdE/prefetch/wiki/prefetch.ini
+- [prefetch.ini](https://github.com/mhtvsSFrpHdE/prefetch/wiki/prefetch.ini)
+- [Command interface](https://github.com/mhtvsSFrpHdE/prefetch/wiki/Command-interface)
 
 ## Frequently asked questions
 
