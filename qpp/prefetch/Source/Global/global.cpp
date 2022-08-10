@@ -5,6 +5,7 @@
 #include "..\Output\stdout.h"
 #include "..\Translate\translate.h"
 #include "..\Setting\setting.h"
+#include "..\Interface\tray_icon.h"
 
 QApplication *Global::qGuiApplication = NULL;
 LoopThread *Global::inputLoopThreadAddress = NULL;
@@ -22,4 +23,6 @@ void Global::init(int argc, char *argv[])
     Translate::init();
 
     Setting::init(argc, commandLineArguments);
+
+    TrayIcon::init();
 }
