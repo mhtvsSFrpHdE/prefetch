@@ -1,6 +1,5 @@
 #include "Source\Global\global.h"
 #include "Source\Input\stdin.h"
-#include "Source\Interface\tray_icon.h"
 
 int main(int argc, char *argv[])
 {

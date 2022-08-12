@@ -2,6 +2,7 @@
 
 #include "..\Input\Thread\loop_thread.h"
 #include "..\Core\read_file.h"
+#include "..\Interface\tray_icon.h"
 
 // Static class
 class Global
@@ -12,6 +13,8 @@ public:
     static LoopThread *inputLoopThreadAddress;
 
     static ReadFile *readFileLoopThreadAddress;
+
+    static TrayIcon *trayIconInstanceAddress;
 
     // Any init code
     static void init(int argc, char *argv[]);

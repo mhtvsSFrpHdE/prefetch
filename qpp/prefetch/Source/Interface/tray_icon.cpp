@@ -1,4 +1,3 @@
-#include "tray_icon.h"
 #include "..\Global\global.h"
 
 QSystemTrayIcon *TrayIcon::systemTrayIcon = NULL;

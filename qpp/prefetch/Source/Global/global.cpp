@@ -5,11 +5,11 @@
 #include "..\Output\stdout.h"
 #include "..\Translate\translate.h"
 #include "..\Setting\setting.h"
-#include "..\Interface\tray_icon.h"
 
 QApplication *Global::qGuiApplication = NULL;
 LoopThread *Global::inputLoopThreadAddress = NULL;
 ReadFile *Global::readFileLoopThreadAddress = NULL;
+TrayIcon *Global::trayIconInstanceAddress = new TrayIcon();
 
 void Global::init(int argc, char *argv[])
 {
@@ -28,5 +28,5 @@ void Global::init(int argc, char *argv[])
     // ReadFile thread instance
     readFileLoopThreadAddress = new ReadFile();
 
-    TrayIcon::init();
+    trayIconInstanceAddress->init();
 }
