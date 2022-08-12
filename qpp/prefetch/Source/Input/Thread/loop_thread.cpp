@@ -8,6 +8,24 @@
 
 LoopThread::LoopThread() {}
 
+// Process input text
+void LoopThread::receiveText(QString input)
+{
+    // Find command and run command
+    if (commandMap.contains(input))
+    {
+        auto target = commandMap[input];
+        (*target)();
+    }
+    // Command not found
+    else
+    {
+        *StdOut::consoleOutput << "Invalid command"
+                               << endl;
+        StdOut::consoleOutput->flush();
+    }
+}
+
 void LoopThread::run()
 {
     while (true)
@@ -15,19 +33,7 @@ void LoopThread::run()
         // Get input
         auto input = StdIn::consoleInput->readLine();
 
-        // Find command and run command
-        if (commandMap.contains(input))
-        {
-            auto target = commandMap[input];
-            (*target)();
-        }
-        // Command not found
-        else
-        {
-            *StdOut::consoleOutput << "Invalid command"
-                                   << endl;
-            StdOut::consoleOutput->flush();
-        }
+        receiveText(input);
     }
 }
 
