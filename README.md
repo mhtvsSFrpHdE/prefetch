@@ -1,5 +1,3 @@
-![](https://raw.githubusercontent.com/mhtvsSFrpHdE/contact-me/master/AboutIssue.svg)
-
 # prefetch
 
 ## Download
@@ -10,6 +8,7 @@ https://github.com/mhtvsSFrpHdE/prefetch/releases
 
 - [prefetch.ini](https://github.com/mhtvsSFrpHdE/prefetch/wiki/prefetch.ini)
 - [Command interface](https://github.com/mhtvsSFrpHdE/prefetch/wiki/Command-interface)
+- [Tray icon interface](https://github.com/mhtvsSFrpHdE/prefetch/wiki/Tray-icon-interface)
 
 ## Frequently asked questions
 
