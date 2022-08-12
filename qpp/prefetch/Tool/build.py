@@ -28,11 +28,10 @@ pToolCore.Init(cwd, buildType)
 # Config
 pToolCore.Function.processFile(Path("prefetch.ini"))
 
-# DLL
+# Compiler dll
 pToolCore.Function.processFile(Path("requirements").joinpath("libgcc_s_dw2-1.dll"))
 pToolCore.Function.processFile(Path("requirements").joinpath("libstdc++-6.dll"))
 pToolCore.Function.processFile(Path("requirements").joinpath("libwinpthread-1.dll"))
-pToolCore.Function.processFile(Path("requirements").joinpath("QtCore4.dll"))
 
 if buildType == pToolCore.BuildType.Release:
     compileOutputPath = pToolCore.Function.getFolderPath(folderType=pToolCore.FolderType.Compile)
@@ -40,10 +39,16 @@ if buildType == pToolCore.BuildType.Release:
     # Exe
     pToolCore.Function.processFile(compileOutputPath.joinpath("prefetch.exe"))
 
+    # Qt dll
+    pToolCore.Function.processFile(Path("requirements").joinpath("QtCore4.dll"))
+    pToolCore.Function.processFile(Path("requirements").joinpath("QtGui4.dll"))
+
 if buildType == pToolCore.BuildType.Debug:
     qtPath = Path("C:\Qt\\4.8.7\\bin")
 
+    # Qt dll
     pToolCore.Function.processFile(qtPath.joinpath("QtCored4.dll"))
+    pToolCore.Function.processFile(qtPath.joinpath("QtGuid4.dll"))
     # pToolCore.Function.processFile(qtPath.joinpath("QtDesignerComponentsd4.dll"))
     # pToolCore.Function.processFile(qtPath.joinpath("QtDesignerd4.dll"))
     # pToolCore.Function.processFile(qtPath.joinpath("QtHelpd4.dll"))
@@ -58,7 +63,6 @@ if buildType == pToolCore.BuildType.Debug:
     # pToolCore.Function.processFile(qtPath.joinpath("QtXmlPatternsd4.dll"))
     # pToolCore.Function.processFile(qtPath.joinpath("QtOpenGLd4.dll"))
     # pToolCore.Function.processFile(qtPath.joinpath("Qt3Supportd4.dll"))
-    # pToolCore.Function.processFile(qtPath.joinpath("QtGuid4.dll"))
     # pToolCore.Function.processFile(qtPath.joinpath("QtDBusd4.dll"))
     # pToolCore.Function.processFile(qtPath.joinpath("QtTestd4.dll"))
     # pToolCore.Function.processFile(qtPath.joinpath("QtSqld4.dll"))
