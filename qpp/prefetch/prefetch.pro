@@ -14,7 +14,7 @@ HEADERS += \
     Source/Input/Thread/loop_thread.h \
     Source/Input/stdin.h \
     Source/Interface/MainWindow/mainwindow.h \
-    Source/Interface/tray_icon.h \
+    Source/Interface/TrayIcon/tray_icon.h \
     Source/Output/stdout.h \
     Source/Setting/setting.h \
     Source/Translate/translate.h
@@ -28,7 +28,7 @@ SOURCES += \
         Source/Input/Thread/loop_thread.cpp \
         Source/Input/stdin.cpp \
         Source/Interface/MainWindow/mainwindow.cpp \
-        Source/Interface/tray_icon.cpp \
+        Source/Interface/TrayIcon/tray_icon.cpp \
         Source/Output/stdout.cpp \
         Source/Setting/setting.cpp \
         Source/Translate/translate.cpp \

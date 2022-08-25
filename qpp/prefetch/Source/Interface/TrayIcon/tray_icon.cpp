@@ -5,9 +5,9 @@
 #include <string>
 #include <iostream>
 
-#include "..\Global\global.h"
-#include "..\Input\stdin.h"
-#include "..\Setting\setting.h"
+#include "..\..\Global\global.h"
+#include "..\..\Input\stdin.h"
+#include "..\..\Setting\setting.h"
 
 QSystemTrayIcon *TrayIcon::systemTrayIcon = NULL;
 
@@ -39,6 +39,10 @@ void TrayIcon::init()
     connect(resumeAction, SIGNAL(triggered()), this, SLOT(action_resume()));
     qMenu->addAction(resumeAction);
 
+    QAction *testAction = new QAction("Test", qMenu);
+    connect(testAction, SIGNAL(triggered()), this, SLOT(action_test()));
+    qMenu->addAction(testAction);
+
     systemTrayIcon->setContextMenu(qMenu);
 }
 
@@ -46,6 +50,11 @@ void TrayIcon::start()
 {
     TrayIcon::systemTrayIcon->setIcon(QIcon(":/qrc/Resource/icon/main/prefetch.png"));
     TrayIcon::systemTrayIcon->show();
+}
+
+void TrayIcon::stop()
+{
+    TrayIcon::systemTrayIcon->hide();
 }
 
 namespace ConsoleCommandFunction
@@ -64,4 +73,8 @@ void TrayIcon::action_pause()
 void TrayIcon::action_resume()
 {
     ConsoleCommandFunction::sendTextToStdIn("resume");
+}
+void TrayIcon::action_test()
+{
+    ConsoleCommandFunction::sendTextToStdIn("test");
 }

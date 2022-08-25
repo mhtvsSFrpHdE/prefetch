@@ -15,9 +15,13 @@ public:
     // Show system tray icon
     static void start();
 
+    // Remove system tray icon
+    static void stop();
+
 public slots:
     void action_pause();
     void action_resume();
+    void action_test();
 
 private:
     static QSystemTrayIcon *systemTrayIcon;
