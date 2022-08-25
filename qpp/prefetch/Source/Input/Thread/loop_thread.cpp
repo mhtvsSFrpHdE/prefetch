@@ -1,10 +1,9 @@
 #include <QTextStream>
 
-#include "loop_thread.h"
+#include "..\..\Global\global.h"
 #include "..\..\Input\stdin.h"
 #include "..\..\Output\stdout.h"
 #include "..\..\Core\Thread\read_thread.h"
-#include "..\..\Core\read_file.h"
 
 LoopThread::LoopThread() {}
 
@@ -65,6 +64,13 @@ namespace ConsoleCommandFunction
             ReadFile::sleepThreadAddress->terminate();
         }
     }
+
+    void test()
+    {
+        *StdOut::consoleOutput << "This function contain test code"
+                               << endl;
+        StdOut::consoleOutput->flush();
+    }
 }
 
 // Cool stuff: https://stackoverflow.com/questions/8157625/how-do-i-populate-values-of-a-static-qmap-in-c-qt
@@ -72,4 +78,5 @@ namespace ConsoleCommandFunction
 QMap<QString, void (*)()> LoopThread::commandMap(
     std::map<QString, void (*)()>{
         {"pause", &ConsoleCommandFunction::pause},
-        {"resume", &ConsoleCommandFunction::resume}});
+        {"resume", &ConsoleCommandFunction::resume},
+        {"test", &ConsoleCommandFunction::test}});
