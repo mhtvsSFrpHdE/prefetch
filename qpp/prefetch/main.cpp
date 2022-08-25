@@ -7,6 +7,8 @@ int main(int argc, char *argv[])
 
     StdIn::start();
 
+    Global::qMainWindow->show();
+
     Global::readFileLoopThreadAddress->start();
 
     TrayIcon::start();

@@ -3,12 +3,15 @@
 #include "..\Input\Thread\loop_thread.h"
 #include "..\Core\read_file.h"
 #include "..\Interface\tray_icon.h"
+#include "..\Interface\MainWindow\mainwindow.h"
 
 // Static class
 class Global
 {
 public:
     static QApplication *qGuiApplication;
+
+    static MainWindow *qMainWindow;
 
     static LoopThread *inputLoopThreadAddress;
 

@@ -7,6 +7,7 @@
 #include "..\Setting\setting.h"
 
 QApplication *Global::qGuiApplication = NULL;
+MainWindow *Global::qMainWindow = NULL;
 LoopThread *Global::inputLoopThreadAddress = NULL;
 ReadFile *Global::readFileLoopThreadAddress = NULL;
 TrayIcon *Global::trayIconInstanceAddress = new TrayIcon();
@@ -16,6 +17,9 @@ void Global::init(int argc, char *argv[])
     // QApplication
     qGuiApplication = new QApplication(argc, argv);
     auto commandLineArguments = QApplication::arguments();
+
+    // MainWindow
+    qMainWindow = new MainWindow();
 
     StdIn::init();
 

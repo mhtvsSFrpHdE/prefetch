@@ -13,6 +13,7 @@ HEADERS += \
     Source/Global/global.h \
     Source/Input/Thread/loop_thread.h \
     Source/Input/stdin.h \
+    Source/Interface/MainWindow/mainwindow.h \
     Source/Interface/tray_icon.h \
     Source/Output/stdout.h \
     Source/Setting/setting.h \
@@ -26,6 +27,7 @@ SOURCES += \
         Source/Global/global.cpp \
         Source/Input/Thread/loop_thread.cpp \
         Source/Input/stdin.cpp \
+        Source/Interface/MainWindow/mainwindow.cpp \
         Source/Interface/tray_icon.cpp \
         Source/Output/stdout.cpp \
         Source/Setting/setting.cpp \
@@ -59,3 +61,6 @@ RC_FILE = prefetch.rc
 
 RESOURCES += \
     prefetch.qrc
+
+FORMS += \
+    Source/Interface/MainWindow/mainwindow.ui
