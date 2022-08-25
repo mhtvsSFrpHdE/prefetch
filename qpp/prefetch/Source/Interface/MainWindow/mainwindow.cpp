@@ -11,3 +11,7 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::closeEvent(QCloseEvent *closeEventAddress)
+{
+}

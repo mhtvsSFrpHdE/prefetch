@@ -18,6 +18,9 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    // Handle application close event
+    void closeEvent(QCloseEvent *closeEventAddress) override;
 };
 
 #endif // MAINWINDOW_H
