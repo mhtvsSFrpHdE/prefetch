@@ -1,4 +1,5 @@
 #include <QScrollBar>
+#include <QTimer>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -12,14 +13,17 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     // Initialize
     startToTray = Setting::getBool("Instance", "StartToTray", Setting::setting);
+    minimizeToTray = Setting::getBool("Instance", "MinimizeToTray", Setting::setting);
 
-    // StdOut print event
+    // Event
+
+    // StdOut print
     connect(this, SIGNAL(print_signal(QString)), this, SLOT(print_slot(QString)));
 
     // Scroll bar to bottom on text change (after printed)
     connect(ui->stdOut_plainTextEdit, SIGNAL(textChanged()), this, SLOT(scrollBarToBottom_slot()));
 
-    // StdIn send command event
+    // StdIn send command
 
     // Send button
     connect(ui->sendCommand_pushButton, SIGNAL(clicked()), this, SLOT(sendCommand_slot()));
@@ -54,6 +58,25 @@ void MainWindow::scrollBarToBottom_slot()
     scrollBar->setValue(scrollBarMaxSize);
 }
 
+void MainWindow::minimized_slot()
+{
+    // Check minimize to tray enabled
+    if (minimizeToTray == false)
+    {
+        // No action on false
+        return;
+    }
+
+    // Hide (minimize to tray)
+    QTimer::singleShot(0, this, SLOT(hide()));
+}
+
+void MainWindow::restored_slot()
+{
+    // Restore and bring to front if minimized before hide
+    setWindowState(Qt::WindowState::WindowActive);
+}
+
 void MainWindow::StdOut_print(QString textToPrint)
 {
     emit print_signal(textToPrint);
@@ -86,7 +109,7 @@ void MainWindow::sendCommand_slot()
     Global::inputLoopThreadAddress->receiveText(command);
 
     // Clear command editor
-    emit ui->command_lineEdit->clear();
+    ui->command_lineEdit->clear();
 }
 
 void MainWindow::closeEvent(QCloseEvent *closeEventAddress)
@@ -110,6 +133,7 @@ void MainWindow::changeEvent(QEvent *eventAddress)
     {
         if (isMinimized())
         {
+            minimized_slot();
         }
     }
 }

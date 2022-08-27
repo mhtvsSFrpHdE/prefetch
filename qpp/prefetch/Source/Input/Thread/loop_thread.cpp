@@ -1,4 +1,5 @@
 #include <QTextStream>
+#include <QTimer>
 
 #include "..\..\Global\global.h"
 #include "..\..\Input\stdin.h"
@@ -95,13 +96,9 @@ namespace ConsoleCommandFunction
         }
         else
         {
+            // Restore and bring to front
             Global::qMainWindow->show();
-
-            // Restore and bring to front if minimized before hide
-            if (Global::qMainWindow->windowState() == Qt::WindowState::WindowMinimized)
-            {
-                Global::qMainWindow->setWindowState(Qt::WindowState::WindowActive);
-            }
+            QTimer::singleShot(0, Global::qMainWindow, SLOT(restored_slot()));
         }
     }
 

@@ -37,6 +37,16 @@ public slots:
     void sendCommand_slot();
     void scrollBarToBottom_slot();
 
+    // If I do `window.show()`, then a nonsense QTimer is required to do `window.setWindowState()`
+    //     It seems the current function must be returned, and keep executing code from somewhere else
+    //     The bug should be related to Qt internal event system and I can't do much things about it
+    //
+    // > As a special case, a QTimer with a timeout of 0 will time out as soon as all the events in the window system's event queue have been processed.
+    // http://qt-project.org/doc/qt-4.8/qtimer.html#details
+    // https://stackoverflow.com/questions/3332257/how-do-i-properly-implement-a-minimize-to-tray-function-in-qt
+    void minimized_slot();
+    void restored_slot();
+
 signals:
     void print_signal(QString textToPrint);
 
@@ -46,8 +56,8 @@ private:
     // Skip 2nd exit request if fired multiple times
     bool exitRequested = false;
 
-    // Start to tray
     bool startToTray;
+    bool minimizeToTray;
 
     // Handle application close event
     void closeEvent(QCloseEvent *closeEventAddress) override;
