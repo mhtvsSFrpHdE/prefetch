@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 
     StdIn::start();
 
-    Global::qMainWindow->show();
+    Global::qMainWindow->start();
 
     Global::readFileLoopThreadAddress->start();
 

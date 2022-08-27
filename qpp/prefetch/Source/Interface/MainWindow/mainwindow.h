@@ -29,6 +29,9 @@ public:
     void StdOut_print(QString textToPrint);
     void StdOut_printLine(QString textToPrint);
 
+    // If start with window set to false, skip show MainWindow
+    void start();
+
 public slots:
     void print_slot(QString textToPrint);
     void sendCommand_slot();

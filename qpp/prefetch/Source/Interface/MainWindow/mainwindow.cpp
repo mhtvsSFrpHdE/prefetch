@@ -61,6 +61,16 @@ void MainWindow::StdOut_printLine(QString textToPrint)
     emit print_signal(textToPrint + "\n");
 }
 
+void MainWindow::start()
+{
+    // Get start with window
+    auto startWithTerminalEmulator = Setting::getBool("Instance", "StartWithTerminalEmulator", Setting::setting);
+    if (startWithTerminalEmulator)
+    {
+        this->show();
+    }
+}
+
 void MainWindow::print_slot(QString textToPrint)
 {
     ui->stdOut_plainTextEdit->insertPlainText(textToPrint);
