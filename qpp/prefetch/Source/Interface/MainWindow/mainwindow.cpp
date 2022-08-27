@@ -64,8 +64,8 @@ void MainWindow::StdOut_printLine(QString textToPrint)
 void MainWindow::start()
 {
     // Get start with window
-    auto startWithTerminalEmulator = Setting::getBool("Instance", "StartWithTerminalEmulator", Setting::setting);
-    if (startWithTerminalEmulator)
+    auto startToTray = Setting::getBool("Instance", "StartToTray", Setting::setting);
+    if (startToTray)
     {
         this->show();
     }
