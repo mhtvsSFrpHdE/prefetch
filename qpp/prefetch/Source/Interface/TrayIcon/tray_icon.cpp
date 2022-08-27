@@ -39,9 +39,15 @@ void TrayIcon::init()
     connect(resumeAction, SIGNAL(triggered()), this, SLOT(action_resume()));
     qMenu->addAction(resumeAction);
 
-    QAction *testAction = new QAction("Test", qMenu);
-    connect(testAction, SIGNAL(triggered()), this, SLOT(action_test()));
-    qMenu->addAction(testAction);
+    QAction *exitAction = new QAction("Exit", qMenu);
+    connect(exitAction, SIGNAL(triggered()), this, SLOT(action_exit()));
+    qMenu->addAction(exitAction);
+
+    // Debug code entry
+    //
+    // QAction *testAction = new QAction("Test", qMenu);
+    // connect(testAction, SIGNAL(triggered()), this, SLOT(action_test()));
+    // qMenu->addAction(testAction);
 
     systemTrayIcon->setContextMenu(qMenu);
 }
@@ -73,6 +79,10 @@ void TrayIcon::action_pause()
 void TrayIcon::action_resume()
 {
     ConsoleCommandFunction::sendTextToStdIn("resume");
+}
+void TrayIcon::action_exit()
+{
+    ConsoleCommandFunction::sendTextToStdIn("exit");
 }
 void TrayIcon::action_test()
 {

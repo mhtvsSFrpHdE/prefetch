@@ -21,6 +21,7 @@ public:
 public slots:
     void action_pause();
     void action_resume();
+    void action_exit();
     void action_test();
 
 private:
