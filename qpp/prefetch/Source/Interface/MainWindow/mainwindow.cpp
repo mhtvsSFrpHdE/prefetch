@@ -59,7 +59,7 @@ void MainWindow::StdOut_print(QString textToPrint)
 void MainWindow::StdOut_printLine(QString textToPrint)
 {
     emit print_signal(textToPrint + "\n");
-};
+}
 
 void MainWindow::print_slot(QString textToPrint)
 {
@@ -76,9 +76,21 @@ void MainWindow::sendCommand_slot()
 
     // Clear command editor
     emit ui->command_lineEdit->clear();
-};
+}
+
+bool MainWindow::exitRequested = false;
 
 void MainWindow::closeEvent(QCloseEvent *closeEventAddress)
 {
-    TrayIcon::stop();
+    closeEventAddress->ignore();
+
+    if (exitRequested)
+    {
+        return;
+    }
+
+    exitRequested = true;
+
+    // Use command interface to do actual exit
+    Global::inputLoopThreadAddress->receiveText("exit");
 }

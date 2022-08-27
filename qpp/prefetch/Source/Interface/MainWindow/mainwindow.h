@@ -40,6 +40,9 @@ signals:
 private:
     Ui::MainWindow *ui;
 
+    // Skip 2nd exit request if fired multiple times
+    static bool exitRequested;
+
     // Handle application close event
     void closeEvent(QCloseEvent *closeEventAddress) override;
 };

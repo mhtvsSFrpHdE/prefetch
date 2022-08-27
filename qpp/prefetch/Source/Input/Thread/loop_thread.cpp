@@ -57,6 +57,35 @@ namespace ConsoleCommandFunction
         }
     }
 
+    void exit()
+    {
+        StdOut::printLine("Trying to exit prefetch");
+        StdOut::printLine("    This can take a while in some case");
+
+        // Free thread pool
+        // If exit QT before thread pool done
+        //     the program won't exit correctly after main return 0
+        //     just like a dead loop in somewhere
+
+        // Prevent another round prefetch being started
+        Global::readFileLoopThreadAddress->terminate();
+
+        // Tell running task to stop
+        pause();
+
+        // Wait thread pool to response
+        ReadFile::readThreadPool->waitForDone();
+
+        // Remove MainWindow
+        Global::qMainWindow->hide();
+
+        // Remove tray icon
+        TrayIcon::stop();
+
+        // Stop QT event loop on main thread
+        Global::qGuiApplication->quit();
+    }
+
     void test()
     {
         StdOut::printLine("This function contain test code");
@@ -69,4 +98,5 @@ QMap<QString, void (*)()> LoopThread::commandMap(
     std::map<QString, void (*)()>{
         {"pause", &ConsoleCommandFunction::pause},
         {"resume", &ConsoleCommandFunction::resume},
-        {"test", &ConsoleCommandFunction::test}});
+        {"test", &ConsoleCommandFunction::test},
+        {"exit", &ConsoleCommandFunction::exit}});

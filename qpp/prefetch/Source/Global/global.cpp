@@ -18,8 +18,6 @@ void Global::init(int argc, char *argv[])
     qGuiApplication = new QApplication(argc, argv);
     auto commandLineArguments = QApplication::arguments();
 
-    
-
     StdIn::init();
 
     StdOut::init();
