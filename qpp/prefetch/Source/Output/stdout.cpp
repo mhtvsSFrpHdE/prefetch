@@ -27,6 +27,8 @@ void StdOut::printLine(QString textToPrint)
 void StdOut::printEndl()
 {
     *consoleOutput << endl;
+
+    Global::qMainWindow->StdOut_print("\n");
 }
 
 void StdOut::flush()
