@@ -86,6 +86,19 @@ namespace ConsoleCommandFunction
         Global::qGuiApplication->quit();
     }
 
+    void traydc()
+    {
+        auto mainWindowVisible = Global::qMainWindow->isVisible();
+        if (mainWindowVisible)
+        {
+            Global::qMainWindow->hide();
+        }
+        else
+        {
+            Global::qMainWindow->show();
+        }
+    }
+
     void test()
     {
         StdOut::printLine("This function contain test code");
@@ -99,4 +112,5 @@ QMap<QString, void (*)()> LoopThread::commandMap(
         {"pause", &ConsoleCommandFunction::pause},
         {"resume", &ConsoleCommandFunction::resume},
         {"test", &ConsoleCommandFunction::test},
-        {"exit", &ConsoleCommandFunction::exit}});
+        {"exit", &ConsoleCommandFunction::exit},
+        {"traydc", &ConsoleCommandFunction::traydc}});

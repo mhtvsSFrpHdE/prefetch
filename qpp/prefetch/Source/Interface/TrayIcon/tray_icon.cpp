@@ -24,6 +24,8 @@ void TrayIcon::init()
     // https://bugreports.qt.io/browse/QTBUG-18821
     systemTrayIcon->setToolTip(instanceName);
 
+    // Tray menu content
+
     // Show instance name, a seperator with text
     // https://stackoverflow.com/questions/37976696/why-qmenus-separator-doesnt-show-text
     QLabel *instanceNameLabel = new QLabel(instanceName);
@@ -50,6 +52,9 @@ void TrayIcon::init()
     // qMenu->addAction(testAction);
 
     systemTrayIcon->setContextMenu(qMenu);
+
+    // Double click show/hide console window
+    connect(systemTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(action_traydc(QSystemTrayIcon::ActivationReason)));
 }
 
 void TrayIcon::start()
@@ -83,6 +88,13 @@ void TrayIcon::action_resume()
 void TrayIcon::action_exit()
 {
     ConsoleCommandFunction::sendTextToStdIn("exit");
+}
+void TrayIcon::action_traydc(QSystemTrayIcon::ActivationReason activationReason)
+{
+    if (activationReason == QSystemTrayIcon::ActivationReason::DoubleClick)
+    {
+        ConsoleCommandFunction::sendTextToStdIn("traydc");
+    }
 }
 void TrayIcon::action_test()
 {
