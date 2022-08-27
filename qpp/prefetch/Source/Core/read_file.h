@@ -16,6 +16,9 @@ public:
     // Save running sleep thread address for later access on other thread
     static SleepThread *sleepThreadAddress;
 
+    // Shortcut to default thread pool
+    static QThreadPool *readThreadPool;
+
 private:
     // How many times entered start_scanFolder function
     // Help identify iterate problems
@@ -23,9 +26,6 @@ private:
 
     // Created QRunnable object pointers
     static QList<QRunnable *> readThreadQueue;
-
-    // Shortcut to default thread pool
-    static QThreadPool *readThreadPool;
 
     // How many times all thread done
     // Before start a new task, if this value equals to RescanInterval
