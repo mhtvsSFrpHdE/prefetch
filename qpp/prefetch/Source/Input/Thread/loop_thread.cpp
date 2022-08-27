@@ -19,9 +19,7 @@ void LoopThread::receiveText(QString input)
     // Command not found
     else
     {
-        *StdOut::consoleOutput << "Invalid command"
-                               << endl;
-        StdOut::consoleOutput->flush();
+        StdOut::printLine("Invalid command");
     }
 }
 
@@ -40,22 +38,16 @@ namespace ConsoleCommandFunction
 {
     void pause()
     {
-        *StdOut::consoleOutput << "Trying to pause prefetch"
-                               << endl;
-        StdOut::consoleOutput->flush();
+        StdOut::printLine("Trying to pause prefetch");
 
         ReadThread::pause = true;
 
-        *StdOut::consoleOutput << "Pause has requested, good luck"
-                               << endl;
-        StdOut::consoleOutput->flush();
+        StdOut::printLine("Pause has requested, good luck");
     };
 
     void resume()
     {
-        *StdOut::consoleOutput << "Trying to resume prefetch"
-                               << endl;
-        StdOut::consoleOutput->flush();
+        StdOut::printLine("Trying to resume prefetch");
 
         ReadThread::pause = false;
 
@@ -67,9 +59,7 @@ namespace ConsoleCommandFunction
 
     void test()
     {
-        *StdOut::consoleOutput << "This function contain test code"
-                               << endl;
-        StdOut::consoleOutput->flush();
+        StdOut::printLine("This function contain test code");
     }
 }
 

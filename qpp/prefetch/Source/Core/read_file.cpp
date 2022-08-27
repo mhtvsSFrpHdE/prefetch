@@ -94,9 +94,7 @@ void ReadFile::run()
     {
         // Scan folder and queue threads that read each file
 
-        *StdOut::consoleOutput << "Scan folder..."
-                               << endl;
-        StdOut::consoleOutput->flush();
+        StdOut::printLine("Scan folder...");
 
         for (int i = 0; i < prefetchFolders.size(); ++i)
         {
@@ -162,11 +160,6 @@ void ReadFile::start_createReadFileThread(QDir *prefetchFolder)
 
 void ReadFile::start_scanFolder(QString prefetchFolderName)
 {
-    // ReadFile::count_start_scanFolder++;
-    // *StdOut::consoleOutput << "Enter start_scanFolder times: "
-    //                        << ReadFile::count_start_scanFolder
-    //                        << endl;
-
     auto prefetchFolder = QDir(prefetchFolderName);
 
     // Get sub folder information
@@ -198,9 +191,7 @@ void ReadFile::start_scanFolder(QString prefetchFolderName)
 
 bool ReadFile::start_runThreadPool(int rescanInterval)
 {
-    *StdOut::consoleOutput << "Prefetching..."
-                           << endl;
-    StdOut::consoleOutput->flush();
+    StdOut::printLine("Prefetching...");
 
     // Create timer
     QElapsedTimer threadPoolTimer;
@@ -237,11 +228,11 @@ bool ReadFile::start_runThreadPool(int rescanInterval)
     // Increase task count
     count_taskComplete++;
 
-    *StdOut::consoleOutput << "Idle, Time: "
-                           << threadPoolTimeConsumedFormatedString
-                           << " Sec"
-                           << endl;
-    StdOut::consoleOutput->flush();
+    StdOut::print("Idle, Time: ");
+    StdOut::print(threadPoolTimeConsumedFormatedString);
+    StdOut::print(" Sec");
+    StdOut::printEndl();
+    StdOut::flush();
 
     // No rescan interval founded
     if (rescanInterval <= 0)

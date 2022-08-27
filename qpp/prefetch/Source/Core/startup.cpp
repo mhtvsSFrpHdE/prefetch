@@ -29,7 +29,5 @@ void Startup::startOnce()
         process.startDetached(fileName);
     }
 
-    *StdOut::consoleOutput << "Run startup items..."
-                           << endl;
-    StdOut::consoleOutput->flush();
+    StdOut::printLine("Run startup items...");
 }
