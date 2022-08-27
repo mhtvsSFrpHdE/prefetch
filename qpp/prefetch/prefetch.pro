@@ -1,4 +1,4 @@
-CONFIG += c++11 console
+CONFIG += c++11
 CONFIG -= app_bundle
 
 # You can make your code fail to compile if it uses deprecated APIs.
@@ -45,6 +45,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 # My setting
+
+# Compile with console
+#CONFIG += console
 
 # Enable c++11 for QT 4.8.7
 QMAKE_CXXFLAGS += -std=c++11
