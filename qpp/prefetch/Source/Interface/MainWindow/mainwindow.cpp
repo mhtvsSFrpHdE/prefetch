@@ -27,7 +27,7 @@ void MainWindow::StdOut_printLine(QString textToPrint)
 
 void MainWindow::print_slot(QString textToPrint)
 {
-    ui->plainTextEdit->insertPlainText(textToPrint);
+    ui->stdOut_plainTextEdit->insertPlainText(textToPrint);
 }
 
 void MainWindow::closeEvent(QCloseEvent *closeEventAddress)
