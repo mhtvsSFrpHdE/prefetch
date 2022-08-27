@@ -1,4 +1,7 @@
 # Tested on Python 3.9.10
+#
+# No support for copy if newer to Release compile output folder
+# Use run Debug without debug instead
 
 import os  # nopep8
 import sys  # nopep8
