@@ -31,6 +31,7 @@ public:
 
 public slots:
     void print_slot(QString textToPrint);
+    void sendCommand_slot();
 
 signals:
     void print_signal(QString textToPrint);
