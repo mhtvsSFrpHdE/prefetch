@@ -96,6 +96,12 @@ namespace ConsoleCommandFunction
         else
         {
             Global::qMainWindow->show();
+
+            // Restore and bring to front if minimized before hide
+            if (Global::qMainWindow->windowState() == Qt::WindowState::WindowMinimized)
+            {
+                Global::qMainWindow->setWindowState(Qt::WindowState::WindowActive);
+            }
         }
     }
 
