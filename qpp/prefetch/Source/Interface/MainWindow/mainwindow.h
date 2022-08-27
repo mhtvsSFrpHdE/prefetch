@@ -44,7 +44,10 @@ private:
     Ui::MainWindow *ui;
 
     // Skip 2nd exit request if fired multiple times
-    static bool exitRequested;
+    bool exitRequested = false;
+
+    // Start to tray
+    bool startToTray;
 
     // Handle application close event
     void closeEvent(QCloseEvent *closeEventAddress) override;

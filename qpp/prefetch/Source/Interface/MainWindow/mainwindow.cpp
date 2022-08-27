@@ -10,6 +10,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 {
     ui->setupUi(this);
 
+    // Initialize
+    startToTray = Setting::getBool("Instance", "StartToTray", Setting::setting);
+
     // StdOut print event
     connect(this, SIGNAL(print_signal(QString)), this, SLOT(print_slot(QString)));
 
@@ -63,9 +66,7 @@ void MainWindow::StdOut_printLine(QString textToPrint)
 
 void MainWindow::start()
 {
-    // Get start with window
-    auto startToTray = Setting::getBool("Instance", "StartToTray", Setting::setting);
-    if (startToTray)
+    if (startToTray == false)
     {
         this->show();
     }
@@ -87,8 +88,6 @@ void MainWindow::sendCommand_slot()
     // Clear command editor
     emit ui->command_lineEdit->clear();
 }
-
-bool MainWindow::exitRequested = false;
 
 void MainWindow::closeEvent(QCloseEvent *closeEventAddress)
 {
