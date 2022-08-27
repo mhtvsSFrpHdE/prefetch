@@ -103,3 +103,13 @@ void MainWindow::closeEvent(QCloseEvent *closeEventAddress)
     // Use command interface to do actual exit
     Global::inputLoopThreadAddress->receiveText("exit");
 }
+
+void MainWindow::changeEvent(QEvent *eventAddress)
+{
+    if (eventAddress->type() == QEvent::WindowStateChange)
+    {
+        if (isMinimized())
+        {
+        }
+    }
+}
