@@ -3,6 +3,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "..\..\Global\global.h"
+#include "..\..\Setting\setting.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
                                           ui(new Ui::MainWindow)
@@ -21,6 +22,17 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     connect(ui->sendCommand_pushButton, SIGNAL(clicked()), this, SLOT(sendCommand_slot()));
     // Enter on command edit
     connect(ui->command_lineEdit, SIGNAL(returnPressed()), this, SLOT(sendCommand_slot()));
+
+    // Interface text
+
+    // Get instance name
+    auto instanceName = Setting::getString("Instance", "Name", Setting::setting);
+
+    // MainWindow title
+    setWindowTitle(instanceName);
+
+    // Send command button text
+    ui->sendCommand_pushButton->setText("Send");
 }
 
 MainWindow::~MainWindow()

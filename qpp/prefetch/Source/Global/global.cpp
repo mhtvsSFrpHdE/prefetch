@@ -18,8 +18,7 @@ void Global::init(int argc, char *argv[])
     qGuiApplication = new QApplication(argc, argv);
     auto commandLineArguments = QApplication::arguments();
 
-    // MainWindow
-    qMainWindow = new MainWindow();
+    
 
     StdIn::init();
 
@@ -33,4 +32,7 @@ void Global::init(int argc, char *argv[])
     readFileLoopThreadAddress = new ReadFile();
 
     trayIconInstanceAddress->init();
+
+    // MainWindow
+    qMainWindow = new MainWindow();
 }
