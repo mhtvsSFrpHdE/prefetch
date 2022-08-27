@@ -16,6 +16,25 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    // Implement Output::StdOut
+    //
+    // Note: Call UI element in main thread or will get these on console
+    // ```
+    // QObject::connect: Cannot queue arguments of type 'QTextBlock'
+    // (Make sure 'QTextBlock' is registered using qRegisterMetaType().)
+    // QObject::connect: Cannot queue arguments of type 'QTextCursor'
+    // (Make sure 'QTextCursor' is registered using qRegisterMetaType().)
+    // ```
+    // https://stackoverflow.com/questions/2104779/qobject-qplaintextedit-multithreading-issues
+    void StdOut_print(QString textToPrint);
+    void StdOut_printLine(QString textToPrint);
+
+public slots:
+    void print_slot(QString textToPrint);
+
+signals:
+    void print_signal(QString textToPrint);
+
 private:
     Ui::MainWindow *ui;
 
