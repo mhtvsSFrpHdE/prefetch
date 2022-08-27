@@ -1,3 +1,5 @@
+#include <QScrollBar>
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "..\..\Global\global.h"
@@ -7,7 +9,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 {
     ui->setupUi(this);
 
+    // StdOut print event
     connect(this, SIGNAL(print_signal(QString)), this, SLOT(print_slot(QString)));
+
+    // Scroll bar to bottom on text change (after printed)
+    connect(ui->stdOut_plainTextEdit, SIGNAL(textChanged()), this, SLOT(scrollBarToBottom_slot()));
 
     // StdIn send command event
 
@@ -20,6 +26,17 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::scrollBarToBottom_slot()
+{
+    auto scrollBar = ui->stdOut_plainTextEdit->verticalScrollBar();
+    auto scrollBarMaxSize = scrollBar->maximum();
+
+    // Fix scroll bar position
+    // Default maximum will left two empty line in text view
+    scrollBarMaxSize = scrollBarMaxSize - 2;
+    scrollBar->setValue(scrollBarMaxSize);
 }
 
 void MainWindow::StdOut_print(QString textToPrint)
