@@ -12,8 +12,20 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui->setupUi(this);
 
     // Initialize
+
     startToTray = Setting::getBool("Instance", "StartToTray", Setting::setting);
     minimizeToTray = Setting::getBool("Instance", "MinimizeToTray", Setting::setting);
+
+    // Log size limit to prevent memory leak
+    auto getMaximumBlockCount = Setting::getInt("Instance", "MaximumBlockCount", Setting::setting);
+    if (getMaximumBlockCount.success)
+    {
+        ui->stdOut_plainTextEdit->setMaximumBlockCount(getMaximumBlockCount.result);
+    }
+    else
+    {
+        ui->stdOut_plainTextEdit->setMaximumBlockCount(defaultMaximumBlockCount);
+    }
 
     // Event
 

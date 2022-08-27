@@ -58,6 +58,7 @@ private:
 
     bool startToTray;
     bool minimizeToTray;
+    const int defaultMaximumBlockCount = 50;
 
     // Handle application close event
     void closeEvent(QCloseEvent *closeEventAddress) override;
