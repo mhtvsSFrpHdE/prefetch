@@ -10,6 +10,7 @@ HEADERS += \
     Source/Core/Thread/sleep_thread.h \
     Source/Core/read_file.h \
     Source/Core/startup.h \
+    Source/Define/define.h \
     Source/Global/global.h \
     Source/Input/Thread/loop_thread.h \
     Source/Input/stdin.h \
