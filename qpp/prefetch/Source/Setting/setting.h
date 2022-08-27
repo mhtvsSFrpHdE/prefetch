@@ -17,13 +17,18 @@ public:
         bool success = true;
     };
 
+    // Give setting group name and key name, return value as bool
+    // If fail to parse, result will set to false
+    static bool getBool(QString groupName, QString keyName, QSettings *qSettings);
+
     // Give setting group name and key name, return value as int
-    // If fail to parse int, result will set to 0
+    // If fail to parse, result will set to 0
     static GetGenericResult<int> getInt(QString groupName, QString keyName, QSettings *qSettings);
 
     // Same as getInt, return value as unsigned long
     //     success: The value will first parse to `ULongLong`, success or not depending on parse result
     //     result: `ULongLong` implicit convert to `unsigned long`
+    //         If fail to parse, result will set to 0
     static GetGenericResult<unsigned long> getUnsignedLong(QString groupName, QString keyName, QSettings *qSettings);
 
     // Give setting group name and key name, return value as QString

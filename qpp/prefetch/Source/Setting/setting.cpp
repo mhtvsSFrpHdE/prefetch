@@ -82,13 +82,20 @@ Setting::GetGenericResult<unsigned long> Setting::getUnsignedLong(QString groupN
     return getUnsignedlongResult;
 }
 
+bool Setting::getBool(QString groupName, QString keyName, QSettings *qSettings)
+{
+    auto qvariant = getQVariant(groupName, keyName, qSettings);
+
+    auto result = qvariant.toBool();
+
+    return result;
+}
+
 QString Setting::getString(QString groupName, QString keyName, QSettings *qSettings)
 {
-    qSettings->beginGroup(groupName);
+    auto qvariant = getQVariant(groupName, keyName, qSettings);
 
-    QString result = qSettings->value(keyName).toString();
-
-    qSettings->endGroup();
+    auto result = qvariant.toString();
 
     return result;
 }
