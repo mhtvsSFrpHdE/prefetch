@@ -1,0 +1,4 @@
+1.7.5
+
+1.7.6 and up compile fail: https://github.com/boostorg/multiprecision/issues/420  
+    ANNOUNCEMENT: Support for C++03 is now removed from this library. Any attempt to build with a non C++11 conforming compiler is doomed to failure.

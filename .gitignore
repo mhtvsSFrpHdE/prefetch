@@ -33,3 +33,6 @@ qpp/prefetch/Tool/Logfile.CSV
 
 # Wiki
 wiki/prefetch.wiki/
+
+# Third party libraries
+qpp/prefetch/Source/ThirdParty/boost
