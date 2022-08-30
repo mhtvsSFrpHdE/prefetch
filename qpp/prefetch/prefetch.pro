@@ -14,6 +14,7 @@ HEADERS += \
     Source/Global/global.h \
     Source/Input/Thread/loop_thread.h \
     Source/Input/stdin.h \
+    Source/Interface/Dpi/dpi.h \
     Source/Interface/MainWindow/mainwindow.h \
     Source/Interface/TrayIcon/tray_icon.h \
     Source/Output/stdout.h \
@@ -28,6 +29,7 @@ SOURCES += \
         Source/Global/global.cpp \
         Source/Input/Thread/loop_thread.cpp \
         Source/Input/stdin.cpp \
+        Source/Interface/Dpi/dpi.cpp \
         Source/Interface/MainWindow/mainwindow.cpp \
         Source/Interface/TrayIcon/tray_icon.cpp \
         Source/Output/stdout.cpp \
@@ -65,6 +67,9 @@ RC_FILE = prefetch.rc
 
 RESOURCES += \
     prefetch.qrc
+
+# Third party library
+INCLUDEPATH += $$PWD/Source/ThirdParty/boost
 
 FORMS += \
     Source/Interface/MainWindow/mainwindow.ui

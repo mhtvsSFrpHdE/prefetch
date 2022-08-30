@@ -5,6 +5,7 @@
 #include "..\Output\stdout.h"
 #include "..\Translate\translate.h"
 #include "..\Setting\setting.h"
+#include "..\Interface\Dpi\dpi.h"
 
 QApplication *Global::qGuiApplication = NULL;
 MainWindow *Global::qMainWindow = NULL;
@@ -25,6 +26,24 @@ void Global::init(int argc, char *argv[])
     Translate::init();
 
     Setting::init(argc, commandLineArguments);
+
+    Dpi::init();
+
+    // Get default font copy
+    auto defaultFont = Global::qGuiApplication->font();
+
+    // Update font size
+    defaultFont.setPixelSize(Dpi::defaultFontSize_pixel);
+
+    // If value was given, update font family
+    auto getFontFamily = Setting::getString("Instance", "Font", Setting::setting);
+    if (getFontFamily != "<default>")
+    {
+        defaultFont.setFamily(getFontFamily);
+    }
+
+    // Update default font
+    Global::qGuiApplication->setFont(defaultFont);
 
     // ReadFile thread instance
     readFileLoopThreadAddress = new ReadFile();
