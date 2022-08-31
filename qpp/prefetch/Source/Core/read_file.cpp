@@ -223,7 +223,9 @@ bool ReadFile::start_runThreadPool(int rescanInterval)
     threadPoolTimeConsumedFormatedString.chop(1);
 
     // Run startup items
+#if SKIP_STARTUP_ITEM == false
     Startup::startOnce();
+#endif
 
     // Increase task count
     count_taskComplete++;

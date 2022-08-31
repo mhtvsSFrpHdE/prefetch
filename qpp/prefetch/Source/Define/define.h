@@ -13,3 +13,6 @@
 
 // Add "Test" to tray menu, a handy place to execute some random fancy stuff
 #define TEST_TRAY_MENU_ENABLED false
+
+// Misc
+#define SKIP_STARTUP_ITEM = false
