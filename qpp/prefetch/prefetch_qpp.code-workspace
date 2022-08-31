@@ -6,5 +6,10 @@
 	],
 	"settings": {
 		"python.languageServer": "Pylance",
+		"files.associations": {
+			"**/include/**": "cpp",
+			"**/ThirdParty/**": "cpp"
+		},
+		"C_Cpp.autoAddFileAssociations": false
 	}
 }
