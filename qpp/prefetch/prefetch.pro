@@ -69,7 +69,7 @@ RESOURCES += \
     prefetch.qrc
 
 # Third party library
-INCLUDEPATH += $$PWD/Source/ThirdParty/boost
+INCLUDEPATH += $$PWD/../ThirdParty/boost
 
 FORMS += \
     Source/Interface/MainWindow/mainwindow.ui
