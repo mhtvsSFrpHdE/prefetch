@@ -28,9 +28,15 @@ public:
     // https://stackoverflow.com/questions/2104779/qobject-qplaintextedit-multithreading-issues
     void StdOut_print(QString textToPrint);
     void StdOut_printLine(QString textToPrint);
+    void StdOut_flush();
 
     // If start with window set to false, skip show MainWindow
     void start();
+
+    // https://www.qtcentre.org/threads/63281-Reading-last-lines-from-QTextEdit-Document
+    // Says I need read all line, split by `\n` to array, and array[array.length-1]
+    // I rather do a cache here
+    QString lastKnownLine;
 
 public slots:
     void print_slot(QString textToPrint);
@@ -59,6 +65,9 @@ private:
     bool startToTray;
     bool minimizeToTray;
     int printOffset;
+
+    // Distinguish print and print line
+    bool lastKnownLineCommitted = true;
 
     // Handle application close event
     void closeEvent(QCloseEvent *closeEventAddress) override;

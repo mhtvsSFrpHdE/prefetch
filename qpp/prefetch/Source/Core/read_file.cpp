@@ -122,6 +122,7 @@ void ReadFile::run()
                     // Wait for a while
                     start_ReadSleep::sleep(prefetchIntervalInSecond);
 
+                    // Trigger rescan
                     break;
                 }
             }

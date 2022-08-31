@@ -97,11 +97,40 @@ void MainWindow::restored_slot()
 void MainWindow::StdOut_print(QString textToPrint)
 {
     emit print_signal(textToPrint);
+
+    // Save to line cache
+
+    // If line cache is clear
+    if (lastKnownLineCommitted)
+    {
+        // Set cache status to dirty
+        lastKnownLineCommitted = false;
+        // First statement, assign directly
+        lastKnownLine = textToPrint;
+    }
+    // Line cache is dirty
+    else
+    {
+        // Append to line cache
+        lastKnownLine += textToPrint;
+    }
 }
 
 void MainWindow::StdOut_printLine(QString textToPrint)
 {
     emit print_signal(textToPrint + "\n");
+
+    // Save to line cache
+    //
+    // Print line is always make the cache clear
+    lastKnownLineCommitted = true;
+    lastKnownLine = textToPrint;
+}
+
+void MainWindow::StdOut_flush()
+{
+    // Mark line cache is clear
+    lastKnownLineCommitted = true;
 }
 
 void MainWindow::start()

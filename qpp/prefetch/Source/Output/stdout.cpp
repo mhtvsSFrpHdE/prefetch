@@ -34,4 +34,6 @@ void StdOut::printEndl()
 void StdOut::flush()
 {
     consoleOutput->flush();
+
+    Global::qMainWindow->StdOut_flush();
 }

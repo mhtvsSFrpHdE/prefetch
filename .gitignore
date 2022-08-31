@@ -36,3 +36,6 @@ wiki/prefetch.wiki/
 
 # Third party libraries symbolic link
 qpp/ThirdParty/boost
+
+# User data during debug
+qpp/prefetch/prefetch.debug.ini
