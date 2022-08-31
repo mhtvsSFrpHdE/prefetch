@@ -5,6 +5,7 @@
 #include "ui_mainwindow.h"
 #include "..\..\Global\global.h"
 #include "..\..\Setting\setting.h"
+#include "..\Dpi\dpi.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
                                           ui(new Ui::MainWindow)
@@ -15,6 +16,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     startToTray = Setting::getBool("Instance", "StartToTray", Setting::setting);
     minimizeToTray = Setting::getBool("Instance", "MinimizeToTray", Setting::setting);
+
+    // Zoom
+    Dpi::scale_qWidgetRect(this);
+    Dpi::scale_qWidgetRect(ui->stdOut_plainTextEdit);
+    Dpi::scale_qWidgetRect(ui->command_lineEdit);
+    Dpi::scale_qWidgetRect(ui->sendCommand_pushButton);
 
     // Log size limit to prevent memory leak
     auto getMaximumBlockCount = Setting::getInt("Instance", "MaximumBlockCount", Setting::setting);
