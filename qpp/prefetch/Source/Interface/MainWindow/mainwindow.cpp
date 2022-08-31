@@ -123,6 +123,9 @@ void MainWindow::print_slot(QString textToPrint)
     ui->stdOut_plainTextEdit->setTextCursor(cursor);
 
     ui->stdOut_plainTextEdit->insertPlainText(textToPrint);
+
+    // Print may happen at background
+    ui->stdOut_plainTextEdit->update();
 }
 
 void MainWindow::sendCommand_slot()
