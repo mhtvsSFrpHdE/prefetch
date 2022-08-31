@@ -1,3 +1,5 @@
+#include <QMainWindow>
+
 #include <boost/math/constants/constants.hpp>
 #include <boost/multiprecision/cpp_bin_float.hpp>
 
@@ -19,7 +21,12 @@ public:
     static int multiply(int number);
 
     // Try scale object inherted from QWidget and QRect
+    // For MainWindow, don't use this to avoid unexpected window move
+    //     Qt return x and y as 0 if MainWindow as parameter
     static void scale_qWidgetRect(QWidget *widget);
+
+    // Scale MainWindow without touching position
+    static void scale_qMainWindow(QMainWindow *mainWindow);
 
     // Default font pixel size, convert from point size in config
     static int defaultFontSize_pixel;

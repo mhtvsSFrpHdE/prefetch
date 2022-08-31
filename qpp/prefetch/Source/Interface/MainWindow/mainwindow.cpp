@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     minimizeToTray = Setting::getBool("Instance", "MinimizeToTray", Setting::setting);
 
     // Zoom
-    Dpi::scale_qWidgetRect(this);
+    Dpi::scale_qMainWindow(this);
     Dpi::scale_qWidgetRect(ui->stdOut_plainTextEdit);
     Dpi::scale_qWidgetRect(ui->command_lineEdit);
     Dpi::scale_qWidgetRect(ui->sendCommand_pushButton);
