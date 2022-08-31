@@ -45,11 +45,12 @@ void TrayIcon::init()
     connect(exitAction, SIGNAL(triggered()), this, SLOT(action_exit()));
     qMenu->addAction(exitAction);
 
-    // Debug code entry
-    //
-    // QAction *testAction = new QAction("Test", qMenu);
-    // connect(testAction, SIGNAL(triggered()), this, SLOT(action_test()));
-    // qMenu->addAction(testAction);
+    // Test code entry
+#if TEST_TRAY_MENU_ENABLED
+    QAction *testAction = new QAction("Test", qMenu);
+    connect(testAction, SIGNAL(triggered()), this, SLOT(action_test()));
+    qMenu->addAction(testAction);
+#endif
 
     systemTrayIcon->setContextMenu(qMenu);
 

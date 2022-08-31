@@ -7,7 +7,7 @@ QTextStream *StdIn::consoleInput;
 
 void StdIn::init()
 {
-#if CONSOLE_ENABLED == 1
+#if CONSOLE_ENABLED
     consoleInput = new QTextStream(stdin);
 #endif
 
@@ -16,7 +16,7 @@ void StdIn::init()
 
 void StdIn::start()
 {
-#if CONSOLE_ENABLED == 1
+#if CONSOLE_ENABLED
     Global::inputLoopThreadAddress->start();
 #endif
 }

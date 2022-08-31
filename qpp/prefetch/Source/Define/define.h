@@ -7,6 +7,9 @@
 //     - Qt usually print runtime information like signal/slot error to console
 //
 // Therefore, the console will only use for debug purpose
-// Compile with `CONFIG += console` and `CONSOLE_ENABLED 1` to enable console
-// Otherwize for a user release, keep `CONSOLE_ENABLED 0`
-#define CONSOLE_ENABLED 0
+// Compile with `CONFIG += console` and `CONSOLE_ENABLED true` to enable console
+// Otherwize for a user release, keep `CONSOLE_ENABLED false`
+#define CONSOLE_ENABLED false
+
+// Add "Test" to tray menu, a handy place to execute some random fancy stuff
+#define TEST_TRAY_MENU_ENABLED false
