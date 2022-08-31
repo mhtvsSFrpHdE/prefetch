@@ -53,6 +53,7 @@ void TrayIcon::init()
     instanceNameLabel = new QLabel(instanceName);
     instanceNameSeparator = new QWidgetAction(systemTrayIcon);
     instanceNameSeparator->setDefaultWidget(instanceNameLabel);
+    connect(instanceNameSeparator, SIGNAL(triggered()), this, SLOT(action_traydc_void()));
     qMenu->addAction(instanceNameSeparator);
 
     // Show last known line of stdout, a seperator with text
@@ -132,6 +133,10 @@ void TrayIcon::action_traydc(QSystemTrayIcon::ActivationReason activationReason)
     {
         ConsoleCommandFunction::sendTextToStdIn("traydc");
     }
+}
+void TrayIcon::action_traydc_void()
+{
+    ConsoleCommandFunction::sendTextToStdIn("traydc");
 }
 void TrayIcon::action_test()
 {
