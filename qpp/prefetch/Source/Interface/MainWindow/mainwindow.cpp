@@ -17,6 +17,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     startToTray = Setting::getBool("Instance", "StartToTray", Setting::setting);
     minimizeToTray = Setting::getBool("Instance", "MinimizeToTray", Setting::setting);
 
+    auto getPrintOffset = Setting::getInt("Instance", "PrintOffset", Setting::setting);
+    printOffset = getPrintOffset.result;
+
     // Zoom
     Dpi::scale_qMainWindow(this);
     Dpi::scale_qWidgetRect(ui->stdOut_plainTextEdit);
@@ -66,7 +69,9 @@ void MainWindow::scrollBarToBottom_slot()
 
     // Fix scroll bar position
     // Default maximum will left two empty line in text view
-    scrollBarMaxSize = scrollBarMaxSize - 2;
+    //
+    // On DPI zoom 200%, size - 2 seems too much for text
+    scrollBarMaxSize = scrollBarMaxSize - printOffset;
     scrollBar->setValue(scrollBarMaxSize);
 }
 
