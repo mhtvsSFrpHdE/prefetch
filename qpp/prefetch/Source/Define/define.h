@@ -15,4 +15,4 @@
 #define TEST_TRAY_MENU_ENABLED false
 
 // Misc
-#define SKIP_STARTUP_ITEM = false
+#define SKIP_STARTUP_ITEM false

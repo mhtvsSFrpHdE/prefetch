@@ -11,11 +11,29 @@
 
 QSystemTrayIcon *TrayIcon::systemTrayIcon = NULL;
 
+namespace TrayIconObject
+{
+    QMenu *qMenu = NULL;
+    QLabel *instanceNameLabel = NULL;
+    QWidgetAction *instanceNameSeparator = NULL;
+    QLabel *lastKnownLineLabel = NULL;
+    QWidgetAction *lastKnownLineSeparator = NULL;
+    QAction *pauseMenu = NULL;
+    QAction *resumeMenu = NULL;
+    QAction *exitMenu = NULL;
+    // Test code
+#if TEST_TRAY_MENU_ENABLED
+    QAction *testMenu = NULL;
+#endif
+}
+
 void TrayIcon::init()
 {
+    using namespace TrayIconObject;
+
     TrayIcon::systemTrayIcon = new QSystemTrayIcon(Global::qGuiApplication);
 
-    QMenu *qMenu = new QMenu();
+    qMenu = new QMenu();
 
     // Get instance name
     auto instanceName = Setting::getString("Instance", "Name", Setting::setting);
@@ -28,28 +46,29 @@ void TrayIcon::init()
 
     // Show instance name, a seperator with text
     // https://stackoverflow.com/questions/37976696/why-qmenus-separator-doesnt-show-text
-    QLabel *instanceNameLabel = new QLabel(instanceName);
-    QWidgetAction *instanceNameSeparator = new QWidgetAction(systemTrayIcon);
+    instanceNameLabel = new QLabel(instanceName);
+    instanceNameSeparator = new QWidgetAction(systemTrayIcon);
     instanceNameSeparator->setDefaultWidget(instanceNameLabel);
     qMenu->addAction(instanceNameSeparator);
 
-    QAction *pauseAction = new QAction("Pause", qMenu);
-    connect(pauseAction, SIGNAL(triggered()), this, SLOT(action_pause()));
-    qMenu->addAction(pauseAction);
+    pauseMenu = new QAction("Pause", qMenu);
+    connect(pauseMenu, SIGNAL(triggered()), this, SLOT(action_pause()));
+    qMenu->addAction(pauseMenu);
 
-    QAction *resumeAction = new QAction("Resume", qMenu);
-    connect(resumeAction, SIGNAL(triggered()), this, SLOT(action_resume()));
-    qMenu->addAction(resumeAction);
+    resumeMenu = new QAction("Resume", qMenu);
+    connect(resumeMenu, SIGNAL(triggered()), this, SLOT(action_resume()));
+    qMenu->addAction(resumeMenu);
 
-    QAction *exitAction = new QAction("Exit", qMenu);
-    connect(exitAction, SIGNAL(triggered()), this, SLOT(action_exit()));
-    qMenu->addAction(exitAction);
+    exitMenu = new QAction("Exit", qMenu);
+    connect(exitMenu, SIGNAL(triggered()), this, SLOT(action_exit()));
+    qMenu->addAction(exitMenu);
+
 
     // Test code entry
 #if TEST_TRAY_MENU_ENABLED
-    QAction *testAction = new QAction("Test", qMenu);
-    connect(testAction, SIGNAL(triggered()), this, SLOT(action_test()));
-    qMenu->addAction(testAction);
+    testMenu = new QAction("Test", qMenu);
+    connect(testMenu, SIGNAL(triggered()), this, SLOT(action_test()));
+    qMenu->addAction(testMenu);
 #endif
 
     systemTrayIcon->setContextMenu(qMenu);
