@@ -25,14 +25,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     // Log size limit to prevent memory leak
     auto getMaximumBlockCount = Setting::getInt("Instance", "MaximumBlockCount", Setting::setting);
-    if (getMaximumBlockCount.success)
-    {
-        ui->stdOut_plainTextEdit->setMaximumBlockCount(getMaximumBlockCount.result);
-    }
-    else
-    {
-        ui->stdOut_plainTextEdit->setMaximumBlockCount(defaultMaximumBlockCount);
-    }
+    ui->stdOut_plainTextEdit->setMaximumBlockCount(getMaximumBlockCount.result);
 
     // Event
 

@@ -23,14 +23,7 @@ void Dpi::init()
 {
     // Zoom level
     auto getZoomLevel = Setting::getInt("Instance", "ZoomLevel", Setting::setting);
-    if (getZoomLevel.success)
-    {
-        zoomLevel = getZoomLevel.result;
-    }
-    else
-    {
-        zoomLevel = 100;
-    }
+    zoomLevel = getZoomLevel.result;
 
     // Ratio
     dpiMultiplier = zoomLevel / percentage;
@@ -38,14 +31,7 @@ void Dpi::init()
 
     // Font size
     auto getFontSize = Setting::getInt("Instance", "FontSize", Setting::setting);
-    if (getFontSize.success)
-    {
-        defaultFontSize_point = getFontSize.result;
-    }
-    else
-    {
-        defaultFontSize_point = 10;
-    }
+    defaultFontSize_point = getFontSize.result;
     defaultFontSize_pixel = ptToPx(defaultFontSize_point);
 }
 

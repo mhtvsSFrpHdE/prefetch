@@ -76,11 +76,7 @@ void ReadFile::run()
 
     // Get prefetch interval
     auto getPrefetchInterval = Setting::getUnsignedLong("Thread", "PrefetchInterval", Setting::setting);
-    unsigned long prefetchIntervalInSecond = 60;
-    if (getPrefetchInterval.success && getPrefetchInterval.result > 0)
-    {
-        prefetchIntervalInSecond = getPrefetchInterval.result;
-    }
+    unsigned long prefetchIntervalInSecond = getPrefetchInterval.result;
 
     // Get read thread priority
     auto getReadThreadPriority = Setting::getString("Thread", "ReadThreadPriority", Setting::setting);
