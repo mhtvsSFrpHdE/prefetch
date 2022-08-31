@@ -8,8 +8,12 @@
 #include "..\..\Global\global.h"
 #include "..\..\Input\stdin.h"
 #include "..\..\Setting\setting.h"
+#include "..\Dpi\dpi.h"
 
 QSystemTrayIcon *TrayIcon::systemTrayIcon = NULL;
+
+const int defaultMenuWdith = 100;
+const int defaultLabelPadding = 10;
 
 namespace TrayIconObject
 {
@@ -51,6 +55,13 @@ void TrayIcon::init()
     instanceNameSeparator->setDefaultWidget(instanceNameLabel);
     qMenu->addAction(instanceNameSeparator);
 
+    // Show last known line of stdout, a seperator with text
+    lastKnownLineLabel = new QLabel();
+    lastKnownLineSeparator = new QWidgetAction(systemTrayIcon);
+    lastKnownLineSeparator->setDefaultWidget(lastKnownLineLabel);
+    connect(lastKnownLineSeparator, SIGNAL(triggered()), this, SLOT(action_traydc_void()));
+    qMenu->addAction(lastKnownLineSeparator);
+
     pauseMenu = new QAction("Pause", qMenu);
     connect(pauseMenu, SIGNAL(triggered()), this, SLOT(action_pause()));
     qMenu->addAction(pauseMenu);
@@ -63,6 +74,8 @@ void TrayIcon::init()
     connect(exitMenu, SIGNAL(triggered()), this, SLOT(action_exit()));
     qMenu->addAction(exitMenu);
 
+    // Menu style
+    qMenu->setFixedWidth(Dpi::multiply(defaultMenuWdith));
 
     // Test code entry
 #if TEST_TRAY_MENU_ENABLED
@@ -73,6 +86,10 @@ void TrayIcon::init()
 
     systemTrayIcon->setContextMenu(qMenu);
 
+    // Event
+
+    // Update content before show right click menu
+    connect(systemTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(action_updateMenu(QSystemTrayIcon::ActivationReason)));
     // Double click show/hide console window
     connect(systemTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(action_traydc(QSystemTrayIcon::ActivationReason)));
 }
@@ -119,4 +136,35 @@ void TrayIcon::action_traydc(QSystemTrayIcon::ActivationReason activationReason)
 void TrayIcon::action_test()
 {
     ConsoleCommandFunction::sendTextToStdIn("test");
+}
+void TrayIcon::action_updateMenu(QSystemTrayIcon::ActivationReason activationReason)
+{
+    using namespace TrayIconObject;
+
+    if (activationReason == QSystemTrayIcon::ActivationReason::Context)
+    {
+        // Update last known line text
+
+        // Ignore new line from result
+        auto lastKnownLine = Global::qMainWindow->lastKnownLine.trimmed();
+
+        // Set to label
+        lastKnownLineLabel->setMinimumWidth(0);
+        lastKnownLineLabel->setText(lastKnownLine);
+        lastKnownLineLabel->adjustSize();
+
+        // Calculate minimal menu width
+
+        // Get width from unchanged widget
+        auto newMenuWidth = Dpi::multiply(defaultMenuWdith);
+        auto lastKnownLineLabelWidth = lastKnownLineLabel->width();
+        newMenuWidth = defaultMenuWdith >= lastKnownLineLabelWidth ? defaultMenuWdith
+                                                                   : lastKnownLineLabelWidth;
+        // Add label padding to total width
+        newMenuWidth = newMenuWidth + Dpi::multiply(defaultLabelPadding);
+
+        // Apply width to menu
+        qMenu->setFixedWidth(newMenuWidth);
+        // qMenu->adjustSize();
+    }
 }
