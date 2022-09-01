@@ -56,7 +56,10 @@ private:
     void closeEvent(QCloseEvent *closeEventAddress) override;
 
     // Handle application minimize event
-    void changeEvent(QEvent *event) override;
+    void changeEvent(QEvent *changeEventAddress) override;
+
+    // Handle application show event
+    void showEvent(QShowEvent *showEventAddress) override;
 };
 
 #endif // MAINWINDOW_H

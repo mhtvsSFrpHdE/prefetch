@@ -9,6 +9,7 @@
 #include "..\..\Input\stdin.h"
 #include "..\..\Setting\setting.h"
 #include "..\Dpi\dpi.h"
+#include "..\..\Define\define.h"
 
 QSystemTrayIcon *TrayIcon::systemTrayIcon = NULL;
 

@@ -64,13 +64,17 @@ MainWindow::~MainWindow()
 
 void MainWindow::scrollBarToBottom_slot()
 {
+    // Background update is not necessary
+    if (isVisible() == false)
+    {
+        return;
+    }
+
     auto scrollBar = ui->stdOut_plainTextEdit->verticalScrollBar();
     auto scrollBarMaxSize = scrollBar->maximum();
 
     // Fix scroll bar position
     // Default maximum will left two empty line in text view
-    //
-    // On DPI zoom 200%, size - 2 seems too much for text
     scrollBarMaxSize = scrollBarMaxSize - printOffset;
     scrollBar->setValue(scrollBarMaxSize);
 }
@@ -150,9 +154,6 @@ void MainWindow::print_slot(QString textToPrint)
     ui->stdOut_plainTextEdit->setTextCursor(cursor);
 
     ui->stdOut_plainTextEdit->insertPlainText(textToPrint);
-
-    // Print may happen at background
-    ui->stdOut_plainTextEdit->update();
 }
 
 void MainWindow::sendCommand_slot()
@@ -182,13 +183,21 @@ void MainWindow::closeEvent(QCloseEvent *closeEventAddress)
     Global::inputLoopThreadAddress->receiveText("exit");
 }
 
-void MainWindow::changeEvent(QEvent *eventAddress)
+void MainWindow::changeEvent(QEvent *changeEventAddress)
 {
-    if (eventAddress->type() == QEvent::WindowStateChange)
+    if (changeEventAddress->type() == QEvent::WindowStateChange)
     {
+        // Minimize to tray
         if (isMinimized())
         {
             minimized_slot();
         }
     }
 }
+
+void MainWindow::showEvent(QShowEvent *showEventAddress)
+{
+    // Fix scroll bar position on restore
+    ui->stdOut_plainTextEdit->insertPlainText("");
+    scrollBarToBottom_slot();
+};
