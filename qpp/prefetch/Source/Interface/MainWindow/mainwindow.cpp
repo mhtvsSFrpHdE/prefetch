@@ -4,15 +4,20 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "..\..\Global\global.h"
+#include "..\..\Global\const.h"
 #include "..\..\Setting\setting.h"
 #include "..\..\Setting\const.h"
 #include "..\Dpi\dpi.h"
+#include "..\..\Input\const.h"
+#include "const.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
                                           ui(new Ui::MainWindow)
 {
     using namespace Const_Setting::ConfigGroupName;
     using namespace Const_Setting::Instance_ConfigKeyName;
+    using namespace Const_Global::CommonString;
+    using namespace Const_MainWindow::ButtonText;
 
     ui->setupUi(this);
 
@@ -24,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     auto getPrintOffset = Setting::getInt(Instance, PrintOffset, Setting::setting);
     printOffset = getPrintOffset.result;
 
-    lastKnownLine = "";
+    lastKnownLine = EmptyString;
 
     // Zoom
     Dpi::scale_qMainWindow(this);
@@ -60,7 +65,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     setWindowTitle(instanceName);
 
     // Send command button text
-    ui->sendCommand_pushButton->setText("Send");
+    ui->sendCommand_pushButton->setText(SendCommand_PushButton);
 }
 
 MainWindow::~MainWindow()
@@ -128,7 +133,8 @@ void MainWindow::StdOut_print(QString textToPrint)
 
 void MainWindow::StdOut_printLine(QString textToPrint)
 {
-    emit print_signal(textToPrint + "\n");
+    using namespace Const_Global::CommonString;
+    emit print_signal(textToPrint + NewLine);
 
     // Save to line cache
     //
@@ -186,7 +192,8 @@ void MainWindow::closeEvent(QCloseEvent *closeEventAddress)
     exitRequested = true;
 
     // Use command interface to do actual exit
-    Global::inputLoopThreadAddress->receiveText("exit");
+    using namespace Const_Input;
+    Global::inputLoopThreadAddress->receiveText(Command::exit);
 }
 
 void MainWindow::changeEvent(QEvent *changeEventAddress)
@@ -203,7 +210,8 @@ void MainWindow::changeEvent(QEvent *changeEventAddress)
 
 void MainWindow::showEvent(QShowEvent *showEventAddress)
 {
+    using namespace Const_Global::CommonString;
     // Fix scroll bar position on restore
-    ui->stdOut_plainTextEdit->insertPlainText("");
+    ui->stdOut_plainTextEdit->insertPlainText(EmptyString);
     scrollBarToBottom_slot();
 };

@@ -3,6 +3,7 @@
 
 #include "read_thread.h"
 #include "..\..\Output\stdout.h"
+#include "const.h"
 
 bool ReadThread::autoDeletePreset = true;
 QMutex ReadThread::printLock(QMutex::NonRecursive);
@@ -20,14 +21,13 @@ ReadThread::ReadThread(QString filePath)
 
 bool ReadThread::run_SearchExclude()
 {
-    // %1: Qt format path, something like "C:/"
-    auto searchPatternTemplate = QString("%1*");
+    using namespace Const_ReadThread;
 
     // Extract folder from exclude folders
     for (int i = 0; i < excludeFolders.size(); ++i)
     {
         auto excludeFolder = excludeFolders[i];
-        auto searchPattern = QRegExp(searchPatternTemplate.arg(excludeFolder), Qt::CaseInsensitive, QRegExp::Wildcard);
+        auto searchPattern = QRegExp(SearchPatternTemplate.arg(excludeFolder), Qt::CaseInsensitive, QRegExp::Wildcard);
         auto searchResult = filePath.indexOf(searchPattern);
 
         // Assume file not under exclude folder

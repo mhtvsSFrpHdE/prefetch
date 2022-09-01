@@ -7,10 +7,12 @@
 
 #include "..\..\Global\global.h"
 #include "..\..\Input\stdin.h"
+#include "..\..\Input\const.h"
 #include "..\..\Setting\setting.h"
 #include "..\..\Setting\const.h"
 #include "..\Dpi\dpi.h"
 #include "..\..\Define\define.h"
+#include "const.h"
 
 QSystemTrayIcon *TrayIcon::systemTrayIcon = NULL;
 
@@ -35,9 +37,11 @@ namespace TrayIconObject
 
 void TrayIcon::init()
 {
+
     using namespace Const_Setting::ConfigGroupName;
     using namespace Const_Setting::Instance_ConfigKeyName;
     using namespace TrayIconObject;
+    using namespace Const_TrayIcon;
 
     TrayIcon::systemTrayIcon = new QSystemTrayIcon(Global::qGuiApplication);
 
@@ -67,15 +71,15 @@ void TrayIcon::init()
     connect(lastKnownLineSeparator, SIGNAL(triggered()), this, SLOT(action_traydc_void()));
     qMenu->addAction(lastKnownLineSeparator);
 
-    pauseMenu = new QAction("Pause", qMenu);
+    pauseMenu = new QAction(MenuText::Pause, qMenu);
     connect(pauseMenu, SIGNAL(triggered()), this, SLOT(action_pause()));
     qMenu->addAction(pauseMenu);
 
-    resumeMenu = new QAction("Resume", qMenu);
+    resumeMenu = new QAction(MenuText::Resume, qMenu);
     connect(resumeMenu, SIGNAL(triggered()), this, SLOT(action_resume()));
     qMenu->addAction(resumeMenu);
 
-    exitMenu = new QAction("Exit", qMenu);
+    exitMenu = new QAction(MenuText::Exit, qMenu);
     connect(exitMenu, SIGNAL(triggered()), this, SLOT(action_exit()));
     qMenu->addAction(exitMenu);
 
@@ -84,7 +88,7 @@ void TrayIcon::init()
 
     // Test code entry
 #if TEST_TRAY_MENU_ENABLED
-    testMenu = new QAction("Test", qMenu);
+    testMenu = new QAction(MenuText::Test, qMenu);
     connect(testMenu, SIGNAL(triggered()), this, SLOT(action_test()));
     qMenu->addAction(testMenu);
 #endif
@@ -101,7 +105,8 @@ void TrayIcon::init()
 
 void TrayIcon::start()
 {
-    TrayIcon::systemTrayIcon->setIcon(QIcon(":/qrc/Resource/icon/main/prefetch.png"));
+    using namespace Const_TrayIcon::Resource;
+    TrayIcon::systemTrayIcon->setIcon(QIcon(QIconPath));
     TrayIcon::systemTrayIcon->show();
 }
 
@@ -119,32 +124,33 @@ namespace ConsoleCommandFunction
     }
 }
 
+using namespace Const_Input;
 void TrayIcon::action_pause()
 {
-    ConsoleCommandFunction::sendTextToStdIn("pause");
+    ConsoleCommandFunction::sendTextToStdIn(Command::pause);
 }
 void TrayIcon::action_resume()
 {
-    ConsoleCommandFunction::sendTextToStdIn("resume");
+    ConsoleCommandFunction::sendTextToStdIn(Command::resume);
 }
 void TrayIcon::action_exit()
 {
-    ConsoleCommandFunction::sendTextToStdIn("exit");
+    ConsoleCommandFunction::sendTextToStdIn(Command::exit);
 }
 void TrayIcon::action_traydc(QSystemTrayIcon::ActivationReason activationReason)
 {
     if (activationReason == QSystemTrayIcon::ActivationReason::DoubleClick)
     {
-        ConsoleCommandFunction::sendTextToStdIn("traydc");
+        ConsoleCommandFunction::sendTextToStdIn(Command::traydc);
     }
 }
 void TrayIcon::action_traydc_void()
 {
-    ConsoleCommandFunction::sendTextToStdIn("traydc");
+    ConsoleCommandFunction::sendTextToStdIn(Command::traydc);
 }
 void TrayIcon::action_test()
 {
-    ConsoleCommandFunction::sendTextToStdIn("test");
+    ConsoleCommandFunction::sendTextToStdIn(Command::test);
 }
 void TrayIcon::action_updateMenu(QSystemTrayIcon::ActivationReason activationReason)
 {

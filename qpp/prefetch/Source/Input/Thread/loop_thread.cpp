@@ -5,6 +5,7 @@
 #include "..\..\Input\stdin.h"
 #include "..\..\Output\stdout.h"
 #include "..\..\Core\Thread\read_thread.h"
+#include "..\..\Input\const.h"
 
 LoopThread::LoopThread() {}
 
@@ -20,7 +21,8 @@ void LoopThread::receiveText(QString input)
     // Command not found
     else
     {
-        StdOut::printLine("Invalid command");
+        using namespace Const_Input::Message;
+        StdOut::printLine(InvalidCommand);
     }
 }
 
@@ -39,16 +41,18 @@ namespace ConsoleCommandFunction
 {
     void pause()
     {
-        StdOut::printLine("Trying to pause prefetch");
+        using namespace Const_Input::Message;
+        StdOut::printLine(TryingToPause);
 
         ReadThread::pause = true;
 
-        StdOut::printLine("Pause has requested, good luck");
+        StdOut::printLine(PauseRequested);
     };
 
     void resume()
     {
-        StdOut::printLine("Trying to resume prefetch");
+        using namespace Const_Input::Message;
+        StdOut::printLine(TryingToResume);
 
         ReadThread::pause = false;
 
@@ -60,8 +64,9 @@ namespace ConsoleCommandFunction
 
     void exit()
     {
-        StdOut::printLine("Trying to exit prefetch");
-        StdOut::printLine("    This can take a while in some case");
+        using namespace Const_Input::Message;
+        StdOut::printLine(TryingToExit1);
+        StdOut::printLine(TryingToExit2);
 
         // Free thread pool
         // If exit QT before thread pool done
@@ -104,16 +109,18 @@ namespace ConsoleCommandFunction
 
     void test()
     {
-        StdOut::printLine("This function contain test code");
+        using namespace Const_Input::Message;
+        StdOut::printLine(Test);
     }
 }
 
+using namespace Const_Input;
 // Cool stuff: https://stackoverflow.com/questions/8157625/how-do-i-populate-values-of-a-static-qmap-in-c-qt
 // Use initializer list and one of the QMap constructor
 QMap<QString, void (*)()> LoopThread::commandMap(
     std::map<QString, void (*)()>{
-        {"pause", &ConsoleCommandFunction::pause},
-        {"resume", &ConsoleCommandFunction::resume},
-        {"test", &ConsoleCommandFunction::test},
-        {"exit", &ConsoleCommandFunction::exit},
-        {"traydc", &ConsoleCommandFunction::traydc}});
+        {Command::pause, &ConsoleCommandFunction::pause},
+        {Command::resume, &ConsoleCommandFunction::resume},
+        {Command::test, &ConsoleCommandFunction::test},
+        {Command::exit, &ConsoleCommandFunction::exit},
+        {Command::traydc, &ConsoleCommandFunction::traydc}});

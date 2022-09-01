@@ -8,6 +8,7 @@
 #include "..\Output\stdout.h"
 #include "Thread\read_thread.h"
 #include "startup.h"
+#include "const.h"
 
 SleepThread *ReadFile::sleepThreadAddress = new SleepThread();
 int ReadFile::count_start_scanFolder = 0;
@@ -50,6 +51,7 @@ void ReadFile::run()
 {
     using namespace Const_Setting::ConfigGroupName;
     using namespace Const_Setting::Thread_ConfigKeyName;
+    using namespace Const_Core::Message;
 
     // Get and set thread number
     auto getThreadNumber = Setting::getInt(Thread, MaxThreadCount, Setting::setting);
@@ -96,7 +98,7 @@ void ReadFile::run()
     {
         // Scan folder and queue threads that read each file
 
-        StdOut::printLine("Scan folder...");
+        StdOut::printLine(ScanFolder);
 
         for (int i = 0; i < prefetchFolders.size(); ++i)
         {
@@ -194,7 +196,8 @@ void ReadFile::start_scanFolder(QString prefetchFolderName)
 
 bool ReadFile::start_runThreadPool(int rescanInterval)
 {
-    StdOut::printLine("Prefetching...");
+    using namespace Const_Core::Message;
+    StdOut::printLine(Prefetching);
 
     // Create timer
     QElapsedTimer threadPoolTimer;
@@ -222,7 +225,7 @@ bool ReadFile::start_runThreadPool(int rescanInterval)
     auto threadPoolTimeConsumedMiliseconds = threadPoolTimer.elapsed();
     auto threadPoolTimeConsumedFormatedString = QTime()
                                                     .addMSecs(threadPoolTimeConsumedMiliseconds)
-                                                    .toString("ss.zzz");
+                                                    .toString(CodeExecuteTimeFormatter);
     threadPoolTimeConsumedFormatedString.chop(1);
 
     // Run startup items
@@ -233,9 +236,9 @@ bool ReadFile::start_runThreadPool(int rescanInterval)
     // Increase task count
     count_taskComplete++;
 
-    StdOut::print("Idle, Time: ");
+    StdOut::print(Idle_Time);
     StdOut::print(threadPoolTimeConsumedFormatedString);
-    StdOut::print(" Sec");
+    StdOut::print(Idle_Sec);
     StdOut::printEndl();
     StdOut::flush();
 

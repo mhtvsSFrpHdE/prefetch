@@ -2,6 +2,8 @@
 
 namespace Const_Setting
 {
+    const QString DefaultSettingFilePath = "prefetch.ini";
+    const QString PathSplitter = "/";
 
     namespace ConfigGroupName
     {
@@ -44,5 +46,10 @@ namespace Const_Setting
         const QString FontSize = "FontSize";
         const QString PrintOffset = "PrintOffset";
         const QString ZoomLevel = "ZoomLevel";
+    }
+
+    namespace Font_Value
+    {
+        const QString Default = "<default>";
     }
 }

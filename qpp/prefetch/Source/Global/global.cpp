@@ -16,6 +16,7 @@ TrayIcon *Global::trayIconInstanceAddress = new TrayIcon();
 
 void Global::init(int argc, char *argv[])
 {
+    using namespace Const_Setting;
     using namespace Const_Setting::ConfigGroupName;
     using namespace Const_Setting::Instance_ConfigKeyName;
 
@@ -41,7 +42,7 @@ void Global::init(int argc, char *argv[])
 
     // If value was given, update font family
     auto getFontFamily = Setting::getString(Instance, Font, Setting::setting);
-    if (getFontFamily != "<default>")
+    if (getFontFamily != Font_Value::Default)
     {
         defaultFont.setFamily(getFontFamily);
     }

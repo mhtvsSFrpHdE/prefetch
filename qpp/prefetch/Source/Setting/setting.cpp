@@ -2,6 +2,7 @@
 #include <QApplication>
 
 #include "setting.h"
+#include "const.h"
 
 QSettings *Setting::setting;
 
@@ -28,8 +29,10 @@ TryGetSettingFilePath init_getSettingFilePath(int argc, QStringList argv)
 
 void Setting::init(int argc, QStringList argv)
 {
-    // Setting file default value
-    QString settingFilePath = "prefetch.ini";
+    using namespace Const_Setting;
+
+    // Setting file path default value
+    QString settingFilePath = DefaultSettingFilePath;
 
     // Get setting file path
     auto getSettingFilePath = init_getSettingFilePath(argc, argv);
@@ -37,7 +40,7 @@ void Setting::init(int argc, QStringList argv)
     {
         settingFilePath = getSettingFilePath.filePath;
     }
-    settingFilePath = QApplication::applicationDirPath() + "/" + settingFilePath;
+    settingFilePath = QApplication::applicationDirPath() + PathSplitter + settingFilePath;
 
     // Read ini from exe stored folder
     setting = new QSettings(settingFilePath, QSettings::IniFormat);

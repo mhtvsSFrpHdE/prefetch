@@ -4,6 +4,7 @@
 #include "..\Setting\setting.h"
 #include "..\Setting\const.h"
 #include "..\Output\stdout.h"
+#include "const.h"
 
 using namespace Const_Setting::ConfigGroupName;
 
@@ -32,5 +33,6 @@ void Startup::startOnce()
         process.startDetached(fileName);
     }
 
-    StdOut::printLine("Run startup items...");
+    using namespace Const_Core::Message;
+    StdOut::printLine(RunStartupItems);
 }

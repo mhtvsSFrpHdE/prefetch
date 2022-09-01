@@ -4,6 +4,7 @@
 
 #include "dpi.h"
 #include "..\..\Setting\setting.h"
+#include "..\..\Setting\const.h"
 
 using boost::multiprecision::cpp_bin_float_single;
 
@@ -21,8 +22,11 @@ int Dpi::defaultFontSize_pixel;
 
 void Dpi::init()
 {
+    using namespace Const_Setting::ConfigGroupName;
+    using namespace Const_Setting::Instance_ConfigKeyName;
+
     // Zoom level
-    auto getZoomLevel = Setting::getInt("Instance", "ZoomLevel", Setting::setting);
+    auto getZoomLevel = Setting::getInt(Instance, ZoomLevel, Setting::setting);
     zoomLevel = getZoomLevel.result;
 
     // Ratio
@@ -30,7 +34,7 @@ void Dpi::init()
     pointToPixelMultiplier = assumeQtPointEachInch / assumeOsPointEachInch;
 
     // Font size
-    auto getFontSize = Setting::getInt("Instance", "FontSize", Setting::setting);
+    auto getFontSize = Setting::getInt(Instance, FontSize, Setting::setting);
     defaultFontSize_point = getFontSize.result;
     defaultFontSize_pixel = ptToPx(defaultFontSize_point);
 }

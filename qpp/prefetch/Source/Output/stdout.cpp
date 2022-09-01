@@ -1,5 +1,6 @@
 #include "stdout.h"
 #include "..\Global\global.h"
+#include "..\Global\const.h"
 
 QTextStream *StdOut::consoleOutput;
 
@@ -28,7 +29,8 @@ void StdOut::printEndl()
 {
     *consoleOutput << endl;
 
-    Global::qMainWindow->StdOut_print("\n");
+    using namespace Const_Global::CommonString;
+    Global::qMainWindow->StdOut_print(NewLine);
 }
 
 void StdOut::flush()
