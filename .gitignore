@@ -13,8 +13,12 @@ qpp/prefetch/.vscode/launch.json
 qpp/prefetch/.vscode/tasks.json
 qpp/prefetch/env.bat
 
+# VSCode cpptools
+qpp/prefetch/cpptools
+
 # Tool environment
 qpp/prefetch/Tool/env.bat
+qpp/prefetch/Tool/create_symbolic_link_env.bat
 
 # Log
 *.log
