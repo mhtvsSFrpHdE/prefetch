@@ -20,6 +20,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     auto getPrintOffset = Setting::getInt("Instance", "PrintOffset", Setting::setting);
     printOffset = getPrintOffset.result;
 
+    lastKnownLine = "";
+
     // Zoom
     Dpi::scale_qMainWindow(this);
     Dpi::scale_qWidgetRect(ui->stdOut_plainTextEdit);
