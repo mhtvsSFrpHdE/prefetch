@@ -2,7 +2,10 @@
 
 #include "startup.h"
 #include "..\Setting\setting.h"
+#include "..\Setting\const.h"
 #include "..\Output\stdout.h"
+
+using namespace Const_Setting::ConfigGroupName;
 
 bool Startup::started = false;
 
@@ -16,7 +19,7 @@ void Startup::startOnce()
     started = true;
 
     // Get startup items
-    auto afterPrefetch = Setting::getArray("AfterPrefetch", Setting::setting);
+    auto afterPrefetch = Setting::getArray(AfterPrefetch, Setting::setting);
     for (int i = 0; i < afterPrefetch.size(); ++i)
     {
         auto fileName = afterPrefetch[i];

@@ -8,6 +8,7 @@
 #include "..\..\Global\global.h"
 #include "..\..\Input\stdin.h"
 #include "..\..\Setting\setting.h"
+#include "..\..\Setting\const.h"
 #include "..\Dpi\dpi.h"
 #include "..\..\Define\define.h"
 
@@ -34,6 +35,8 @@ namespace TrayIconObject
 
 void TrayIcon::init()
 {
+    using namespace Const_Setting::ConfigGroupName;
+    using namespace Const_Setting::Instance_ConfigKeyName;
     using namespace TrayIconObject;
 
     TrayIcon::systemTrayIcon = new QSystemTrayIcon(Global::qGuiApplication);
@@ -41,7 +44,7 @@ void TrayIcon::init()
     qMenu = new QMenu();
 
     // Get instance name
-    auto instanceName = Setting::getString("Instance", "Name", Setting::setting);
+    auto instanceName = Setting::getString(Instance, Name, Setting::setting);
 
     // Text may not show when mouse hover in newer operating system
     // https://bugreports.qt.io/browse/QTBUG-18821

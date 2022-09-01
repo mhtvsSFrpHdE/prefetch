@@ -4,6 +4,7 @@
 
 #include "read_file.h"
 #include "..\Setting\setting.h"
+#include "..\Setting\const.h"
 #include "..\Output\stdout.h"
 #include "Thread\read_thread.h"
 #include "startup.h"
@@ -13,18 +14,20 @@ int ReadFile::count_start_scanFolder = 0;
 QList<QRunnable *> ReadFile::readThreadQueue = QList<QRunnable *>();
 QThreadPool *ReadFile::readThreadPool = QThreadPool::globalInstance();
 int ReadFile::count_taskComplete = 0;
+
+using namespace Const_Setting;
 // Cool stuff: https://stackoverflow.com/questions/8157625/how-do-i-populate-values-of-a-static-qmap-in-c-qt
 // Use initializer list and one of the QMap constructor
 QMap<QString, QThread::Priority> ReadFile::priorityMap(
     std::map<QString, QThread::Priority>{
-        {"IdlePriority", QThread::IdlePriority},
-        {"LowestPriority", QThread::LowestPriority},
-        {"LowPriority", QThread::LowPriority},
-        {"NormalPriority", QThread::NormalPriority},
-        {"HighPriority", QThread::HighPriority},
-        {"HighestPriority", QThread::HighestPriority},
-        {"TimeCriticalPriority", QThread::TimeCriticalPriority},
-        {"InheritPriority", QThread::InheritPriority}});
+        {ReadThreadPriority_Value::IdlePriority, QThread::IdlePriority},
+        {ReadThreadPriority_Value::LowestPriority, QThread::LowestPriority},
+        {ReadThreadPriority_Value::LowPriority, QThread::LowPriority},
+        {ReadThreadPriority_Value::NormalPriority, QThread::NormalPriority},
+        {ReadThreadPriority_Value::HighPriority, QThread::HighPriority},
+        {ReadThreadPriority_Value::HighestPriority, QThread::HighestPriority},
+        {ReadThreadPriority_Value::TimeCriticalPriority, QThread::TimeCriticalPriority},
+        {ReadThreadPriority_Value::InheritPriority, QThread::InheritPriority}});
 
 // Wrapper to access QThread functions
 class start_ReadSleep
@@ -45,18 +48,21 @@ private:
 
 void ReadFile::run()
 {
+    using namespace Const_Setting::ConfigGroupName;
+    using namespace Const_Setting::Thread_ConfigKeyName;
+
     // Get and set thread number
-    auto getThreadNumber = Setting::getInt("Thread", "MaxThreadCount", Setting::setting);
+    auto getThreadNumber = Setting::getInt(Thread, MaxThreadCount, Setting::setting);
     if (getThreadNumber.success && getThreadNumber.result >= 1)
     {
         readThreadPool->setMaxThreadCount(getThreadNumber.result);
     }
 
     // Get prefetch folder
-    auto prefetchFolders = Setting::getArray("PrefetchFolder", Setting::setting);
+    auto prefetchFolders = Setting::getArray(PrefetchFolder, Setting::setting);
 
     // Get exclude folder
-    auto excludeFolders = Setting::getArray("ExcludeFolder", Setting::setting);
+    auto excludeFolders = Setting::getArray(ExcludeFolder, Setting::setting);
     for (int i = 0; i < excludeFolders.size(); ++i)
     {
         auto excludeFolderName = QDir(excludeFolders[i]).absolutePath();
@@ -64,7 +70,7 @@ void ReadFile::run()
     }
 
     // Get priority include search patterns
-    auto priorityIncludePatterns = Setting::getArray("PriorityIncludePattern", Setting::setting);
+    auto priorityIncludePatterns = Setting::getArray(PriorityIncludePattern, Setting::setting);
     for (int i = 0; i < priorityIncludePatterns.size(); ++i)
     {
         auto priorityIncludePattern = priorityIncludePatterns[i];
@@ -72,14 +78,14 @@ void ReadFile::run()
     }
 
     // Get rescan interval
-    auto getRescanInterval = Setting::getInt("Thread", "RescanInterval", Setting::setting);
+    auto getRescanInterval = Setting::getInt(Thread, RescanInterval, Setting::setting);
 
     // Get prefetch interval
-    auto getPrefetchInterval = Setting::getUnsignedLong("Thread", "PrefetchInterval", Setting::setting);
+    auto getPrefetchInterval = Setting::getUnsignedLong(Thread, PrefetchInterval, Setting::setting);
     unsigned long prefetchIntervalInSecond = getPrefetchInterval.result;
 
     // Get read thread priority
-    auto getReadThreadPriority = Setting::getString("Thread", "ReadThreadPriority", Setting::setting);
+    auto getReadThreadPriority = Setting::getString(Thread, ReadThreadPriority, Setting::setting);
     QThread::Priority readThreadPriority = priorityMap[getReadThreadPriority];
 
     // Set do not auto delete for thread instance

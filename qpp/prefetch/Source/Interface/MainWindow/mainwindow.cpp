@@ -5,19 +5,23 @@
 #include "ui_mainwindow.h"
 #include "..\..\Global\global.h"
 #include "..\..\Setting\setting.h"
+#include "..\..\Setting\const.h"
 #include "..\Dpi\dpi.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
                                           ui(new Ui::MainWindow)
 {
+    using namespace Const_Setting::ConfigGroupName;
+    using namespace Const_Setting::Instance_ConfigKeyName;
+
     ui->setupUi(this);
 
     // Initialize
 
-    startToTray = Setting::getBool("Instance", "StartToTray", Setting::setting);
-    minimizeToTray = Setting::getBool("Instance", "MinimizeToTray", Setting::setting);
+    startToTray = Setting::getBool(Instance, StartToTray, Setting::setting);
+    minimizeToTray = Setting::getBool(Instance, MinimizeToTray, Setting::setting);
 
-    auto getPrintOffset = Setting::getInt("Instance", "PrintOffset", Setting::setting);
+    auto getPrintOffset = Setting::getInt(Instance, PrintOffset, Setting::setting);
     printOffset = getPrintOffset.result;
 
     lastKnownLine = "";
@@ -29,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     Dpi::scale_qWidgetRect(ui->sendCommand_pushButton);
 
     // Log size limit to prevent memory leak
-    auto getMaximumBlockCount = Setting::getInt("Instance", "MaximumBlockCount", Setting::setting);
+    auto getMaximumBlockCount = Setting::getInt(Instance, MaximumBlockCount, Setting::setting);
     ui->stdOut_plainTextEdit->setMaximumBlockCount(getMaximumBlockCount.result);
 
     // Event
@@ -50,7 +54,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     // Interface text
 
     // Get instance name
-    auto instanceName = Setting::getString("Instance", "Name", Setting::setting);
+    auto instanceName = Setting::getString(Instance, Name, Setting::setting);
 
     // MainWindow title
     setWindowTitle(instanceName);
