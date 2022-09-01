@@ -6,6 +6,9 @@ cd ..
 @REM Third party library
 cd ThirdParty
 
+rd "qt"
+mklink /d "qt" "%qt%"
+
 rd "boost"
 mklink /d "boost" "%boost%"
 

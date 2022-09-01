@@ -3,8 +3,9 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/../**",
-                "C:\\Qt\\4.8.7\\include\\**"
+                "${workspaceFolder}/../build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Debug",
+                "${workspaceFolder}/../ThirdParty/qt/include/**",
+                "${workspaceFolder}/../ThirdParty/boost"
             ],
             "defines": [
                 "_DEBUG",
