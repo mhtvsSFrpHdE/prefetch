@@ -68,20 +68,6 @@ namespace ConsoleCommandFunction
         StdOut::printLine(TryingToExit1);
         StdOut::printLine(TryingToExit2);
 
-        // Free thread pool
-        // If exit QT before thread pool done
-        //     the program won't exit correctly after main return 0
-        //     just like a dead loop in somewhere
-
-        // Prevent another round prefetch being started
-        Global::readFileLoopThreadAddress->terminate();
-
-        // Tell running task to stop
-        pause();
-
-        // Wait thread pool to response
-        ReadFile::readThreadPool->waitForDone();
-
         // Remove MainWindow
         Global::qMainWindow->hide();
 

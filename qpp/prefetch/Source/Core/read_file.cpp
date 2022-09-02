@@ -13,7 +13,7 @@
 SleepThread *ReadFile::sleepThreadAddress = new SleepThread();
 int ReadFile::count_start_scanFolder = 0;
 QList<QRunnable *> ReadFile::readThreadQueue = QList<QRunnable *>();
-QThreadPool *ReadFile::readThreadPool = QThreadPool::globalInstance();
+QThreadPool *ReadFile::readThreadPool = new QThreadPool();
 int ReadFile::count_taskComplete = 0;
 
 using namespace Const_Setting;
