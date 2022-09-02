@@ -20,5 +20,49 @@ There are other suggest extensions added to workspace recommendations.
 IDE settings uploaded to `.vscode`, see `.vscode\README.md` for more information.
 
 Duplicate `envExample.bat` as `env.bat` and change variables inside,  
-then run `start_vscode.bat` to open VSCode.  
-`env.bat` tells VSCode where to find gcc compiler files.
+assume you don't have global gcc instance, `env.bat` tells VSCode where to find gcc compiler files.
+
+- `start_vscode.bat` to open VSCode.
+- `start_qcreator.bat` to open Qt Creator.
+- `start_ide.bat` to open both editor.
+- `start_shell.bat` to open command prompt for executing gcc commands.
+
+## WARNING: VSCode cpptools
+
+This extension have terrible design. It have two obviously performance bottoneck:
+
+### Bugged `.BROWSE.VC.DB`
+
+The one contains include information, VSCode will parse include path to this database,  
+then use them to analysis C++ source file.
+
+However, when using giant library like `Qt` and `boost`, VSCode can take a century to iterate through file system,  
+and save 70000+ file information to `.BROWSE.VC.DB`.  
+Until it was finished, CPU and hard disk never gets a rest.
+
+This is not the worst, everytime a VSCode close/open, cpptools may drop entire database and create from zero.  
+I collect some information about when the database can lost:
+
+- Close VSCode during "Parsing workspase files"  
+   This can happen if you added new library to include path recently.
+- You did a database backup and restore  
+   But when backup, `.BROWSE.VC.DB-shm` and `.BROWSE.VC.DB-wal` exist on disk.  
+   Even if VSCode is safe shutdown(not parsing), sometimes the two file can still exist.  
+   Do not restore these two small files, and delete the two exist before start VSCode,  
+   or cpptools can refuse to accept the restore.
+- Start VSCode, however there is `.BROWSE.VC.DB-shm` and `.BROWSE.VC.DB-wal` exist:  
+   Although you have did nothing wrong, but you're running out of luck.
+
+### IPCH cache
+
+Let's just accept these files are important for new IntelliSense to work.  
+They are also means everytime do Ctrl+S save edited source code,  
+390 MB will write to disk. There is no "reuse exist file".
+
+The file is default save to operating system drive maybe %appdata%,  
+So I move them to ramdisk partition.
+
+If these file are moved to hard disk by using `C_Cpp.intelliSenseCachePath`,  
+You can witness very funny things that is a cache is much slower than disable cache.  
+Compress these file using `7z lzma2 fastest`, can reduce total size from `2.19GB` to `190MB`.  
+I'm pretty sure my SSD nand lifespan were abused.
