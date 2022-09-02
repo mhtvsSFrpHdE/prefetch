@@ -4,5 +4,6 @@ call env.bat
 
 @set path=%path%;%qtPath%;%mingwPath%
 
+call clean_vscode.bat
 @REM VSCode chromium gpu
 start "" "%vsCodePath%" "%vsCodeWorkspace%" --enable-gpu-rasterization

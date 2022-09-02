@@ -53,6 +53,10 @@ I collect some information about when the database can lost:
 - Start VSCode, however there is `.BROWSE.VC.DB-shm` and `.BROWSE.VC.DB-wal` exist:  
    Although you have did nothing wrong, but you're running out of luck.
 
+Therefore, open VSCode and wait the parse to complete,  
+close VSCode and backup the `.BROWSE.VC.DB` is necessary.  
+You will find it very useful one day.
+
 ### IPCH cache
 
 Let's just accept these files are important for new IntelliSense to work.  
@@ -66,3 +70,6 @@ If these file are moved to hard disk by using `C_Cpp.intelliSenseCachePath`,
 You can witness very funny things that is a cache is much slower than disable cache.  
 Compress these file using `7z lzma2 fastest`, can reduce total size from `2.19GB` to `190MB`.  
 I'm pretty sure my SSD nand lifespan were abused.
+
+Enable NTFS compress on ipch folder can also reduce size from `2.19GB` to `615MB`.  
+The performance should be improved in this approach.
