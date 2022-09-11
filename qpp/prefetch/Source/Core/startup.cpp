@@ -5,6 +5,7 @@
 #include "..\Setting\const.h"
 #include "..\Output\stdout.h"
 #include "const.h"
+#include "start_process.h"
 
 using namespace Const_Setting::ConfigGroupName;
 
@@ -24,13 +25,7 @@ void Startup::startOnce()
     for (int i = 0; i < afterPrefetch.size(); ++i)
     {
         auto fileName = afterPrefetch[i];
-
-        QProcess process;
-
-        // Cool stuff
-        // Use startDetached to avoid print to console
-        // QProcess: Destroyed while process is still running.
-        process.startDetached(fileName);
+        StartProcess::startProcess(fileName);
     }
 
     using namespace Const_Core::Message;

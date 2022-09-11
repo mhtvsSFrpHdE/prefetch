@@ -9,6 +9,7 @@ HEADERS += \
     Source/Core/Thread/read_thread.h \
     Source/Core/Thread/sleep_thread.h \
     Source/Core/read_file.h \
+    Source/Core/start_process.h \
     Source/Core/startup.h \
     Source/Define/define.h \
     Source/Global/global.h \
@@ -25,6 +26,7 @@ SOURCES += \
         Source/Core/Thread/read_thread.cpp \
         Source/Core/Thread/sleep_thread.cpp \
         Source/Core/read_file.cpp \
+        Source/Core/start_process.cpp \
         Source/Core/startup.cpp \
         Source/Global/global.cpp \
         Source/Input/Thread/loop_thread.cpp \
