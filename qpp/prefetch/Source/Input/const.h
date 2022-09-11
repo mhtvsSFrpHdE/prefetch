@@ -9,8 +9,10 @@ namespace Const_Input
         const QString PauseRequested = "Pause has requested, good luck";
         const QString TryingToResume = "Trying to resume prefetch";
         const QString TryingToExit1 = "Trying to exit prefetch";
-        const QString TryingToExit2;
+        extern const QString TryingToExit2;
         const QString Test = "This function contain test code";
+        const QString TryingToRun1 = "Trying to run program";
+        extern const QString TryingToRun2;
     }
     namespace Command_Level1
     {

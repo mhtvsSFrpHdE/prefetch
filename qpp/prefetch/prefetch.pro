@@ -30,6 +30,7 @@ SOURCES += \
         Source/Core/startup.cpp \
         Source/Global/global.cpp \
         Source/Input/Thread/loop_thread.cpp \
+        Source/Input/const.cpp \
         Source/Input/stdin.cpp \
         Source/Interface/Dpi/dpi.cpp \
         Source/Interface/MainWindow/mainwindow.cpp \
