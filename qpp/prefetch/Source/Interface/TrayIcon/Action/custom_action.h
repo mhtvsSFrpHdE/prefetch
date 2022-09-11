@@ -1,6 +1,10 @@
 #include <QAction>
 #include <QString>
 
+// Pointer to function does not support point to member function
+// Only pass static function pointer here
+// GCC may allow the code to compile, but Qt doesn't support:
+//     Code will crash in internal Qt, even after parameter function is returned successfully.
 typedef void (*ParameterSlot)(void *);
 
 // QAction, connect void signal to parameter slot

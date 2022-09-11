@@ -93,7 +93,7 @@ void TrayIcon::init()
 
         // Create action
         auto customMenu = new CustomAction(menuName, qMenu);
-        customMenu->init(new QString(menuCommand), ParameterSlot(&TrayIcon::action_custom));
+        customMenu->init(new QString(menuCommand), &action_custom);
         connect(customMenu, SIGNAL(triggered()), customMenu, SLOT(triggered_slot()));
         qMenu->addAction(customMenu);
 
