@@ -21,7 +21,7 @@ void Startup::startOnce()
     started = true;
 
     // Get startup items
-    auto afterPrefetch = Setting::getArray(AfterPrefetch, Setting::setting);
+    auto afterPrefetch = Setting::getArrayValue(AfterPrefetch, Setting::setting);
     for (int i = 0; i < afterPrefetch.size(); ++i)
     {
         auto fileName = afterPrefetch[i];

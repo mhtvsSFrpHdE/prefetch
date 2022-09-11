@@ -103,7 +103,7 @@ QString Setting::getString(QString groupName, QString keyName, QSettings *qSetti
     return result;
 }
 
-QStringList Setting::getArray(QString groupName, QSettings *qSettings)
+QStringList Setting::getArrayValue(QString groupName, QSettings *qSettings)
 {
     QStringList values;
 
@@ -122,6 +122,26 @@ QStringList Setting::getArray(QString groupName, QSettings *qSettings)
     qSettings->endGroup();
 
     return values;
+}
+
+QMap<QString, QString> Setting::getArray(QString groupName, QSettings *qSettings)
+{
+    QMap<QString, QString> result;
+
+    qSettings->beginGroup(groupName);
+
+    auto keysInGroup = qSettings->childKeys();
+    for (int i = 0; i < keysInGroup.size(); ++i)
+    {
+
+        auto key = keysInGroup[i];
+        auto value = qSettings->value(key).toString();
+        result.insert(key, value);
+    };
+
+    qSettings->endGroup();
+
+    return result;
 }
 
 QVariant Setting::getQVariant(QString groupName, QString keyName, QSettings *qSettings)

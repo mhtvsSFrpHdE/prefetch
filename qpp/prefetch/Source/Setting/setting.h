@@ -45,9 +45,12 @@ public:
     //         value1=1
     //         value2=2
     //         value3=3
-    //     auto myArray = getArray("Array");
-    //         myArray content: {1,2,3}
-    static QStringList getArray(QString groupName, QSettings *qSettings);
+    //     auto myArrayValue = getArrayValue("Array");
+    //         myArrayValue content: {1,2,3}
+    static QStringList getArrayValue(QString groupName, QSettings *qSettings);
+
+    // Act like getArrayValue, but also return keys
+    static QMap<QString, QString> getArray(QString groupName, QSettings *qSettings);
 
 private:
     // Give setting group name and key name, return value as raw QVariant

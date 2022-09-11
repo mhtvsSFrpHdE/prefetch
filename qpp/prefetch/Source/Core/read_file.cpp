@@ -61,10 +61,10 @@ void ReadFile::run()
     }
 
     // Get prefetch folder
-    auto prefetchFolders = Setting::getArray(PrefetchFolder, Setting::setting);
+    auto prefetchFolders = Setting::getArrayValue(PrefetchFolder, Setting::setting);
 
     // Get exclude folder
-    auto excludeFolders = Setting::getArray(ExcludeFolder, Setting::setting);
+    auto excludeFolders = Setting::getArrayValue(ExcludeFolder, Setting::setting);
     for (int i = 0; i < excludeFolders.size(); ++i)
     {
         auto excludeFolderName = QDir(excludeFolders[i]).absolutePath();
@@ -72,7 +72,7 @@ void ReadFile::run()
     }
 
     // Get priority include search patterns
-    auto priorityIncludePatterns = Setting::getArray(PriorityIncludePattern, Setting::setting);
+    auto priorityIncludePatterns = Setting::getArrayValue(PriorityIncludePattern, Setting::setting);
     for (int i = 0; i < priorityIncludePatterns.size(); ++i)
     {
         auto priorityIncludePattern = priorityIncludePatterns[i];
