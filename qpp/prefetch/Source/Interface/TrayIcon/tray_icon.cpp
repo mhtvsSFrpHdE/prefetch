@@ -18,7 +18,7 @@
 
 QSystemTrayIcon *TrayIcon::systemTrayIcon = NULL;
 
-const int defaultMenuWdith = 100;
+int trayMenuMinimalWidth;
 const int defaultLabelPadding = 10;
 
 namespace TrayIconObject
@@ -56,6 +56,10 @@ void TrayIcon::init()
     // Text may not show when mouse hover in newer operating system
     // https://bugreports.qt.io/browse/QTBUG-18821
     systemTrayIcon->setToolTip(instanceName);
+
+    // Get default menu width
+    auto getTrayMenuMinimalWidth = Setting::getInt(Instance, TrayMenuMinimalWidth, Setting::setting);
+    trayMenuMinimalWidth = getTrayMenuMinimalWidth.result;
 
     // Tray menu content
 
@@ -112,7 +116,7 @@ void TrayIcon::init()
     qMenu->addAction(exitMenu);
 
     // Menu style
-    qMenu->setFixedWidth(Dpi::multiply(defaultMenuWdith));
+    qMenu->setFixedWidth(Dpi::multiply(trayMenuMinimalWidth));
 
     // Test code entry
 #if TEST_TRAY_MENU_ENABLED
@@ -199,10 +203,10 @@ void TrayIcon::action_updateMenu(QSystemTrayIcon::ActivationReason activationRea
         // Calculate minimal menu width
 
         // Get width from unchanged widget
-        auto newMenuWidth = Dpi::multiply(defaultMenuWdith);
+        auto newMenuWidth = Dpi::multiply(trayMenuMinimalWidth);
         auto lastKnownLineLabelWidth = lastKnownLineLabel->width();
-        newMenuWidth = defaultMenuWdith >= lastKnownLineLabelWidth ? defaultMenuWdith
-                                                                   : lastKnownLineLabelWidth;
+        newMenuWidth = trayMenuMinimalWidth >= lastKnownLineLabelWidth ? trayMenuMinimalWidth
+                                                                       : lastKnownLineLabelWidth;
         // Add label padding to total width
         newMenuWidth = newMenuWidth + Dpi::multiply(defaultLabelPadding);
 

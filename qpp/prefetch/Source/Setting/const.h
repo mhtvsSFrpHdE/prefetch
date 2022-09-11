@@ -47,6 +47,7 @@ namespace Const_Setting
         const QString FontSize = "FontSize";
         const QString PrintOffset = "PrintOffset";
         const QString ZoomLevel = "ZoomLevel";
+        const QString TrayMenuMinimalWidth = "TrayMenuMinimalWidth";
     }
 
     namespace Font_Value
