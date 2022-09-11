@@ -6,6 +6,7 @@
 #include "..\..\Output\stdout.h"
 #include "..\..\Core\Thread\read_thread.h"
 #include "..\..\Input\const.h"
+#include "..\..\Core\start_process.h"
 
 LoopThread::LoopThread() {}
 
@@ -17,13 +18,33 @@ void LoopThread::receiveText(QString input)
     {
         auto target = commandMap_level1[input];
         (*target)();
+
+        return;
     }
-    // Command not found
-    else
+
+    // Find level 2
     {
-        using namespace Const_Input::Message;
-        StdOut::printLine(InvalidCommand);
+        // Assume input is "run explorer Firefox.lnk"
+
+        using namespace Const_Input::Command_Level2;
+
+        // Get "run" part and sumbit to command map
+        auto commandPart = input.section(splitter, 0, 0);
+        if (commandMap_level2.contains(commandPart))
+        {
+            // Get "explorer Firefox.lnk" part and sumbit to target function
+            auto parameterPart = input.section(splitter, 1);
+
+            auto target = commandMap_level2[commandPart];
+            (*target)(parameterPart);
+
+            return;
+        }
     }
+
+    // No match, invalid command
+    using namespace Const_Input::Message;
+    StdOut::printLine(InvalidCommand);
 }
 
 void LoopThread::run()
@@ -100,6 +121,19 @@ namespace ConsoleCommandFunction_Level1
     }
 }
 
+namespace ConsoleCommandFunction_Level2
+{
+    void run(QString command)
+    {
+        using namespace Const_Input::Message;
+
+        StdOut::printLine(TryingToRun1);
+        StdOut::printLine(TryingToRun2 + command);
+
+        StartProcess::startProcess(command);
+    }
+}
+
 using namespace Const_Input;
 // Cool stuff: https://stackoverflow.com/questions/8157625/how-do-i-populate-values-of-a-static-qmap-in-c-qt
 // Use initializer list and one of the QMap constructor
@@ -110,3 +144,6 @@ QMap<QString, void (*)()> LoopThread::commandMap_level1(
         {Command_Level1::test, &ConsoleCommandFunction_Level1::test},
         {Command_Level1::exit, &ConsoleCommandFunction_Level1::exit},
         {Command_Level1::traydc, &ConsoleCommandFunction_Level1::traydc}});
+QMap<QString, void (*)(QString)> LoopThread::commandMap_level2(
+    std::map<QString, void (*)(QString)>{
+        {Command_Level2::run, &ConsoleCommandFunction_Level2::run}});

@@ -16,4 +16,5 @@ public slots:
 private:
     // Convert stdin command to function pointer
     static QMap<QString, void (*)()> commandMap_level1;
+    static QMap<QString, void (*)(QString)> commandMap_level2;
 };

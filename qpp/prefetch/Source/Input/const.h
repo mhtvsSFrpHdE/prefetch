@@ -20,4 +20,11 @@ namespace Const_Input
         const QString exit = "exit";
         const QString traydc = "traydc";
     }
+    namespace Command_Level2
+    {
+        const QString splitter = " ";
+
+        const QString run = "run";
+        extern const QString run_withSplitter;
+    }
 }
