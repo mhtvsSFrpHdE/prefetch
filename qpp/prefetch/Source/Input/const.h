@@ -12,7 +12,7 @@ namespace Const_Input
         const QString TryingToExit2;
         const QString Test = "This function contain test code";
     }
-    namespace Command
+    namespace Command_Level1
     {
         const QString pause = "pause";
         const QString resume = "resume";

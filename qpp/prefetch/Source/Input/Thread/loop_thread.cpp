@@ -12,10 +12,10 @@ LoopThread::LoopThread() {}
 // Process input text
 void LoopThread::receiveText(QString input)
 {
-    // Find command and run command
-    if (commandMap.contains(input))
+    // Find level 1 command and run command
+    if (commandMap_level1.contains(input))
     {
-        auto target = commandMap[input];
+        auto target = commandMap_level1[input];
         (*target)();
     }
     // Command not found
@@ -37,7 +37,7 @@ void LoopThread::run()
     }
 }
 
-namespace ConsoleCommandFunction
+namespace ConsoleCommandFunction_Level1
 {
     void pause()
     {
@@ -103,10 +103,10 @@ namespace ConsoleCommandFunction
 using namespace Const_Input;
 // Cool stuff: https://stackoverflow.com/questions/8157625/how-do-i-populate-values-of-a-static-qmap-in-c-qt
 // Use initializer list and one of the QMap constructor
-QMap<QString, void (*)()> LoopThread::commandMap(
+QMap<QString, void (*)()> LoopThread::commandMap_level1(
     std::map<QString, void (*)()>{
-        {Command::pause, &ConsoleCommandFunction::pause},
-        {Command::resume, &ConsoleCommandFunction::resume},
-        {Command::test, &ConsoleCommandFunction::test},
-        {Command::exit, &ConsoleCommandFunction::exit},
-        {Command::traydc, &ConsoleCommandFunction::traydc}});
+        {Command_Level1::pause, &ConsoleCommandFunction_Level1::pause},
+        {Command_Level1::resume, &ConsoleCommandFunction_Level1::resume},
+        {Command_Level1::test, &ConsoleCommandFunction_Level1::test},
+        {Command_Level1::exit, &ConsoleCommandFunction_Level1::exit},
+        {Command_Level1::traydc, &ConsoleCommandFunction_Level1::traydc}});

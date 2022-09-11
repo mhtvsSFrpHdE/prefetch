@@ -127,30 +127,30 @@ namespace ConsoleCommandFunction
 using namespace Const_Input;
 void TrayIcon::action_pause()
 {
-    ConsoleCommandFunction::sendTextToStdIn(Command::pause);
+    ConsoleCommandFunction::sendTextToStdIn(Command_Level1::pause);
 }
 void TrayIcon::action_resume()
 {
-    ConsoleCommandFunction::sendTextToStdIn(Command::resume);
+    ConsoleCommandFunction::sendTextToStdIn(Command_Level1::resume);
 }
 void TrayIcon::action_exit()
 {
-    ConsoleCommandFunction::sendTextToStdIn(Command::exit);
+    ConsoleCommandFunction::sendTextToStdIn(Command_Level1::exit);
 }
 void TrayIcon::action_traydc(QSystemTrayIcon::ActivationReason activationReason)
 {
     if (activationReason == QSystemTrayIcon::ActivationReason::DoubleClick)
     {
-        ConsoleCommandFunction::sendTextToStdIn(Command::traydc);
+        ConsoleCommandFunction::sendTextToStdIn(Command_Level1::traydc);
     }
 }
 void TrayIcon::action_traydc_void()
 {
-    ConsoleCommandFunction::sendTextToStdIn(Command::traydc);
+    ConsoleCommandFunction::sendTextToStdIn(Command_Level1::traydc);
 }
 void TrayIcon::action_test()
 {
-    ConsoleCommandFunction::sendTextToStdIn(Command::test);
+    ConsoleCommandFunction::sendTextToStdIn(Command_Level1::test);
 }
 void TrayIcon::action_updateMenu(QSystemTrayIcon::ActivationReason activationReason)
 {
