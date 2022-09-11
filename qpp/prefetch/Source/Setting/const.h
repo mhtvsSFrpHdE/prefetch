@@ -13,6 +13,7 @@ namespace Const_Setting
         const QString AfterPrefetch = "AfterPrefetch";
         const QString Thread = "Thread";
         const QString Instance = "Instance";
+        const QString CustomTrayMenu = "CustomTrayMenu";
 
     }
     namespace Thread_ConfigKeyName

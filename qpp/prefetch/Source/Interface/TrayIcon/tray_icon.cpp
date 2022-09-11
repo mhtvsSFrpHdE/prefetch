@@ -4,6 +4,7 @@
 #include <QWidgetAction>
 #include <string>
 #include <iostream>
+#include <QList>
 
 #include "..\..\Global\global.h"
 #include "..\..\Input\stdin.h"
@@ -13,6 +14,7 @@
 #include "..\Dpi\dpi.h"
 #include "..\..\Define\define.h"
 #include "const.h"
+#include "Action\custom_action.h"
 
 QSystemTrayIcon *TrayIcon::systemTrayIcon = NULL;
 
@@ -29,6 +31,7 @@ namespace TrayIconObject
     QAction *pauseMenu = NULL;
     QAction *resumeMenu = NULL;
     QAction *exitMenu = NULL;
+    QList<CustomAction *> *customAction = NULL;
     // Test code
 #if TEST_TRAY_MENU_ENABLED
     QAction *testMenu = NULL;
@@ -70,6 +73,31 @@ void TrayIcon::init()
     lastKnownLineSeparator->setDefaultWidget(lastKnownLineLabel);
     connect(lastKnownLineSeparator, SIGNAL(triggered()), this, SLOT(action_traydc_void()));
     qMenu->addAction(lastKnownLineSeparator);
+
+    // Custom tray menu
+    customAction = new QList<CustomAction *>();
+
+    // Get custom tray menu
+    auto getCustomTrayMenu = Setting::getArray(CustomTrayMenu, Setting::setting);
+
+    // Find key value pair if exist
+    auto customTrayMenuName = getCustomTrayMenu.keys();
+    for (int i = 0; i < customTrayMenuName.size(); ++i)
+    {
+        auto menuName = customTrayMenuName[i];
+        auto menuCommand = getCustomTrayMenu[menuName];
+
+        // Create action
+        auto customMenu = new CustomAction(menuName, qMenu);
+        customMenu->init(new QString(menuCommand), ParameterSlot(&TrayIcon::action_custom));
+        connect(customMenu, SIGNAL(triggered()), customMenu, SLOT(triggered_slot()));
+        qMenu->addAction(customMenu);
+
+        // Save action
+        customAction->append(customMenu);
+    }
+
+    // Other standard tray menu
 
     pauseMenu = new QAction(MenuText::Pause, qMenu);
     connect(pauseMenu, SIGNAL(triggered()), this, SLOT(action_pause()));
@@ -182,4 +210,13 @@ void TrayIcon::action_updateMenu(QSystemTrayIcon::ActivationReason activationRea
         qMenu->setFixedWidth(newMenuWidth);
         // qMenu->adjustSize();
     }
+}
+void TrayIcon::action_custom(void *command)
+{
+    using namespace Command_Level2;
+
+    auto commandAsQStringAddress = (QString *)command;
+    QString commandAsQString = run_withSplitter + *commandAsQStringAddress;
+
+    ConsoleCommandFunction::sendTextToStdIn(commandAsQString);
 }

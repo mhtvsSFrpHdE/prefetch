@@ -17,6 +17,7 @@ HEADERS += \
     Source/Input/stdin.h \
     Source/Interface/Dpi/dpi.h \
     Source/Interface/MainWindow/mainwindow.h \
+    Source/Interface/TrayIcon/Action/custom_action.h \
     Source/Interface/TrayIcon/tray_icon.h \
     Source/Output/stdout.h \
     Source/Setting/setting.h \
@@ -34,6 +35,7 @@ SOURCES += \
         Source/Input/stdin.cpp \
         Source/Interface/Dpi/dpi.cpp \
         Source/Interface/MainWindow/mainwindow.cpp \
+        Source/Interface/TrayIcon/Action/custom_action.cpp \
         Source/Interface/TrayIcon/tray_icon.cpp \
         Source/Output/stdout.cpp \
         Source/Setting/setting.cpp \

@@ -26,6 +26,7 @@ public slots:
     void action_traydc_void();
     void action_test();
     void action_updateMenu(QSystemTrayIcon::ActivationReason activationReason);
+    void action_custom(void *command);
 
 private:
     static QSystemTrayIcon *systemTrayIcon;
