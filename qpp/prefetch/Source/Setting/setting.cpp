@@ -6,25 +6,18 @@
 
 QSettings *Setting::setting;
 
-struct TryGetSettingFilePath
+Setting::GetGenericResult<QString> init_getSettingFilePath(int argc, QStringList argv)
 {
-    bool success = false;
-    QString filePath = NULL;
-};
-
-TryGetSettingFilePath init_getSettingFilePath(int argc, QStringList argv)
-{
-    TryGetSettingFilePath tryGetSettingFilePath;
+    Setting::GetGenericResult<QString> getSettingFilePath;
 
     if (argc != 2)
     {
-        return tryGetSettingFilePath;
+        getSettingFilePath.success = false;
+        return getSettingFilePath;
     }
 
-    tryGetSettingFilePath.filePath = argv[1];
-    tryGetSettingFilePath.success = true;
-
-    return tryGetSettingFilePath;
+    getSettingFilePath.result = argv[1];
+    return getSettingFilePath;
 }
 
 void Setting::init(int argc, QStringList argv)
@@ -38,7 +31,7 @@ void Setting::init(int argc, QStringList argv)
     auto getSettingFilePath = init_getSettingFilePath(argc, argv);
     if (getSettingFilePath.success)
     {
-        settingFilePath = getSettingFilePath.filePath;
+        settingFilePath = getSettingFilePath.result;
     }
     settingFilePath = QApplication::applicationDirPath() + PathSplitter + settingFilePath;
 
