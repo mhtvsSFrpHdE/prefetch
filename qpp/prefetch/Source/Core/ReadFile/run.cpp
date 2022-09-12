@@ -9,13 +9,14 @@
 #include "..\scan_cache.h"
 #include "run_timer.h"
 
-void run_runThreadPool_DeleteExcludedFile(QList<QRunnable *> *readThreadQueue)
+void run_runThreadPool_DeleteExcludedFile(QList<QRunnable *> *readThreadQueueAddress)
 {
     auto dbg_PendingDeleteThread = &ReadThread::pendingDeleteThread;
+
     for (int i = 0; i < ReadThread::pendingDeleteThread.size(); ++i)
     {
         auto threadPointer = ReadThread::pendingDeleteThread[i];
-        readThreadQueue->removeOne(threadPointer);
+        readThreadQueueAddress->removeOne(threadPointer);
         delete threadPointer;
     }
     ReadThread::pendingDeleteThread.clear();
