@@ -1,5 +1,4 @@
 #include <QElapsedTimer>
-#include <QTime>
 
 #include "read_file.h"
 #include "..\const.h"
@@ -8,10 +7,24 @@
 #include "run_sleep.h"
 #include "..\startup.h"
 #include "..\scan_cache.h"
+#include "run_timer.h"
+
+void run_runThreadPool_DeleteExcludedFile(QList<QRunnable *> *readThreadQueue)
+{
+    auto dbg_PendingDeleteThread = &ReadThread::pendingDeleteThread;
+    for (int i = 0; i < ReadThread::pendingDeleteThread.size(); ++i)
+    {
+        auto threadPointer = ReadThread::pendingDeleteThread[i];
+        readThreadQueue->removeOne(threadPointer);
+        delete threadPointer;
+    }
+    ReadThread::pendingDeleteThread.clear();
+}
 
 bool ReadFile::run_runThreadPool(int rescanInterval)
 {
     using namespace Const_Core::Message;
+
     StdOut::printLine(Prefetching);
 
     // Create timer
@@ -28,21 +41,11 @@ bool ReadFile::run_runThreadPool(int rescanInterval)
     readThreadPool->waitForDone();
 
     // Get code execute time (only measure read, without other action)
-    auto threadPoolTimeConsumedMiliseconds = threadPoolTimer.elapsed();
-    auto threadPoolTimeConsumedFormatedString = QTime()
-                                                    .addMSecs(threadPoolTimeConsumedMiliseconds)
-                                                    .toString(CodeExecuteTimeFormatter);
-    threadPoolTimeConsumedFormatedString.chop(1);
+    auto threadPoolTimeConsumed_miliseconds = threadPoolTimer.elapsed();
+    auto threadPoolTimeConsumed_formatedString = Run_Timer::threadPoolTimeConsumed(threadPoolTimeConsumed_miliseconds);
 
     // Delete excluded file thread
-    auto dbg_PendingDeleteThread = &ReadThread::pendingDeleteThread;
-    for (int i = 0; i < ReadThread::pendingDeleteThread.size(); ++i)
-    {
-        auto threadPointer = ReadThread::pendingDeleteThread[i];
-        readThreadQueue.removeOne(threadPointer);
-        delete threadPointer;
-    }
-    ReadThread::pendingDeleteThread.clear();
+    run_runThreadPool_DeleteExcludedFile(&readThreadQueue);
 
     // Run startup items
 #if SKIP_STARTUP_ITEM == false
@@ -54,7 +57,7 @@ bool ReadFile::run_runThreadPool(int rescanInterval)
 
     // Idle, show execute time
     StdOut::print(Idle_Time);
-    StdOut::print(threadPoolTimeConsumedFormatedString);
+    StdOut::print(threadPoolTimeConsumed_formatedString);
     StdOut::print(Idle_Sec);
     StdOut::printEndl();
     StdOut::flush();

@@ -7,6 +7,7 @@ CONFIG -= app_bundle
 
 HEADERS += \
     Source/Core/ReadFile/run_sleep.h \
+    Source/Core/ReadFile/run_timer.h \
     Source/Core/Thread/read_thread.h \
     Source/Core/Thread/sleep_thread.h \
     Source/Core/ReadFile/read_file.h \
@@ -28,6 +29,8 @@ SOURCES += \
         Source/Core/ReadFile/init.cpp \
         Source/Core/ReadFile/run.cpp \
         Source/Core/ReadFile/run_sleep.cpp \
+        Source/Core/ReadFile/run_timer.cpp \
+        Source/Core/ReadFile/scan_folder.cpp \
         Source/Core/Thread/read_thread.cpp \
         Source/Core/Thread/sleep_thread.cpp \
         Source/Core/ReadFile/read_file.cpp \
