@@ -28,10 +28,10 @@ public:
 
     void run() override;
 
-private:
     // Save file path
     QString filePath;
 
+private:
     // Prevent access stdio at same time
     static QMutex printLock;
 
