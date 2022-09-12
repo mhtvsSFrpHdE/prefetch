@@ -6,9 +6,10 @@ CONFIG -= app_bundle
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 HEADERS += \
+    Source/Core/ReadFile/run_sleep.h \
     Source/Core/Thread/read_thread.h \
     Source/Core/Thread/sleep_thread.h \
-    Source/Core/read_file.h \
+    Source/Core/ReadFile/read_file.h \
     Source/Core/start_process.h \
     Source/Core/startup.h \
     Source/Define/define.h \
@@ -24,9 +25,12 @@ HEADERS += \
     Source/Translate/translate.h
 
 SOURCES += \
+        Source/Core/ReadFile/init.cpp \
+        Source/Core/ReadFile/run.cpp \
+        Source/Core/ReadFile/run_sleep.cpp \
         Source/Core/Thread/read_thread.cpp \
         Source/Core/Thread/sleep_thread.cpp \
-        Source/Core/read_file.cpp \
+        Source/Core/ReadFile/read_file.cpp \
         Source/Core/start_process.cpp \
         Source/Core/startup.cpp \
         Source/Global/global.cpp \

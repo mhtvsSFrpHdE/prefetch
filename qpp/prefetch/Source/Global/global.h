@@ -1,7 +1,7 @@
 #include <QApplication>
 
 #include "..\Input\Thread\loop_thread.h"
-#include "..\Core\read_file.h"
+#include "..\Core\ReadFile\read_file.h"
 #include "..\Interface\TrayIcon\tray_icon.h"
 #include "..\Interface\MainWindow\mainwindow.h"
 

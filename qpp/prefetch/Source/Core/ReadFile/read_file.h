@@ -1,8 +1,9 @@
 #include <QThreadPool>
 #include <QStringList>
 #include <QDir>
+#include <QMap>
 
-#include "Thread\sleep_thread.h"
+#include "..\Thread\sleep_thread.h"
 
 class ReadFile : public QThread
 {
@@ -20,7 +21,17 @@ public:
     static QThreadPool *readThreadPool;
 
 private:
-    // How many times entered start_scanFolder function
+    // Setting ReadThreadPriority
+    QThread::Priority readThreadPriority;
+    // Setting RescanInterval
+    int rescanInterval;
+    // Setting PrefetchInterval
+    unsigned long prefetchIntervalInSecond;
+
+    // Read config file
+    void init();
+
+    // How many times entered run_scanFolder function
     // Help identify iterate problems
     static int count_start_scanFolder;
 
@@ -37,17 +48,19 @@ private:
 
     // Queue thread for later use
     // Start threadpool after iterate complete to reduce I/O fragment
-    static void start_createReadFileThread_ququeThread(QString filePath);
+    static void run_scanFolder_createReadFileThread_ququeThread(QString filePath);
 
     // Read all file in QFileInfoList
-    static void start_createReadFileThread(QDir *prefetchFolder);
+    static void run_scanFolder_createReadFileThread(QDir *prefetchFolder);
 
     // Iterated function
-    static void start_scanFolder(QString prefetchFolderName);
+    static void run_scanFolder(QString prefetchFolderName);
 
     // Consume thread queue and empty queue after done
     // Return
     //     true: No need to rescan folder
     //     false: Reached rescan interval, must rescan folder
-    static bool start_runThreadPool(int rescanInterval);
+    static bool run_runThreadPool(int rescanInterval);
+
+    QStringList prefetchFolders;
 };
