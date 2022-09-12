@@ -8,7 +8,7 @@ Ported to Q++ for better performance.
 - Qt: `4.8.7`
 - mingw-w64: `i686-4.8.2-release-posix-dwarf-rt_v3-rev3`
 
-4.8.7 is the last version of Qt that supports Windows XP initial version  
+Version 4.8.7 is the last version of Qt that supports Windows XP initial version  
 without any update patch, or Service Pack installed for example Windows XP SP3.  
 The Qt compiler itself can even install and run on this Windows version.
 
@@ -29,6 +29,8 @@ assume you don't have global gcc instance, `env.bat` tells VSCode where to find 
 
 ## WARNING: VSCode cpptools
 
+Check [HDD ultimate performance guide](https://github.com/mhtvsSFrpHdE/prefetch/wiki/Frequently-asked-questions#hdd-ultimate-performance-guide) first before any modification.  
+Ramdisk or GpuRamdisk perform very well with compression too.  
 This extension have terrible design. It have two obviously performance bottoneck:
 
 ### Bugged `.BROWSE.VC.DB`
@@ -57,6 +59,8 @@ Therefore, open VSCode and wait the parse to complete,
 close VSCode and backup the `.BROWSE.VC.DB` is necessary.  
 You will find it very useful one day.
 
+Enable NTFS compress on db folder reduce size from `1.05GB` to `513MB`.
+
 ### IPCH cache
 
 Let's just accept these files are important for new IntelliSense to work.  
@@ -71,5 +75,4 @@ You can witness very funny things that is a cache is much slower than disable ca
 Compress these file using `7z lzma2 fastest`, can reduce total size from `2.19GB` to `190MB`.  
 I'm pretty sure my SSD nand lifespan were abused.
 
-Enable NTFS compress on ipch folder can also reduce size from `2.19GB` to `615MB`.  
-The performance should be improved in this approach.
+Enable NTFS compress on ipch folder reduce size from `2.19GB` to `615MB`.
