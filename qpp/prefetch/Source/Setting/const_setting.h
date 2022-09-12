@@ -3,7 +3,7 @@
 namespace Const_Setting
 {
     const QString DefaultSettingFilePath = "prefetch.ini";
-    const QString PathSplitter = "/";
+    extern const QString PathSplitter;
 
     namespace ConfigGroupName
     {

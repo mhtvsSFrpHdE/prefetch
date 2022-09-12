@@ -4,7 +4,7 @@
 
 #include "dpi.h"
 #include "..\..\Setting\setting.h"
-#include "..\..\Setting\const.h"
+#include "..\..\Setting\const_setting.h"
 
 using boost::multiprecision::cpp_bin_float_single;
 

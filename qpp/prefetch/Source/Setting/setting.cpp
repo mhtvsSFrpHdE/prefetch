@@ -2,7 +2,7 @@
 #include <QApplication>
 
 #include "setting.h"
-#include "const.h"
+#include "const_setting.h"
 
 QSettings *Setting::setting;
 

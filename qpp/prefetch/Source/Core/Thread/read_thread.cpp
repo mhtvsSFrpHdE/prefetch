@@ -3,7 +3,7 @@
 
 #include "read_thread.h"
 #include "..\..\Output\stdout.h"
-#include "const.h"
+#include "const_thread.h"
 
 bool ReadThread::autoDeletePreset = true;
 QMutex ReadThread::printLock(QMutex::NonRecursive);

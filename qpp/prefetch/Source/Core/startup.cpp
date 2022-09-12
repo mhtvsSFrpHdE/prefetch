@@ -2,9 +2,9 @@
 
 #include "startup.h"
 #include "..\Setting\setting.h"
-#include "..\Setting\const.h"
+#include "..\Setting\const_setting.h"
 #include "..\Output\stdout.h"
-#include "const.h"
+#include "const_core.h"
 #include "start_process.h"
 
 using namespace Const_Setting::ConfigGroupName;

@@ -4,12 +4,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "..\..\Global\global.h"
-#include "..\..\Global\const.h"
+#include "..\..\Global\const_global.h"
 #include "..\..\Setting\setting.h"
-#include "..\..\Setting\const.h"
+#include "..\..\Setting\const_setting.h"
 #include "..\Dpi\dpi.h"
-#include "..\..\Input\const.h"
-#include "const.h"
+#include "..\..\Input\const_input.h"
+#include "const_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
                                           ui(new Ui::MainWindow)

@@ -1,7 +1,7 @@
 #include <QTime>
 
 #include "run_timer.h"
-#include "..\const.h"
+#include "..\const_core.h"
 
 QString Run_Timer::threadPoolTimeConsumed(qint64 miliseconds)
 {

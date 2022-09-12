@@ -5,7 +5,7 @@
 #include "..\..\Input\stdin.h"
 #include "..\..\Output\stdout.h"
 #include "..\..\Core\Thread\read_thread.h"
-#include "..\..\Input\const.h"
+#include "..\..\Input\const_input.h"
 #include "..\..\Core\start_process.h"
 
 LoopThread::LoopThread() {}

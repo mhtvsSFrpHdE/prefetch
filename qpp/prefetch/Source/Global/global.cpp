@@ -5,7 +5,7 @@
 #include "..\Output\stdout.h"
 #include "..\Translate\translate.h"
 #include "..\Setting\setting.h"
-#include "..\Setting\const.h"
+#include "..\Setting\const_setting.h"
 #include "..\Interface\Dpi\dpi.h"
 
 QApplication *Global::qGuiApplication = NULL;

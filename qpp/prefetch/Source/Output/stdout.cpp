@@ -1,6 +1,6 @@
 #include "stdout.h"
 #include "..\Global\global.h"
-#include "..\Global\const.h"
+#include "..\Global\const_global.h"
 
 QTextStream *StdOut::consoleOutput;
 

@@ -15,3 +15,15 @@ namespace Const_Core
         const QString RunStartupItems = "Run startup items...";
     }
 }
+
+namespace Const_Cache
+{
+    const QString DefaultCacheFilePath = "prefetch.cache.ini";
+    const QString DefaultCacheFilePathSuffix = ".cache.ini";
+    extern const QString PathSplitter;
+
+    namespace ConfigGroupName
+    {
+        const QString ScanFolder = "ScanFolder";
+    }
+}

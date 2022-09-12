@@ -7,5 +7,6 @@ namespace Const_Global
         const QString EmptyString = "";
         const QString NewLine = "\n";
         const QString Tab = "    ";
+        static QString QtPathSplitter = "/";
     }
 }

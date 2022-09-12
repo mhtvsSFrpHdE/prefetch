@@ -1,7 +1,7 @@
 #include <QElapsedTimer>
 
 #include "read_file.h"
-#include "..\const.h"
+#include "..\const_core.h"
 #include "..\..\Output\stdout.h"
 #include "..\Thread\read_thread.h"
 #include "run_sleep.h"

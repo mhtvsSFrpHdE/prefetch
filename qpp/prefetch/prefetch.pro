@@ -11,6 +11,8 @@ HEADERS += \
     Source/Core/Thread/read_thread.h \
     Source/Core/Thread/sleep_thread.h \
     Source/Core/ReadFile/read_file.h \
+    Source/Core/const_core.h \
+    Source/Core/scan_cache.h \
     Source/Core/start_process.h \
     Source/Core/startup.h \
     Source/Define/define.h \
@@ -20,8 +22,10 @@ HEADERS += \
     Source/Interface/Dpi/dpi.h \
     Source/Interface/MainWindow/mainwindow.h \
     Source/Interface/TrayIcon/Action/custom_action.h \
+    Source/Interface/TrayIcon/const_tray_icon.h \
     Source/Interface/TrayIcon/tray_icon.h \
     Source/Output/stdout.h \
+    Source/Setting/const_setting.h \
     Source/Setting/setting.h \
     Source/Translate/translate.h
 
@@ -34,17 +38,20 @@ SOURCES += \
         Source/Core/Thread/read_thread.cpp \
         Source/Core/Thread/sleep_thread.cpp \
         Source/Core/ReadFile/read_file.cpp \
+        Source/Core/const_core.cpp \
+        Source/Core/scan_cache.cpp \
         Source/Core/start_process.cpp \
         Source/Core/startup.cpp \
         Source/Global/global.cpp \
         Source/Input/Thread/loop_thread.cpp \
-        Source/Input/const.cpp \
+        Source/Input/const_input.cpp \
         Source/Input/stdin.cpp \
         Source/Interface/Dpi/dpi.cpp \
         Source/Interface/MainWindow/mainwindow.cpp \
         Source/Interface/TrayIcon/Action/custom_action.cpp \
         Source/Interface/TrayIcon/tray_icon.cpp \
         Source/Output/stdout.cpp \
+        Source/Setting/const_setting.cpp \
         Source/Setting/setting.cpp \
         Source/Translate/translate.cpp \
         main.cpp

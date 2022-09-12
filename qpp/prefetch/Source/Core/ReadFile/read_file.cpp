@@ -2,7 +2,7 @@
 #include <QString>
 
 #include "read_file.h"
-#include "..\..\Setting\const.h"
+#include "..\..\Setting\const_setting.h"
 
 SleepThread *ReadFile::sleepThreadAddress = new SleepThread();
 int ReadFile::count_start_scanFolder = 0;

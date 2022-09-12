@@ -8,12 +8,12 @@
 
 #include "..\..\Global\global.h"
 #include "..\..\Input\stdin.h"
-#include "..\..\Input\const.h"
+#include "..\..\Input\const_input.h"
 #include "..\..\Setting\setting.h"
-#include "..\..\Setting\const.h"
+#include "..\..\Setting\const_setting.h"
 #include "..\Dpi\dpi.h"
 #include "..\..\Define\define.h"
-#include "const.h"
+#include "const_tray_icon.h"
 #include "Action\custom_action.h"
 
 QSystemTrayIcon *TrayIcon::systemTrayIcon = NULL;

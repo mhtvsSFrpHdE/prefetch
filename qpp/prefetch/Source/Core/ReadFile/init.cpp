@@ -1,8 +1,8 @@
 #include "read_file.h"
 #include "..\..\Setting\setting.h"
 #include "..\Thread\read_thread.h"
-#include "..\..\Setting\const.h"
-#include "..\const.h"
+#include "..\..\Setting\const_setting.h"
+#include "..\const_core.h"
 
 void ReadFile::init()
 {
