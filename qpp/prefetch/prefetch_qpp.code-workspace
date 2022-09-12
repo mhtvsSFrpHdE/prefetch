@@ -12,6 +12,7 @@
 		},
 		"C_Cpp.autoAddFileAssociations": false,
 		"C_Cpp.default.browse.databaseFilename": "${workspaceFolder}\\cpptools\\browse.databaseFile\\.BROWSE.VC.DB",
-		"C_Cpp.intelliSenseCachePath": "${workspaceFolder}\\cpptools\\intelliSenseCachePath\\dummy"
+		"C_Cpp.intelliSenseCachePath": "${workspaceFolder}\\cpptools\\intelliSenseCachePath\\dummy",
+		"files.insertFinalNewline": true
 	}
 }
