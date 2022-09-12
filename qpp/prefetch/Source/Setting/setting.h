@@ -52,6 +52,9 @@ public:
     // Act like getArrayValue, but also return keys
     static QMap<QString, QString> getArray(QString groupName, QSettings *qSettings);
 
+    // Reverse of getArray
+    static void setArray(QString groupName, QMap<QString, QString> array, QSettings *qSettings);
+
 private:
     // Give setting group name and key name, return value as raw QVariant
     // So later can convert to other type manually

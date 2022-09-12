@@ -144,6 +144,22 @@ QMap<QString, QString> Setting::getArray(QString groupName, QSettings *qSettings
     return result;
 }
 
+void Setting::setArray(QString groupName, QMap<QString, QString> array, QSettings *qSettings)
+{
+
+    qSettings->beginGroup(groupName);
+
+    QMap<QString, QString>::const_iterator mapIterator;
+    for (mapIterator = array.constBegin(); mapIterator != array.constEnd(); ++mapIterator)
+    {
+        qSettings->setValue(mapIterator.key(), mapIterator.value());
+    }
+
+    qSettings->endGroup();
+
+    return;
+}
+
 QVariant Setting::getQVariant(QString groupName, QString keyName, QSettings *qSettings)
 {
     qSettings->beginGroup(groupName);
