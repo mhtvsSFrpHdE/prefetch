@@ -24,9 +24,17 @@ bool ReadFile::run_runThreadPool(int rescanInterval)
         readThreadPool->start(readThreadQueue[i]);
     }
 
-    // Delete excluded file thread
+    // After thread done
     readThreadPool->waitForDone();
 
+    // Get code execute time (only measure read, without other action)
+    auto threadPoolTimeConsumedMiliseconds = threadPoolTimer.elapsed();
+    auto threadPoolTimeConsumedFormatedString = QTime()
+                                                    .addMSecs(threadPoolTimeConsumedMiliseconds)
+                                                    .toString(CodeExecuteTimeFormatter);
+    threadPoolTimeConsumedFormatedString.chop(1);
+
+    // Delete excluded file thread
     auto dbg_PendingDeleteThread = &ReadThread::pendingDeleteThread;
     for (int i = 0; i < ReadThread::pendingDeleteThread.size(); ++i)
     {
@@ -36,13 +44,6 @@ bool ReadFile::run_runThreadPool(int rescanInterval)
     }
     ReadThread::pendingDeleteThread.clear();
 
-    // Get code execute time
-    auto threadPoolTimeConsumedMiliseconds = threadPoolTimer.elapsed();
-    auto threadPoolTimeConsumedFormatedString = QTime()
-                                                    .addMSecs(threadPoolTimeConsumedMiliseconds)
-                                                    .toString(CodeExecuteTimeFormatter);
-    threadPoolTimeConsumedFormatedString.chop(1);
-
     // Run startup items
 #if SKIP_STARTUP_ITEM == false
     Startup::startOnce();
@@ -51,11 +52,14 @@ bool ReadFile::run_runThreadPool(int rescanInterval)
     // Increase task count
     count_taskComplete++;
 
+    // Idle, show execute time
     StdOut::print(Idle_Time);
     StdOut::print(threadPoolTimeConsumedFormatedString);
     StdOut::print(Idle_Sec);
     StdOut::printEndl();
     StdOut::flush();
+
+    // Report execute result
 
     // No rescan interval founded
     if (rescanInterval <= 0)

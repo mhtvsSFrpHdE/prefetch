@@ -56,7 +56,8 @@ private:
     // Iterated function
     static void run_scanFolder(QString prefetchFolderName);
 
-    // Consume thread queue and empty queue after done
+    // Consume thread queue
+    //     and empty queue after done if reach rescan interval
     // Return
     //     true: No need to rescan folder
     //     false: Reached rescan interval, must rescan folder
