@@ -19,6 +19,9 @@ cd prefetch
 mkdir cpptools
 cd cpptools
 
+rd "browse.databaseFile"
+mklink /d "browse.databaseFile" "%browse.databaseFile%"
+
 rd "intelliSenseCachePath"
 mklink /d "intelliSenseCachePath" "%intelliSenseCachePath%"
 
