@@ -85,7 +85,8 @@ void ScanCache::loadScanCache(QList<QRunnable *> *readThreadQueueAddress)
     auto getSize = Setting::getInt(MetaData, Size, cache);
     auto size = getSize.result;
 
-    Setting_getOrderedArrayValue_macro(ScanFolder, size, ReadFile::run_scanFolder_createReadFileThread_ququeThread, cache);
+#define valueCallback(foo) ReadFile::run_scanFolder_createReadFileThread_ququeThread(foo, true)
+    Setting_getOrderedArrayValue_macro(ScanFolder, size, valueCallback, cache);
 }
 
 void ScanCache::expireCache()

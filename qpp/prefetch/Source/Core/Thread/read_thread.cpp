@@ -100,15 +100,20 @@ void ReadThread::run()
         return;
     }
 
-    bool priorityInclude = run_SearchInclude();
-
-    // Only search excluded if file not priority included
-    if (priorityInclude == false)
+    if (skipSearch == false)
     {
-        if (run_SearchExclude())
+        bool priorityInclude = run_SearchInclude();
+
+        // Only search excluded if file not priority included
+        if (priorityInclude == false)
         {
-            return;
+            if (run_SearchExclude())
+            {
+                return;
+            }
         }
+
+        skipSearch = true;
     }
 
     run_read();

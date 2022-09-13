@@ -107,9 +107,11 @@ bool ReadFile::run_runThreadPool(int rescanInterval)
     return true;
 }
 
-void ReadFile::run_scanFolder_createReadFileThread_ququeThread(QString filePath)
+void ReadFile::run_scanFolder_createReadFileThread_ququeThread(QString filePath, bool skipSearch)
 {
     auto readThread = new ReadThread(filePath);
+    readThread->skipSearch = skipSearch;
+
     ReadFile::readThreadQueue.append(readThread);
 }
 

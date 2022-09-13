@@ -34,6 +34,10 @@ public:
     // Save file path
     QString filePath;
 
+    // Assume each file is created from cache first
+    // Modify to false if created from search
+    bool skipSearch;
+
 private:
     // Prevent access stdio at same time
     static QMutex printLock;

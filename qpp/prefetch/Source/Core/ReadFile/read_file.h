@@ -16,7 +16,7 @@ public:
 
     // Queue thread for later use
     // Start threadpool after iterate complete to reduce I/O fragment
-    static void run_scanFolder_createReadFileThread_ququeThread(QString filePath);
+    static void run_scanFolder_createReadFileThread_ququeThread(QString filePath, bool skipSearch = false);
 
     // Save running sleep thread address for later access on other thread
     static SleepThread *sleepThreadAddress;
@@ -50,7 +50,7 @@ private:
     // Convert config file option to QT thread enum
     static QMap<QString, QThread::Priority> priorityMap;
 
-        // Read all file in QFileInfoList
+    // Read all file in QFileInfoList
     static void run_scanFolder_createReadFileThread(QDir *prefetchFolder);
 
     // Iterated function
