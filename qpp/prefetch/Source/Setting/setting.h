@@ -53,7 +53,27 @@ public:
     static QMap<QString, QString> getArray(QString groupName, QSettings *qSettings);
 
     // Reverse of getArray
+    //     Custom key name, but sorting rule are made by Qt
     static void setArray(QString groupName, QMap<QString, QString> array, QSettings *qSettings);
+    // Reverse of getArray
+    //     Key name is array index, and sorting by array index
+    //     Pick up this one to "assume" HDD will faster when working on same directory
+    static void setArray(QString groupName, QStringList array, QSettings *qSettings);
+// Reverse of getArray
+//     Pick up this one to iterate only once
+#define Setting_setArray_macro(groupName, array, arraySizeExpression, itemType, getValueExpression, qSettings) \
+    qSettings->beginGroup(groupName);                                                                          \
+                                                                                                               \
+    for (int i = 0; i < arraySizeExpression; ++i)                                                              \
+    {                                                                                                          \
+        auto item = (itemType)array[i];                                                                        \
+        auto key = QString::number(i);                                                                         \
+        auto value = getValueExpression;                                                                       \
+                                                                                                               \
+        qSettings->setValue(key, value);                                                                       \
+    }                                                                                                          \
+                                                                                                               \
+    qSettings->endGroup();
 
 private:
     // Give setting group name and key name, return value as raw QVariant

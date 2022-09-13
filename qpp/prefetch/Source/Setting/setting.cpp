@@ -153,6 +153,24 @@ void Setting::setArray(QString groupName, QMap<QString, QString> array, QSetting
     return;
 }
 
+void Setting::setArray(QString groupName, QStringList array, QSettings *qSettings)
+{
+
+    qSettings->beginGroup(groupName);
+
+    for (int i = 0; i < array.size(); ++i)
+    {
+        auto key = QString::number(i);
+        auto value = array[i];
+
+        qSettings->setValue(key, value);
+    }
+
+    qSettings->endGroup();
+
+    return;
+}
+
 QVariant Setting::getQVariant(QString groupName, QString keyName, QSettings *qSettings)
 {
     qSettings->beginGroup(groupName);
