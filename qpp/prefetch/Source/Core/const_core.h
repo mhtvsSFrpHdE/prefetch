@@ -8,8 +8,10 @@ namespace Const_Core
         const QString ScanFolder = "Scan folder...";
         extern const QString CacheFound;
         const QString Prefetching = "Prefetching...";
-        const QString Idle_Time = "Idle, Time: ";
+        extern const QString Idle_Time;
         const QString Idle_Sec = " Sec";
+        extern const QString ScanFolder_Time;
+        extern const QString ScanFolder_Sec;
         const QString CodeExecuteTimeFormatter = "ss.zzz";
         const QString RescanIntervalReached1 = "Rescan interval reached.";
         extern const QString RescanIntervalReached2;

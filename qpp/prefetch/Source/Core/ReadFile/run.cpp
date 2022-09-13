@@ -45,7 +45,7 @@ bool ReadFile::run_runThreadPool(int rescanInterval)
 
     // Get code execute time (only measure read, without other action)
     auto threadPoolTimeConsumed_miliseconds = threadPoolTimer.elapsed();
-    auto threadPoolTimeConsumed_formatedString = Run_Timer::threadPoolTimeConsumed(threadPoolTimeConsumed_miliseconds);
+    auto threadPoolTimeConsumed_formatedString = Run_Timer::timeConsumed(threadPoolTimeConsumed_miliseconds);
 
     // Delete excluded file thread
     run_runThreadPool_DeleteExcludedFile(&readThreadQueue);
@@ -171,6 +171,10 @@ void ReadFile::run()
     {
         // Scan folder and queue threads that read each file
 
+        // Create timer
+        QElapsedTimer scanFolderTimer;
+        scanFolderTimer.start();
+
         StdOut::printLine(ScanFolder);
 
         // If scan cache available, skip parse prefetch folder
@@ -188,6 +192,17 @@ void ReadFile::run()
                 ReadFile::run_scanFolder(prefetchFolderName);
             }
         }
+
+        // Get code execute time (only measure read, without other action)
+        auto scanFolderTimeConsumed_miliseconds = scanFolderTimer.elapsed();
+        auto scanFolderTimeConsumed_formatedString = Run_Timer::timeConsumed(scanFolderTimeConsumed_miliseconds);
+
+        // Scan complete, show execute time
+        StdOut::print(ScanFolder_Time);
+        StdOut::print(scanFolderTimeConsumed_formatedString);
+        StdOut::print(ScanFolder_Sec);
+        StdOut::printEndl();
+        StdOut::flush();
 
         // Repeat read file loop
         // Once break, will rescan folder
