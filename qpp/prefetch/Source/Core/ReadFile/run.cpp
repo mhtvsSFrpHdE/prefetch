@@ -128,13 +128,6 @@ void ReadFile::run_scanFolder_createReadFileThread(QDir *prefetchFolder)
 
 void ReadFile::run_scanFolder(QString prefetchFolderName)
 {
-    if (ScanCache::cacheFileExist)
-    {
-        ScanCache::loadScanCache(&readThreadQueue);
-
-        return;
-    }
-
     auto prefetchFolder = QDir(prefetchFolderName);
 
     // Get sub folder information
@@ -166,9 +159,9 @@ void ReadFile::run_scanFolder(QString prefetchFolderName)
 
 void ReadFile::run()
 {
+    using namespace Const_Core::Message;
     init();
 
-    using namespace Const_Core::Message;
 
     // Repeat root task loop
     while (true)
@@ -177,12 +170,16 @@ void ReadFile::run()
 
         StdOut::printLine(ScanFolder);
 
-        for (int i = 0; i < prefetchFolders.size(); ++i)
+        // If scan cache available, skip parse prefetch folder
+        if (ScanCache::cacheFileExist)
         {
-            auto prefetchFolderName = prefetchFolders[i];
-
-            ReadFile::run_scanFolder(prefetchFolderName);
+            StdOut::printLine(CacheFound);
         }
+        else
+        {
+            for (int i = 0; i < prefetchFolders.size(); ++i)
+            {
+                auto prefetchFolderName = prefetchFolders[i];
 
         // Save current thread priority and restore later
         auto currentThreadPrioritySnapshot = QThread::currentThread()->priority();
@@ -191,6 +188,9 @@ void ReadFile::run()
         // Only change priority while read files
         // No need to throttle cpu usage during scan folder
         QThread::currentThread()->setPriority(readThreadPriority);
+                ReadFile::run_scanFolder(prefetchFolderName);
+            }
+        }
 
         // Repeat read file loop
         // Once break, will rescan folder
@@ -201,9 +201,15 @@ void ReadFile::run()
             // If paused, skip this time and wait for next inerval
             if (ReadThread::pause == false)
             {
+                // Get run result
                 bool runResult = run_runThreadPool(rescanInterval);
+
+                // Rescan interval
                 if (runResult == false)
                 {
+                    StdOut::printLine(RescanIntervalReached1);
+                    StdOut::printLine(RescanIntervalReached2);
+
                     // Expire cache
                     ScanCache::expireCache();
 

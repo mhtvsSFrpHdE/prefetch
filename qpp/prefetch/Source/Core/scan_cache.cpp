@@ -54,7 +54,7 @@ void ScanCache::init(int argc, QStringList argv)
     cache = new QSettings(cacheFilePath, QSettings::IniFormat);
 }
 
-void ScanCache::saveScanCache(QList<QRunnable *> *readThreadQueueAddress, bool override = false)
+void ScanCache::saveScanCache(QList<QRunnable *> *readThreadQueueAddress, bool override)
 {
     // Override
     bool skipExist = override == false;

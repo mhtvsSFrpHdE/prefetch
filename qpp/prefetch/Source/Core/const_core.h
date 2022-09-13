@@ -6,10 +6,13 @@ namespace Const_Core
     {
         // read_file
         const QString ScanFolder = "Scan folder...";
+        extern const QString CacheFound;
         const QString Prefetching = "Prefetching...";
         const QString Idle_Time = "Idle, Time: ";
         const QString Idle_Sec = " Sec";
         const QString CodeExecuteTimeFormatter = "ss.zzz";
+        const QString RescanIntervalReached1 = "Rescan interval reached.";
+        extern const QString RescanIntervalReached2;
 
         // startup
         const QString RunStartupItems = "Run startup items...";
