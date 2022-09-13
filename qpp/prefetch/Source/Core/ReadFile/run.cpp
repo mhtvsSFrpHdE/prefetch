@@ -177,6 +177,7 @@ void ReadFile::run()
         if (ScanCache::cacheFileExist)
         {
             StdOut::printLine(CacheFound);
+            ScanCache::loadScanCache(&readThreadQueue);
         }
         else
         {
