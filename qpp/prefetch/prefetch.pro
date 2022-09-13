@@ -34,7 +34,6 @@ SOURCES += \
         Source/Core/ReadFile/run.cpp \
         Source/Core/ReadFile/run_sleep.cpp \
         Source/Core/ReadFile/run_timer.cpp \
-        Source/Core/ReadFile/scan_folder.cpp \
         Source/Core/Thread/read_thread.cpp \
         Source/Core/Thread/sleep_thread.cpp \
         Source/Core/ReadFile/read_file.cpp \
