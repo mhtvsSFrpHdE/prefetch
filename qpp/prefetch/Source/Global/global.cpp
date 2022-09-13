@@ -7,6 +7,7 @@
 #include "..\Setting\setting.h"
 #include "..\Setting\const_setting.h"
 #include "..\Interface\Dpi\dpi.h"
+#include "..\Core\scan_cache.h"
 
 QApplication *Global::qGuiApplication = NULL;
 MainWindow *Global::qMainWindow = NULL;
@@ -32,6 +33,8 @@ void Global::init(int argc, char *argv[])
 
     Setting::init(argc, commandLineArguments);
 
+    ScanCache::init(argc, commandLineArguments);
+
     Dpi::init();
 
     // Get default font copy
@@ -53,6 +56,7 @@ void Global::init(int argc, char *argv[])
     // ReadFile thread instance
     readFileLoopThreadAddress = new ReadFile();
 
+    // Tray icon
     trayIconInstanceAddress->init();
 
     // MainWindow

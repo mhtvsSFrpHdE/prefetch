@@ -48,6 +48,9 @@ bool ReadFile::run_runThreadPool(int rescanInterval)
     // Delete excluded file thread
     run_runThreadPool_DeleteExcludedFile(&readThreadQueue);
 
+    // Save scan cache
+    ScanCache::saveScanCache(&readThreadQueue);
+
     // Run startup items
 #if SKIP_STARTUP_ITEM == false
     Startup::startOnce();
@@ -154,6 +157,8 @@ void ReadFile::run_scanFolder(QString prefetchFolderName)
 
 void ReadFile::run()
 {
+    init();
+
     using namespace Const_Core::Message;
 
     // Repeat root task loop
