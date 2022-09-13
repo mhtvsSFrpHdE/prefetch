@@ -9,6 +9,12 @@
 QSettings *ScanCache::cache = NULL;
 bool ScanCache::cacheFileExist = false;
 
+bool ScanCache::init_cacheFileExist()
+{
+    auto cacheFile = QFileInfo(cacheFilePath);
+    return cacheFile.exists();
+}
+
 Setting::GetGenericResult<QString> init_getCacheFilePath(int argc, QStringList argv)
 {
     Setting::GetGenericResult<QString> getCacheFilePath;
@@ -31,7 +37,7 @@ Setting::GetGenericResult<QString> init_getCacheFilePath(int argc, QStringList a
 void ScanCache::init(int argc, QStringList argv)
 {
     // Cache file path default value
-    QString cacheFilePath = Const_Cache::DefaultCacheFilePath;
+    cacheFilePath = Const_Cache::DefaultCacheFilePath;
 
     // Get cache file path
     auto getCacheFilePath = init_getCacheFilePath(argc, argv);
@@ -40,6 +46,7 @@ void ScanCache::init(int argc, QStringList argv)
         cacheFilePath = getCacheFilePath.result;
     }
     cacheFilePath = QApplication::applicationDirPath() + Const_Cache::PathSplitter + cacheFilePath;
+    cacheFileExist = init_cacheFileExist();
 
     // Read ini from exe stored folder
     cache = new QSettings(cacheFilePath, QSettings::IniFormat);
