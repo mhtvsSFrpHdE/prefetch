@@ -25,6 +25,9 @@ public:
 
     // A thread that report it can be delete goes here
     static QList<QRunnable *> pendingDeleteThread;
+    // QList only support one at same time
+    //     Or the list can lose some change
+    static QMutex pendingDeleteThreadMutex;
 
     void run() override;
 

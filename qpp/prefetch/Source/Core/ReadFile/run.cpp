@@ -13,6 +13,7 @@ void run_runThreadPool_DeleteExcludedFile(QList<QRunnable *> *readThreadQueueAdd
 {
     auto dbg_PendingDeleteThread = &ReadThread::pendingDeleteThread;
 
+    ReadThread::pendingDeleteThreadMutex.lock();
     for (int i = 0; i < ReadThread::pendingDeleteThread.size(); ++i)
     {
         auto threadPointer = ReadThread::pendingDeleteThread[i];
@@ -20,6 +21,7 @@ void run_runThreadPool_DeleteExcludedFile(QList<QRunnable *> *readThreadQueueAdd
         delete threadPointer;
     }
     ReadThread::pendingDeleteThread.clear();
+    ReadThread::pendingDeleteThreadMutex.unlock();
 }
 
 bool ReadFile::run_runThreadPool(int rescanInterval)

@@ -11,6 +11,7 @@ QStringList ReadThread::excludeFolders = QStringList();
 QStringList ReadThread::priorityIncludePatterns = QStringList();
 bool ReadThread::pause = false;
 QList<QRunnable *> ReadThread::pendingDeleteThread = QList<QRunnable *>();
+QMutex ReadThread::pendingDeleteThreadMutex(QMutex::NonRecursive);
 
 ReadThread::ReadThread(QString filePath)
 {
@@ -68,7 +69,10 @@ bool ReadThread::run_SearchInclude()
 void ReadThread::run_RequestDelete()
 {
     QRunnable *currentThreadPointer = this;
+
+    pendingDeleteThreadMutex.lock();
     pendingDeleteThread.append(currentThreadPointer);
+    pendingDeleteThreadMutex.unlock();
 }
 
 void ReadThread::run_read()
