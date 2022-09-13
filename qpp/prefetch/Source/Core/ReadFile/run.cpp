@@ -160,8 +160,11 @@ void ReadFile::run_scanFolder(QString prefetchFolderName)
 void ReadFile::run()
 {
     using namespace Const_Core::Message;
+
     init();
 
+    // Set thread priority
+    QThread::currentThread()->setPriority(readThreadPriority);
 
     // Repeat root task loop
     while (true)
@@ -181,13 +184,6 @@ void ReadFile::run()
             {
                 auto prefetchFolderName = prefetchFolders[i];
 
-        // Save current thread priority and restore later
-        auto currentThreadPrioritySnapshot = QThread::currentThread()->priority();
-
-        // Set thread priority
-        // Only change priority while read files
-        // No need to throttle cpu usage during scan folder
-        QThread::currentThread()->setPriority(readThreadPriority);
                 ReadFile::run_scanFolder(prefetchFolderName);
             }
         }
@@ -224,8 +220,5 @@ void ReadFile::run()
             // Wait for a while
             Run_Sleep::sleep(prefetchIntervalInSecond);
         }
-
-        // Restore thread priority
-        QThread::currentThread()->setPriority(currentThreadPrioritySnapshot);
     }
 }
