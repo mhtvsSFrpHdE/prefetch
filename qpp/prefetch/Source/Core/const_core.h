@@ -24,6 +24,12 @@ namespace Const_Cache
 
     namespace ConfigGroupName
     {
+        const QString MetaData = "MetaData";
         const QString ScanFolder = "ScanFolder";
+    }
+
+    namespace MetaData_ConfigKeyName
+    {
+        const QString Size = "Size";
     }
 }

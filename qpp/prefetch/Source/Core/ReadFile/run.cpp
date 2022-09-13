@@ -128,6 +128,13 @@ void ReadFile::run_scanFolder_createReadFileThread(QDir *prefetchFolder)
 
 void ReadFile::run_scanFolder(QString prefetchFolderName)
 {
+    if (ScanCache::cacheFileExist)
+    {
+        ScanCache::loadScanCache(&readThreadQueue);
+
+        return;
+    }
+
     auto prefetchFolder = QDir(prefetchFolderName);
 
     // Get sub folder information

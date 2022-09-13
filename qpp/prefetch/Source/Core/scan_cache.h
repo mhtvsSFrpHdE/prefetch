@@ -14,7 +14,10 @@ public:
     static void init(int argc, QStringList argv);
 
     // Snapshot current thread pool to cache file
-    static void saveScanCache(QList<QRunnable *> *readThreadQueueAddress);
+    static void saveScanCache(QList<QRunnable *> *readThreadQueueAddress, bool override = false);
+
+    // Restore thread pool from cache file
+    static void loadScanCache(QList<QRunnable *> *readThreadQueueAddress);
 
     static QString cacheFilePath;
     static bool cacheFileExist;
