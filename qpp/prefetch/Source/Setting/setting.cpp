@@ -96,6 +96,17 @@ QString Setting::getString(QString groupName, QString keyName, QSettings *qSetti
     return result;
 }
 
+void Setting::setValue(QString groupName, QString keyName, QString value, QSettings *qSettings)
+{
+    qSettings->beginGroup(groupName);
+
+    qSettings->setValue(keyName, value);
+
+    qSettings->endGroup();
+
+    return;
+}
+
 QStringList Setting::getArrayValue(QString groupName, QSettings *qSettings)
 {
     QStringList values;
@@ -107,6 +118,26 @@ QStringList Setting::getArrayValue(QString groupName, QSettings *qSettings)
     {
 
         auto key = keysInGroup[i];
+        auto value = qSettings->value(key).toString();
+
+        values << value;
+    };
+
+    qSettings->endGroup();
+
+    return values;
+}
+
+QStringList Setting::getOrderedArrayValue(QString groupName, int size, QSettings *qSettings)
+{
+    QStringList values;
+
+    qSettings->beginGroup(groupName);
+
+    for (int i = 0; i < size; ++i)
+    {
+
+        auto key = QString::number(i);
         auto value = qSettings->value(key).toString();
 
         values << value;

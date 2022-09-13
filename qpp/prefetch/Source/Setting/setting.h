@@ -36,6 +36,9 @@ public:
     //     because QVariant.toString() has no success check
     static QString getString(QString groupName, QString keyName, QSettings *qSettings);
 
+    // Save setting value, QString should be fine for most type
+    static void setValue(QString groupName, QString keyName, QString value, QSettings *qSettings);
+
     // Give a setting group name, return all values under that group
     // Use case: retrieve user input array
     //
@@ -48,6 +51,25 @@ public:
     //     auto myArrayValue = getArrayValue("Array");
     //         myArrayValue content: {1,2,3}
     static QStringList getArrayValue(QString groupName, QSettings *qSettings);
+
+    // Act like getArrayValue, but sorting by array index
+    static QStringList getOrderedArrayValue(QString groupName, int size, QSettings *qSettings);
+
+// Act like getOrderedArrayValue
+//     Pick up this one to iterate only once
+#define Setting_getOrderedArrayValue_macro(groupName, sizeExpression, valueCallback, qSettings) \
+                                                                                                \
+    qSettings->beginGroup(groupName);                                                           \
+                                                                                                \
+    for (int i = 0; i < sizeExpression; ++i)                                                    \
+    {                                                                                           \
+        auto key = QString::number(i);                                                          \
+        auto value = qSettings->value(key).toString();                                          \
+                                                                                                \
+        valueCallback(value);                                                                   \
+    };                                                                                          \
+                                                                                                \
+    qSettings->endGroup();
 
     // Act like getArrayValue, but also return keys
     static QMap<QString, QString> getArray(QString groupName, QSettings *qSettings);
