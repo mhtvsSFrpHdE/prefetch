@@ -50,17 +50,6 @@ void ScanCache::saveScanCache(QList<QRunnable *> *readThreadQueueAddress)
     using namespace Const_Cache::ConfigGroupName;
 
     auto readThreadQueue = *readThreadQueueAddress;
-    QMap<QString, QString> result;
-    for (int i = 0; i < readThreadQueue.size(); ++i)
-    {
-        auto thread = (ReadThread *)readThreadQueue[i];
 
-        auto key = QString::number(i);
-        auto value = thread->filePath;
-
-        result.insert(key, value);
-    }
-
-    Setting::setArray(ScanFolder, result, cache);
-    cache->sync();
+    Setting_setArray_macro(ScanFolder, readThreadQueue, readThreadQueue.size(), ReadThread *, item->filePath, cache);
 }
