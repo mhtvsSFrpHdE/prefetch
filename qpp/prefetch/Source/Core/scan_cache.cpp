@@ -87,3 +87,8 @@ void ScanCache::loadScanCache(QList<QRunnable *> *readThreadQueueAddress)
 
     Setting_getOrderedArrayValue_macro(ScanFolder, size, ReadFile::run_scanFolder_createReadFileThread_ququeThread, cache);
 }
+
+void ScanCache::expireCache()
+{
+    cacheFileExist = false;
+}

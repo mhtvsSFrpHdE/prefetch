@@ -19,6 +19,9 @@ public:
     // Restore thread pool from cache file
     static void loadScanCache(QList<QRunnable *> *readThreadQueueAddress);
 
+    // Tell cache expired
+    static void expireCache();
+
     static QString cacheFilePath;
     static bool cacheFileExist;
 

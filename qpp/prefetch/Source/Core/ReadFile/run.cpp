@@ -204,6 +204,9 @@ void ReadFile::run()
                 bool runResult = run_runThreadPool(rescanInterval);
                 if (runResult == false)
                 {
+                    // Expire cache
+                    ScanCache::expireCache();
+
                     // Wait for a while
                     Run_Sleep::sleep(prefetchIntervalInSecond);
 
