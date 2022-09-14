@@ -58,18 +58,19 @@ public:
 // Act like getOrderedArrayValue
 //     Pick up this one to iterate only once
 #define Setting_getOrderedArrayValue_macro(groupName, sizeExpression, valueCallback, qSettings) \
-                                                                                                \
-    qSettings->beginGroup(groupName);                                                           \
-                                                                                                \
-    for (int i = 0; i < sizeExpression; ++i)                                                    \
     {                                                                                           \
-        auto key = QString::number(i);                                                          \
-        auto value = qSettings->value(key).toString();                                          \
+        qSettings->beginGroup(groupName);                                                       \
                                                                                                 \
-        valueCallback(value);                                                                   \
-    };                                                                                          \
+        for (int i = 0; i < sizeExpression; ++i)                                                \
+        {                                                                                       \
+            auto key = QString::number(i);                                                      \
+            auto value = qSettings->value(key).toString();                                      \
                                                                                                 \
-    qSettings->endGroup();
+            valueCallback(value);                                                               \
+        };                                                                                      \
+                                                                                                \
+        qSettings->endGroup();                                                                  \
+    }
 
     // Act like getArrayValue, but also return keys
     static QMap<QString, QString> getArray(QString groupName, QSettings *qSettings);
@@ -84,18 +85,20 @@ public:
 // Reverse of getArray
 //     Pick up this one to iterate only once
 #define Setting_setArray_macro(groupName, array, arraySizeExpression, itemType, getValueExpression, qSettings) \
-    qSettings->beginGroup(groupName);                                                                          \
-                                                                                                               \
-    for (int i = 0; i < arraySizeExpression; ++i)                                                              \
     {                                                                                                          \
-        auto item = (itemType)array[i];                                                                        \
-        auto key = QString::number(i);                                                                         \
-        auto value = getValueExpression;                                                                       \
+        qSettings->beginGroup(groupName);                                                                      \
                                                                                                                \
-        qSettings->setValue(key, value);                                                                       \
-    }                                                                                                          \
+        for (int i = 0; i < arraySizeExpression; ++i)                                                          \
+        {                                                                                                      \
+            auto item = (itemType)array[i];                                                                    \
+            auto key = QString::number(i);                                                                     \
+            auto value = getValueExpression;                                                                   \
                                                                                                                \
-    qSettings->endGroup();
+            qSettings->setValue(key, value);                                                                   \
+        }                                                                                                      \
+                                                                                                               \
+        qSettings->endGroup();                                                                                 \
+    }
 
 private:
     // Give setting group name and key name, return value as raw QVariant

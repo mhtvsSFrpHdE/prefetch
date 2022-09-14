@@ -10,9 +10,11 @@
 #if LOG_ENABLED
 
 #define IF_LOG_ENABLED(code) \
-    Log::lock();             \
-    code                     \
-    Log::unlock();
+    {                        \
+        Log::lock();         \
+        code                 \
+        Log::unlock();       \
+    }
 
 #else
 
