@@ -18,5 +18,9 @@
 //     When set to true, print to stdout also sync to log file
 #define LOG_ENABLED true
 
+// Try to report last known position to log
+//     This function designed to find crash in release (usually no gdb attached)
+#define LAST_KNOWN_POSITION_ENABLED true
+
 // Misc
 #define SKIP_STARTUP_ITEM false

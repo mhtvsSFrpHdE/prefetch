@@ -22,6 +22,48 @@
 
 #endif
 
+// Print last known position report to log
+#if LOG_ENABLED && LAST_KNOWN_POSITION_ENABLED
+
+#define LAST_KNOWN_POSITION(location)                         \
+    {                                                         \
+        using namespace Const_Log::Message;                   \
+        typedef Const_Log::LastKnownLocationEnum le;          \
+                                                              \
+        /* Gather information */                              \
+        QString file = __FILE__;                              \
+        QString function = __FUNCTION__;                      \
+        QString line = QString::number(__LINE__);             \
+                                                              \
+        QString lastKnownLine;                                \
+        switch (location)                                     \
+        {                                                     \
+        case le::BEGIN:                                       \
+            lastKnownLine = LastKnownLocation_BEGIN;          \
+            break;                                            \
+        case le::END:                                         \
+            lastKnownLine = LastKnownLocation_END;            \
+            break;                                            \
+        case le::INLINE:                                      \
+            lastKnownLine = LastKnownLocation_INLINE;         \
+            break;                                            \
+        }                                                     \
+        lastKnownLine += Tab + File + file + NewLine;         \
+        lastKnownLine += Tab + Function + function + NewLine; \
+        lastKnownLine += Tab + Line + line;                   \
+                                                              \
+        /* Print */                                           \
+        Log::lock();                                          \
+        *Log::logTextStream << lastKnownLine << endl;         \
+        Log::logTextStream->flush();                          \
+        Log::unlock();                                        \
+    }
+#else
+
+#define LAST_KNOWN_POSITION(location)
+
+#endif
+
 // Static class
 class Log
 {
