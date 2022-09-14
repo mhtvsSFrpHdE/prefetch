@@ -21,7 +21,7 @@
 // Load and run log
 //     When set to true, print to stdout also sync to log file
 #ifndef LOG_ENABLED
-#define LOG_ENABLED true
+#define LOG_ENABLED false
 #endif
 
 // Try to report last known position to log
