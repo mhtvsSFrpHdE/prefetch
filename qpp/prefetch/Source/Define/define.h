@@ -14,5 +14,9 @@
 // Add "Test" to tray menu, a handy place to execute some random fancy stuff
 #define TEST_TRAY_MENU_ENABLED false
 
+// Load and run log
+//     When set to true, print to stdout also sync to log file
+#define LOG_ENABLED true
+
 // Misc
 #define SKIP_STARTUP_ITEM false

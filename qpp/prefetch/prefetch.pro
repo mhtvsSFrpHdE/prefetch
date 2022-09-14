@@ -24,6 +24,8 @@ HEADERS += \
     Source/Interface/TrayIcon/Action/custom_action.h \
     Source/Interface/TrayIcon/const_tray_icon.h \
     Source/Interface/TrayIcon/tray_icon.h \
+    Source/Output/log.h \
+    Source/Output/log_const.h \
     Source/Output/stdout.h \
     Source/Setting/const_setting.h \
     Source/Setting/setting.h \
@@ -49,6 +51,8 @@ SOURCES += \
         Source/Interface/MainWindow/mainwindow.cpp \
         Source/Interface/TrayIcon/Action/custom_action.cpp \
         Source/Interface/TrayIcon/tray_icon.cpp \
+        Source/Output/log.cpp \
+        Source/Output/log_const.cpp \
         Source/Output/stdout.cpp \
         Source/Setting/const_setting.cpp \
         Source/Setting/setting.cpp \

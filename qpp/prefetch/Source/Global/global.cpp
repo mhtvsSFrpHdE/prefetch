@@ -8,6 +8,8 @@
 #include "..\Setting\const_setting.h"
 #include "..\Interface\Dpi\dpi.h"
 #include "..\Core\scan_cache.h"
+#include "..\Define\define.h"
+#include "..\Output\log.h"
 
 QApplication *Global::qGuiApplication = NULL;
 MainWindow *Global::qMainWindow = NULL;
@@ -34,6 +36,10 @@ void Global::init(int argc, char *argv[])
     Setting::init(argc, commandLineArguments);
 
     ScanCache::init(argc, commandLineArguments);
+
+#if LOG_ENABLED
+    Log::init(argc, commandLineArguments);
+#endif
 
     Dpi::init();
 
