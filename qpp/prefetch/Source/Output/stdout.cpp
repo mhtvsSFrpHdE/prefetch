@@ -1,6 +1,7 @@
 #include "stdout.h"
 #include "..\Global\global.h"
 #include "..\Global\const_global.h"
+#include "log.h"
 
 QTextStream *StdOut::consoleOutput;
 
@@ -11,6 +12,9 @@ void StdOut::init()
 
 void StdOut::print(QString textToPrint)
 {
+
+    IF_LOG_ENABLED(*Log::logTextStream << textToPrint;)
+
     *consoleOutput << textToPrint;
 
     Global::qMainWindow->StdOut_print(textToPrint);
@@ -18,6 +22,9 @@ void StdOut::print(QString textToPrint)
 
 void StdOut::printLine(QString textToPrint)
 {
+    IF_LOG_ENABLED(*Log::logTextStream << textToPrint
+                                       << endl;)
+
     *consoleOutput << textToPrint
                    << endl;
     flush();
@@ -27,6 +34,8 @@ void StdOut::printLine(QString textToPrint)
 
 void StdOut::printEndl()
 {
+    IF_LOG_ENABLED(*Log::logTextStream << endl;)
+
     *consoleOutput << endl;
 
     using namespace Const_Global::CommonString;
@@ -35,6 +44,8 @@ void StdOut::printEndl()
 
 void StdOut::flush()
 {
+    IF_LOG_ENABLED(Log::logTextStream->flush();)
+
     consoleOutput->flush();
 
     Global::qMainWindow->StdOut_flush();
