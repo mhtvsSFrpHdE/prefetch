@@ -10,6 +10,7 @@
 #include "..\Core\scan_cache.h"
 #include "..\Define\define.h"
 #include "..\Output\log.h"
+#include "..\Output\log_const.h"
 
 QApplication *Global::qGuiApplication = NULL;
 MainWindow *Global::qMainWindow = NULL;
@@ -39,9 +40,11 @@ void Global::init(int argc, char *argv[])
 
 #if LOG_ENABLED
     Log::init(argc, commandLineArguments);
+    LAST_KNOWN_POSITION(0)
 #endif
 
     Dpi::init();
+    LAST_KNOWN_POSITION(2)
 
     // Get default font copy
     auto defaultFont = Global::qGuiApplication->font();
@@ -55,16 +58,20 @@ void Global::init(int argc, char *argv[])
     {
         defaultFont.setFamily(getFontFamily);
     }
+    LAST_KNOWN_POSITION(2)
 
     // Update default font
     Global::qGuiApplication->setFont(defaultFont);
 
     // ReadFile thread instance
     readFileLoopThreadAddress = new ReadFile();
+    LAST_KNOWN_POSITION(2)
 
     // Tray icon
     trayIconInstanceAddress->init();
+    LAST_KNOWN_POSITION(2)
 
     // MainWindow
     qMainWindow = new MainWindow();
+    LAST_KNOWN_POSITION(1)
 }
