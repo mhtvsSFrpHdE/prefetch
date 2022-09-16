@@ -84,5 +84,6 @@ void Dpi::scale_qMainWindow(QMainWindow *mainWindow)
     auto newWidth = multiply(mainWindow->width());
     auto newHeight = multiply(mainWindow->height());
 
-    mainWindow->setFixedSize(newWidth, newHeight);
+    mainWindow->setMinimumSize(newWidth, newHeight);
+}
 }

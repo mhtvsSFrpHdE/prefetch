@@ -211,8 +211,10 @@ void TrayIcon::action_updateMenu(QSystemTrayIcon::ActivationReason activationRea
         newMenuWidth = newMenuWidth + Dpi::multiply(defaultLabelPadding);
 
         // Apply width to menu
+        // The reason to use fixed width is QSystemTrayIcon behave different than a regular widget
+        //     It will not response to `setMinimumWidth()` or combine with `update()` anymore after the first one
+        //     at least in Qt 4.8.7
         qMenu->setFixedWidth(newMenuWidth);
-        // qMenu->adjustSize();
     }
 }
 void TrayIcon::action_custom(void *command)
