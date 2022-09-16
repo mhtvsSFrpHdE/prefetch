@@ -14,6 +14,8 @@ namespace Const_Log
         const QString LastKnownLocation_BEGIN = "LastKnownLocation BEGIN\n";
         const QString LastKnownLocation_END = "LastKnownLocation END\n";
         const QString LastKnownLocation_INLINE = "LastKnownLocation INLINE\n";
+        const QString LastKnownLocation_LOCK = "LastKnownLocation LOCK\n";
+        const QString LastKnownLocation_UNLOCK = "LastKnownLocation UNLOCK\n";
         extern const QString File;
         extern const QString Function;
         extern const QString Line;
@@ -23,6 +25,10 @@ namespace Const_Log
     {
         BEGIN = 0,
         END = 1,
-        INLINE = 2
+        INLINE = 2,
+        // You can't print if deadlock already occurs
+        LOCK = 3,
+        // Print before certain unlock no guarantee is unlocked
+        UNLOCK = 4
     };
 }

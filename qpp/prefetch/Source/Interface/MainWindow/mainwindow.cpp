@@ -10,6 +10,8 @@
 #include "..\Dpi\dpi.h"
 #include "..\..\Input\const_input.h"
 #include "const_mainwindow.h"
+#include "..\..\Output\stdout.h"
+#include "..\..\Output\log.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
                                           ui(new Ui::MainWindow)
@@ -121,9 +123,15 @@ void MainWindow::updateScrollBar_slot()
     //     After show(), QPlainTextEdit's scroll bar will have wrong maximum() value
     //
     // ensureCursorVisible() only "scroll to cursor", but position still bad
+    LAST_KNOWN_POSITION(0)
+    StdOut::lock();
+
     auto existText = ui->stdOut_plainTextEdit->toPlainText();
     ui->stdOut_plainTextEdit->setPlainText(existText);
     scrollBarToBottom_slot();
+
+    StdOut::unlock();
+    LAST_KNOWN_POSITION(1)
 }
 
 void MainWindow::minimized_slot()

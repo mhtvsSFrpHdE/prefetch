@@ -10,7 +10,6 @@
 #include "..\Core\scan_cache.h"
 #include "..\Define\define.h"
 #include "..\Output\log.h"
-#include "..\Output\log_const.h"
 
 QApplication *Global::qGuiApplication = NULL;
 MainWindow *Global::qMainWindow = NULL;

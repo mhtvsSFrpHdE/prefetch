@@ -3,7 +3,6 @@
 
 #include "log.h"
 #include "..\Setting\setting.h"
-#include "log_const.h"
 
 QString Log::logFilePath;
 QFile *Log::logFile;

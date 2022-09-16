@@ -1,7 +1,6 @@
 #include "Source\Global\global.h"
 #include "Source\Input\stdin.h"
 #include "Source\Output\log.h"
-#include "Source\Output\log_const.h"
 
 int main(int argc, char *argv[])
 {
