@@ -4,6 +4,7 @@ namespace Const_Setting
 {
     const QString DefaultSettingFilePath = "prefetch.ini";
     extern const QString PathSplitter;
+    extern const QString StringListSplitter;
 
     namespace ConfigGroupName
     {
@@ -14,6 +15,7 @@ namespace Const_Setting
         const QString Thread = "Thread";
         const QString Instance = "Instance";
         const QString CustomTrayMenu = "CustomTrayMenu";
+        const QString cgn_MainWindow = "MainWindow";
 
     }
     namespace Thread_ConfigKeyName
@@ -52,6 +54,24 @@ namespace Const_Setting
 
     namespace Font_Value
     {
-        const QString Default = "<default>";
+        extern const QString Default;
     }
+
+    namespace MainWindow_ConfigKeyName
+    {
+        const QString Position = "Position";
+        const QString Size = "Size";
+        const QString Resizable = "Resizable";
+    }
+
+    namespace Position_Value
+    {
+        extern const QString Default;
+    }
+
+    namespace Size_Value
+    {
+        extern const QString Splitter;
+    }
+    // TODO: Rename Font_Value and other Value to Instance_Font_Value etc
 }

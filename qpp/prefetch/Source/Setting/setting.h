@@ -36,6 +36,19 @@ public:
     //     because QVariant.toString() has no success check
     static QString getString(QString groupName, QString keyName, QSettings *qSettings);
 
+    // Give setting group name and key name, return value as QString
+    //     If value may contains comma, use this sightly slower overload, but space between will trimmed
+    //     Or a regular getString with comma value will fail to parse
+    //     Quote the string in ini file should be better solution
+    //
+    // https://stackoverflow.com/questions/18052930/how-to-read-a-value-using-qsetting-if-the-value-contains-comma-character
+    // https://stackoverflow.com/questions/27557727/qsettingsiniformat-values-with-returned-as-qstringlist
+    static QString getCommaString(QString groupName, QString keyName, QSettings *qSettings);
+
+    // Give setting group name and key name, return value as QStringList
+    //     If a value contains comma (","), QSettings will not convert it to string
+    static QStringList getStringList(QString groupName, QString keyName, QSettings *qSettings);
+
     // Save setting value, QString should be fine for most type
     static void setValue(QString groupName, QString keyName, QString value, QSettings *qSettings);
 

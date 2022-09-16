@@ -96,6 +96,34 @@ QString Setting::getString(QString groupName, QString keyName, QSettings *qSetti
     return result;
 }
 
+QString Setting::getCommaString(QString groupName, QString keyName, QSettings *qSettings)
+{
+    using namespace Const_Setting;
+
+    auto qvariant = getQVariant(groupName, keyName, qSettings);
+
+    QString result;
+    if (qvariant.type() == QVariant::StringList)
+    {
+        result = qvariant.toStringList().join(StringListSplitter);
+    }
+    else
+    {
+        result = qvariant.toString();
+    }
+
+    return result;
+}
+
+QStringList Setting::getStringList(QString groupName, QString keyName, QSettings *qSettings)
+{
+    auto qvariant = getQVariant(groupName, keyName, qSettings);
+
+    auto result = qvariant.toStringList();
+
+    return result;
+}
+
 void Setting::setValue(QString groupName, QString keyName, QString value, QSettings *qSettings)
 {
     qSettings->beginGroup(groupName);
