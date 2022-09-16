@@ -14,8 +14,10 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
                                           ui(new Ui::MainWindow)
 {
+    using namespace Const_Setting;
     using namespace Const_Setting::ConfigGroupName;
     using namespace Const_Setting::Instance_ConfigKeyName;
+    using namespace Const_Setting::MainWindow_ConfigKeyName;
     using namespace Const_Global::CommonString;
     using namespace Const_MainWindow::ButtonText;
 
@@ -26,8 +28,30 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     startToTray = Setting::getBool(Instance, StartToTray, Setting::setting);
     minimizeToTray = Setting::getBool(Instance, MinimizeToTray, Setting::setting);
 
+    auto resizable = Setting::getBool(cgn_MainWindow, Resizable, Setting::setting);
+
     auto getPrintOffset = Setting::getInt(Instance, PrintOffset, Setting::setting);
     printOffset = getPrintOffset.result;
+
+    auto sizeArray = Setting::getStringList(cgn_MainWindow, Size, Setting::setting);
+    auto sizeWidth = sizeArray[0].toInt();
+    auto sizeHeight = sizeArray[1].toInt();
+    if (resizable)
+    {
+        this->setMinimumSize(sizeWidth, sizeHeight);
+    }
+    else
+    {
+        this->setFixedSize(sizeWidth, sizeHeight);
+    }
+
+    // If value was given, update position
+    auto getPosition = Setting::getString(cgn_MainWindow, Position, Setting::setting);
+    if (getPosition != Position_Value::Default)
+    {
+        auto positionArray = Setting::getStringList(cgn_MainWindow, Position, Setting::setting);
+        this->move(positionArray[0].toInt(), positionArray[1].toInt());
+    }
 
     lastKnownLine = EmptyString;
 
