@@ -33,6 +33,7 @@ public slots:
     void print_slot(QString textToPrint);
     void sendCommand_slot();
     void scrollBarToBottom_slot();
+    void updateScrollBar_slot();
     void minimized_slot();
     void restored_slot();
 
@@ -57,9 +58,6 @@ private:
 
     // Handle application minimize event
     void changeEvent(QEvent *changeEventAddress) override;
-
-    // Handle application show event
-    void showEvent(QShowEvent *showEventAddress) override;
 };
 
 #endif // MAINWINDOW_H

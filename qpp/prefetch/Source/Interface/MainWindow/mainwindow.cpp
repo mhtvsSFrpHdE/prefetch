@@ -114,6 +114,18 @@ void MainWindow::scrollBarToBottom_slot()
     scrollBar->setValue(scrollBarMaxSize);
 }
 
+void MainWindow::updateScrollBar_slot()
+{
+    // Fix scroll bar position on restore
+    // If change text in QPlainTextEdit during window.hide()
+    //     After show(), QPlainTextEdit's scroll bar will have wrong maximum() value
+    //
+    // ensureCursorVisible() only "scroll to cursor", but position still bad
+    auto existText = ui->stdOut_plainTextEdit->toPlainText();
+    ui->stdOut_plainTextEdit->setPlainText(existText);
+    scrollBarToBottom_slot();
+}
+
 void MainWindow::minimized_slot()
 {
     // Check minimize to tray enabled
@@ -131,6 +143,8 @@ void MainWindow::restored_slot()
 {
     // Restore and bring to front if minimized before hide
     setWindowState(Qt::WindowState::WindowActive);
+
+    updateScrollBar_slot();
 }
 
 void MainWindow::StdOut_print(QString textToPrint)
@@ -231,11 +245,3 @@ void MainWindow::changeEvent(QEvent *changeEventAddress)
         }
     }
 }
-
-void MainWindow::showEvent(QShowEvent *showEventAddress)
-{
-    using namespace Const_Global::CommonString;
-    // Fix scroll bar position on restore
-    ui->stdOut_plainTextEdit->insertPlainText(EmptyString);
-    scrollBarToBottom_slot();
-};
