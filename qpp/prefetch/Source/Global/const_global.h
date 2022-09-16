@@ -5,6 +5,7 @@ namespace Const_Global
     namespace CommonString
     {
         const QString EmptyString = "";
+        const QString Space = " ";
         const QString NewLine = "\n";
         const QString Tab = "    ";
         const QString QtPathSplitter = "/";

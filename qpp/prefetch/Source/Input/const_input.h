@@ -24,7 +24,7 @@ namespace Const_Input
     }
     namespace Command_Level2
     {
-        const QString splitter = " ";
+        extern const QString splitter;
 
         const QString run = "run";
         extern const QString run_withSplitter;
