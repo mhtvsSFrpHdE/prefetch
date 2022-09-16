@@ -28,6 +28,10 @@ public:
     // Scale MainWindow without touching position
     static void scale_qMainWindow(QMainWindow *mainWindow);
 
+    // Cancel fixed status of a widget
+    // https://forum.qt.io/topic/6604/solved-unfix-a-window-previously-fixed/4
+    static void undoFixed(QWidget *widget);
+
     // Default font pixel size, convert from point size in config
     static int defaultFontSize_pixel;
 

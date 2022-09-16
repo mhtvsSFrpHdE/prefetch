@@ -86,4 +86,9 @@ void Dpi::scale_qMainWindow(QMainWindow *mainWindow)
 
     mainWindow->setMinimumSize(newWidth, newHeight);
 }
+
+void Dpi::undoFixed(QWidget *widget)
+{
+    widget->setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+    widget->setMinimumSize(0, 0);
 }
