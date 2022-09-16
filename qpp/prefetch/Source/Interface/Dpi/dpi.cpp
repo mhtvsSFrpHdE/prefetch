@@ -64,14 +64,19 @@ int Dpi::multiply(int number)
 
 void Dpi::scale_qWidgetRect(QWidget *widget)
 {
-    auto qRect = widget->geometry();
+    auto geometry = widget->geometry();
+    auto minimumSize = widget->minimumSize();
 
-    auto newX = multiply(qRect.x());
-    auto newY = multiply(qRect.y());
-    auto newWidth = multiply(qRect.width());
-    auto newHeight = multiply(qRect.height());
+    auto newX = multiply(geometry.x());
+    auto newY = multiply(geometry.y());
+    auto newWidth = multiply(geometry.width());
+    auto newHeight = multiply(geometry.height());
+
+    auto newMinimumWidth = multiply(minimumSize.width());
+    auto newMinimumHeight = multiply(minimumSize.height());
 
     widget->setGeometry(newX, newY, newWidth, newHeight);
+    widget->setMinimumSize(newMinimumWidth, newMinimumHeight);
 }
 
 void Dpi::scale_qMainWindow(QMainWindow *mainWindow)
