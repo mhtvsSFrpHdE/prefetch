@@ -26,6 +26,7 @@ namespace Const_Core
         const int IniArgc = 2;
         const int IniArgi = 1;
         const QString SkipStartup = "skipStartup";
+        const QString ShowMainWindow = "showMainWindow";
     }
 }
 

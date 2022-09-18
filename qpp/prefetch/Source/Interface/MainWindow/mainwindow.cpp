@@ -12,6 +12,7 @@
 #include "const_mainwindow.h"
 #include "..\..\Output\stdout.h"
 #include "..\..\Output\log.h"
+#include "..\..\Core\const_core.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
                                           ui(new Ui::MainWindow)
@@ -22,12 +23,19 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     using namespace Const_Setting::MainWindow_ConfigKeyName;
     using namespace Const_Global::CommonString;
     using namespace Const_MainWindow::ButtonText;
+    using namespace Const_Core::Arg;
 
     ui->setupUi(this);
 
     // Initialize
+    auto argv = Global::qGuiApplication->arguments();
 
     startToTray = Setting::getBool(Instance, StartToTray, Setting::setting);
+    if (argv.contains(ShowMainWindow))
+    {
+        startToTray = false;
+    }
+
     minimizeToTray = Setting::getBool(Instance, MinimizeToTray, Setting::setting);
 
     auto resizable = Setting::getBool(cgn_MainWindow, Resizable, Setting::setting);

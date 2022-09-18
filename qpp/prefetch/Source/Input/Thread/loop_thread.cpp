@@ -175,6 +175,7 @@ namespace ConsoleCommandFunction_Level1
         // Collect search result
         bool settingFileNotInArgv = true;
         bool skipStartupNotInArgv = true;
+        bool showMainWindowNotInArgv = true;
         // Search start from 2nd element
         QListIterator<QString> iterator(selfArgumentsStringList);
         iterator.next();
@@ -194,6 +195,10 @@ namespace ConsoleCommandFunction_Level1
             {
                 skipStartupNotInArgv = false;
             }
+            if (value == ShowMainWindow)
+            {
+                showMainWindowNotInArgv = false;
+            }
         }
 
         // Add necessary arguments if not exist
@@ -207,6 +212,10 @@ namespace ConsoleCommandFunction_Level1
         {
             // <other flag>
             selfArgumentsStringList.append(SkipStartup);
+        }
+        if (showMainWindowNotInArgv)
+        {
+            selfArgumentsStringList.append(ShowMainWindow);
         }
 
         // Remove <.exe>
