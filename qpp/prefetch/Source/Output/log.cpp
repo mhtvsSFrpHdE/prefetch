@@ -57,7 +57,7 @@ void Log::init(int argc, QStringList argv)
     logTextStream = new QTextStream(logFile);
 
     // Unlock logMutex
-    logMutex->unlock();
+    unlock();
 }
 
 void Log::lock()
@@ -68,4 +68,9 @@ void Log::lock()
 void Log::unlock()
 {
     logMutex->unlock();
+}
+
+void Log::shutdown()
+{
+    logFile->close();
 }

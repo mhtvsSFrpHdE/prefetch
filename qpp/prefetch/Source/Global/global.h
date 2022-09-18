@@ -1,3 +1,6 @@
+#ifndef Global_h
+#define Global_h
+
 #include <QApplication>
 
 #include "..\Input\Thread\loop_thread.h"
@@ -24,7 +27,16 @@ public:
 
     QString getSettingFilePath();
 
+    // A function address that does nothing
+    static void dummyFunction(){};
+    template <class T = int>
+    static void dummyFunctionT(T){};
+    // static void dummyFunctionT(T, T){};
+    // and more...
+
 private:
     // Disallow creating an instance of this object
     Global() {}
 };
+
+#endif

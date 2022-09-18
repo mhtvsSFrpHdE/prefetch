@@ -13,6 +13,4 @@ private:
 
     static void _startOnce();
     static void startOnce_remove();
-
-    static void dummyFunction();
 };

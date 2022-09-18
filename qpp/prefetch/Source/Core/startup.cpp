@@ -6,6 +6,7 @@
 #include "..\Output\stdout.h"
 #include "const_core.h"
 #include "start_process.h"
+#include "..\Global\global.h"
 
 using namespace Const_Setting::ConfigGroupName;
 
@@ -24,7 +25,8 @@ void Startup::init(int argc, QStringList argv)
 
 void Startup::startOnce_remove()
 {
-    startOnce = &dummyFunction;
+
+    startOnce = &Global::dummyFunction;
 }
 
 void Startup::_startOnce()
@@ -42,9 +44,4 @@ void Startup::_startOnce()
 
     using namespace Const_Core::Message;
     StdOut::printLine(RunStartupItems);
-}
-
-void Startup::dummyFunction()
-{
-    return;
 }

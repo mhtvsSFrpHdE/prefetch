@@ -85,6 +85,9 @@ public:
     // Wrap access to logMutex
     static void unlock();
 
+    // Close log file
+    static void shutdown();
+
 private:
     static QMutex *getLockedMutex();
 

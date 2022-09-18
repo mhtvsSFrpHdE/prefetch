@@ -29,6 +29,9 @@ public:
     // I rather do a cache here
     QString lastKnownLine;
 
+    // Tell closeEvent function ignore handle this exit event
+    bool exitRequested = false;
+
 public slots:
     void print_slot(QString textToPrint);
     void sendCommand_slot();
@@ -42,9 +45,6 @@ signals:
 
 private:
     Ui::MainWindow *ui;
-
-    // Skip 2nd exit request if fired multiple times
-    bool exitRequested = false;
 
     bool startToTray;
     bool minimizeToTray;

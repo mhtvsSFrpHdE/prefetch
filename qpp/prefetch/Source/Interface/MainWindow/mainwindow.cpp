@@ -228,13 +228,12 @@ void MainWindow::sendCommand_slot()
 
 void MainWindow::closeEvent(QCloseEvent *closeEventAddress)
 {
-    closeEventAddress->ignore();
+    closeEventAddress->accept();
 
     if (exitRequested)
     {
         return;
     }
-
     exitRequested = true;
 
     // Use command interface to do actual exit

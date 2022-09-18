@@ -27,7 +27,23 @@ public:
     static void lock();
     static void unlock();
 
+    // Close stdout
+    // Further call to stdout will be ignored
+    static void shutdown();
+
 private:
+    static void _print(QString textToPrint);
+    static void (*print_address)(QString);
+
+    static void _printLine(QString textToPrint);
+    static void (*printLine_address)(QString);
+
+    static void _printEndl();
+    static void (*printEndl_address)();
+
+    static void _flush();
+    static void (*flush_address)();
+
     // Disallow creating an instance of this object
     StdOut() {}
 };

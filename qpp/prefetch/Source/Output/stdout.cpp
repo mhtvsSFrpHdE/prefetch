@@ -12,7 +12,12 @@ void StdOut::init()
     consoleOutput = new QTextStream(stdout);
 }
 
-void StdOut::print(QString textToPrint)
+void (*StdOut::print_address)(QString) = &_print;
+void (*StdOut::printLine_address)(QString) = &_printLine;
+void (*StdOut::printEndl_address)() = &_printEndl;
+void (*StdOut::flush_address)() = &_flush;
+
+void StdOut::_print(QString textToPrint)
 {
     lock();
 
@@ -24,8 +29,12 @@ void StdOut::print(QString textToPrint)
 
     unlock();
 }
+void StdOut::print(QString textToPrint)
+{
+    (*print_address)(textToPrint);
+}
 
-void StdOut::printLine(QString textToPrint)
+void StdOut::_printLine(QString textToPrint)
 {
     lock();
 
@@ -40,8 +49,12 @@ void StdOut::printLine(QString textToPrint)
 
     unlock();
 }
+void StdOut::printLine(QString textToPrint)
+{
+    (*printLine_address)(textToPrint);
+}
 
-void StdOut::printEndl()
+void StdOut::_printEndl()
 {
     lock();
 
@@ -54,8 +67,12 @@ void StdOut::printEndl()
 
     unlock();
 }
+void StdOut::printEndl()
+{
+    (*printEndl_address)();
+}
 
-void StdOut::flush()
+void StdOut::_flush()
 {
     lock();
 
@@ -66,6 +83,10 @@ void StdOut::flush()
     Global::qMainWindow->StdOut_flush();
 
     unlock();
+}
+void StdOut::flush()
+{
+    (*flush_address)();
 }
 
 void StdOut::lock()
@@ -78,4 +99,22 @@ void StdOut::unlock()
 {
     printLock.unlock();
     LAST_KNOWN_POSITION(4)
+}
+
+void StdOut::shutdown()
+{
+    LAST_KNOWN_POSITION(2)
+
+    printLock.lock();
+
+    print_address = &Global::dummyFunctionT;
+    printLine_address = &Global::dummyFunctionT;
+    printEndl_address = &Global::dummyFunction;
+    flush_address = &Global::dummyFunction;
+
+#if LOG_ENABLED
+    Log::shutdown();
+#endif
+
+    printLock.unlock();
 }
