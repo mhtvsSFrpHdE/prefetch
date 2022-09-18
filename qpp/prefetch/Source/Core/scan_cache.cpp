@@ -19,9 +19,11 @@ bool ScanCache::init_cacheFileExist()
 
 Setting::GetGenericResult<QString> init_getCacheFilePath(int argc, QStringList argv)
 {
+    using namespace Const_Core;
+
     Setting::GetGenericResult<QString> getCacheFilePath;
 
-    if (argc != 2)
+    if (argc <= Arg::IniArgc)
     {
         getCacheFilePath.success = false;
         return getCacheFilePath;

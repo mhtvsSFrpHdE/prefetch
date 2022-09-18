@@ -3,14 +3,17 @@
 
 #include "setting.h"
 #include "const_setting.h"
+#include "..\Core\const_core.h"
 
 QSettings *Setting::setting;
 
 Setting::GetGenericResult<QString> init_getSettingFilePath(int argc, QStringList argv)
 {
+    using namespace Const_Core;
+
     Setting::GetGenericResult<QString> getSettingFilePath;
 
-    if (argc != 2)
+    if (argc <= Arg::IniArgc)
     {
         getSettingFilePath.success = false;
         return getSettingFilePath;

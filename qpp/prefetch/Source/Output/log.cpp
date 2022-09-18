@@ -3,6 +3,7 @@
 
 #include "log.h"
 #include "..\Setting\setting.h"
+#include "..\Core\const_core.h"
 
 QString Log::logFilePath;
 QFile *Log::logFile;
@@ -18,9 +19,11 @@ QMutex *Log::getLockedMutex()
 
 Setting::GetGenericResult<QString> init_getLogFilePath(int argc, QStringList argv)
 {
+    using namespace Const_Core;
+
     Setting::GetGenericResult<QString> getLogFilePath;
 
-    if (argc != 2)
+    if (argc <= Arg::IniArgc)
     {
         getLogFilePath.success = false;
         return getLogFilePath;

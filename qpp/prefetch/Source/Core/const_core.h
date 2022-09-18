@@ -19,6 +19,10 @@ namespace Const_Core
         // startup
         const QString RunStartupItems = "Run startup items...";
     }
+    namespace Arg
+    {
+        const int IniArgc = 2;
+    }
 }
 
 namespace Const_Cache
