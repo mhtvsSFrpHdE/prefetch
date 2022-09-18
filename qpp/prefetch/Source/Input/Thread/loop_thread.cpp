@@ -2,11 +2,14 @@
 #include <QTimer>
 
 #include "..\..\Global\global.h"
+#include "..\..\Global\const_global.h"
 #include "..\..\Input\stdin.h"
 #include "..\..\Output\stdout.h"
 #include "..\..\Core\Thread\read_thread.h"
+#include "..\..\Core\const_core.h"
 #include "..\..\Input\const_input.h"
 #include "..\..\Core\start_process.h"
+#include "..\..\Core\scan_cache.h"
 
 LoopThread::LoopThread() {}
 
@@ -83,12 +86,8 @@ namespace ConsoleCommandFunction_Level1
         }
     }
 
-    void exit()
+    void exit_quiet()
     {
-        using namespace Const_Input::Message;
-        StdOut::printLine(TryingToExit1);
-        StdOut::printLine(TryingToExit2);
-
         // Remove MainWindow
         Global::qMainWindow->hide();
 
@@ -97,6 +96,15 @@ namespace ConsoleCommandFunction_Level1
 
         // Stop QT event loop on main thread
         Global::qGuiApplication->quit();
+    }
+
+    void exit()
+    {
+        using namespace Const_Input::Message;
+        StdOut::printLine(TryingToExit1);
+        StdOut::printLine(TryingToExit2);
+
+        exit_quiet();
     }
 
     void traydc()
@@ -114,6 +122,40 @@ namespace ConsoleCommandFunction_Level1
         }
     }
 
+    void expiresc()
+    {
+        using namespace Const_Input::Message;
+        using namespace Const_Input::Command_Level2;
+        using namespace Const_Global::CommonString;
+        using namespace Const_Core::Arg;
+
+        StdOut::printLine(TryingToExpireScanCache);
+
+        // Stop running thread
+        pause();
+        ReadFile::readThreadPool->waitForDone();
+
+        // Delete cache file
+        QFile::remove(ScanCache::cacheFilePath);
+
+        // Open self
+
+        // Get exist argument
+        auto selfArgumentsStringList = QApplication::arguments();
+        auto self_arguments = selfArgumentsStringList.join(Space);
+
+        // Confirm if already in skip startup mode
+        auto skipStartup_arguments = selfArgumentsStringList.contains(SkipStartup) ? EmptyString
+                                                                                   : Space + SkipStartup;
+
+        // Send run quiet command
+        auto self_command = run_quiet_withSplitter + Quote + self_arguments + Quote + skipStartup_arguments;
+        Global::inputLoopThreadAddress->receiveText(self_command);
+
+        // Exit without touching log
+        exit_quiet();
+    }
+
     void test()
     {
         using namespace Const_Input::Message;
@@ -123,6 +165,11 @@ namespace ConsoleCommandFunction_Level1
 
 namespace ConsoleCommandFunction_Level2
 {
+    void run_quiet(QString command)
+    {
+        StartProcess::startProcess(command);
+    }
+
     void run(QString command)
     {
         using namespace Const_Input::Message;
@@ -130,7 +177,7 @@ namespace ConsoleCommandFunction_Level2
         StdOut::printLine(TryingToRun1);
         StdOut::printLine(TryingToRun2 + command);
 
-        StartProcess::startProcess(command);
+        run_quiet(command);
     }
 }
 
@@ -143,7 +190,9 @@ QMap<QString, void (*)()> LoopThread::commandMap_level1(
         {Command_Level1::resume, &ConsoleCommandFunction_Level1::resume},
         {Command_Level1::test, &ConsoleCommandFunction_Level1::test},
         {Command_Level1::exit, &ConsoleCommandFunction_Level1::exit},
-        {Command_Level1::traydc, &ConsoleCommandFunction_Level1::traydc}});
+        {Command_Level1::traydc, &ConsoleCommandFunction_Level1::traydc},
+        {Command_Level1::expiresc, &ConsoleCommandFunction_Level1::expiresc}});
 QMap<QString, void (*)(QString)> LoopThread::commandMap_level2(
     std::map<QString, void (*)(QString)>{
-        {Command_Level2::run, &ConsoleCommandFunction_Level2::run}});
+        {Command_Level2::run, &ConsoleCommandFunction_Level2::run},
+        {Command_Level2::run_quiet, &ConsoleCommandFunction_Level2::run_quiet}});

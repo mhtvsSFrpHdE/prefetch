@@ -8,6 +8,7 @@ namespace Const_Global
         const QString Space = " ";
         const QString NewLine = "\n";
         const QString Tab = "    ";
+        const QString Quote = "\"";
         const QString QtPathSplitter = "/";
         const QString SettingDefaultValueType1 = "<default>";
         const QString StringListSplitterType1 = ",";

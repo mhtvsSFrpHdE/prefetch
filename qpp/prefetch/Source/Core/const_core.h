@@ -22,6 +22,7 @@ namespace Const_Core
     namespace Arg
     {
         const int IniArgc = 2;
+        const QString SkipStartup = "skipStartup";
     }
 }
 
