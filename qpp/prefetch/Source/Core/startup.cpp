@@ -9,16 +9,28 @@
 
 using namespace Const_Setting::ConfigGroupName;
 
-bool Startup::started = false;
+void (*Startup::startOnce)() = &_startOnce;
 
-void Startup::startOnce()
+void Startup::init(int argc, QStringList argv)
 {
-    // Disable after fist run
-    if (started)
+    using namespace Const_Core::Arg;
+
+    if (argv.contains(SkipStartup))
     {
+        startOnce_remove();
         return;
     }
-    started = true;
+}
+
+void Startup::startOnce_remove()
+{
+    startOnce = &dummyFunction;
+}
+
+void Startup::_startOnce()
+{
+    // Disable after fist run
+    startOnce_remove();
 
     // Get startup items
     auto afterPrefetch = Setting::getArrayValue(AfterPrefetch, Setting::setting);
@@ -30,4 +42,9 @@ void Startup::startOnce()
 
     using namespace Const_Core::Message;
     StdOut::printLine(RunStartupItems);
+}
+
+void Startup::dummyFunction()
+{
+    return;
 }

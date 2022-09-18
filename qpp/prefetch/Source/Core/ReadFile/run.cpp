@@ -55,7 +55,7 @@ bool ReadFile::run_runThreadPool(int rescanInterval)
 
     // Run startup items
 #if SKIP_STARTUP_ITEM == false
-    Startup::startOnce();
+    (*Startup::startOnce)();
 #endif
 
     // Increase task count

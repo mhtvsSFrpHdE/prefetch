@@ -10,6 +10,7 @@
 #include "..\Core\scan_cache.h"
 #include "..\Define\define.h"
 #include "..\Output\log.h"
+#include "..\Core\startup.h"
 
 QApplication *Global::qGuiApplication = NULL;
 MainWindow *Global::qMainWindow = NULL;
@@ -32,6 +33,8 @@ void Global::init(int argc, char *argv[])
     StdOut::init();
 
     Translate::init();
+
+    Startup::init(argc, commandLineArguments);
 
     Setting::init(argc, commandLineArguments);
 
