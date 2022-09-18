@@ -27,8 +27,7 @@
                     "text": "-gdb-set disassembly-flavor intel",
                     "ignoreFailures": true
                 }
-            ],
-            "symbolSearchPath": "C:\\Qt\\4.8.7\\bin"
+            ]
         },
         {
             "name": "Qt - Build and debug",
@@ -54,7 +53,6 @@
                     "ignoreFailures": true
                 }
             ],
-            "symbolSearchPath": "C:\\Qt\\4.8.7\\bin",
             "preLaunchTask": "Qt Build(Debug)"
         },
         {

@@ -30,7 +30,7 @@
 			"label": "Qt copy_resource",
 			"command": "python",
 			"args": [
-				"copy_resource.py"
+				"build.py"
 			],
 			"options": {
 				"cwd": "${workspaceFolder}\\Tool"
