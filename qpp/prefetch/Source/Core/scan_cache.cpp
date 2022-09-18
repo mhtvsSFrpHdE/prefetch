@@ -77,6 +77,9 @@ void ScanCache::saveScanCache(QList<QRunnable *> *readThreadQueueAddress, bool o
 
     // Save metadata
     Setting::setValue(MetaData, Size, QString::number(readThreadQueue.size()), cache);
+
+    // Mark cache exist after save
+    cacheFileExist = true;
 }
 
 void ScanCache::loadScanCache(QList<QRunnable *> *readThreadQueueAddress)

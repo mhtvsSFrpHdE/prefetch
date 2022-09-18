@@ -10,6 +10,7 @@
 #include "..\..\Input\const_input.h"
 #include "..\..\Core\start_process.h"
 #include "..\..\Core\scan_cache.h"
+#include "..\..\Setting\setting.h"
 
 LoopThread::LoopThread() {}
 
@@ -124,12 +125,21 @@ namespace ConsoleCommandFunction_Level1
 
     void expiresc()
     {
+        using namespace Const_Input;
         using namespace Const_Input::Message;
-        using namespace Const_Input::Command_Level2;
         using namespace Const_Global::CommonString;
         using namespace Const_Core::Arg;
 
         StdOut::printLine(TryingToExpireScanCache);
+
+        if (ScanCache::cacheFileExist == false)
+        {
+            StdOut::printLine(ScanCacheNotFound);
+            return;
+        }
+
+        // Shutdown stdio
+        StdOut::shutdown();
 
         // Stop running thread
         pause();
@@ -138,22 +148,81 @@ namespace ConsoleCommandFunction_Level1
         // Delete cache file
         QFile::remove(ScanCache::cacheFilePath);
 
-        // Open self
+        // Open self again
 
         // Get exist argument
-        auto selfArgumentsStringList = QApplication::arguments();
-        auto self_arguments = selfArgumentsStringList.join(Space);
+        //     <.exe> <.ini> <other flag>
+        auto selfArgumentsStringList = Global::qGuiApplication->arguments();
 
-        // Confirm if already in skip startup mode
-        auto skipStartup_arguments = selfArgumentsStringList.contains(SkipStartup) ? EmptyString
-                                                                                   : Space + SkipStartup;
+        // Get exe
+        //     <.exe>
+        auto selfExePath = QFileInfo(selfArgumentsStringList[0]).absoluteFilePath();
+
+        // Add exe quote if not already
+        //     "<.exe>"
+        bool quotedSelfExePath = selfExePath.startsWith(Quote);
+        if (!quotedSelfExePath)
+        {
+            selfExePath = Quote + selfExePath + Quote;
+        }
+
+        // Get ini
+        //     <.ini>
+        // Remove quote if exist
+        auto settingFileName = QFileInfo(Setting::settingFilePath).fileName();
+        settingFileName.replace(Quote, EmptyString);
+
+        // Collect search result
+        bool settingFileNotInArgv = true;
+        bool skipStartupNotInArgv = true;
+        // Search start from 2nd element
+        QListIterator<QString> iterator(selfArgumentsStringList);
+        iterator.next();
+        while (iterator.hasNext())
+        {
+            auto value = iterator.next();
+
+            // Confirm <.ini>
+            if (value.contains(settingFileName))
+            {
+
+                settingFileNotInArgv = false;
+            }
+
+            // Confirm <other flag>
+            if (value == SkipStartup)
+            {
+                skipStartupNotInArgv = false;
+            }
+        }
+
+        // Add necessary arguments if not exist
+        if (settingFileNotInArgv)
+        {
+            // "<.ini>"
+            auto settingFilePath_arguments = Quote + settingFileName + Quote;
+            selfArgumentsStringList.insert(IniArgi, settingFilePath_arguments);
+        }
+        if (skipStartupNotInArgv)
+        {
+            // <other flag>
+            selfArgumentsStringList.append(SkipStartup);
+        }
+
+        // Remove <.exe>
+        // Join rest element
+        selfArgumentsStringList.removeFirst();
 
         // Send run quiet command
-        auto self_command = run_quiet_withSplitter + Quote + self_arguments + Quote + skipStartup_arguments;
+        //     `run `
+        //   + `"<.exe>"`
+        //   + `"<.ini>" <other flag>`
+        auto self_command = Command_Level2::run_withSplitter + Quote + selfExePath + Quote + Space + selfArgumentsStringList.join(Space);
         Global::inputLoopThreadAddress->receiveText(self_command);
 
-        // Exit without touching log
-        exit_quiet();
+        // Exit
+        Global::qMainWindow->exitRequested = true;
+        Global::inputLoopThreadAddress->receiveText(Command_Level1::exit);
     }
 
     void test()

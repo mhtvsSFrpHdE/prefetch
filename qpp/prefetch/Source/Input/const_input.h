@@ -14,7 +14,7 @@ namespace Const_Input
         const QString TryingToRun1 = "Trying to run program";
         extern const QString TryingToRun2;
         const QString TryingToExpireScanCache = "Trying to expire scan cache";
-        extern const QString ExpireCacheRequested;
+        extern const QString ScanCacheNotFound;
     }
     namespace Command_Level1
     {

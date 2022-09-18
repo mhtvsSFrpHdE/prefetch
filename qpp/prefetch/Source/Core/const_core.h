@@ -19,9 +19,12 @@ namespace Const_Core
         // startup
         const QString RunStartupItems = "Run startup items...";
     }
+    // Argc: count
+    // Argi: index
     namespace Arg
     {
         const int IniArgc = 2;
+        const int IniArgi = 1;
         const QString SkipStartup = "skipStartup";
     }
 }

@@ -6,6 +6,7 @@
 #include "..\Core\const_core.h"
 
 QSettings *Setting::setting;
+QString Setting::settingFilePath = Const_Setting::DefaultSettingFilePath;
 
 Setting::GetGenericResult<QString> init_getSettingFilePath(int argc, QStringList argv)
 {
@@ -26,9 +27,6 @@ Setting::GetGenericResult<QString> init_getSettingFilePath(int argc, QStringList
 void Setting::init(int argc, QStringList argv)
 {
     using namespace Const_Setting;
-
-    // Setting file path default value
-    QString settingFilePath = DefaultSettingFilePath;
 
     // Get setting file path
     auto getSettingFilePath = init_getSettingFilePath(argc, argv);
