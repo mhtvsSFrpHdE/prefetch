@@ -16,7 +16,14 @@
             "compilerPath": "C:\\i686-4.8.2-release-posix-dwarf-rt_v3-rev3\\mingw32\\bin\\g++.exe",
             "cStandard": "c99",
             "cppStandard": "c++11",
-            "intelliSenseMode": "windows-gcc-x86"
+            "intelliSenseMode": "windows-gcc-x86",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": "${workspaceFolder}\\cpptools\\browse.databaseFile\\.BROWSE.VC.DB"
+            }
         }
     ],
     "version": 4
