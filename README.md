@@ -14,7 +14,7 @@ https://github.com/mhtvsSFrpHdE/prefetch/releases
 
 ## Frequently asked questions
 
-https://github.com/mhtvsSFrpHdE/prefetch/wiki/Frequently-asked-questions
+https://github.com/mhtvsSFrpHdE/prefetch/wiki/FAQ_01_Frequently-asked-questions
 
 ## What is this
 
