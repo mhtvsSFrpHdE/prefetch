@@ -63,7 +63,7 @@ Enable NTFS compress on db folder reduce size from `1.05GB` to `513MB`.
 
 ### IPCH cache
 
-Let's just accept these files are important for new IntelliSense to work.  
+Let's just accept these files are important for new IntelliSense to work fast.  
 They are also means everytime do Ctrl+S save edited source code,  
 390 MB will write to disk. There is no "reuse exist file".
 
@@ -76,3 +76,8 @@ Compress these file using `7z lzma2 fastest`, can reduce total size from `2.19GB
 I'm pretty sure my SSD nand lifespan were abused.
 
 Enable NTFS compress on ipch folder reduce size from `2.19GB` to `615MB`.
+
+### Temporary solution
+
+After days of investigation, some solution were discovered to optimize extension performance:  
+https://github.com/microsoft/vscode-cpptools/issues/9837#issuecomment-1247146528
