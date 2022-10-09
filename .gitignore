@@ -48,3 +48,7 @@ qpp/ThirdParty/boost
 
 # User data during debug
 qpp/prefetch/prefetch.debug.ini
+
+# ReCompact libraries
+qpp/prefetch/Tool/ReCompact/cstpw.ps1
+qpp/prefetch/Tool/ReCompact/cstpw.cmd
