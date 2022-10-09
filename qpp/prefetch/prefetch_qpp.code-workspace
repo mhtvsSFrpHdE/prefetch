@@ -5,17 +5,14 @@
 		}
 	],
 	"settings": {
+		"files.insertFinalNewline": true,
 		"python.languageServer": "Pylance",
+		"C_Cpp.autoAddFileAssociations": false,
 		"files.associations": {
 			"**/include/**": "cpp",
 			"**/ThirdParty/**": "cpp"
 		},
-		"C_Cpp.autoAddFileAssociations": false,
-		"C_Cpp.default.browse.databaseFilename": "${workspaceFolder}\\cpptools\\browse.databaseFile\\.BROWSE.VC.DB",
 		"C_Cpp.intelliSenseCachePath": "${workspaceFolder}\\cpptools\\intelliSenseCachePath\\dummy",
-		"C_Cpp.default.browse.path": [
-			"${workspaceFolder}"
-		],
-		"files.insertFinalNewline": true
+		"C_Cpp.intelliSenseCacheSize": 10240
 	}
 }
