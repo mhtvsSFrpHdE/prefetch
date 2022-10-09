@@ -57,7 +57,7 @@ namespace Const_Setting
         const QString TrayMenuMinimalWidth = "TrayMenuMinimalWidth";
     }
 
-    namespace Font_Value
+    namespace Instance_Font_Value
     {
         extern QString Default;
     }
@@ -69,15 +69,9 @@ namespace Const_Setting
         const QString Resizable = "Resizable";
     }
 
-    namespace Position_Value
+    namespace MainWindow_Position_Value
     {
         extern QString Default;
     }
-
-    namespace Size_Value
-    {
-        extern QString Splitter;
-    }
-    // TODO: Rename Font_Value and other Value to Instance_Font_Value etc
 }
 #endif

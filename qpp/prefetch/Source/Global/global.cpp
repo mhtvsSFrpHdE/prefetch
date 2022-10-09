@@ -57,7 +57,7 @@ void Global::init(int argc, char *argv[])
 
     // If value was given, update font family
     auto getFontFamily = Setting::getString(Instance, Font, Setting::setting);
-    if (getFontFamily != Font_Value::Default)
+    if (getFontFamily != Instance_Font_Value::Default)
     {
         defaultFont.setFamily(getFontFamily);
     }

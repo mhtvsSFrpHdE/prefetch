@@ -57,7 +57,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     // If value was given, update position
     auto getPosition = Setting::getString(cgn_MainWindow, Position, Setting::setting);
-    if (getPosition != Position_Value::Default)
+    if (getPosition != MainWindow_Position_Value::Default)
     {
         auto positionArray = Setting::getStringList(cgn_MainWindow, Position, Setting::setting);
         this->move(positionArray[0].toInt(), positionArray[1].toInt());
