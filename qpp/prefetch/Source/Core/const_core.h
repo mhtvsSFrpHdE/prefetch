@@ -1,3 +1,6 @@
+#ifndef Const_Core_h
+#define Const_Core_h
+
 #include <QString>
 
 namespace Const_Core
@@ -5,19 +8,21 @@ namespace Const_Core
     namespace Message
     {
         // read_file
-        const QString ScanFolder = "Scan folder...";
-        extern const QString CacheFound;
-        const QString Prefetching = "Prefetching...";
-        extern const QString Idle_Time;
-        const QString Idle_Sec = " Sec";
-        extern const QString ScanFolder_Time;
-        extern const QString ScanFolder_Sec;
-        const QString CodeExecuteTimeFormatter = "ss.zzz";
-        const QString RescanIntervalReached1 = "Rescan interval reached.";
-        extern const QString RescanIntervalReached2;
+        extern QString ScanFolder;
+        extern QString CacheFound;
+        extern QString Prefetching;
+        extern QString Idle_Time;
+        extern QString Idle_Sec;
+        extern QString ScanFolder_Time;
+        extern QString ScanFolder_Sec;
+        extern QString CodeExecuteTimeFormatter;
+        extern QString RescanIntervalReached1;
+        extern QString RescanIntervalReached2;
 
         // startup
-        const QString RunStartupItems = "Run startup items...";
+        extern QString RunStartupItems;
+
+        extern void init();
     }
     // Argc: count
     // Argi: index
@@ -34,7 +39,7 @@ namespace Const_Cache
 {
     const QString DefaultCacheFilePath = "prefetch.cache.ini";
     const QString DefaultCacheFilePathSuffix = ".cache.ini";
-    extern const QString PathSplitter;
+    extern QString PathSplitter;
 
     namespace ConfigGroupName
     {
@@ -47,3 +52,4 @@ namespace Const_Cache
         const QString Size = "Size";
     }
 }
+#endif

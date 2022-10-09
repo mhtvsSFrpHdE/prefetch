@@ -1,16 +1,22 @@
+#ifndef Const_Global_h
+#define Const_Global_h
+
 #include <QString>
 
 namespace Const_Global
 {
     namespace CommonString
     {
-        const QString EmptyString = "";
-        const QString Space = " ";
-        const QString NewLine = "\n";
-        const QString Tab = "    ";
-        const QString Quote = "\"";
-        const QString QtPathSplitter = "/";
-        const QString SettingDefaultValueType1 = "<default>";
-        const QString StringListSplitterType1 = ",";
+        extern QString EmptyString;
+        extern QString Space;
+        extern QString NewLine;
+        extern QString Tab;
+        extern QString Quote;
+        extern QString QtPathSplitter;
+        extern QString SettingDefaultValueType1;
+        extern QString StringListSplitterType1;
+
+        extern void init();
     }
 }
+#endif

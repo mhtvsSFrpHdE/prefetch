@@ -3,6 +3,9 @@ qpp/build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Debug
 qpp/build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Release
 qpp/build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Release_Verbose
 
+# Qt translate file
+*.qm
+
 # Ide setting
 
 # Qt Creator

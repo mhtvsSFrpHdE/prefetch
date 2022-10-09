@@ -5,7 +5,7 @@
 #include <QMutex>
 
 #include "..\Define\define.h"
-#include "log_const.h"
+#include "const_log.h"
 
 // Automatically lock and unlock log mutex
 #if LOG_ENABLED

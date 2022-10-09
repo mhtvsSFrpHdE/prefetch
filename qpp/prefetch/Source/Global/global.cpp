@@ -3,7 +3,7 @@
 #include "global.h"
 #include "..\Input\stdin.h"
 #include "..\Output\stdout.h"
-#include "..\Translate\translate.h"
+#include "..\Translate\translator_loader.h"
 #include "..\Setting\setting.h"
 #include "..\Setting\const_setting.h"
 #include "..\Interface\Dpi\dpi.h"
@@ -32,7 +32,8 @@ void Global::init(int argc, char *argv[])
 
     StdOut::init();
 
-    Translate::init();
+    TranslatorLoader::initFile();
+    TranslatorLoader::initMessage();
 
     Startup::init(argc, commandLineArguments);
 

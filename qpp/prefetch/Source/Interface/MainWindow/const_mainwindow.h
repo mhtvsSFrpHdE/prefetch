@@ -1,9 +1,15 @@
+#ifndef Const_MainWindow_h
+#define Const_MainWindow_h
+
 #include <QString>
 
 namespace Const_MainWindow
 {
     namespace ButtonText
     {
-        const QString SendCommand_PushButton = "Send";
+        extern QString SendCommand_PushButton;
+
+        extern void init();
     }
 }
+#endif

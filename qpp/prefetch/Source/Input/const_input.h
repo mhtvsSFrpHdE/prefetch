@@ -1,20 +1,25 @@
+#ifndef Const_Input_h
+#define Const_Input_h
+
 #include <QString>
 
 namespace Const_Input
 {
     namespace Message
     {
-        const QString InvalidCommand = "Invalid command";
-        const QString TryingToPause = "Trying to pause prefetch";
-        extern const QString PauseRequested;
-        const QString TryingToResume = "Trying to resume prefetch";
-        const QString TryingToExit1 = "Trying to exit prefetch";
-        extern const QString TryingToExit2;
-        const QString Test = "This function contain test code";
-        const QString TryingToRun1 = "Trying to run program";
-        extern const QString TryingToRun2;
-        const QString TryingToExpireScanCache = "Trying to expire scan cache";
-        extern const QString ScanCacheNotFound;
+        extern QString InvalidCommand;
+        extern QString TryingToPause;
+        extern QString PauseRequested;
+        extern QString TryingToResume;
+        extern QString TryingToExit1;
+        extern QString TryingToExit2;
+        extern QString Test;
+        extern QString TryingToRun1;
+        extern QString TryingToRun2;
+        extern QString TryingToExpireScanCache;
+        extern QString ScanCacheNotFound;
+
+        extern void init();
     }
     namespace Command_Level1
     {
@@ -27,11 +32,15 @@ namespace Const_Input
     }
     namespace Command_Level2
     {
-        extern const QString splitter;
+        extern QString splitter;
 
         const QString run = "run";
         extern const QString run_withSplitter;
         const QString run_quiet = "run_quiet";
         extern const QString run_quiet_withSplitter;
+
+        extern void init();
     }
 }
+
+#endif

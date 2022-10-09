@@ -1,10 +1,15 @@
+#ifndef Const_Setting_h
+#define Const_Setting_h
+
 #include <QString>
 
 namespace Const_Setting
 {
     const QString DefaultSettingFilePath = "prefetch.ini";
-    extern const QString PathSplitter;
-    extern const QString StringListSplitter;
+    extern QString PathSplitter;
+    extern QString StringListSplitter;
+
+    extern void init();
 
     namespace ConfigGroupName
     {
@@ -54,7 +59,7 @@ namespace Const_Setting
 
     namespace Font_Value
     {
-        extern const QString Default;
+        extern QString Default;
     }
 
     namespace MainWindow_ConfigKeyName
@@ -66,12 +71,13 @@ namespace Const_Setting
 
     namespace Position_Value
     {
-        extern const QString Default;
+        extern QString Default;
     }
 
     namespace Size_Value
     {
-        extern const QString Splitter;
+        extern QString Splitter;
     }
     // TODO: Rename Font_Value and other Value to Instance_Font_Value etc
 }
+#endif
