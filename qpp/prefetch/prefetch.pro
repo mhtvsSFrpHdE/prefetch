@@ -64,10 +64,10 @@ SOURCES += \
     Source/Translate/init_message.cpp \
     main.cpp
 DISTFILES += \
-    prefetch_en_US.ts
+    Source/Translate/File/prefetch_en_US.ts
 
 TRANSLATIONS += \
-    prefetch_en_US.ts
+    Source/Translate/File/prefetch_en_US.ts
 CONFIG += lrelease
 CONFIG += embed_translations
 
