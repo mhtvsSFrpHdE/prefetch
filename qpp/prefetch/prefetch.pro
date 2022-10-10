@@ -63,11 +63,9 @@ SOURCES += \
     Source/Translate/init_file.cpp \
     Source/Translate/init_message.cpp \
     main.cpp
-DISTFILES += \
-    Source/Translate/File/prefetch_en_US.ts
-
 TRANSLATIONS += \
-    Source/Translate/File/prefetch_en_US.ts
+    Source/Translate/File/prefetch_en-US.ts \
+    Source/Translate/File/prefetch_zh-CN.ts
 CONFIG += lrelease
 CONFIG += embed_translations
 
