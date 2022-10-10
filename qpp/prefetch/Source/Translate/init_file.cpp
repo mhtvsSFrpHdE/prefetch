@@ -6,36 +6,91 @@
 #include "translator_loader.h"
 #include "..\Global\global.h"
 
+// If false, translate file is not loaded, related install is ignored
+bool loadTranslate_load_tryInstall(QTranslator *translator, QString translateFileName, QString translateFolder)
+{
+    if (translator->load(translateFileName, translateFolder))
+    {
+        // Load success
+        // Install translator to global
+        Global::qGuiApplication->installTranslator(translator);
+
+        return true;
+    }
+    return false;
+}
+
+// Load translate file, install if success
+bool loadTranslate_load(
+    QTranslator *translator,
+    QStringList uiLanguages,
+    QString translateName,
+    QString translateFolder,
+    QString translateFileSuffix)
+{
+
+    // Confirm translate exist
+    bool translateNotFound = true;
+    for (const QString &locale : uiLanguages)
+    {
+        // prefetch_en_US.qm
+        QString translateFileName = translateName + "_" + QLocale(locale).name() + translateFileSuffix;
+        translateFileName = translateName + "_" + QLocale::system().name() + translateFileSuffix;
+
+        // Try install
+        bool installResult = loadTranslate_load_tryInstall(translator, translateFileName, translateFolder);
+        if (installResult)
+        {
+            // Load and install success
+            translateNotFound = false;
+            break;
+        }
+    }
+    // Translate not found, use fallback file
+    if (translateNotFound)
+    {
+        // Fallback to English
+        // If still fails, program should not continue to run
+        const QString translateFileNameFallback = translateName + "_en_US.qm";
+        return loadTranslate_load_tryInstall(translator, translateFileNameFallback, translateFolder);
+    }
+    // Translate found and installed
+    else
+    {
+        return true;
+    }
+}
+
+// prefetch/translations/qt
+// prefetch/translations/prefetch
+QString loadTranslate_getTranslateFolder(QString qtPathSplitter, QString translateName)
+{
+    return Global::qGuiApplication->applicationDirPath() + qtPathSplitter + "translations" + qtPathSplitter + translateName;
+}
+
+bool loadTranslate(QString translateName, QStringList uiLanguages, QString qtPathSplitter, QString translateFileSuffix)
+{
+    QTranslator qTranslator;
+    auto translateFolder = loadTranslate_getTranslateFolder(qtPathSplitter, translateName);
+
+    return loadTranslate_load(&qTranslator, uiLanguages, translateName, translateFolder, translateFileSuffix);
+}
+
 void TranslatorLoader::initFile()
 {
-    QString qtPathSplitter = "/";
+    const QString qtPathSplitter = "/";
+    const QString translateFileSuffix = ".qm";
+    auto uiLanguages = QLocale::system().uiLanguages();
 
-    auto qtTranslateFileName = "qt_" + QLocale::system().name();
-    auto qtTranslateFilePath = Global::qGuiApplication->applicationDirPath() + qtPathSplitter + "translations/qt";
+    bool loadSuccess = false;
+    // Qt translate
+    // Fail safe, no translation provided in Qt 4.8.7 installation
+    loadTranslate("qt", uiLanguages, qtPathSplitter, translateFileSuffix);
 
-    QTranslator qtTranslator;
-    qtTranslator.load(qtTranslateFileName,
-                      qtTranslateFilePath);
-    Global::qGuiApplication->installTranslator(&qtTranslator);
-
-    auto prefetchTranslateFileName = "prefetch_" + QLocale::system().name();
-    auto prefetchTranslateFilePath = Global::qGuiApplication->applicationDirPath() + qtPathSplitter + "translations/prefetch";
-
-    QTranslator prefetchTranslator;
-    prefetchTranslator.load(prefetchTranslateFileName, prefetchTranslateFilePath);
-    Global::qGuiApplication->installTranslator(&prefetchTranslator);
-
-    // Global::translatorAddress = new QTranslator();
-
-    // const QStringList uiLanguages = QLocale::system().uiLanguages();
-
-    // for (const QString &locale : uiLanguages)
-    // {
-    //     const QString baseName = "prefetch_" + QLocale(locale).name();
-    //     if (Global::translatorAddress->load(":/i18n/" + baseName))
-    //     {
-    //         Global::qGuiApplication->installTranslator(Global::translatorAddress);
-    //         break;
-    //     }
-    // }
+    // Prefetch translate
+    loadTranslate("prefetch", uiLanguages, qtPathSplitter, translateFileSuffix);
+    if (loadSuccess == false)
+    {
+        throw;
+    }
 }
