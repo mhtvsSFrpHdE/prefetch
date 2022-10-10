@@ -3,27 +3,27 @@
 
 #include <QString>
 
+// This file should independently to others
+// Log must always available
 namespace Const_Log
 {
     const QString DefaultLogFilePath = "prefetch.log";
     const QString DefaultLogFilePathSuffix = ".log";
-    extern QString PathSplitter;
+    const QString PathSplitter = "/";
 
     namespace Message
     {
-        extern QString NewLine;
-        extern QString Tab;
+        const QString NewLine = "\n";
+        const QString Tab = "    ";
 
-        extern QString LastKnownLocation_BEGIN;
-        extern QString LastKnownLocation_END;
-        extern QString LastKnownLocation_INLINE;
-        extern QString LastKnownLocation_LOCK;
-        extern QString LastKnownLocation_UNLOCK;
-        extern QString File;
-        extern QString Function;
-        extern QString Line;
-
-        extern void init();
+        const QString LastKnownLocation_BEGIN = "LastKnownLocation BEGIN\n";
+        const QString LastKnownLocation_END = "LastKnownLocation END\n";
+        const QString LastKnownLocation_INLINE = "LastKnownLocation INLINE\n";
+        const QString LastKnownLocation_LOCK = "LastKnownLocation LOCK\n";
+        const QString LastKnownLocation_UNLOCK = "LastKnownLocation UNLOCK\n";
+        extern const QString File;
+        extern const QString Function;
+        extern const QString Line;
     }
 
     enum LastKnownLocationEnum

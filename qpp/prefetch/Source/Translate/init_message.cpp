@@ -14,6 +14,5 @@ void TranslatorLoader::initMessage()
     Const_Input::Message::init();
     Const_Input::Command_Level2::init();
     Const_MainWindow::ButtonText::init();
-    Const_Log::Message::init();
     Const_Setting::init();
 }
