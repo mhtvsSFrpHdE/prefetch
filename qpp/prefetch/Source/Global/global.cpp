@@ -28,23 +28,30 @@ void Global::init(int argc, char *argv[])
     qGuiApplication = new QApplication(argc, argv);
     auto commandLineArguments = QApplication::arguments();
 
-    StdIn::init();
-
-    StdOut::init();
-
-    TranslatorLoader::initFile();
-    TranslatorLoader::initMessage();
-
-    Startup::init(argc, commandLineArguments);
-
-    Setting::init(argc, commandLineArguments);
-
-    ScanCache::init(argc, commandLineArguments);
-
 #if LOG_ENABLED
     Log::init(argc, commandLineArguments);
     LAST_KNOWN_POSITION(0)
 #endif
+
+    StdIn::init();
+    LAST_KNOWN_POSITION(2)
+
+    StdOut::init();
+    LAST_KNOWN_POSITION(2)
+
+    TranslatorLoader::initFile();
+    LAST_KNOWN_POSITION(2)
+    TranslatorLoader::initMessage();
+    LAST_KNOWN_POSITION(2)
+
+    Startup::init(argc, commandLineArguments);
+    LAST_KNOWN_POSITION(2)
+
+    Setting::init(argc, commandLineArguments);
+    LAST_KNOWN_POSITION(2)
+
+    ScanCache::init(argc, commandLineArguments);
+    LAST_KNOWN_POSITION(2)
 
     Dpi::init();
     LAST_KNOWN_POSITION(2)

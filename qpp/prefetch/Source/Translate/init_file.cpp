@@ -82,13 +82,12 @@ void TranslatorLoader::initFile()
     const QString translateFileSuffix = ".qm";
     auto uiLanguages = QLocale::system().uiLanguages();
 
-    bool loadSuccess = false;
     // Qt translate
     // Fail safe, no translation provided in Qt 4.8.7 installation
     loadTranslate("qt", uiLanguages, qtPathSplitter, translateFileSuffix);
 
     // Prefetch translate
-    loadTranslate("prefetch", uiLanguages, qtPathSplitter, translateFileSuffix);
+    bool loadSuccess = loadTranslate("prefetch", uiLanguages, qtPathSplitter, translateFileSuffix);
     if (loadSuccess == false)
     {
         throw;
