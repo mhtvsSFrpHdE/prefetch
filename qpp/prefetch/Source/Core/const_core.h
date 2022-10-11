@@ -23,6 +23,9 @@ namespace Const_Core
         extern QString RunStartupItems;
 
         extern void init();
+
+        // See translate_define.h for more information
+        extern void tdummy();
     }
     // Argc: count
     // Argi: index
@@ -52,4 +55,5 @@ namespace Const_Cache
         const QString Size = "Size";
     }
 }
+
 #endif
