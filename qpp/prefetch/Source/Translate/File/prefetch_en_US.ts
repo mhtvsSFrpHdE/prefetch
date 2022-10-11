@@ -121,6 +121,7 @@
     <message>
         <location filename="../../Interface/MainWindow/mainwindow.ui" line="14"/>
         <source>MainWindow</source>
+        <translatorcomment>Rarely necessary to modify these texts</translatorcomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
