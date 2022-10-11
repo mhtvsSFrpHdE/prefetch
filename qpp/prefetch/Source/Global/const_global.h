@@ -3,20 +3,21 @@
 
 #include <QString>
 
+// This file should independently to others
+// Global must always available
 namespace Const_Global
 {
     namespace CommonString
     {
-        extern QString EmptyString;
-        extern QString Space;
-        extern QString NewLine;
-        extern QString Tab;
-        extern QString Quote;
-        extern QString QtPathSplitter;
-        extern QString SettingDefaultValueType1;
-        extern QString StringListSplitterType1;
-
-        extern void init();
+        const QString EmptyString = "";
+        const QString Space = " ";
+        const QString NewLine = "\n";
+        const QString Tab = "    ";
+        const QString Quote = "\"";
+        const QString QtPathSplitter = "/";
+        const QString DefaultValueType1 = "<default>";
+        const QString StringListSplitterType1 = ",";
     }
 }
+
 #endif

@@ -3,13 +3,13 @@
 
 #include <QString>
 
+// This file should independently to others
+// Setting must always available
 namespace Const_Setting
 {
     const QString DefaultSettingFilePath = "prefetch.ini";
     extern QString PathSplitter;
     extern QString StringListSplitter;
-
-    extern void init();
 
     namespace ConfigGroupName
     {
