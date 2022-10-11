@@ -42,7 +42,8 @@ Everytime a `QTimer 0` appears, means something is not work without this.
 // showEvent(QShowEvent *showEventAddress)
 ...
 // Fix scroll bar position on restore
-ui->stdOut_plainTextEdit->insertPlainText("");
+auto existText = ui->stdOut_plainTextEdit->toPlainText();
+ui->stdOut_plainTextEdit->setPlainText(existText);
 scrollBarToBottom_slot();
 ```
 
@@ -54,6 +55,7 @@ None of the following try will work:
 - `QTimer::singleShot(0, Global::qMainWindow, SLOT(scrollBarToBottom_slot()));`
 - `ui->stdOut_plainTextEdit->update();`
 - `ui->stdOut_plainTextEdit->verticalScrollBar()->update();`
+- `ui->stdOut_plainTextEdit->insertPlainText("");`
 
-In the end, insert empty string seems can update the scroll bar.  
-But `textChanged` signal is not fired, which is a protected signal can not emit manually.
+In the end, inplace get and set seems can update the scroll bar.  
+`textChanged` signal will not fire in this case, which is a protected signal can not emit manually either.
