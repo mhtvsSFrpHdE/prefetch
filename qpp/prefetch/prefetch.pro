@@ -29,6 +29,7 @@ HEADERS += \
     Source/Output/stdout.h \
     Source/Setting/const_setting.h \
     Source/Setting/setting.h \
+    Source/Translate/const_translator_loader.h \
     Source/Translate/translate_define.h \
     Source/Translate/translate_tool.h \
     Source/Translate/translator_loader.h

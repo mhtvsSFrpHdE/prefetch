@@ -20,6 +20,9 @@ namespace Const_Input
         extern QString ScanCacheNotFound;
 
         extern void init();
+
+        // See translate_define.h for more information
+        extern void tdummy();
     }
     namespace Command_Level1
     {
@@ -38,8 +41,6 @@ namespace Const_Input
         extern const QString run_withSplitter;
         const QString run_quiet = "run_quiet";
         extern const QString run_quiet_withSplitter;
-
-        extern void init();
     }
 }
 

@@ -7,6 +7,8 @@
 //     become:
 //         `tr("Scan folder...")`
 //     The class name may change in future, which will pretty handy
+//
+//     Usually, tdummy is a copy of related init function and should not get called
 #define tr(code) code
 
 // Translate at run time

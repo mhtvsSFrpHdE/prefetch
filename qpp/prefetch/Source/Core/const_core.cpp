@@ -2,7 +2,6 @@
 #include "..\Setting\const_setting.h"
 #include "..\Global\const_global.h"
 #include "..\Translate\translate_tool.h"
-#include "..\Translate\translate_define.h"
 
 QString Const_Core::Message::ScanFolder = NULL;
 QString Const_Core::Message::CacheFound = NULL;
@@ -32,11 +31,8 @@ void Const_Core::Message::init()
     CodeExecuteTimeFormatter = trr(tscope, "ss.zzz");
     RescanIntervalReached1 = trr(tscope, "Rescan interval reached.");
     RescanIntervalReached2 = Tab + trr(tscope, "Cache will expire on next run.");
-    RunStartupItems = trr(tscope, "Cache will expire on next run.");
+    RunStartupItems = trr(tscope, "Run startup items...");
 }
-
-QString Const_Cache::PathSplitter = Const_Setting::PathSplitter;
-
 void Const_Core::Message::tdummy()
 {
     using namespace Const_Global::CommonString;
@@ -51,5 +47,7 @@ void Const_Core::Message::tdummy()
     CodeExecuteTimeFormatter = tr("ss.zzz");
     RescanIntervalReached1 = tr("Rescan interval reached.");
     RescanIntervalReached2 = Tab + tr("Cache will expire on next run.");
-    RunStartupItems = tr("Cache will expire on next run.");
+    RunStartupItems = tr("Run startup items...");
 }
+
+QString Const_Cache::PathSplitter = Const_Setting::PathSplitter;

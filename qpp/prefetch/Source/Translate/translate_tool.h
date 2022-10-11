@@ -16,4 +16,6 @@ private:
     TranslateTool() {}
 };
 
+#include "translate_define.h"
+
 #endif
