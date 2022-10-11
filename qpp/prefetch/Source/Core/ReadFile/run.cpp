@@ -11,8 +11,6 @@
 
 void run_runThreadPool_DeleteExcludedFile(QList<QRunnable *> *readThreadQueueAddress)
 {
-    auto dbg_PendingDeleteThread = &ReadThread::pendingDeleteThread;
-
     ReadThread::pendingDeleteThreadMutex.lock();
     for (int i = 0; i < ReadThread::pendingDeleteThread.size(); ++i)
     {

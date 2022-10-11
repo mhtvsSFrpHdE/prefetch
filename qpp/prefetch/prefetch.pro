@@ -62,6 +62,7 @@ SOURCES += \
     Source/Setting/setting.cpp \
     Source/Translate/init_file.cpp \
     Source/Translate/init_message.cpp \
+    Source/Translate/translate_tool.cpp \
     main.cpp
 TRANSLATIONS += \
     Source/Translate/File/prefetch_en-US.ts \

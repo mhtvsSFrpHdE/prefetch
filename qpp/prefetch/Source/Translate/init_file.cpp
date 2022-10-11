@@ -1,4 +1,3 @@
-#include <QTranslator>
 #include <QLibraryInfo>
 #include <QLocale>
 #include <QStringList>
@@ -9,6 +8,8 @@
 #include "const_translator_loader.h"
 #include "..\Setting\setting.h"
 #include "..\Setting\const_setting.h"
+
+QList<QTranslator *> TranslatorLoader::installedTranslator = QList<QTranslator *>();
 
 // If false, translate file is not loaded, related install is ignored
 bool loadTranslate_load_tryInstall(QTranslator *translator, QString translateFileName, QString translateFolder)
@@ -125,10 +126,26 @@ QString loadTranslate_getTranslateFolder(QString qtPathSplitter, QString transla
 
 bool loadTranslate(QString translateName, QString qtPathSplitter, QString translateFileSuffix)
 {
-    QTranslator qTranslator;
+    // Keep translator in memory
+    // https://stackoverflow.com/questions/28509106/translation-not-working-in-qt
+    auto qTranslatorAddress = new QTranslator();
+
     auto translateFolder = loadTranslate_getTranslateFolder(qtPathSplitter, translateName);
 
-    return loadTranslate_load(&qTranslator, translateName, translateFolder, translateFileSuffix);
+    // Get load result
+    bool loadSuccess = loadTranslate_load(qTranslatorAddress, translateName, translateFolder, translateFileSuffix);
+    if (loadSuccess)
+    {
+        // Collect address
+        TranslatorLoader::installedTranslator.append(qTranslatorAddress);
+    }
+    else
+    {
+        // Free memory
+        delete qTranslatorAddress;
+    }
+
+    return loadSuccess;
 }
 
 void TranslatorLoader::initFile()
