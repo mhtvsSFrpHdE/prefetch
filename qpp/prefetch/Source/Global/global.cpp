@@ -39,15 +39,15 @@ void Global::init(int argc, char *argv[])
     StdOut::init();
     LAST_KNOWN_POSITION(2)
 
+    Setting::init(argc, commandLineArguments);
+    LAST_KNOWN_POSITION(2)
+
     TranslatorLoader::initFile();
     LAST_KNOWN_POSITION(2)
     TranslatorLoader::initMessage();
     LAST_KNOWN_POSITION(2)
 
     Startup::init(argc, commandLineArguments);
-    LAST_KNOWN_POSITION(2)
-
-    Setting::init(argc, commandLineArguments);
     LAST_KNOWN_POSITION(2)
 
     ScanCache::init(argc, commandLineArguments);
