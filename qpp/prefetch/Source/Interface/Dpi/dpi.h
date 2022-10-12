@@ -5,7 +5,6 @@
 
 using namespace boost::multiprecision;
 
-// Static class
 class Dpi
 {
 public:
@@ -36,9 +35,6 @@ public:
     static int defaultFontSize_pixel;
 
 private:
-    // Disallow creating an instance of this object
-    Dpi();
-
     static cpp_bin_float_single zoomLevel;
     const static cpp_bin_float_single percentage;
 

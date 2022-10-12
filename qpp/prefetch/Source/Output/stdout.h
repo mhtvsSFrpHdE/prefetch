@@ -1,7 +1,6 @@
 #include <QTextStream>
 #include <QMutex>
 
-// Static class
 class StdOut
 {
 public:
@@ -43,7 +42,4 @@ private:
 
     static void _flush();
     static void (*flush_address)();
-
-    // Disallow creating an instance of this object
-    StdOut() {}
 };

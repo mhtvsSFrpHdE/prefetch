@@ -10,10 +10,6 @@ class TranslateTool
 public:
     // Emulate Qt tr behavior at runtime
     static QString _tr(const char *className, const char *text);
-
-private:
-    // Disallow creating an instance of this object
-    TranslateTool() {}
 };
 
 #include "translate_define.h"

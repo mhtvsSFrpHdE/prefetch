@@ -8,7 +8,6 @@
 #include "..\Interface\TrayIcon\tray_icon.h"
 #include "..\Interface\MainWindow\mainwindow.h"
 
-// Static class
 class Global
 {
 public:
@@ -33,10 +32,6 @@ public:
     static void dummyFunctionT(T){};
     // static void dummyFunctionT(T, T){};
     // and more...
-
-private:
-    // Disallow creating an instance of this object
-    Global() {}
 };
 
 #endif

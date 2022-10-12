@@ -1,6 +1,5 @@
 #include <QTextStream>
 
-// Static class
 class StdIn
 {
 public:
@@ -12,8 +11,4 @@ public:
     // Start read loop
     // This method is NOT blocking
     static void start();
-
-private:
-    // Disallow creating an instance of this object
-    StdIn() {}
 };

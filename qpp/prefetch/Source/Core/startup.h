@@ -1,4 +1,3 @@
-// Static class
 class Startup
 {
 public:
@@ -8,9 +7,6 @@ public:
     static void (*startOnce)();
 
 private:
-    // Disallow creating an instance of this object
-    Startup() {}
-
     static void _startOnce();
     static void startOnce_remove();
 };

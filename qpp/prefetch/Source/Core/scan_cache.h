@@ -2,7 +2,6 @@
 #include <QRunnable>
 #include <QSettings>
 
-// Static class
 class ScanCache
 {
 public:
@@ -24,8 +23,4 @@ public:
 
     static QString cacheFilePath;
     static bool cacheFileExist;
-
-private:
-    // Disallow creating an instance of this object
-    ScanCache() {}
 };

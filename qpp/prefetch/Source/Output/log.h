@@ -65,7 +65,6 @@
 
 #endif
 
-// Static class
 class Log
 {
 public:
@@ -90,7 +89,4 @@ public:
 
 private:
     static QMutex *getLockedMutex();
-
-    // Disallow creating an instance of this object
-    Log() {}
 };

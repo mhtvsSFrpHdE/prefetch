@@ -1,7 +1,6 @@
 #include <QSettings>
 #include <QString>
 
-// Static class
 class Setting
 {
 public:
@@ -121,7 +120,4 @@ private:
     //     Qt convert use named function instead of generic type
     //     It's too hard to write correct and maintainable template code right now
     static QVariant getQVariant(QString groupName, QString keyName, QSettings *qSettings);
-
-    // Disallow creating an instance of this object
-    Setting() {}
 };
