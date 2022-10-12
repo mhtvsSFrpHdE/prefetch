@@ -3,6 +3,11 @@
 
 #include <QString>
 
+// Redefining tr macro, any other include go first
+// For example:
+//     #include "..\Global\global.h"
+//     #include "translate_tool.h"    // last one to include
+//
 // Global static access to Qt translate function `tr`
 // Namespace variable can't use the macro for class variable
 class TranslateTool

@@ -1,3 +1,9 @@
+// Redefining tr macro, any other include go first
+// For example:
+//     #include "..\Global\global.h"
+//     #include "translate_tool.h"    // <- last one to include
+//
+
 // Expand tr macro to non class scope (shortcut to static function)
 //
 // Use tdummy (translate dummy) function:
