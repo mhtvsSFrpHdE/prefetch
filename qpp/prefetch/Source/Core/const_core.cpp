@@ -1,53 +1,37 @@
-#include "const_core.h"
+#include "const_core_tdummy.cpp"
+
 #include "..\Setting\const_setting.h"
 #include "..\Global\const_global.h"
-#include "..\Translate\translate_tool.h"
 
-QString Const_Core::Message::ScanFolder = NULL;
-QString Const_Core::Message::CacheFound = NULL;
-QString Const_Core::Message::Prefetching = NULL;
-QString Const_Core::Message::Idle_Time = NULL;
-QString Const_Core::Message::Idle_Sec = NULL;
-QString Const_Core::Message::ScanFolder_Time = NULL;
-QString Const_Core::Message::ScanFolder_Sec = NULL;
-QString Const_Core::Message::CodeExecuteTimeFormatter = NULL;
-QString Const_Core::Message::RescanIntervalReached1 = NULL;
-QString Const_Core::Message::RescanIntervalReached2 = NULL;
+using namespace Const_Global::CommonString;
 
-QString Const_Core::Message::RunStartupItems = NULL;
+QString Const_Core::Message::ScanFolder = DEFINE_ScanFolder;
+QString Const_Core::Message::CacheFound = Tab + DEFINE_CacheFound;
+QString Const_Core::Message::Prefetching = DEFINE_Prefetching;
+QString Const_Core::Message::Idle_Time = Tab + DEFINE_Idle_Time;
+QString Const_Core::Message::Idle_Sec = DEFINE_Idle_Sec;
+QString Const_Core::Message::ScanFolder_Time = Tab + DEFINE_ScanFolder_Time;
+QString Const_Core::Message::ScanFolder_Sec = Idle_Sec;
+QString Const_Core::Message::CodeExecuteTimeFormatter = DEFINE_CodeExecuteTimeFormatter;
+QString Const_Core::Message::RescanIntervalReached1 = DEFINE_RescanIntervalReached1;
+QString Const_Core::Message::RescanIntervalReached2 = Tab + DEFINE_RescanIntervalReached2;
 
-#define tscope "Const_Core::Message"
+QString Const_Core::Message::RunStartupItems = DEFINE_RunStartupItems;
+
 void Const_Core::Message::init()
 {
-    using namespace Const_Global::CommonString;
 
-    ScanFolder = trr(tscope, "Scan folder...");
-    CacheFound = Tab + trr(tscope, "Cache found, restore file list");
-    Prefetching = trr(tscope, "Prefetching...");
-    Idle_Time = Tab + trr(tscope, "Idle, Time: ");
-    Idle_Sec = trr(tscope, " Sec");
-    ScanFolder_Time = Tab + trr(tscope, "Scan complete, Time: ");
-    ScanFolder_Sec = Const_Core::Message::Idle_Sec;
-    CodeExecuteTimeFormatter = trr(tscope, "ss.zzz");
-    RescanIntervalReached1 = trr(tscope, "Rescan interval reached.");
-    RescanIntervalReached2 = Tab + trr(tscope, "Cache will expire on next run.");
-    RunStartupItems = trr(tscope, "Run startup items...");
-}
-void Const_Core::Message::tdummy()
-{
-    using namespace Const_Global::CommonString;
+    ScanFolder = trr(tscope, DEFINE_ScanFolder);
+    CacheFound = Tab + trr(tscope, DEFINE_CacheFound);
+    Prefetching = trr(tscope, DEFINE_Prefetching);
+    Idle_Time = Tab + trr(tscope, DEFINE_Idle_Time);
+    Idle_Sec = trr(tscope, DEFINE_Idle_Sec);
+    ScanFolder_Time = Tab + trr(tscope, DEFINE_ScanFolder_Time);
+    CodeExecuteTimeFormatter = trr(tscope, DEFINE_CodeExecuteTimeFormatter);
+    RescanIntervalReached1 = trr(tscope, DEFINE_RescanIntervalReached1);
+    RescanIntervalReached2 = Tab + trr(tscope, DEFINE_RescanIntervalReached2);
 
-    ScanFolder = tr("Scan folder...");
-    CacheFound = Tab + tr("Cache found, restore file list");
-    Prefetching = tr("Prefetching...");
-    Idle_Time = Tab + tr("Idle, Time: ");
-    Idle_Sec = tr(" Sec");
-    ScanFolder_Time = Tab + tr("Scan complete, Time: ");
-    ScanFolder_Sec = Const_Core::Message::Idle_Sec;
-    CodeExecuteTimeFormatter = tr("ss.zzz");
-    RescanIntervalReached1 = tr("Rescan interval reached.");
-    RescanIntervalReached2 = Tab + tr("Cache will expire on next run.");
-    RunStartupItems = tr("Run startup items...");
+    RunStartupItems = trr(tscope, DEFINE_RunStartupItems);
 }
 
 QString Const_Cache::PathSplitter = Const_Setting::PathSplitter;

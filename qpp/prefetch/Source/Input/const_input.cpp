@@ -1,56 +1,36 @@
-#include "const_input.h"
+#include "const_input_tdummy.cpp"
+
 #include "..\Global\const_global.h"
-#include "..\Translate\translate_tool.h"
 
 using namespace Const_Input;
+using namespace Const_Global::CommonString;
 
-QString Message::InvalidCommand = NULL;
-QString Message::TryingToPause = NULL;
-QString Message::PauseRequested = NULL;
-QString Message::TryingToResume = NULL;
-QString Message::TryingToExit1 = NULL;
-QString Message::TryingToExit2 = NULL;
-QString Message::Test = NULL;
-QString Message::TryingToRun1 = NULL;
-QString Message::TryingToRun2 = NULL;
-QString Message::TryingToExpireScanCache = NULL;
-QString Message::ScanCacheNotFound = NULL;
-QString Message::TryingToLoadTranslate = NULL;
+QString Message::InvalidCommand = DEFINE_InvalidCommand;
+QString Message::TryingToPause = DEFINE_TryingToPause;
+QString Message::PauseRequested = Tab + DEFINE_PauseRequested;
+QString Message::TryingToResume = DEFINE_TryingToResume;
+QString Message::TryingToExit1 = DEFINE_TryingToExit1;
+QString Message::TryingToExit2 = Tab + DEFINE_TryingToExit2;
+QString Message::Test = DEFINE_Test;
+QString Message::TryingToRun1 = DEFINE_TryingToRun1;
+QString Message::TryingToRun2 = Tab;
+QString Message::TryingToExpireScanCache = DEFINE_TryingToExpireScanCache;
+QString Message::ScanCacheNotFound = Tab + DEFINE_ScanCacheNotFound;
+QString Message::TryingToLoadTranslate = DEFINE_TryingToLoadTranslate;
 
-#define tscope "Const_Input::Message"
 void Message::init()
 {
-    using namespace Const_Global::CommonString;
-
-    InvalidCommand = trr(tscope, "Invalid command");
-    TryingToPause = trr(tscope, "Trying to pause prefetch");
-    PauseRequested = Tab + trr(tscope, "Pause has requested, good luck");
-    TryingToResume = trr(tscope, "Trying to resume prefetch");
-    TryingToExit1 = trr(tscope, "Trying to exit prefetch");
-    TryingToExit2 = Tab + trr(tscope, "This can take a while in some case");
-    Test = trr(tscope, "This function contain test code");
-    TryingToRun1 = trr(tscope, "Trying to run program");
-    TryingToRun2 = Tab;
-    TryingToExpireScanCache = trr(tscope, "Trying to expire scan cache");
-    ScanCacheNotFound = Tab + trr(tscope, "Scan cache not found, ignore");
-    TryingToLoadTranslate = trr(tscope, "Trying to load translate ");
-}
-void Message::tdummy()
-{
-    using namespace Const_Global::CommonString;
-
-    InvalidCommand = tr("Invalid command");
-    TryingToPause = tr("Trying to pause prefetch");
-    PauseRequested = Tab + tr("Pause has requested, good luck");
-    TryingToResume = tr("Trying to resume prefetch");
-    TryingToExit1 = tr("Trying to exit prefetch");
-    TryingToExit2 = Tab + tr("This can take a while in some case");
-    Test = tr("This function contain test code");
-    TryingToRun1 = tr("Trying to run program");
-    TryingToRun2 = Tab;
-    TryingToExpireScanCache = tr("Trying to expire scan cache");
-    ScanCacheNotFound = Tab + tr("Scan cache not found, ignore");
-    TryingToLoadTranslate = tr("Trying to load translate ");
+    InvalidCommand = trr(tscope, DEFINE_InvalidCommand);
+    TryingToPause = trr(tscope, DEFINE_TryingToPause);
+    PauseRequested = Tab + trr(tscope, DEFINE_PauseRequested);
+    TryingToResume = trr(tscope, DEFINE_TryingToResume);
+    TryingToExit1 = trr(tscope, DEFINE_TryingToExit1);
+    TryingToExit2 = Tab + trr(tscope, DEFINE_TryingToExit2);
+    Test = trr(tscope, DEFINE_Test);
+    TryingToRun1 = trr(tscope, DEFINE_TryingToRun1);
+    TryingToExpireScanCache = trr(tscope, DEFINE_TryingToExpireScanCache);
+    ScanCacheNotFound = Tab + trr(tscope, DEFINE_ScanCacheNotFound);
+    TryingToLoadTranslate = trr(tscope, DEFINE_TryingToLoadTranslate);
 }
 
 QString Command_Level2::splitter = Const_Global::CommonString::Space;

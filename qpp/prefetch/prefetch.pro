@@ -43,6 +43,7 @@ SOURCES += \
     Source/Core/Thread/sleep_thread.cpp \
     Source/Core/ReadFile/read_file.cpp \
     Source/Core/const_core.cpp \
+    Source/Core/const_core_tdummy.cpp \
     Source/Core/scan_cache.cpp \
     Source/Core/start_process.cpp \
     Source/Core/startup.cpp \
@@ -58,9 +59,11 @@ SOURCES += \
     Source/Input/Thread/InputLoop/Level2/run_itill1.cpp \
     Source/Input/Thread/input_loop_thread.cpp \
     Source/Input/const_input.cpp \
+    Source/Input/const_input_tdummy.cpp \
     Source/Input/stdin.cpp \
     Source/Interface/Dpi/dpi.cpp \
     Source/Interface/MainWindow/const_mainwindow.cpp \
+    Source/Interface/MainWindow/const_mainwindow_tdummy.cpp \
     Source/Interface/MainWindow/mainwindow.cpp \
     Source/Interface/TrayIcon/Action/custom_action.cpp \
     Source/Interface/TrayIcon/tray_icon.cpp \
