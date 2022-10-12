@@ -42,10 +42,12 @@ void Global::init(int argc, char *argv[])
     Setting::init(argc, commandLineArguments);
     LAST_KNOWN_POSITION(2)
 
+#if TRANSLATE_ENABLED
     TranslatorLoader::initFile();
     LAST_KNOWN_POSITION(2)
     TranslatorLoader::initMessage();
     LAST_KNOWN_POSITION(2)
+#endif
 
     Startup::init(argc, commandLineArguments);
     LAST_KNOWN_POSITION(2)

@@ -31,6 +31,11 @@
 #endif
 
 // Misc
+
 #ifndef SKIP_STARTUP_ITEM
 #define SKIP_STARTUP_ITEM false
+#endif
+
+#ifndef TRANSLATE_ENABLED
+#define TRANSLATE_ENABLED true
 #endif
