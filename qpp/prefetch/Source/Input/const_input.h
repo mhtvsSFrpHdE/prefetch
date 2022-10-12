@@ -19,6 +19,8 @@ namespace Const_Input
         extern QString TryingToExpireScanCache;
         extern QString ScanCacheNotFound;
         extern QString TryingToLoadTranslate;
+        extern QString FailedToLoadTranslate;
+        extern QString TranslateFileLoaded;
         const QString TranslateNotAvailable = "Translate is not enabled in this build.";
 
         extern void init();

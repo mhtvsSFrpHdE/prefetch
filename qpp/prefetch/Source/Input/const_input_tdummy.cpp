@@ -25,6 +25,10 @@ void Const_Input::Message::tdummy()
     TryingToExpireScanCache = tr("Trying to expire scan cache");
 #define DEFINE_ScanCacheNotFound "Scan cache not found, ignore"
     ScanCacheNotFound = tr("Scan cache not found, ignore");
-#define DEFINE_TryingToLoadTranslate "Trying to load translate "
-    TryingToLoadTranslate = tr("Trying to load translate ");
+#define DEFINE_TryingToLoadTranslate "Trying to load translate: "
+    TryingToLoadTranslate = tr("Trying to load translate: ");
+#define DEFINE_FailedToLoadTranslate "Failed to load translate: "
+    FailedToLoadTranslate = tr("Failed to load translate: ");
+#define DEFINE_TranslateFileLoaded "Translate file loaded: "
+    TranslateFileLoaded = tr("Translate file loaded: ");
 }

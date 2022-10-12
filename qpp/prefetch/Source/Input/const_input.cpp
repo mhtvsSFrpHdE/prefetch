@@ -17,6 +17,8 @@ QString Message::TryingToRun2 = Tab;
 QString Message::TryingToExpireScanCache = DEFINE_TryingToExpireScanCache;
 QString Message::ScanCacheNotFound = Tab + DEFINE_ScanCacheNotFound;
 QString Message::TryingToLoadTranslate = DEFINE_TryingToLoadTranslate;
+QString Message::FailedToLoadTranslate = DEFINE_FailedToLoadTranslate;
+QString Message::TranslateFileLoaded = DEFINE_TranslateFileLoaded;
 
 void Message::init()
 {
@@ -31,6 +33,8 @@ void Message::init()
     TryingToExpireScanCache = trr(tscope, DEFINE_TryingToExpireScanCache);
     ScanCacheNotFound = Tab + trr(tscope, DEFINE_ScanCacheNotFound);
     TryingToLoadTranslate = trr(tscope, DEFINE_TryingToLoadTranslate);
+    FailedToLoadTranslate = trr(tscope, DEFINE_FailedToLoadTranslate);
+    TranslateFileLoaded = trr(tscope, DEFINE_TranslateFileLoaded);
 }
 
 QString Command_Level2::splitter = Const_Global::CommonString::Space;
