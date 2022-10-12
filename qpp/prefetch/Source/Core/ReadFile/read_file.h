@@ -1,3 +1,6 @@
+#ifndef Read_File_h
+#define Read_File_h
+
 #include <QThreadPool>
 #include <QStringList>
 #include <QDir>
@@ -65,3 +68,5 @@ private:
 
     QStringList prefetchFolders;
 };
+
+#endif

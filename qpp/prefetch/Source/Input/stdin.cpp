@@ -11,7 +11,7 @@ void StdIn::init()
     consoleInput = new QTextStream(stdin);
 #endif
 
-    Global::inputLoopThreadAddress = new LoopThread();
+    Global::inputLoopThreadAddress = new InputLoopThread();
 }
 
 void StdIn::start()

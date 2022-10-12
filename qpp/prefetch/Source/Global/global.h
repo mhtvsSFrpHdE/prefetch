@@ -3,7 +3,7 @@
 
 #include <QApplication>
 
-#include "..\Input\Thread\loop_thread.h"
+#include "..\Input\Thread\input_loop_thread.h"
 #include "..\Core\ReadFile\read_file.h"
 #include "..\Interface\TrayIcon\tray_icon.h"
 #include "..\Interface\MainWindow\mainwindow.h"
@@ -16,7 +16,7 @@ public:
 
     static MainWindow *qMainWindow;
 
-    static LoopThread *inputLoopThreadAddress;
+    static InputLoopThread *inputLoopThreadAddress;
 
     static ReadFile *readFileLoopThreadAddress;
 

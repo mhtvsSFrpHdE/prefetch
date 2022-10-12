@@ -17,7 +17,7 @@ HEADERS += \
     Source/Core/startup.h \
     Source/Define/define.h \
     Source/Global/global.h \
-    Source/Input/Thread/loop_thread.h \
+    Source/Input/Thread/input_loop_thread.h \
     Source/Input/stdin.h \
     Source/Interface/Dpi/dpi.h \
     Source/Interface/MainWindow/mainwindow.h \
@@ -48,7 +48,15 @@ SOURCES += \
     Source/Core/startup.cpp \
     Source/Global/const_global.cpp \
     Source/Global/global.cpp \
-    Source/Input/Thread/loop_thread.cpp \
+    Source/Input/Thread/InputLoop/Level1/exit_itill1.cpp \
+    Source/Input/Thread/InputLoop/Level1/expiresc_itill1.cpp \
+    Source/Input/Thread/InputLoop/Level1/pause_itill1.cpp \
+    Source/Input/Thread/InputLoop/Level1/resume_itill1.cpp \
+    Source/Input/Thread/InputLoop/Level1/test_itill1.cpp \
+    Source/Input/Thread/InputLoop/Level1/traydc_itill1.cpp \
+    Source/Input/Thread/InputLoop/Level2/lang_itill1.cpp \
+    Source/Input/Thread/InputLoop/Level2/run_itill1.cpp \
+    Source/Input/Thread/input_loop_thread.cpp \
     Source/Input/const_input.cpp \
     Source/Input/stdin.cpp \
     Source/Interface/Dpi/dpi.cpp \

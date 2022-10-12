@@ -18,6 +18,7 @@ namespace Const_Input
         extern QString TryingToRun2;
         extern QString TryingToExpireScanCache;
         extern QString ScanCacheNotFound;
+        extern QString TryingToLoadTranslate;
 
         extern void init();
 
@@ -41,6 +42,7 @@ namespace Const_Input
         extern const QString run_withSplitter;
         const QString run_quiet = "run_quiet";
         extern const QString run_quiet_withSplitter;
+        const QString lang = "lang";
     }
 }
 

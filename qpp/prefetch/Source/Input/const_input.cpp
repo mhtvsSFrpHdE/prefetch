@@ -15,6 +15,7 @@ QString Message::TryingToRun1 = NULL;
 QString Message::TryingToRun2 = NULL;
 QString Message::TryingToExpireScanCache = NULL;
 QString Message::ScanCacheNotFound = NULL;
+QString Message::TryingToLoadTranslate = NULL;
 
 #define tscope "Const_Input::Message"
 void Message::init()
@@ -32,6 +33,7 @@ void Message::init()
     TryingToRun2 = Tab;
     TryingToExpireScanCache = trr(tscope, "Trying to expire scan cache");
     ScanCacheNotFound = Tab + trr(tscope, "Scan cache not found, ignore");
+    TryingToLoadTranslate = trr(tscope, "Trying to load translate ");
 }
 void Message::tdummy()
 {
@@ -48,6 +50,7 @@ void Message::tdummy()
     TryingToRun2 = Tab;
     TryingToExpireScanCache = tr("Trying to expire scan cache");
     ScanCacheNotFound = Tab + tr("Scan cache not found, ignore");
+    TryingToLoadTranslate = tr("Trying to load translate ");
 }
 
 QString Command_Level2::splitter = Const_Global::CommonString::Space;

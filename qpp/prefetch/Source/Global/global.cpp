@@ -14,7 +14,7 @@
 
 QApplication *Global::qGuiApplication = NULL;
 MainWindow *Global::qMainWindow = NULL;
-LoopThread *Global::inputLoopThreadAddress = NULL;
+InputLoopThread *Global::inputLoopThreadAddress = NULL;
 ReadFile *Global::readFileLoopThreadAddress = NULL;
 TrayIcon *Global::trayIconInstanceAddress = new TrayIcon();
 
