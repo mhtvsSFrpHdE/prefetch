@@ -30,8 +30,8 @@ void Global::init(int argc, char *argv[])
 
 #if LOG_ENABLED
     Log::init(argc, commandLineArguments);
-    LAST_KNOWN_POSITION(0)
 #endif
+    LAST_KNOWN_POSITION(0)
 
     StdIn::init();
     LAST_KNOWN_POSITION(2)

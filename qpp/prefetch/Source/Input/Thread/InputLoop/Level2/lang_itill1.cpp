@@ -7,18 +7,23 @@
 #include "..\..\..\..\Translate\translator_loader.h"
 #include "..\..\..\..\Global\global.h"
 #include "..\..\..\..\Global\const_global.h"
+#include "..\..\..\..\Translate\translate_tool.h"
+#include "..\..\..\..\Output\log.h"
 
 #define Parent InputLoopThread::ConsoleCommandFunction_Level2
 
 void Parent::lang(QString command)
 {
+    LAST_KNOWN_POSITION(0)
+
     using namespace Const_Input::Message;
     using namespace Const_Global::CommonString;
 
 #if TRANSLATE_ENABLED
     StdOut::printLine(TryingToLoadTranslate + command);
 
-    auto dbg_installedTranslator = &TranslatorLoader::installedTranslator;
+    LAST_KNOWN_POSITION(3)
+    TranslateTool::lock();
 
     // Backup exist translator address
     QList<QTranslator *> installedTranslatorBackup;
@@ -50,9 +55,6 @@ void Parent::lang(QString command)
         // Update text
         TranslatorLoader::initMessage();
 
-        // Translate updated event
-        // TODO
-
         // Report back to GUI
         StdOut::printLine(Tab + TranslateFileLoaded + command);
     }
@@ -64,7 +66,12 @@ void Parent::lang(QString command)
         // Report back to GUI
         StdOut::printLine(Tab + FailedToLoadTranslate + command);
     }
+
+    TranslateTool::unlock();
+    LAST_KNOWN_POSITION(4)
 #else
     StdOut::printLine(TranslateNotAvailable);
 #endif
+
+    LAST_KNOWN_POSITION(1)
 }

@@ -2,6 +2,7 @@
 #define Translate_Tool_h
 
 #include <QString>
+#include <QMutex>
 
 // Redefining tr macro, any other include go first
 // For example:
@@ -13,6 +14,14 @@
 class TranslateTool
 {
 public:
+    static QMutex *translateMutex;
+
+    // Wrap access to translateMutex
+    static void lock();
+
+    // Wrap access to translateMutex
+    static void unlock();
+
     // Emulate Qt tr behavior at runtime
     static QString _tr(const char *className, const char *text);
 };

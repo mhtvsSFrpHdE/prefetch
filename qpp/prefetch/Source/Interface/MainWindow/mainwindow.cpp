@@ -13,6 +13,7 @@
 #include "..\..\Output\stdout.h"
 #include "..\..\Output\log.h"
 #include "..\..\Core\const_core.h"
+#include "..\..\Translate\translate_tool.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
                                           ui(new Ui::MainWindow)
@@ -258,5 +259,18 @@ void MainWindow::changeEvent(QEvent *changeEventAddress)
         {
             minimized_slot();
         }
+    }
+
+    if (changeEventAddress->type() == QEvent::LanguageChange)
+    {
+        using namespace Const_MainWindow::ButtonText;
+
+        LAST_KNOWN_POSITION(3)
+        TranslateTool::lock();
+
+        ui->sendCommand_pushButton->setText(SendCommand_PushButton);
+
+        TranslateTool::unlock();
+        LAST_KNOWN_POSITION(4)
     }
 }
