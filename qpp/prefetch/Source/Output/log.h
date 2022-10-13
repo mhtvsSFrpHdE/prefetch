@@ -26,38 +26,37 @@
 // Print last known position report to log
 #if LOG_ENABLED && LAST_KNOWN_POSITION_ENABLED
 
-#define LAST_KNOWN_POSITION(location)                   \
-    {                                                   \
-        using namespace Const_Log::Message;             \
-        typedef Const_Log::LastKnownLocationEnum le;    \
-                                                        \
-        /* Gather information */                        \
-        QString file = __FILE__;                        \
-        QString function = __FUNCTION__;                \
-        QString line = QString::number(__LINE__);       \
-                                                        \
-        QString lastKnownLine;                          \
-        switch (location)                               \
-        {                                               \
-        case le::BEGIN:                                 \
-            lastKnownLine = LastKnownLocation_BEGIN;    \
-            break;                                      \
-        case le::END:                                   \
-            lastKnownLine = LastKnownLocation_END;      \
-            break;                                      \
-        case le::INLINE:                                \
-            lastKnownLine = LastKnownLocation_INLINE;   \
-            break;                                      \
-        }                                               \
-        lastKnownLine += File + file + NewLine;         \
-        lastKnownLine += Function + function + NewLine; \
-        lastKnownLine += Line + line;                   \
-                                                        \
-        /* Print */                                     \
-        Log::lock();                                    \
-        *Log::logTextStream << lastKnownLine << endl;   \
-        Log::logTextStream->flush();                    \
-        Log::unlock();                                  \
+#define LAST_KNOWN_POSITION(location)                                                           \
+    {                                                                                           \
+        typedef Const_Log::LastKnownLocationEnum le;                                            \
+                                                                                                \
+        /* Gather information */                                                                \
+        QString file = __FILE__;                                                                \
+        QString function = __FUNCTION__;                                                        \
+        QString line = QString::number(__LINE__);                                               \
+                                                                                                \
+        QString lastKnownLine;                                                                  \
+        switch (location)                                                                       \
+        {                                                                                       \
+        case le::BEGIN:                                                                         \
+            lastKnownLine = Const_Log::Message::LastKnownLocation_BEGIN;                        \
+            break;                                                                              \
+        case le::END:                                                                           \
+            lastKnownLine = Const_Log::Message::LastKnownLocation_END;                          \
+            break;                                                                              \
+        case le::INLINE:                                                                        \
+            lastKnownLine = Const_Log::Message::LastKnownLocation_INLINE;                       \
+            break;                                                                              \
+        }                                                                                       \
+        lastKnownLine += Const_Log::Message::File + file + Const_Log::Message::NewLine;         \
+        lastKnownLine += Const_Log::Message::Function + function + Const_Log::Message::NewLine; \
+        lastKnownLine += Const_Log::Message::Line + line;                                       \
+                                                                                                \
+        /* Print */                                                                             \
+        Log::lock();                                                                            \
+        *Log::logTextStream << lastKnownLine << endl;                                           \
+        Log::logTextStream->flush();                                                            \
+        Log::unlock();                                                                          \
     }
 #else
 
