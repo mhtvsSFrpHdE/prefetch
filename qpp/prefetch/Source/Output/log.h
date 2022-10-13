@@ -86,7 +86,4 @@ public:
 
     // Close log file
     static void shutdown();
-
-private:
-    static QMutex *getLockedMutex();
 };

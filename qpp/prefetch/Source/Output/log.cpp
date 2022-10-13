@@ -4,18 +4,12 @@
 #include "log.h"
 #include "..\Setting\setting.h"
 #include "..\Core\const_core.h"
+#include "..\Core\Example\mutex_example.h"
 
 QString Log::logFilePath;
 QFile *Log::logFile;
 QTextStream *Log::logTextStream;
-QMutex *Log::logMutex = getLockedMutex();
-
-QMutex *Log::getLockedMutex()
-{
-    auto mutexAddress = new QMutex(QMutex::NonRecursive);
-    mutexAddress->lock();
-    return mutexAddress;
-}
+QMutex *Log::logMutex = MutexExample::getLockedMutex();
 
 Setting::GetGenericResult<QString> init_getLogFilePath(int argc, QStringList argv)
 {
