@@ -26,6 +26,7 @@
 
 // Try to report last known position to log
 //     This function designed to find crash in release (usually no gdb attached)
+//     Only work if LOG_ENABLED is true
 #ifndef LAST_KNOWN_POSITION_ENABLED
 #define LAST_KNOWN_POSITION_ENABLED true
 #endif

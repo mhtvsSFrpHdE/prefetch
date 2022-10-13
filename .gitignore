@@ -2,6 +2,8 @@
 qpp/build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Debug
 qpp/build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Release
 qpp/build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Release_Verbose
+qpp/build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Release_Performance
+qpp/Pack
 
 # Qt translate file
 *.qm
@@ -23,15 +25,13 @@ qpp/prefetch/cpptools
 # Tool environment
 qpp/prefetch/Tool/env.bat
 qpp/prefetch/Tool/create_symbolic_link_env.bat
+qpp/prefetch/Tool/build_env.py
 
 # Log
 *.log
 
 # Python venv
 qpp/prefetch/.venv
-
-# DLL
-qpp/prefetch/requirements
 
 # Python compile cache
 *.pyc
