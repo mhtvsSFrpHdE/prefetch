@@ -31,7 +31,7 @@
     <message>
         <location filename="../../Core/const_core_tdummy.cpp" line="20"/>
         <source>Scan complete, Time: </source>
-        <translation>清点完成，时间：</translation>
+        <translation>清点完成，消耗时间：</translation>
     </message>
     <message>
         <location filename="../../Core/const_core_tdummy.cpp" line="22"/>
