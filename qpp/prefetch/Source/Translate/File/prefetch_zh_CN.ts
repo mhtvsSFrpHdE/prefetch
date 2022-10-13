@@ -89,7 +89,6 @@
     <message>
         <location filename="../../Input/const_input_tdummy.cpp" line="21"/>
         <source>This function contain test code</source>
-        <translatorcomment>Rarely necessary to modify these texts</translatorcomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -136,7 +135,6 @@
     <message>
         <location filename="../../Interface/MainWindow/mainwindow.ui" line="14"/>
         <source>MainWindow</source>
-        <translatorcomment>Rarely necessary to modify these texts</translatorcomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
