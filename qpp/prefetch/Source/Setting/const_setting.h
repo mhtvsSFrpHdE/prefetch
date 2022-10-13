@@ -56,6 +56,7 @@ namespace Const_Setting
         const QString ZoomLevel = "ZoomLevel";
         const QString TrayMenuMinimalWidth = "TrayMenuMinimalWidth";
         const QString Language = "Language";
+        const QString TranslateFolder = "TranslateFolder";
     }
 
     namespace Instance_Font_Value
@@ -66,6 +67,12 @@ namespace Const_Setting
     namespace Instance_Language_Value
     {
         extern QString Default;
+    }
+
+    namespace Instance_TranslateFolder_Value
+    {
+        extern QString Default;
+        const QString DefaultIs = "translate";
     }
 
     namespace MainWindow_ConfigKeyName

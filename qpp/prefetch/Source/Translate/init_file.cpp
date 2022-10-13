@@ -135,20 +135,27 @@ bool loadTranslate_load(
     }
 }
 
-// prefetch/translations/qt
-// prefetch/translations/prefetch
-QString loadTranslate_getTranslateFolder(QString qtPathSplitter, QString translateName)
+// prefetch/translateFolder/qt
+// prefetch/translateFolder/prefetch
+QString loadTranslate_getTranslateFolder(QString translateFolder, QString qtPathSplitter, QString translateName)
 {
-    return Global::qGuiApplication->applicationDirPath() + qtPathSplitter + "translations" + qtPathSplitter + translateName;
+    using namespace Const_Setting::Instance_TranslateFolder_Value;
+
+    if (translateFolder == Default)
+    {
+        translateFolder = DefaultIs;
+    }
+
+    return Global::qGuiApplication->applicationDirPath() + qtPathSplitter + translateFolder + qtPathSplitter + translateName;
 }
 
-bool loadTranslate(QString translateName, QString qtPathSplitter, QString translateFileSuffix, QString languageName)
+bool loadTranslate(QString translateName, QString translateFolderFromSetting, QString qtPathSplitter, QString translateFileSuffix, QString languageName)
 {
     // Keep translator in memory
     // https://stackoverflow.com/questions/28509106/translation-not-working-in-qt
     auto qTranslatorAddress = new QTranslator();
 
-    auto translateFolder = loadTranslate_getTranslateFolder(qtPathSplitter, translateName);
+    auto translateFolder = loadTranslate_getTranslateFolder(translateFolderFromSetting, qtPathSplitter, translateName);
 
     // Get load result
     bool loadSuccess = loadTranslate_load(qTranslatorAddress, translateName, translateFolder, translateFileSuffix, languageName);
@@ -169,16 +176,21 @@ bool loadTranslate(QString translateName, QString qtPathSplitter, QString transl
 void TranslatorLoader::initFile(QString languageName)
 {
     using namespace Const_TranslatorLoader;
+    using namespace Const_Setting::ConfigGroupName;
+    using namespace Const_Setting::Instance_ConfigKeyName;
 
     const QString qtPathSplitter = "/";
     const QString translateFileSuffix = ".qm";
 
+    // Get translate folder from setting
+    QString translateFolderFromSetting = Setting::getString(Instance, TranslateFolder, Setting::setting);
+
     // Qt translate
     // Fail safe, no translation provided in Qt 4.8.7 installation
-    loadTranslate("qt", qtPathSplitter, translateFileSuffix, languageName);
+    loadTranslate("qt", translateFolderFromSetting, qtPathSplitter, translateFileSuffix, languageName);
 
     // Prefetch translate
-    bool loadSuccess = loadTranslate("prefetch", qtPathSplitter, translateFileSuffix, languageName);
+    bool loadSuccess = loadTranslate("prefetch", translateFolderFromSetting, qtPathSplitter, translateFileSuffix, languageName);
 
     // Final check, program should end if global init doesn't find any translate file
     if (loadSuccess == false)
