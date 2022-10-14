@@ -1,6 +1,6 @@
 cd /d %~dp0
 
-call env.bat
+call qt_env.bat
 
 cd %~dp0..
 
