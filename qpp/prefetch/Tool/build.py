@@ -3,9 +3,7 @@
 # No support for copy if newer to Release compile output folder
 # Use run Debug without debug instead
 
-import os
 import sys  # nopep8
-from pathlib import Path  # nopep8
 
 # Log
 import logging
@@ -16,28 +14,17 @@ import build_setting  # nopep8
 
 # Build core
 import build_core as build_core  # nopep8
-build_core.init(logging)
+build_core.init(logging, verboseFromRemote=False)
 verbose_print = build_core.verbose_print  # nopep8
 copy_if_newer = build_core.copy_if_newer  # nopep8
 
 # Environment
-cwd = Path(os.getcwd()).parent
 buildType = build_setting.BuildFolderType.Release
-buildType = build_setting.BuildFolderType.Debug
-if (len(sys.argv) > 1):
-    buildTypeFromArgv = sys.argv[1]
-
-    if buildTypeFromArgv == "Debug":
-        buildType = build_core.BuildFolderType.Debug
-    if buildTypeFromArgv == "Release":
-        buildType = build_core.BuildFolderType.Release
-    if buildTypeFromArgv == "Release_Verbose":
-        buildType = build_core.BuildFolderType.Release_Verbose
-    if buildTypeFromArgv == "Release_Performance":
-        buildType = build_core.BuildFolderType.Release_Performance
-    if buildTypeFromArgv == "Pack":
-        buildType = build_core.BuildFolderType.Pack
-
+try:
+    buildType = build_setting.BuildFolderTypeMap[sys.argv[1]]
+except:
+    breakpoint()
+    pass
 
 # Release
 if buildType == build_setting.BuildFolderType.Release:
@@ -86,12 +73,15 @@ if buildType == build_setting.BuildFolderType.Release:
     # compiler_dll
     compiler_dll = build_setting.compiler_dll[buildType]
     target_compiler_dll = build_setting.target_compiler_dll[buildType]
+    verbose_print('\ncompiler_dll')
     for key in compiler_dll:
         verbose_print(key + ': ' + str(compiler_dll[key]))
         copy_if_newer(compiler_dll[key], target_compiler_dll[key])
 
-
+# Debug
 if buildType == build_setting.BuildFolderType.Debug:
+    verbose_print('\nStart build Debug')
+
     # config
     config = build_setting.config[buildType]
     target_config = build_setting.target_config[buildType]
@@ -127,6 +117,18 @@ if buildType == build_setting.BuildFolderType.Debug:
     # compiler_dll
     compiler_dll = build_setting.compiler_dll[buildType]
     target_compiler_dll = build_setting.target_compiler_dll[buildType]
+    verbose_print('\ncompiler_dll')
     for key in compiler_dll:
         verbose_print(key + ': ' + str(compiler_dll[key]))
         copy_if_newer(compiler_dll[key], target_compiler_dll[key])
+
+# Preapre
+if buildType == build_setting.BuildFolderType.Prepare:
+    verbose_print('\nStart build Prepare')
+
+    # build_folder
+    build_folder = build_setting.build_folder
+    verbose_print('\nbuild_folder')
+    for key in build_folder:
+        verbose_print(str(key) + ': ' + str(build_folder[key]))
+        build_folder[key].mkdir(parents=True, exist_ok=True)

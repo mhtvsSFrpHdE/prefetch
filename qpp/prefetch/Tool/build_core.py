@@ -2,12 +2,15 @@ import shutil
 import os
 
 logging = None
-verbose = False
+verbose = None
 
 
-def init(loggingFromRemote):
+def init(loggingFromRemote, verboseFromRemote=False):
     global logging
     logging = loggingFromRemote
+
+    global verbose
+    verbose = verboseFromRemote
 
 
 class _Function:

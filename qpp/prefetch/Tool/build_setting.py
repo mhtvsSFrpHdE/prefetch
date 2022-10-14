@@ -13,7 +13,20 @@ class BuildFolderType(Enum):
     Release = 2
     Release_Verbose = 3
     Release_Performance = 4
+    # Collect release build together
     Pack = 5
+    # Create all build folder if not exist
+    Prepare = 6
+
+
+BuildFolderTypeMap = {
+    'Debug': BuildFolderType.Debug,
+    'Release': BuildFolderType.Release,
+    'Release_Verbose': BuildFolderType.Release_Verbose,
+    'Release_Performance': BuildFolderType.Release_Performance,
+    'Pack': BuildFolderType.Pack,
+    'Prepare': BuildFolderType.Prepare
+}
 
 
 # build_folder
