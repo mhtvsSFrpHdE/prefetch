@@ -26,7 +26,7 @@ except:
     breakpoint()
     pass
 
-# Release
+# Release: Collect release build together
 if buildType == build_setting.BuildFolderType.Release:
     verbose_print('\nStart build Release')
 
@@ -78,7 +78,7 @@ if buildType == build_setting.BuildFolderType.Release:
         verbose_print(key + ': ' + str(compiler_dll[key]))
         copy_if_newer(compiler_dll[key], target_compiler_dll[key])
 
-# Debug
+# Debug: Only to debug build folder
 if buildType == build_setting.BuildFolderType.Debug:
     verbose_print('\nStart build Debug')
 
@@ -122,7 +122,7 @@ if buildType == build_setting.BuildFolderType.Debug:
         verbose_print(key + ': ' + str(compiler_dll[key]))
         copy_if_newer(compiler_dll[key], target_compiler_dll[key])
 
-# Preapre
+# Preapre: Create all build folder if not exist
 if buildType == build_setting.BuildFolderType.Prepare:
     verbose_print('\nStart build Prepare')
 

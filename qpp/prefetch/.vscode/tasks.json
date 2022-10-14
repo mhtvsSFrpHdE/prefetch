@@ -1,0 +1,245 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Qt qmake debug",
+			"command": "qmake.exe",
+			"args": [
+				"${workspaceFolder}\\prefetch.pro",
+				"-r",
+				"-spec",
+				"win32-g++",
+				"DEFINES += LOG_ENABLED=true"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\..\\build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Debug"
+			},
+			"group": "build"
+		},
+		{
+			"label": "Qt mingw32-make debug",
+			"command": "mingw32-make.exe",
+			"args": [
+				"-j6"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\..\\build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Debug"
+			},
+			"group": "build"
+		},
+		{
+			"label": "Qt mingw32-make debug j1",
+			"command": "mingw32-make.exe",
+			"args": [
+				"-j1"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\..\\build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Debug"
+			},
+			"group": "build"
+		},
+		{
+			"label": "Qt build debug",
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"Qt qmake debug",
+				"Qt mingw32-make debug"
+			],
+			"group": "build",
+			"detail": "Build task"
+		},
+		{
+			"label": "Qt qmake release",
+			"command": "qmake.exe",
+			"args": [
+				"${workspaceFolder}\\prefetch.pro",
+				"-r",
+				"-spec",
+				"win32-g++",
+				"CONFIG+=release"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\..\\build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Release"
+			},
+			"group": "build"
+		},
+		{
+			"label": "Qt mingw32-make release",
+			"command": "mingw32-make.exe",
+			"args": [
+				"-j2"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\..\\build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Release"
+			},
+			"group": "build"
+		},
+		{
+			"label": "Qt build release",
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"Qt qmake release",
+				"Qt mingw32-make release"
+			],
+			"group": "build",
+			"detail": "Build task"
+		},
+		{
+			"label": "Qt qmake release verbose",
+			"command": "qmake.exe",
+			"args": [
+				"${workspaceFolder}\\prefetch.pro",
+				"-r",
+				"-spec",
+				"win32-g++",
+				"CONFIG+=release",
+				"DEFINES += LOG_ENABLED=true"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\..\\build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Release_Verbose"
+			},
+			"group": "build"
+		},
+		{
+			"label": "Qt mingw32-make release verbose",
+			"command": "mingw32-make.exe",
+			"args": [
+				"-j2"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\..\\build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Release_Verbose"
+			},
+			"group": "build"
+		},
+		{
+			"label": "Qt build release verbose",
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"Qt qmake release verbose",
+				"Qt mingw32-make release verbose"
+			],
+			"group": "build",
+			"detail": "Build task"
+		},
+		{
+			"label": "Qt qmake release performance",
+			"command": "qmake.exe",
+			"args": [
+				"${workspaceFolder}\\prefetch.pro",
+				"-r",
+				"-spec",
+				"win32-g++",
+				"CONFIG+=release",
+				"DEFINES += TRANSLATE_ENABLED=false"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\..\\build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Release_Performance"
+			},
+			"group": "build"
+		},
+		{
+			"label": "Qt mingw32-make release performance",
+			"command": "mingw32-make.exe",
+			"args": [
+				"-j2"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\..\\build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Release_Performance"
+			},
+			"group": "build"
+		},
+		{
+			"label": "Qt build release performance",
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"Qt qmake release performance",
+				"Qt mingw32-make release performance"
+			],
+			"group": "build",
+			"detail": "Build task"
+		},
+		{
+			"label": "Qt translate release",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"translate_release.bat"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\Tool"
+			},
+			"group": "build"
+		},
+		{
+			"label": "Qt copy_resource prepare",
+			"command": "python",
+			"args": [
+				"build.py",
+				"Prepare"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\Tool"
+			},
+			"group": "build"
+		},
+		{
+			"label": "Qt copy_resource debug",
+			"command": "python",
+			"args": [
+				"build.py",
+				"Debug"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\Tool"
+			},
+			"group": "build"
+		},
+		{
+			"label": "Qt copy_resource release",
+			"command": "python",
+			"args": [
+				"build.py",
+				"Release"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\Tool"
+			},
+			"group": "build"
+		},
+		{
+			"label": "Qt build all debug",
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"Qt copy_resource prepare",
+				"Qt translate release",
+				"Qt qmake debug",
+				"Qt mingw32-make debug",
+				"Qt copy_resource debug"
+			],
+			"group": "build",
+			"detail": "Build task"
+		},
+		{
+			"label": "Qt parallel build all release",
+			"dependsOn": [
+				"Qt translate release",
+				"Qt build release",
+				"Qt build release verbose",
+				"Qt build release performance"
+			],
+			"group": "build",
+			"detail": "Build task"
+		},
+		{
+			"label": "Qt build all release",
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"Qt copy_resource prepare",
+				"Qt parallel build all release",
+				"Qt copy_resource release"
+			],
+			"group": "build",
+			"detail": "Build task"
+		}
+	]
+}

@@ -16,7 +16,6 @@ qpp/prefetch/prefetch.pro.user
 # VSCode
 qpp/prefetch/.vscode/c_cpp_properties.json
 qpp/prefetch/.vscode/launch.json
-qpp/prefetch/.vscode/tasks.json
 qpp/prefetch/env.bat
 
 # VSCode cpptools
