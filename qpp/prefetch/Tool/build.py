@@ -7,7 +7,7 @@ import sys  # nopep8
 
 # Log
 import logging
-logging.basicConfig(filename='build.log', encoding='utf-8', level=logging.INFO)
+logging.basicConfig(filename='build.log', encoding='utf-8', level=logging.INFO, filemode='w')
 
 # Build setting
 import build_setting  # nopep8
