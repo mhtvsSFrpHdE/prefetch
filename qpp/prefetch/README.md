@@ -29,7 +29,7 @@ assume you don't have global gcc instance, `env.bat` tells VSCode where to find 
 
 ## WARNING: VSCode cpptools
 
-Check [HDD ultimate performance guide](https://github.com/mhtvsSFrpHdE/prefetch/wiki/Frequently-asked-questions#hdd-ultimate-performance-guide) first before any modification.  
+Check [HDD ultimate performance guide](https://github.com/mhtvsSFrpHdE/prefetch/wiki/FAQ_HDD-ultimate-performance-guide) first before any modification.  
 Ramdisk or GpuRamdisk perform very well with compression too.  
 This extension have terrible design. It have two obviously performance bottoneck:
 
