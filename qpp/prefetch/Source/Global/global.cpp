@@ -11,6 +11,7 @@
 #include "..\Define\define.h"
 #include "..\Output\log.h"
 #include "..\Core\startup.h"
+#include "..\Core\Thread\Read\read_thread_crtrt.h"
 
 QApplication *Global::qGuiApplication = NULL;
 MainWindow *Global::qMainWindow = NULL;
@@ -74,6 +75,9 @@ void Global::init(int argc, char *argv[])
 
     // Update default font
     Global::qGuiApplication->setFont(defaultFont);
+
+    // ReadThread
+    ReadThread::init();
 
     // ReadFile thread instance
     readFileLoopThreadAddress = new ReadFile();

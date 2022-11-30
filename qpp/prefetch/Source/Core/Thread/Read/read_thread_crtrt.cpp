@@ -10,6 +10,23 @@ QStringList ReadThread::priorityIncludePatterns = QStringList();
 bool ReadThread::pause = false;
 QList<QRunnable *> ReadThread::pendingDeleteThread = QList<QRunnable *>();
 QMutex ReadThread::pendingDeleteThreadMutex(QMutex::NonRecursive);
+char *ReadThread::sharedReadBuffer;
+int ReadThread::sharedReadBufferSize;
+void (*ReadThread::run_read_action)(QFile *);
+bool ReadThread::useBuffer;
+
+void ReadThread::newSharedReadBuffer()
+{
+    if (useBuffer)
+    {
+        sharedReadBuffer = new char[sharedReadBufferSize];
+    }
+}
+void ReadThread::deleteSharedReadBuffer()
+{
+    delete sharedReadBuffer;
+}
+
 void ReadThread::lockPendingDeleteThread()
 {
     // Too much of them only turn on if serious problem occur

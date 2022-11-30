@@ -58,12 +58,28 @@ void ReadThread::run_RequestDelete()
     pendingDeleteThreadMutex.unlock();
 }
 
+void ReadThread::run_read_WithBuffer(QFile *file)
+{
+    qint64 readResult = sharedReadBufferSize;
+    while (readResult > 0)
+    {
+        readResult = file->read(sharedReadBuffer, sharedReadBufferSize);
+        bool doNothing = true;
+    }
+}
+
+void ReadThread::run_read_Directly(QFile *file)
+{
+    auto fileBytes = file->readAll();
+}
+
 void ReadThread::run_read()
 {
     // Read file
     QFile file(filePath);
     if (file.open(QIODevice::ReadOnly))
     {
+        (*run_read_action)(&file);
         file.close();
     }
     // File not available

@@ -41,6 +41,18 @@ public:
     // Modify to false if created from search
     bool skipSearch;
 
+    // Any init code
+    static void init();
+
+    // If buffer is enabled, allocate RAM
+    // Note: New twice = Memory leak
+    static void newSharedReadBuffer();
+
+    // Note: Delete twice is undefined behavior
+    static void deleteSharedReadBuffer();
+
+    // Cache use buffer result
+    static bool useBuffer;
 
 private:
     // Confirm file path is included or not
@@ -58,4 +70,19 @@ private:
 
     // Prefetch file
     void run_read();
+
+    // Redirect read file function at runtime
+    static void (*run_read_action)(QFile *);
+    static void run_read_WithBuffer(QFile *file);
+    static void run_read_Directly(QFile *file);
+
+    // Reduce waste, try read different file bytes to same RAM space
+    // This variable should never be read from elsewhere:
+    //     - Write only, no read
+    //     - Parallel write without lock, so data is corrupted definitely
+    //     - Use as /dev/null, discard what I don't want
+    static char *sharedReadBuffer;
+    // Size of sharedReadBuffer
+    //     ReadBufferSize * 1024 * 1024
+    static int sharedReadBufferSize;
 };
