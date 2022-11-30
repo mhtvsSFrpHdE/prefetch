@@ -3,6 +3,7 @@
 #include <QMutex>
 #include <QStringList>
 #include <QMap>
+#include <QFile>
 
 class ReadThread : public QRunnable
 {
@@ -39,6 +40,7 @@ public:
     // Assume each file is created from cache first
     // Modify to false if created from search
     bool skipSearch;
+
 
 private:
     // Confirm file path is included or not

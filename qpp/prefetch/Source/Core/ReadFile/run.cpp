@@ -3,7 +3,7 @@
 #include "read_file.h"
 #include "..\const_core.h"
 #include "..\..\Output\stdout.h"
-#include "..\Thread\read_thread.h"
+#include "..\Thread\Read\read_thread_crtrt.h"
 #include "run_sleep.h"
 #include "..\startup.h"
 #include "..\scan_cache.h"

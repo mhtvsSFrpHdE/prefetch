@@ -6,7 +6,7 @@
 #include <QDir>
 #include <QMap>
 
-#include "..\Thread\sleep_thread.h"
+#include "..\Thread\Sleep\sleep_thread.h"
 
 class ReadFile : public QThread
 {

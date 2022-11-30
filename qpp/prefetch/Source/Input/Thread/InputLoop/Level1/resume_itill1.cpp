@@ -1,7 +1,7 @@
 #include "..\..\input_loop_thread.h"
 #include "..\..\..\..\Input\const_input.h"
 #include "..\..\..\..\Output\stdout.h"
-#include "..\..\..\..\Core\Thread\read_thread.h"
+#include "..\..\..\..\Core\Thread\Read\read_thread_crtrt.h"
 #include "..\..\..\..\Core\ReadFile\read_file.h"
 
 #define Parent InputLoopThread::ConsoleCommandFunction_Level1

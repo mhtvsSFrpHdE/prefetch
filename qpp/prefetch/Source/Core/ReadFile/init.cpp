@@ -1,6 +1,6 @@
 #include "read_file.h"
 #include "..\..\Setting\setting.h"
-#include "..\Thread\read_thread.h"
+#include "..\Thread\Read\read_thread_crtrt.h"
 #include "..\..\Setting\const_setting.h"
 #include "..\const_core.h"
 

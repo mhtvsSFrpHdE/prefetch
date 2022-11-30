@@ -9,8 +9,9 @@ HEADERS += \
     Source/Core/Example/mutex_example.h \
     Source/Core/ReadFile/run_sleep.h \
     Source/Core/ReadFile/run_timer.h \
-    Source/Core/Thread/read_thread.h \
-    Source/Core/Thread/sleep_thread.h \
+    Source/Core/Thread/Read/const_crtrt.h \
+    Source/Core/Thread/Read/read_thread_crtrt.h \
+    Source/Core/Thread/Sleep/sleep_thread.h \
     Source/Core/ReadFile/read_file.h \
     Source/Core/const_core.h \
     Source/Core/scan_cache.h \
@@ -40,9 +41,11 @@ SOURCES += \
     Source/Core/ReadFile/run.cpp \
     Source/Core/ReadFile/run_sleep.cpp \
     Source/Core/ReadFile/run_timer.cpp \
-    Source/Core/Thread/read_thread.cpp \
-    Source/Core/Thread/sleep_thread.cpp \
     Source/Core/ReadFile/read_file.cpp \
+    Source/Core/Thread/Read/init_crtrt.cpp \
+    Source/Core/Thread/Read/read_thread_crtrt.cpp \
+    Source/Core/Thread/Read/run_crtrt.cpp \
+    Source/Core/Thread/Sleep/sleep_thread.cpp \
     Source/Core/const_core.cpp \
     Source/Core/const_core_tdummy.cpp \
     Source/Core/scan_cache.cpp \
