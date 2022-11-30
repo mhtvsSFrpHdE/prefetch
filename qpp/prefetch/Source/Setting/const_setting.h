@@ -29,7 +29,7 @@ namespace Const_Setting
         const QString RescanInterval = "RescanInterval";
         const QString PrefetchInterval = "PrefetchInterval";
         const QString ReadThreadPriority = "ReadThreadPriority";
-
+        const QString ReadBufferSize = "ReadBufferSize";
     }
 
     namespace ReadThreadPriority_Value
