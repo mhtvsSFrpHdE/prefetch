@@ -64,7 +64,6 @@ void ReadThread::run_read_WithBuffer(QFile *file)
     while (readResult > 0)
     {
         readResult = file->read(sharedReadBuffer, sharedReadBufferSize);
-        bool doNothing = true;
     }
 }
 
