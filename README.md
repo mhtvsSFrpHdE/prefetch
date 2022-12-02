@@ -22,6 +22,10 @@ Load program file to RAM before use, so they may perform faster.
 Designed to speed up browser like Firefox at the beginning.  
 Other HDD heavy program may benefit from it like 3DS Max.
 
+According to [this research](https://www.youtube.com/watch?v=NMFQ3YvR3Eo), by move data from hard drive to RAM,  
+this may save you from a [$700](https://audiophilestyle.com/forums/topic/62753-nvme-ssd-designed-for-audiophiles) Hifi SSD.  
+Because move data to RAM before use will physically erase any difference between different type of hard drives.
+
 ## System requirement
 
 - 16 GB System RAM, or at least to prepare 4 GB "Available RAM" can reserve for cache.
