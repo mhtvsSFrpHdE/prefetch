@@ -33,7 +33,7 @@ bool ReadFile::run_runThreadPool(int rescanInterval)
     threadPoolTimer.start();
 
     // Allocate RAM
-    ReadThread::newSharedReadBuffer();
+    (*ReadThread::newSharedReadBuffer_action)();
 
     // Consume thread queue
     for (int i = 0; i < readThreadQueue.size(); ++i)
@@ -45,7 +45,7 @@ bool ReadFile::run_runThreadPool(int rescanInterval)
     readThreadPool->waitForDone();
 
     // Release RAM
-    ReadThread::deleteSharedReadBuffer();
+    (*ReadThread::deleteSharedReadBuffer_action)();
 
     // Get code execute time (only measure read, without other action)
     auto threadPoolTimeConsumed_miliseconds = threadPoolTimer.elapsed();

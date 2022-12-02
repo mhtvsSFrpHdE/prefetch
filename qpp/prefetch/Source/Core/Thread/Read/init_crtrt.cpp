@@ -14,7 +14,7 @@ void ReadThread::init()
     sharedReadBufferSize = getReadBufferSize.result;
 
     // Confirm useBuffer
-    useBuffer = sharedReadBufferSize > 0;
+    bool useBuffer = sharedReadBufferSize > 0;
     if (useBuffer)
     {
         // Convert read buffer size
@@ -22,11 +22,19 @@ void ReadThread::init()
 
         // Read action function pointer
         run_read_action = &run_read_WithBuffer;
+
+        // Shared buffer action function pointer
+        newSharedReadBuffer_action = &newSharedReadBuffer_WithBuffer;
+        deleteSharedReadBuffer_action = &deleteSharedReadBuffer_WithBuffer;
     }
     // Buffer not enabled
     else
     {
         // Read action function pointer
         run_read_action = &run_read_Directly;
+
+        // Shared buffer action function pointer
+        newSharedReadBuffer_action = &newSharedReadBuffer_Directly;
+        deleteSharedReadBuffer_action = &deleteSharedReadBuffer_Directly;
     }
 }

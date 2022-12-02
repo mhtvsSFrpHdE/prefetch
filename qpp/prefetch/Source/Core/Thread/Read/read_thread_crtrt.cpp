@@ -13,18 +13,27 @@ QMutex ReadThread::pendingDeleteThreadMutex(QMutex::NonRecursive);
 char *ReadThread::sharedReadBuffer;
 int ReadThread::sharedReadBufferSize;
 void (*ReadThread::run_read_action)(QFile *);
-bool ReadThread::useBuffer;
+void (*ReadThread::newSharedReadBuffer_action)();
+void (*ReadThread::deleteSharedReadBuffer_action)();
 
-void ReadThread::newSharedReadBuffer()
+void ReadThread::newSharedReadBuffer_WithBuffer()
 {
-    if (useBuffer)
-    {
-        sharedReadBuffer = new char[sharedReadBufferSize];
-    }
+    sharedReadBuffer = new char[sharedReadBufferSize];
 }
-void ReadThread::deleteSharedReadBuffer()
+
+void ReadThread::newSharedReadBuffer_Directly()
+{
+    // Do nothing
+}
+
+void ReadThread::deleteSharedReadBuffer_WithBuffer()
 {
     delete sharedReadBuffer;
+}
+
+void ReadThread::deleteSharedReadBuffer_Directly()
+{
+    // Do nothing
 }
 
 void ReadThread::lockPendingDeleteThread()

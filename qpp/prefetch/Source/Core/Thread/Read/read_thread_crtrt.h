@@ -44,15 +44,9 @@ public:
     // Any init code
     static void init();
 
-    // If buffer is enabled, allocate RAM
-    // Note: New twice = Memory leak
-    static void newSharedReadBuffer();
-
-    // Note: Delete twice is undefined behavior
-    static void deleteSharedReadBuffer();
-
-    // Cache use buffer result
-    static bool useBuffer;
+    // Redirect buffer function at runtime
+    static void (*newSharedReadBuffer_action)();
+    static void (*deleteSharedReadBuffer_action)();
 
 private:
     // Confirm file path is included or not
@@ -85,4 +79,13 @@ private:
     // Size of sharedReadBuffer
     //     ReadBufferSize * 1024 * 1024
     static int sharedReadBufferSize;
+
+    // If buffer is enabled, allocate RAM
+    // Note: New twice = Memory leak
+    static void newSharedReadBuffer_WithBuffer();
+    static void newSharedReadBuffer_Directly();
+
+    // Note: Delete twice is undefined behavior
+    static void deleteSharedReadBuffer_WithBuffer();
+    static void deleteSharedReadBuffer_Directly();
 };
