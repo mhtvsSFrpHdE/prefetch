@@ -23,7 +23,7 @@ Setting::GetGenericResult<QString> init_getCacheFilePath(int argc, QStringList a
 
     Setting::GetGenericResult<QString> getCacheFilePath;
 
-    if (argc <= Arg::IniArgc)
+    if (argc < Arg::IniArgc)
     {
         getCacheFilePath.success = false;
         return getCacheFilePath;
