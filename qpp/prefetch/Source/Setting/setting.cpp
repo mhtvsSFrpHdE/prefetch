@@ -14,7 +14,7 @@ Setting::GetGenericResult<QString> init_getSettingFilePath(int argc, QStringList
 
     Setting::GetGenericResult<QString> getSettingFilePath;
 
-    if (argc <= Arg::IniArgc)
+    if (argc < Arg::IniArgc)
     {
         getSettingFilePath.success = false;
         return getSettingFilePath;

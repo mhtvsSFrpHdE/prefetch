@@ -17,7 +17,7 @@ Setting::GetGenericResult<QString> init_getLogFilePath(int argc, QStringList arg
 
     Setting::GetGenericResult<QString> getLogFilePath;
 
-    if (argc <= Arg::IniArgc)
+    if (argc < Arg::IniArgc)
     {
         getLogFilePath.success = false;
         return getLogFilePath;
