@@ -10,7 +10,7 @@ public:
     // Init code: check cache file exist
     static bool init_cacheFileExist();
     // Any init code
-    static void init(int argc, QStringList argv);
+    static void init();
 
     // Snapshot current thread pool to cache file
     static void saveScanCache(QList<QRunnable *> *readThreadQueueAddress, bool override = false);

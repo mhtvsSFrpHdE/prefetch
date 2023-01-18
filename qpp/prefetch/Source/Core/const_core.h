@@ -31,8 +31,11 @@ namespace Const_Core
     // Argi: index
     namespace Arg
     {
+        // Assume index 0 is application.exe path
+        const int ArgBeginIndex = 1;
         const int IniArgc = 2;
         const int IniArgi = 1;
+        const QString BoolFlagBeginWith = "-";
         const QString SkipStartup = "skipStartup";
         const QString ShowMainWindow = "showMainWindow";
     }

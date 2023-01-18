@@ -8,7 +8,7 @@ public:
     static QString settingFilePath;
 
     // Any init code
-    static void init(int argc, QStringList argv);
+    static void init();
 
     template <class T>
     struct GetGenericResult

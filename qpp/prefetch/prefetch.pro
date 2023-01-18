@@ -20,6 +20,7 @@ HEADERS += \
     Source/Define/define.h \
     Source/Global/global.h \
     Source/Input/Thread/input_loop_thread.h \
+    Source/Input/command_line_argument.h \
     Source/Input/stdin.h \
     Source/Interface/Dpi/dpi.h \
     Source/Interface/MainWindow/mainwindow.h \
@@ -62,6 +63,9 @@ SOURCES += \
     Source/Input/Thread/InputLoop/Level2/lang_itill1.cpp \
     Source/Input/Thread/InputLoop/Level2/run_itill1.cpp \
     Source/Input/Thread/input_loop_thread.cpp \
+    Source/Input/cli_constructor.cpp \
+    Source/Input/cli_to_string.cpp \
+    Source/Input/command_line_argument.cpp \
     Source/Input/const_input.cpp \
     Source/Input/const_input_tdummy.cpp \
     Source/Input/stdin.cpp \

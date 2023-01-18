@@ -12,11 +12,13 @@ using namespace Const_Setting::ConfigGroupName;
 
 void (*Startup::startOnce)() = &_startOnce;
 
-void Startup::init(int argc, QStringList argv)
+void Startup::init()
 {
     using namespace Const_Core::Arg;
 
-    if (argv.contains(SkipStartup))
+    bool skipStartup = Global::commandLineArgumentAddress->getSkipStartup();
+
+    if (skipStartup)
     {
         startOnce_remove();
         return;

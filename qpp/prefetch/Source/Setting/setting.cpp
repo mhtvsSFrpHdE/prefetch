@@ -4,36 +4,19 @@
 #include "setting.h"
 #include "const_setting.h"
 #include "..\Core\const_core.h"
+#include "..\Global\global.h"
 
-QSettings *Setting::setting;
-QString Setting::settingFilePath = Const_Setting::DefaultSettingFilePath;
+QSettings *Setting::setting = NULL;
+QString Setting::settingFilePath = NULL;
 
-Setting::GetGenericResult<QString> init_getSettingFilePath(int argc, QStringList argv)
-{
-    using namespace Const_Core;
-
-    Setting::GetGenericResult<QString> getSettingFilePath;
-
-    if (argc < Arg::IniArgc)
-    {
-        getSettingFilePath.success = false;
-        return getSettingFilePath;
-    }
-
-    getSettingFilePath.result = argv[1];
-    return getSettingFilePath;
-}
-
-void Setting::init(int argc, QStringList argv)
+void Setting::init()
 {
     using namespace Const_Setting;
 
     // Get setting file path
-    auto getSettingFilePath = init_getSettingFilePath(argc, argv);
-    if (getSettingFilePath.success)
-    {
-        settingFilePath = getSettingFilePath.result;
-    }
+    settingFilePath = Global::commandLineArgumentAddress->getSettingFilePath();
+
+    // Fill with applicationDirPath
     settingFilePath = QApplication::applicationDirPath() + PathSplitter + settingFilePath;
 
     // Read ini from exe stored folder

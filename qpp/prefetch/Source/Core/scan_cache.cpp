@@ -6,9 +6,10 @@
 #include "..\Setting\setting.h"
 #include "const_core.h"
 #include "ReadFile\read_file.h"
+#include "..\Global\global.h"
 
 QSettings *ScanCache::cache = NULL;
-QString ScanCache::cacheFilePath;
+QString ScanCache::cacheFilePath = NULL;
 bool ScanCache::cacheFileExist = false;
 
 bool ScanCache::init_cacheFileExist()
@@ -17,38 +18,13 @@ bool ScanCache::init_cacheFileExist()
     return cacheFile.exists();
 }
 
-Setting::GetGenericResult<QString> init_getCacheFilePath(int argc, QStringList argv)
-{
-    using namespace Const_Core;
-
-    Setting::GetGenericResult<QString> getCacheFilePath;
-
-    if (argc < Arg::IniArgc)
-    {
-        getCacheFilePath.success = false;
-        return getCacheFilePath;
-    }
-
-    auto settingFile = QFileInfo(argv[1]);
-    QString cacheFileName = settingFile.baseName() + Const_Cache::DefaultCacheFilePathSuffix;
-    auto cacheFile = QFileInfo(cacheFileName);
-    ScanCache::cacheFileExist = cacheFile.exists();
-
-    getCacheFilePath.result = cacheFileName;
-    return getCacheFilePath;
-}
-
-void ScanCache::init(int argc, QStringList argv)
+void ScanCache::init()
 {
     // Cache file path default value
     cacheFilePath = Const_Cache::DefaultCacheFilePath;
 
     // Get cache file path
-    auto getCacheFilePath = init_getCacheFilePath(argc, argv);
-    if (getCacheFilePath.success)
-    {
-        cacheFilePath = getCacheFilePath.result;
-    }
+    cacheFilePath = Global::commandLineArgumentAddress->getScanCacheFilePath();
     cacheFilePath = QApplication::applicationDirPath() + Const_Cache::PathSplitter + cacheFilePath;
     cacheFileExist = init_cacheFileExist();
 

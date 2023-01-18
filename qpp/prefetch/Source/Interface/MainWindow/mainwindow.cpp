@@ -29,10 +29,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui->setupUi(this);
 
     // Initialize
-    auto argv = Global::qGuiApplication->arguments();
 
     startToTray = Setting::getBool(Instance, StartToTray, Setting::setting);
-    if (argv.contains(ShowMainWindow))
+    // Command line override
+    if (Global::commandLineArgumentAddress->getShowMainWindow())
     {
         startToTray = false;
     }

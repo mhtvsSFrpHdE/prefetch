@@ -17,7 +17,8 @@ QApplication *Global::qGuiApplication = NULL;
 MainWindow *Global::qMainWindow = NULL;
 InputLoopThread *Global::inputLoopThreadAddress = NULL;
 ReadFile *Global::readFileLoopThreadAddress = NULL;
-TrayIcon *Global::trayIconInstanceAddress = new TrayIcon();
+TrayIcon *Global::trayIconInstanceAddress = NULL;
+CommandLineArgument *Global::commandLineArgumentAddress = NULL;
 
 void Global::init(int argc, char *argv[])
 {
@@ -27,12 +28,16 @@ void Global::init(int argc, char *argv[])
 
     // QApplication
     qGuiApplication = new QApplication(argc, argv);
-    auto commandLineArguments = QApplication::arguments();
+
+    // Command line argument
+    auto argvQStringList = QApplication::arguments();
 
 #if LOG_ENABLED
-    Log::init(argc, commandLineArguments);
+    Log::init(argc, argvQStringList);
 #endif
     LAST_KNOWN_POSITION(0)
+
+    commandLineArgumentAddress = new CommandLineArgument(argc, argvQStringList);
 
     StdIn::init();
     LAST_KNOWN_POSITION(2)
@@ -40,7 +45,7 @@ void Global::init(int argc, char *argv[])
     StdOut::init();
     LAST_KNOWN_POSITION(2)
 
-    Setting::init(argc, commandLineArguments);
+    Setting::init();
     LAST_KNOWN_POSITION(2)
 
 #if TRANSLATE_ENABLED
@@ -50,10 +55,10 @@ void Global::init(int argc, char *argv[])
     LAST_KNOWN_POSITION(2)
 #endif
 
-    Startup::init(argc, commandLineArguments);
+    Startup::init();
     LAST_KNOWN_POSITION(2)
 
-    ScanCache::init(argc, commandLineArguments);
+    ScanCache::init();
     LAST_KNOWN_POSITION(2)
 
     Dpi::init();
@@ -84,6 +89,7 @@ void Global::init(int argc, char *argv[])
     LAST_KNOWN_POSITION(2)
 
     // Tray icon
+    trayIconInstanceAddress = new TrayIcon();
     trayIconInstanceAddress->init();
     LAST_KNOWN_POSITION(2)
 

@@ -1,7 +1,7 @@
 class Startup
 {
 public:
-    static void init(int argc, QStringList argv);
+    static void init();
 
     // This function will only run once
     static void (*startOnce)();

@@ -17,7 +17,17 @@ Setting::GetGenericResult<QString> init_getLogFilePath(int argc, QStringList arg
 
     Setting::GetGenericResult<QString> getLogFilePath;
 
-    if (argc < Arg::IniArgc)
+    bool argcNotEnough = argc < Arg::IniArgc;
+    if (argcNotEnough)
+    {
+        getLogFilePath.success = false;
+        return getLogFilePath;
+    }
+
+    // Watch out! This one can crash if argc check not pass
+    // First argument is not alternative setting ini, ignore
+    bool firstArgIsBoolFlag = argv[1].startsWith(Arg::BoolFlagBeginWith);
+    if (firstArgIsBoolFlag)
     {
         getLogFilePath.success = false;
         return getLogFilePath;

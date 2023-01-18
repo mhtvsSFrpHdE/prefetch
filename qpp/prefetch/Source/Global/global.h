@@ -7,6 +7,7 @@
 #include "..\Core\ReadFile\read_file.h"
 #include "..\Interface\TrayIcon\tray_icon.h"
 #include "..\Interface\MainWindow\mainwindow.h"
+#include "..\Input\command_line_argument.h"
 
 class Global
 {
@@ -20,6 +21,8 @@ public:
     static ReadFile *readFileLoopThreadAddress;
 
     static TrayIcon *trayIconInstanceAddress;
+
+    static CommandLineArgument *commandLineArgumentAddress;
 
     // Any init code
     static void init(int argc, char *argv[]);
