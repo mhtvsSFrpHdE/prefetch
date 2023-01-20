@@ -8,6 +8,7 @@ https://github.com/mhtvsSFrpHdE/prefetch/releases
 
 - [prefetch.ini](https://github.com/mhtvsSFrpHdE/prefetch/wiki/prefetch.ini)
 - [prefetch.cache.ini](https://github.com/mhtvsSFrpHdE/prefetch/wiki/prefetch.cache.ini)
+- [Command line arguments](https://github.com/mhtvsSFrpHdE/prefetch/wiki/Command-line-arguments)
 - [Command interface](https://github.com/mhtvsSFrpHdE/prefetch/wiki/Command-interface)
 - [Tray icon interface](https://github.com/mhtvsSFrpHdE/prefetch/wiki/Tray-icon-interface)
 - [Compile](https://github.com/mhtvsSFrpHdE/prefetch/wiki/Compile)
