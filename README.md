@@ -10,7 +10,7 @@ https://github.com/mhtvsSFrpHdE/prefetch/releases
 - [prefetch.cache.ini](https://github.com/mhtvsSFrpHdE/prefetch/wiki/prefetch.cache.ini)
 - [Command interface](https://github.com/mhtvsSFrpHdE/prefetch/wiki/Command-interface)
 - [Tray icon interface](https://github.com/mhtvsSFrpHdE/prefetch/wiki/Tray-icon-interface)
-- [Compile option](https://github.com/mhtvsSFrpHdE/prefetch/wiki/Compile-option)
+- [Compile](https://github.com/mhtvsSFrpHdE/prefetch/wiki/Compile)
 
 ## Frequently asked questions
 
