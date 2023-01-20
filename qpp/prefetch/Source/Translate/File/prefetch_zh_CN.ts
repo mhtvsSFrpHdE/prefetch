@@ -4,52 +4,52 @@
 <context>
     <name>Const_Core::Message</name>
     <message>
-        <location filename="../../Core/const_core_tdummy.cpp" line="10"/>
+        <location filename="../../Core/const_core_tdummy.cpp" line="9"/>
         <source>Scan folder...</source>
         <translation>清点可缓存文件列表...</translation>
     </message>
     <message>
-        <location filename="../../Core/const_core_tdummy.cpp" line="12"/>
+        <location filename="../../Core/const_core_tdummy.cpp" line="11"/>
         <source>Cache found, restore file list</source>
         <translation>从缓存恢复可缓存文件列表</translation>
     </message>
     <message>
-        <location filename="../../Core/const_core_tdummy.cpp" line="14"/>
+        <location filename="../../Core/const_core_tdummy.cpp" line="13"/>
         <source>Prefetching...</source>
         <translation>缓存文件...</translation>
     </message>
     <message>
-        <location filename="../../Core/const_core_tdummy.cpp" line="16"/>
+        <location filename="../../Core/const_core_tdummy.cpp" line="15"/>
         <source>Idle, Time: </source>
         <translation>空闲，消耗时间：</translation>
     </message>
     <message>
-        <location filename="../../Core/const_core_tdummy.cpp" line="18"/>
+        <location filename="../../Core/const_core_tdummy.cpp" line="17"/>
         <source> Sec</source>
         <translation>秒</translation>
     </message>
     <message>
-        <location filename="../../Core/const_core_tdummy.cpp" line="20"/>
+        <location filename="../../Core/const_core_tdummy.cpp" line="19"/>
         <source>Scan complete, Time: </source>
         <translation>清点完成，消耗时间：</translation>
     </message>
     <message>
-        <location filename="../../Core/const_core_tdummy.cpp" line="22"/>
+        <location filename="../../Core/const_core_tdummy.cpp" line="21"/>
         <source>ss.zzz</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Core/const_core_tdummy.cpp" line="24"/>
+        <location filename="../../Core/const_core_tdummy.cpp" line="23"/>
         <source>Rescan interval reached.</source>
         <translation>已符合重新清点条件</translation>
     </message>
     <message>
-        <location filename="../../Core/const_core_tdummy.cpp" line="26"/>
+        <location filename="../../Core/const_core_tdummy.cpp" line="25"/>
         <source>Cache will expire on next run.</source>
         <translation>可缓存文件列表将在下次运行前删除。</translation>
     </message>
     <message>
-        <location filename="../../Core/const_core_tdummy.cpp" line="29"/>
+        <location filename="../../Core/const_core_tdummy.cpp" line="28"/>
         <source>Run startup items...</source>
         <translation>运行开机启动项...</translation>
     </message>
@@ -128,6 +128,24 @@
         <location filename="../../Interface/MainWindow/const_mainwindow_tdummy.cpp" line="9"/>
         <source>Send</source>
         <translation>提交</translation>
+    </message>
+</context>
+<context>
+    <name>Const_TrayIcon::MenuText</name>
+    <message>
+        <location filename="../../Interface/TrayIcon/const_tray_icon_tdummy.cpp" line="9"/>
+        <source>Pause</source>
+        <translation>暂停</translation>
+    </message>
+    <message>
+        <location filename="../../Interface/TrayIcon/const_tray_icon_tdummy.cpp" line="11"/>
+        <source>Resume</source>
+        <translation>继续</translation>
+    </message>
+    <message>
+        <location filename="../../Interface/TrayIcon/const_tray_icon_tdummy.cpp" line="13"/>
+        <source>Exit</source>
+        <translation>退出</translation>
     </message>
 </context>
 <context>

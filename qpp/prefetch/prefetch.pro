@@ -74,6 +74,8 @@ SOURCES += \
     Source/Interface/MainWindow/const_mainwindow_tdummy.cpp \
     Source/Interface/MainWindow/mainwindow.cpp \
     Source/Interface/TrayIcon/Action/custom_action.cpp \
+    Source/Interface/TrayIcon/const_tray_icon.cpp \
+    Source/Interface/TrayIcon/const_tray_icon_tdummy.cpp \
     Source/Interface/TrayIcon/tray_icon.cpp \
     Source/Output/log.cpp \
     Source/Output/const_log.cpp \

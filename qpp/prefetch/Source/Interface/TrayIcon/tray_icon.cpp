@@ -40,7 +40,6 @@ namespace TrayIconObject
 
 void TrayIcon::init()
 {
-
     using namespace Const_Setting::ConfigGroupName;
     using namespace Const_Setting::Instance_ConfigKeyName;
     using namespace TrayIconObject;
@@ -115,15 +114,15 @@ void TrayIcon::init()
     connect(exitMenu, SIGNAL(triggered()), this, SLOT(action_exit()));
     qMenu->addAction(exitMenu);
 
-    // Menu style
-    qMenu->setFixedWidth(Dpi::multiply(trayMenuMinimalWidth));
-
     // Test code entry
 #if TEST_TRAY_MENU_ENABLED
     testMenu = new QAction(MenuText::Test, qMenu);
     connect(testMenu, SIGNAL(triggered()), this, SLOT(action_test()));
     qMenu->addAction(testMenu);
 #endif
+
+    // Menu style
+    qMenu->setFixedWidth(Dpi::multiply(trayMenuMinimalWidth));
 
     systemTrayIcon->setContextMenu(qMenu);
 
@@ -133,6 +132,15 @@ void TrayIcon::init()
     connect(systemTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(action_updateMenu(QSystemTrayIcon::ActivationReason)));
     // Double click show/hide console window
     connect(systemTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(action_traydc(QSystemTrayIcon::ActivationReason)));
+}
+
+void TrayIcon::reloadTranslate()
+{
+    using namespace Const_TrayIcon;
+
+    TrayIconObject::pauseMenu->setText(MenuText::Pause);
+    TrayIconObject::resumeMenu->setText(MenuText::Resume);
+    TrayIconObject::exitMenu->setText(MenuText::Exit);
 }
 
 void TrayIcon::start()

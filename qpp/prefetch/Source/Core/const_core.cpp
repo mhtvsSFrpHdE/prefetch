@@ -20,7 +20,6 @@ QString Const_Core::Message::RunStartupItems = DEFINE_RunStartupItems;
 
 void Const_Core::Message::init()
 {
-
     ScanFolder = trr(tscope, DEFINE_ScanFolder);
     CacheFound = Tab + trr(tscope, DEFINE_CacheFound);
     Prefetching = trr(tscope, DEFINE_Prefetching);

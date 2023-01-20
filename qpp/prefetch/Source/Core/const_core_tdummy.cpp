@@ -5,7 +5,6 @@
 
 void Const_Core::Message::tdummy()
 {
-
 #define DEFINE_ScanFolder "Scan folder..."
     ScanFolder = tr("Scan folder...");
 #define DEFINE_CacheFound "Cache found, restore file list"

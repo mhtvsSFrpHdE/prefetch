@@ -11,6 +11,8 @@ class TrayIcon : public QObject
 public:
     // Create system tray icon object
     void init();
+    // Update translate text
+    void reloadTranslate();
 
     // Show system tray icon
     static void start();

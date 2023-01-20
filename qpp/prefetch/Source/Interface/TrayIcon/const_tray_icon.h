@@ -1,3 +1,6 @@
+#ifndef Const_Tray_Icon_h
+#define Const_Tray_Icon_h
+
 #include <QString>
 
 namespace Const_TrayIcon
@@ -8,9 +11,20 @@ namespace Const_TrayIcon
     }
     namespace MenuText
     {
-        const QString Pause = "Pause";
-        const QString Resume = "Resume";
-        const QString Exit = "Exit";
+        extern QString Pause;
+        extern QString Resume;
+        extern QString Exit;
+
+        // Test code entry
+#if TEST_TRAY_MENU_ENABLED
         const QString Test = "Test";
+#endif
+
+        extern void init();
+
+        // See translate_define.h for more information
+        extern void tdummy();
     }
 }
+
+#endif

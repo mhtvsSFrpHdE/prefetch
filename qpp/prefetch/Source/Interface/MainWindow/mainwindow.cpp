@@ -270,6 +270,8 @@ void MainWindow::changeEvent(QEvent *changeEventAddress)
 
         ui->sendCommand_pushButton->setText(SendCommand_PushButton);
 
+        Global::trayIconInstanceAddress->reloadTranslate();
+
         TranslateTool::unlock();
         LAST_KNOWN_POSITION(4)
     }
