@@ -8,6 +8,7 @@
 #include "..\startup.h"
 #include "..\scan_cache.h"
 #include "run_timer.h"
+#include "..\..\Output\log.h"
 
 void run_runThreadPool_DeleteExcludedFile(QList<QRunnable *> *readThreadQueueAddress)
 {
@@ -215,32 +216,43 @@ void ReadFile::run()
         // If not break, simply repeat exist threads again
         while (true)
         {
-            // Only enter read file loop if not pausing
-            // If paused, skip this time and wait for next inerval
-            if (ReadThread::pause == false)
+            // Check point
+
+            // Lock pause mutex
+            //
+            // If mutex unavailable, block will happen until mutex available
+            LAST_KNOWN_POSITION(3)
+            ReadThread::pauseMutex->lock();
+
+            // Release pause mutex
+            //
+            // Lock mutex is for being block
+            // Since block already done, no need to keep mutex on hand
+            LAST_KNOWN_POSITION(4)
+            ReadThread::pauseMutex->unlock();
+
+            // Activate thread pool and wait result
+            bool runResult = run_runThreadPool(rescanInterval);
+
+            // Thread pool report rescan required
+            if (runResult == false)
             {
-                // Get run result
-                bool runResult = run_runThreadPool(rescanInterval);
+                // Report rescan interval reached
+                StdOut::printLine(RescanIntervalReached1);
+                StdOut::printLine(RescanIntervalReached2);
 
-                // Rescan interval
-                if (runResult == false)
-                {
-                    StdOut::printLine(RescanIntervalReached1);
-                    StdOut::printLine(RescanIntervalReached2);
+                // Expire cache
+                ScanCache::expireCache();
 
-                    // Expire cache
-                    ScanCache::expireCache();
+                // Wait for prefetch interval
+                Run_Sleep::sleep();
 
-                    // Wait for a while
-                    Run_Sleep::sleep(prefetchIntervalInSecond);
-
-                    // Trigger rescan
-                    break;
-                }
+                // Exit while loop, trigger rescan
+                break;
             }
 
-            // Wait for a while
-            Run_Sleep::sleep(prefetchIntervalInSecond);
+            // Wait for prefetch interval
+            Run_Sleep::sleep();
         }
     }
 }

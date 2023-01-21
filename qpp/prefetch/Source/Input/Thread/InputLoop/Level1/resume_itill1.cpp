@@ -9,12 +9,22 @@
 void Parent::resume()
 {
     using namespace Const_Input::Message;
+
+    // Report trying to resume
     StdOut::printLine(TryingToResume);
 
-    ReadThread::pause = false;
+    // Discard rest sleep time if sleep running
+    ReadFile::sleepThreadAddress->discard();
 
-    if (ReadFile::sleepThreadAddress->isRunning())
+    // Not pausing
+    if (ReadThread::pause == false)
     {
-        ReadFile::sleepThreadAddress->terminate();
+        return;
+    }
+    // Pausing
+    else
+    {
+        ReadThread::pause = false;
+        ReadThread::pauseMutex->unlock();
     }
 }
