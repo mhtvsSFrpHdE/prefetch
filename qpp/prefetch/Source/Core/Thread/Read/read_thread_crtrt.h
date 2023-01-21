@@ -24,6 +24,9 @@ public:
     //     each read will not happen but return immediately
     static bool pause;
 
+    // Unless available, do not start read loop
+    static QMutex *pauseMutex;
+
     // A thread that report it can be delete goes here
     static QList<QRunnable *> pendingDeleteThread;
     // QList only support one at same time

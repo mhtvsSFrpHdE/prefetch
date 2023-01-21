@@ -37,4 +37,7 @@ void ReadThread::init()
         newSharedReadBuffer_action = &newSharedReadBuffer_Directly;
         deleteSharedReadBuffer_action = &deleteSharedReadBuffer_Directly;
     }
+
+    // Create mutex
+    pauseMutex = new QMutex();
 }
