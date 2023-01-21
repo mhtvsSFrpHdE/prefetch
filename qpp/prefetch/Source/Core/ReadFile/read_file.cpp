@@ -4,7 +4,7 @@
 #include "read_file.h"
 #include "..\..\Setting\const_setting.h"
 
-SleepThread *ReadFile::sleepThreadAddress = new SleepThread();
+SleepThread *ReadFile::sleepThreadAddress = NULL;
 int ReadFile::count_start_scanFolder = 0;
 QList<QRunnable *> ReadFile::readThreadQueue = QList<QRunnable *>();
 QThreadPool *ReadFile::readThreadPool = new QThreadPool();

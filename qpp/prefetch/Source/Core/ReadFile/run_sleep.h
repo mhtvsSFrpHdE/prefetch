@@ -2,5 +2,5 @@
 class Run_Sleep
 {
 public:
-    static void sleep(unsigned long secs);
+    static void sleep();
 };

@@ -1,9 +1,16 @@
 #include "run_sleep.h"
 #include "read_file.h"
+#include "..\Thread\Read\read_thread_crtrt.h"
+#include "..\..\Output\log.h"
 
-void Run_Sleep::sleep(unsigned long secs)
+// Sleep prefetch interval, unlock pause mutex after sleep done
+void Run_Sleep::sleep()
 {
-    ReadFile::sleepThreadAddress->sleepTimeInSeconds = secs;
+    // Do not run new sleep thread in pause status
+    if (ReadThread::pause)
+    {
+        return;
+    }
 
     ReadFile::sleepThreadAddress->start();
     ReadFile::sleepThreadAddress->wait();

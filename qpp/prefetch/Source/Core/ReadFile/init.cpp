@@ -3,6 +3,7 @@
 #include "..\Thread\Read\read_thread_crtrt.h"
 #include "..\..\Setting\const_setting.h"
 #include "..\const_core.h"
+#include "run_sleep.h"
 
 void ReadFile::init()
 {
@@ -43,6 +44,10 @@ void ReadFile::init()
     // Get prefetch interval
     auto getPrefetchInterval = Setting::getUnsignedLong(Thread, PrefetchInterval, Setting::setting);
     prefetchIntervalInSecond = getPrefetchInterval.result;
+
+    // Set prefetch interval to sleep thread
+    sleepThreadAddress = new SleepThread();
+    sleepThreadAddress->sleepTimeInSeconds = prefetchIntervalInSecond;
 
     // Get read thread priority
     auto getReadThreadPriority = Setting::getString(Thread, ReadThreadPriority, Setting::setting);
