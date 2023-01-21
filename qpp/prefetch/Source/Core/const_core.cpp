@@ -26,6 +26,7 @@ void Const_Core::Message::init()
     Idle_Time = Tab + trr(tscope, DEFINE_Idle_Time);
     Idle_Sec = trr(tscope, DEFINE_Idle_Sec);
     ScanFolder_Time = Tab + trr(tscope, DEFINE_ScanFolder_Time);
+    ScanFolder_Sec = Idle_Sec;
     CodeExecuteTimeFormatter = trr(tscope, DEFINE_CodeExecuteTimeFormatter);
     RescanIntervalReached1 = trr(tscope, DEFINE_RescanIntervalReached1);
     RescanIntervalReached2 = Tab + trr(tscope, DEFINE_RescanIntervalReached2);
