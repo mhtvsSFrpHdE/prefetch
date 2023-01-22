@@ -1,3 +1,6 @@
+#ifndef Read_Thread_h
+#define Read_Thread_h
+
 #include <QRunnable>
 #include <QString>
 #include <QMutex>
@@ -92,3 +95,5 @@ private:
     static void deleteSharedReadBuffer_WithBuffer();
     static void deleteSharedReadBuffer_Directly();
 };
+
+#endif

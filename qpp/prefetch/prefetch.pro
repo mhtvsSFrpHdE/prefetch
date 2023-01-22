@@ -9,8 +9,8 @@ HEADERS += \
     Source/Core/Example/mutex_example.h \
     Source/Core/ReadFile/run_sleep.h \
     Source/Core/ReadFile/run_timer.h \
-    Source/Core/Thread/Read/const_crtrt.h \
-    Source/Core/Thread/Read/read_thread_crtrt.h \
+    Source/Core/Thread/Read/const_read_thread.h \
+    Source/Core/Thread/Read/read_thread.h \
     Source/Core/Thread/Sleep/sleep_thread.h \
     Source/Core/ReadFile/read_file.h \
     Source/Core/const_core.h \
@@ -43,9 +43,9 @@ SOURCES += \
     Source/Core/ReadFile/run_sleep.cpp \
     Source/Core/ReadFile/run_timer.cpp \
     Source/Core/ReadFile/read_file.cpp \
-    Source/Core/Thread/Read/init_crtrt.cpp \
-    Source/Core/Thread/Read/read_thread_crtrt.cpp \
-    Source/Core/Thread/Read/run_crtrt.cpp \
+    Source/Core/Thread/Read/init.cpp \
+    Source/Core/Thread/Read/read_thread.cpp \
+    Source/Core/Thread/Read/run.cpp \
     Source/Core/Thread/Sleep/sleep_thread.cpp \
     Source/Core/const_core.cpp \
     Source/Core/const_core_tdummy.cpp \
@@ -54,14 +54,14 @@ SOURCES += \
     Source/Core/startup.cpp \
     Source/Global/const_global.cpp \
     Source/Global/global.cpp \
-    Source/Input/Thread/InputLoop/Level1/exit_itill1.cpp \
-    Source/Input/Thread/InputLoop/Level1/expiresc_itill1.cpp \
-    Source/Input/Thread/InputLoop/Level1/pause_itill1.cpp \
-    Source/Input/Thread/InputLoop/Level1/resume_itill1.cpp \
-    Source/Input/Thread/InputLoop/Level1/test_itill1.cpp \
-    Source/Input/Thread/InputLoop/Level1/traydc_itill1.cpp \
-    Source/Input/Thread/InputLoop/Level2/lang_itill1.cpp \
-    Source/Input/Thread/InputLoop/Level2/run_itill1.cpp \
+    Source/Input/Thread/InputLoop/Level1/exit.cpp \
+    Source/Input/Thread/InputLoop/Level1/expiresc.cpp \
+    Source/Input/Thread/InputLoop/Level1/pause.cpp \
+    Source/Input/Thread/InputLoop/Level1/resume.cpp \
+    Source/Input/Thread/InputLoop/Level1/test.cpp \
+    Source/Input/Thread/InputLoop/Level1/traydc.cpp \
+    Source/Input/Thread/InputLoop/Level2/lang.cpp \
+    Source/Input/Thread/InputLoop/Level2/run.cpp \
     Source/Input/Thread/input_loop_thread.cpp \
     Source/Input/cli_constructor.cpp \
     Source/Input/cli_to_string.cpp \

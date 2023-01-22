@@ -1,7 +1,7 @@
-#include "read_thread_crtrt.h"
+#include "read_thread.h"
 #include "..\..\..\Setting\setting.h"
 #include "..\..\..\Setting\const_setting.h"
-#include "const_crtrt.h"
+#include "const_read_thread.h"
 
 void ReadThread::init()
 {

@@ -11,7 +11,7 @@
 #include "..\Define\define.h"
 #include "..\Output\log.h"
 #include "..\Core\startup.h"
-#include "..\Core\Thread\Read\read_thread_crtrt.h"
+#include "..\Core\Thread\Read\read_thread.h"
 
 QApplication *Global::qGuiApplication = NULL;
 MainWindow *Global::qMainWindow = NULL;

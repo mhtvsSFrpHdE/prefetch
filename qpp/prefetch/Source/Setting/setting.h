@@ -1,3 +1,6 @@
+#ifndef Setting_h
+#define Setting_h
+
 #include <QSettings>
 #include <QString>
 
@@ -121,3 +124,5 @@ private:
     //     It's too hard to write correct and maintainable template code right now
     static QVariant getQVariant(QString groupName, QString keyName, QSettings *qSettings);
 };
+
+#endif

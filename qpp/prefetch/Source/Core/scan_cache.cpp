@@ -2,7 +2,7 @@
 #include <QApplication>
 
 #include "scan_cache.h"
-#include "Thread\Read\read_thread_crtrt.h"
+#include "Thread\Read\read_thread.h"
 #include "..\Setting\setting.h"
 #include "const_core.h"
 #include "ReadFile\read_file.h"

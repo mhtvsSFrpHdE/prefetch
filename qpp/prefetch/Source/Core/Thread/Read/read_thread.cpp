@@ -1,6 +1,6 @@
 #include <QRegExp>
 
-#include "read_thread_crtrt.h"
+#include "read_thread.h"
 #include "..\..\..\Output\stdout.h"
 #include "..\..\..\Output\log.h"
 

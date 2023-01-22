@@ -1,5 +1,5 @@
-#ifndef Const_ReadThread_h
-#define Const_ReadThread_h
+#ifndef Const_Read_Thread_h
+#define Const_Read_Thread_h
 
 #include <QString>
 
