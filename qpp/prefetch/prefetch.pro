@@ -108,6 +108,12 @@ FORMS += \
 # Enable c++11 for QT 4.8.7
 QMAKE_CXXFLAGS += -std=c++11
 
+# Fix source code with same name in different folder "multiple definition"
+# https://stackoverflow.com/questions/6185129/how-to-include-2-files-with-same-name
+# https://stackoverflow.com/questions/58766735/qt-qmake-doesnt-follow-source-folder-structure-when-using-config-object-para
+# https://wiki.qt.io/Undocumented_QMake
+CONFIG += object_parallel_to_source
+
 # Compiler -Ofast here we go again
 QMAKE_CFLAGS_RELEASE -= -O
 QMAKE_CFLAGS_RELEASE -= -O1
