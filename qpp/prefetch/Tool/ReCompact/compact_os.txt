@@ -1,1 +1,2 @@
+@REM never|always
 compact /CompactOs:always
