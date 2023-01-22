@@ -56,8 +56,8 @@ SOURCES += \
     Source/Global/global.cpp \
     Source/Input/Thread/InputLoop/Level1/exit.cpp \
     Source/Input/Thread/InputLoop/Level1/expiresc.cpp \
-    Source/Input/Thread/InputLoop/Level1/pause.cpp \
-    Source/Input/Thread/InputLoop/Level1/resume.cpp \
+    Source/Input/Thread/InputLoop/Level1/start.cpp \
+    Source/Input/Thread/InputLoop/Level1/stop.cpp \
     Source/Input/Thread/InputLoop/Level1/test.cpp \
     Source/Input/Thread/InputLoop/Level1/traydc.cpp \
     Source/Input/Thread/InputLoop/Level2/lang.cpp \

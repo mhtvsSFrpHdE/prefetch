@@ -21,8 +21,8 @@ public:
     static void stop();
 
 public slots:
-    void action_pause();
-    void action_resume();
+    void action_stop();
+    void action_start();
     void action_exit();
     void action_traydc(QSystemTrayIcon::ActivationReason activationReason);
     void action_traydc_void();

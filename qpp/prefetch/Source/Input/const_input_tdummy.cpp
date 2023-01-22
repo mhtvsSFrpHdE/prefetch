@@ -7,12 +7,12 @@ void Const_Input::Message::tdummy()
 {
 #define DEFINE_InvalidCommand "Invalid command"
     InvalidCommand = tr("Invalid command");
-#define DEFINE_TryingToPause "Trying to pause prefetch"
-    TryingToPause = tr("Trying to pause prefetch");
-#define DEFINE_PauseRequested "Pause has requested, good luck"
-    PauseRequested = tr("Pause has requested, good luck");
-#define DEFINE_TryingToResume "Trying to resume prefetch"
-    TryingToResume = tr("Trying to resume prefetch");
+#define DEFINE_TryingToStop "Trying to stop prefetch"
+    TryingToStop = tr("Trying to stop prefetch");
+#define DEFINE_StopRequested "Stop has requested, good luck"
+    StopRequested = tr("Stop has requested, good luck");
+#define DEFINE_TryingToStart "Trying to start prefetch"
+    TryingToStart = tr("Trying to start prefetch");
 #define DEFINE_TryingToExit1 "Trying to exit prefetch"
     TryingToExit1 = tr("Trying to exit prefetch");
 #define DEFINE_TryingToExit2 "This can take a while in some case"

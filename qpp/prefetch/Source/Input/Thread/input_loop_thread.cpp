@@ -58,8 +58,8 @@ using namespace Const_Input;
 // Use initializer list and one of the QMap constructor
 QMap<QString, void (*)()> InputLoopThread::commandMap_level1(
     std::map<QString, void (*)()>{
-        {Command_Level1::pause, &ConsoleCommandFunction_Level1::pause},
-        {Command_Level1::resume, &ConsoleCommandFunction_Level1::resume},
+        {Command_Level1::stop, &ConsoleCommandFunction_Level1::stop},
+        {Command_Level1::start, &ConsoleCommandFunction_Level1::start},
         {Command_Level1::test, &ConsoleCommandFunction_Level1::test},
         {Command_Level1::exit, &ConsoleCommandFunction_Level1::exit},
         {Command_Level1::traydc, &ConsoleCommandFunction_Level1::traydc},

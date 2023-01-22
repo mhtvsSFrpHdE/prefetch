@@ -8,9 +8,9 @@ namespace Const_Input
     namespace Message
     {
         extern QString InvalidCommand;
-        extern QString TryingToPause;
-        extern QString PauseRequested;
-        extern QString TryingToResume;
+        extern QString TryingToStop;
+        extern QString StopRequested;
+        extern QString TryingToStart;
         extern QString TryingToExit1;
         extern QString TryingToExit2;
         extern QString Test;
@@ -30,8 +30,8 @@ namespace Const_Input
     }
     namespace Command_Level1
     {
-        const QString pause = "pause";
-        const QString resume = "resume";
+        const QString stop = "stop";
+        const QString start = "start";
         const QString test = "test";
         const QString exit = "exit";
         const QString traydc = "traydc";

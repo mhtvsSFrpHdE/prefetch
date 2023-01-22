@@ -24,7 +24,7 @@ void Parent::expiresc()
     StdOut::shutdown();
 
     // Stop running thread
-    pause();
+    stop();
     ReadFile::readThreadPool->waitForDone();
 
     // Delete cache file

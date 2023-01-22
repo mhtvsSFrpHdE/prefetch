@@ -3,11 +3,11 @@
 #include "..\Thread\Read\read_thread.h"
 #include "..\..\Output\log.h"
 
-// Sleep prefetch interval, unlock pause mutex after sleep done
+// Sleep prefetch interval, unlock stop mutex after sleep done
 void Run_Sleep::sleep()
 {
-    // Do not run new sleep thread in pause status
-    if (ReadThread::pause)
+    // Do not run new sleep thread in stop status
+    if (ReadThread::stop)
     {
         return;
     }

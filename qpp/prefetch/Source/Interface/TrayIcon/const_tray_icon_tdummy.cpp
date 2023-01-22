@@ -5,10 +5,10 @@
 
 void Const_TrayIcon::MenuText::tdummy()
 {
-#define DEFINE_Pause "Pause"
-    Pause = tr("Pause");
-#define DEFINE_Resume "Resume"
-    Resume = tr("Resume");
+#define DEFINE_Stop "Stop"
+    Stop = tr("Stop");
+#define DEFINE_Start "Start"
+    Start = tr("Start");
 #define DEFINE_Exit "Exit"
     Exit = tr("Exit");
 }

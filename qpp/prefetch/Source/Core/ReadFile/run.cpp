@@ -218,18 +218,18 @@ void ReadFile::run()
         {
             // Check point
 
-            // Lock pause mutex
+            // Lock stop mutex
             //
             // If mutex unavailable, block will happen until mutex available
             LAST_KNOWN_POSITION(3)
-            ReadThread::pauseMutex->lock();
+            ReadThread::stopMutex->lock();
 
-            // Release pause mutex
+            // Release stop mutex
             //
             // Lock mutex is for being block
             // Since block already done, no need to keep mutex on hand
             LAST_KNOWN_POSITION(4)
-            ReadThread::pauseMutex->unlock();
+            ReadThread::stopMutex->unlock();
 
             // Activate thread pool and wait result
             bool runResult = run_runThreadPool(rescanInterval);

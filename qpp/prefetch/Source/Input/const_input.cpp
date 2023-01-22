@@ -6,9 +6,9 @@ using namespace Const_Input;
 using namespace Const_Global::CommonString;
 
 QString Message::InvalidCommand = DEFINE_InvalidCommand;
-QString Message::TryingToPause = DEFINE_TryingToPause;
-QString Message::PauseRequested = Tab + DEFINE_PauseRequested;
-QString Message::TryingToResume = DEFINE_TryingToResume;
+QString Message::TryingToStop = DEFINE_TryingToStop;
+QString Message::StopRequested = Tab + DEFINE_StopRequested;
+QString Message::TryingToStart = DEFINE_TryingToStart;
 QString Message::TryingToExit1 = DEFINE_TryingToExit1;
 QString Message::TryingToExit2 = Tab + DEFINE_TryingToExit2;
 QString Message::Test = DEFINE_Test;
@@ -23,9 +23,9 @@ QString Message::TranslateFileLoaded = DEFINE_TranslateFileLoaded;
 void Message::init()
 {
     InvalidCommand = trr(tscope, DEFINE_InvalidCommand);
-    TryingToPause = trr(tscope, DEFINE_TryingToPause);
-    PauseRequested = Tab + trr(tscope, DEFINE_PauseRequested);
-    TryingToResume = trr(tscope, DEFINE_TryingToResume);
+    TryingToStop = trr(tscope, DEFINE_TryingToStop);
+    StopRequested = Tab + trr(tscope, DEFINE_StopRequested);
+    TryingToStart = trr(tscope, DEFINE_TryingToStart);
     TryingToExit1 = trr(tscope, DEFINE_TryingToExit1);
     TryingToExit2 = Tab + trr(tscope, DEFINE_TryingToExit2);
     Test = trr(tscope, DEFINE_Test);

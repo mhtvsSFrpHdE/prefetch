@@ -11,8 +11,8 @@ namespace Const_TrayIcon
     }
     namespace MenuText
     {
-        extern QString Pause;
-        extern QString Resume;
+        extern QString Stop;
+        extern QString Start;
         extern QString Exit;
 
         // Test code entry

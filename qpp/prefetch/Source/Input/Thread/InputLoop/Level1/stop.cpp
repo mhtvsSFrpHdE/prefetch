@@ -7,34 +7,34 @@
 
 #define Parent InputLoopThread::ConsoleCommandFunction_Level1
 
-void Parent::pause()
+void Parent::stop()
 {
     using namespace Const_Input::Message;
 
-    // Report trying to pause
-    StdOut::printLine(TryingToPause);
+    // Report trying to stop
+    StdOut::printLine(TryingToStop);
 
-    // Check pause status
-    if (ReadThread::pause)
+    // Check stop status
+    if (ReadThread::stop)
     {
-        // Report pause success
-        StdOut::printLine(PauseRequested);
+        // Report stop success
+        StdOut::printLine(StopRequested);
 
         // End execute
         return;
     }
 
-    // Lock pause mutex
+    // Lock stop mutex
     //
     // Once locked, read loop will be blocked at check point
     LAST_KNOWN_POSITION(3)
-    ReadThread::pauseMutex->lock();
+    ReadThread::stopMutex->lock();
 
-    // Set pause status, thread pool will skip run
-    ReadThread::pause = true;
+    // Set stop status, thread pool will skip run
+    ReadThread::stop = true;
 
-    // Report pause success
-    StdOut::printLine(PauseRequested);
+    // Report stop success
+    StdOut::printLine(StopRequested);
 
     // End execute
     return;

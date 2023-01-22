@@ -6,25 +6,25 @@
 
 #define Parent InputLoopThread::ConsoleCommandFunction_Level1
 
-void Parent::resume()
+void Parent::start()
 {
     using namespace Const_Input::Message;
 
-    // Report trying to resume
-    StdOut::printLine(TryingToResume);
+    // Report trying to start
+    StdOut::printLine(TryingToStart);
 
     // Discard rest sleep time if sleep running
     ReadFile::sleepThreadAddress->discard();
 
     // Not pausing
-    if (ReadThread::pause == false)
+    if (ReadThread::stop == false)
     {
         return;
     }
     // Pausing
     else
     {
-        ReadThread::pause = false;
-        ReadThread::pauseMutex->unlock();
+        ReadThread::stop = false;
+        ReadThread::stopMutex->unlock();
     }
 }

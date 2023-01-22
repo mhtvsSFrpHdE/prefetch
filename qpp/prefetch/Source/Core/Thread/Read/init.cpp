@@ -39,5 +39,5 @@ void ReadThread::init()
     }
 
     // Create mutex
-    pauseMutex = new QMutex();
+    stopMutex = new QMutex();
 }

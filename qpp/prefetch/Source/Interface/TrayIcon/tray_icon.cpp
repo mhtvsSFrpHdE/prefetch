@@ -28,8 +28,8 @@ namespace TrayIconObject
     QWidgetAction *instanceNameSeparator = NULL;
     QLabel *lastKnownLineLabel = NULL;
     QWidgetAction *lastKnownLineSeparator = NULL;
-    QAction *pauseMenu = NULL;
-    QAction *resumeMenu = NULL;
+    QAction *stopMenu = NULL;
+    QAction *startMenu = NULL;
     QAction *exitMenu = NULL;
     QList<CustomAction *> *customAction = NULL;
     // Test code
@@ -102,13 +102,13 @@ void TrayIcon::init()
 
     // Other standard tray menu
 
-    pauseMenu = new QAction(MenuText::Pause, qMenu);
-    connect(pauseMenu, SIGNAL(triggered()), this, SLOT(action_pause()));
-    qMenu->addAction(pauseMenu);
+    stopMenu = new QAction(MenuText::Stop, qMenu);
+    connect(stopMenu, SIGNAL(triggered()), this, SLOT(action_stop()));
+    qMenu->addAction(stopMenu);
 
-    resumeMenu = new QAction(MenuText::Resume, qMenu);
-    connect(resumeMenu, SIGNAL(triggered()), this, SLOT(action_resume()));
-    qMenu->addAction(resumeMenu);
+    startMenu = new QAction(MenuText::Start, qMenu);
+    connect(startMenu, SIGNAL(triggered()), this, SLOT(action_start()));
+    qMenu->addAction(startMenu);
 
     exitMenu = new QAction(MenuText::Exit, qMenu);
     connect(exitMenu, SIGNAL(triggered()), this, SLOT(action_exit()));
@@ -138,8 +138,8 @@ void TrayIcon::reloadTranslate()
 {
     using namespace Const_TrayIcon;
 
-    TrayIconObject::pauseMenu->setText(MenuText::Pause);
-    TrayIconObject::resumeMenu->setText(MenuText::Resume);
+    TrayIconObject::stopMenu->setText(MenuText::Stop);
+    TrayIconObject::startMenu->setText(MenuText::Start);
     TrayIconObject::exitMenu->setText(MenuText::Exit);
 }
 
@@ -165,13 +165,13 @@ namespace ConsoleCommandFunction
 }
 
 using namespace Const_Input;
-void TrayIcon::action_pause()
+void TrayIcon::action_stop()
 {
-    ConsoleCommandFunction::sendTextToStdIn(Command_Level1::pause);
+    ConsoleCommandFunction::sendTextToStdIn(Command_Level1::stop);
 }
-void TrayIcon::action_resume()
+void TrayIcon::action_start()
 {
-    ConsoleCommandFunction::sendTextToStdIn(Command_Level1::resume);
+    ConsoleCommandFunction::sendTextToStdIn(Command_Level1::start);
 }
 void TrayIcon::action_exit()
 {

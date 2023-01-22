@@ -25,10 +25,10 @@ public:
 
     // Default is false, if set to true from other thread,
     //     each read will not happen but return immediately
-    static bool pause;
+    static bool stop;
 
     // Unless available, do not start read loop
-    static QMutex *pauseMutex;
+    static QMutex *stopMutex;
 
     // A thread that report it can be delete goes here
     static QList<QRunnable *> pendingDeleteThread;

@@ -20,8 +20,8 @@ private:
     class ConsoleCommandFunction_Level1
     {
     public:
-        static void pause();
-        static void resume();
+        static void stop();
+        static void start();
         static void exit_quiet();
         static void exit();
         static void traydc();

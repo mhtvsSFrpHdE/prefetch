@@ -7,8 +7,8 @@
 bool ReadThread::autoDeletePreset = true;
 QStringList ReadThread::excludeFolders = QStringList();
 QStringList ReadThread::priorityIncludePatterns = QStringList();
-bool ReadThread::pause = false;
-QMutex *ReadThread::pauseMutex = NULL;
+bool ReadThread::stop = false;
+QMutex *ReadThread::stopMutex = NULL;
 QList<QRunnable *> ReadThread::pendingDeleteThread = QList<QRunnable *>();
 QMutex ReadThread::pendingDeleteThreadMutex(QMutex::NonRecursive);
 char *ReadThread::sharedReadBuffer;

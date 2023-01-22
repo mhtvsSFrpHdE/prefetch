@@ -64,17 +64,17 @@
     </message>
     <message>
         <location filename="../../Input/const_input_tdummy.cpp" line="11"/>
-        <source>Trying to pause prefetch</source>
+        <source>Trying to stop prefetch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Input/const_input_tdummy.cpp" line="13"/>
-        <source>Pause has requested, good luck</source>
+        <source>Stop has requested, good luck</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Input/const_input_tdummy.cpp" line="15"/>
-        <source>Trying to resume prefetch</source>
+        <source>Trying to start prefetch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -136,12 +136,12 @@
     <name>Const_TrayIcon::MenuText</name>
     <message>
         <location filename="../../Interface/TrayIcon/const_tray_icon_tdummy.cpp" line="9"/>
-        <source>Pause</source>
+        <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Interface/TrayIcon/const_tray_icon_tdummy.cpp" line="11"/>
-        <source>Resume</source>
+        <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -63,18 +63,18 @@
     </message>
     <message>
         <location filename="../../Input/const_input_tdummy.cpp" line="11"/>
-        <source>Trying to pause prefetch</source>
-        <translation>尝试暂停正在进行的缓存</translation>
+        <source>Trying to stop prefetch</source>
+        <translation>尝试停止正在进行的缓存</translation>
     </message>
     <message>
         <location filename="../../Input/const_input_tdummy.cpp" line="13"/>
-        <source>Pause has requested, good luck</source>
-        <translation>已发送暂停请求</translation>
+        <source>Stop has requested, good luck</source>
+        <translation>已发送停止请求</translation>
     </message>
     <message>
         <location filename="../../Input/const_input_tdummy.cpp" line="15"/>
-        <source>Trying to resume prefetch</source>
-        <translation>尝试恢复缓存</translation>
+        <source>Trying to start prefetch</source>
+        <translation>尝试开始缓存</translation>
     </message>
     <message>
         <location filename="../../Input/const_input_tdummy.cpp" line="17"/>
@@ -134,13 +134,13 @@
     <name>Const_TrayIcon::MenuText</name>
     <message>
         <location filename="../../Interface/TrayIcon/const_tray_icon_tdummy.cpp" line="9"/>
-        <source>Pause</source>
-        <translation>暂停</translation>
+        <source>Stop</source>
+        <translation>停止</translation>
     </message>
     <message>
         <location filename="../../Interface/TrayIcon/const_tray_icon_tdummy.cpp" line="11"/>
-        <source>Resume</source>
-        <translation>继续</translation>
+        <source>Start</source>
+        <translation>开始</translation>
     </message>
     <message>
         <location filename="../../Interface/TrayIcon/const_tray_icon_tdummy.cpp" line="13"/>
