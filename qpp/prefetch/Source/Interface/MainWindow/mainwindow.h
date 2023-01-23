@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMutex>
+
+#include "..\..\Example\Hack\function_pointer_in_signal_slot.h"
 
 namespace Ui
 {
@@ -15,6 +18,12 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+    // Freeze send command button
+    // Prevent click multiple times simultaneously
+    QMutex *sendCommand_freezeMutex = NULL;
+    // Signal is inaccessible outside class
+    void sendCommand_restore();
 
     // Implement Output::StdOut
     void StdOut_print(QString textToPrint);
@@ -34,14 +43,18 @@ public:
 
 public slots:
     void print_slot(QString textToPrint);
-    void sendCommand_slot();
+    void sendCommand_action_slot();
+    void sendCommand_freeze_slot();
+    void sendCommand_restore_slot();
     void scrollBarToBottom_slot();
     void updateScrollBar_slot();
     void minimized_slot();
     void restored_slot();
+    void callbackOnUiThread_slot(mocFunctionPointer callback);
 
 signals:
     void print_signal(QString textToPrint);
+    void callbackOnUiThread_signal(mocFunctionPointer callback);
 
 private:
     Ui::MainWindow *ui;
@@ -58,10 +71,6 @@ private:
 
     // Handle application minimize event
     void changeEvent(QEvent *changeEventAddress) override;
-
-    // Freeze button, prevent click multiple times simultaneously
-    void sendCommand_freeze();
-    void sendCommand_restore();
 };
 
 #endif // MAINWINDOW_H
