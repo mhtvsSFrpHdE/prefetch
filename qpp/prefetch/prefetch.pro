@@ -54,14 +54,14 @@ SOURCES += \
     Source/Core/startup.cpp \
     Source/Global/const_global.cpp \
     Source/Global/global.cpp \
-    Source/Input/Thread/InputLoop/Level1/exit.cpp \
-    Source/Input/Thread/InputLoop/Level1/expiresc.cpp \
-    Source/Input/Thread/InputLoop/Level1/start.cpp \
-    Source/Input/Thread/InputLoop/Level1/stop.cpp \
-    Source/Input/Thread/InputLoop/Level1/test.cpp \
-    Source/Input/Thread/InputLoop/Level1/traydc.cpp \
-    Source/Input/Thread/InputLoop/Level2/lang.cpp \
-    Source/Input/Thread/InputLoop/Level2/run.cpp \
+    Source/Input/Thread/Command/Level1/exit.cpp \
+    Source/Input/Thread/Command/Level1/expiresc.cpp \
+    Source/Input/Thread/Command/Level1/start.cpp \
+    Source/Input/Thread/Command/Level1/stop.cpp \
+    Source/Input/Thread/Command/Level1/test.cpp \
+    Source/Input/Thread/Command/Level1/traydc.cpp \
+    Source/Input/Thread/Command/Level2/lang.cpp \
+    Source/Input/Thread/Command/Level2/run.cpp \
     Source/Input/Thread/input_loop_thread.cpp \
     Source/Input/cli_constructor.cpp \
     Source/Input/cli_to_string.cpp \
