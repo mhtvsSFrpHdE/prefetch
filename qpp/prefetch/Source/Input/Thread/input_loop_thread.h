@@ -9,9 +9,8 @@ class InputLoopThread : public QThread
 public:
     void run() override;
 
-public slots:
     // Input from remote
-    void receiveText(QString input);
+    void receiveText(QString input, void (*callback)() = NULL);
 };
 
 #endif

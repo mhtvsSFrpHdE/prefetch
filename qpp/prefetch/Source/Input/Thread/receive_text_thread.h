@@ -4,16 +4,21 @@
 #include <QThread>
 #include <QMap>
 
+// This class delete itself after run function is done
 class ReceiveTextThread : public QThread
 {
     Q_OBJECT
 public:
-    ReceiveTextThread(QString input);
+    ReceiveTextThread(QString input, void (*callback)() = NULL);
+
+    void (*callback)();
 
     void run() override;
 
 private:
     QString input;
+
+    void run_callback();
 
     class ConsoleCommandFunction_Level1
     {

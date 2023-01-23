@@ -2,21 +2,35 @@
 #include "..\..\Input\const_input.h"
 #include "..\..\Output\stdout.h"
 
-void ReceiveTextThread::run()
+void ReceiveTextThread::run_callback()
 {
-    // Find level 1 command and run command
-    if (commandMap_level1.contains(input))
+    if (callback == NULL)
     {
-        auto target = commandMap_level1[input];
-        (*target)();
-
         return;
     }
 
-    // Find level 2
-    {
-        // Assume input is "run explorer Firefox.lnk"
+    (*callback)();
+}
 
+void ReceiveTextThread::run()
+{
+    // Find level 1 command
+    // Assume input is "stop"
+    {
+        if (commandMap_level1.contains(input))
+        {
+            // Run command
+            auto target = commandMap_level1[input];
+            (*target)();
+
+            run_callback();
+            exit();
+        }
+    }
+
+    // Find level 2 command
+    // Assume input is "run explorer Firefox.lnk"
+    {
         using namespace Const_Input::Command_Level2;
 
         // Get "run" part and sumbit to command map
@@ -29,6 +43,7 @@ void ReceiveTextThread::run()
             auto target = commandMap_level2[commandPart];
             (*target)(parameterPart);
 
+            run_callback();
             return;
         }
     }
@@ -36,11 +51,14 @@ void ReceiveTextThread::run()
     // No match, invalid command
     using namespace Const_Input::Message;
     StdOut::printLine(InvalidCommand);
+    run_callback();
+    return;
 }
 
-ReceiveTextThread::ReceiveTextThread(QString input)
+ReceiveTextThread::ReceiveTextThread(QString input, void (*callback)())
 {
     ReceiveTextThread::input = input;
+    ReceiveTextThread::callback = callback;
 }
 
 using namespace Const_Input;
