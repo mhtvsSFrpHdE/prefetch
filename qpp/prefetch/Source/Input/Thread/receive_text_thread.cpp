@@ -24,7 +24,7 @@ void ReceiveTextThread::run()
             (*target)();
 
             run_callback();
-            exit();
+            return;
         }
     }
 
