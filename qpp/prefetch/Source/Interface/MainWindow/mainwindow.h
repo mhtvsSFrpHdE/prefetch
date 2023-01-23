@@ -58,6 +58,10 @@ private:
 
     // Handle application minimize event
     void changeEvent(QEvent *changeEventAddress) override;
+
+    // Freeze button, prevent click multiple times simultaneously
+    void sendCommand_freeze();
+    void sendCommand_restore();
 };
 
 #endif // MAINWINDOW_H
