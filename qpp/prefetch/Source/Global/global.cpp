@@ -1,6 +1,7 @@
 #include <QStringList>
 
 #include "global.h"
+#include "..\Example\Hack\function_pointer_in_signal_slot.h"
 #include "..\Input\stdin.h"
 #include "..\Output\stdout.h"
 #include "..\Translate\translator_loader.h"
@@ -28,6 +29,7 @@ void Global::init(int argc, char *argv[])
 
     // QApplication
     qGuiApplication = new QApplication(argc, argv);
+    MocFunctionPointer::init();
 
     // Command line argument
     auto argvQStringList = QApplication::arguments();
