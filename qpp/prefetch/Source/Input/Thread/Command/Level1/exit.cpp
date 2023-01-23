@@ -1,11 +1,9 @@
-#include "..\..\input_loop_thread.h"
+#include "parent_define.h"
 #include "..\..\..\..\Global\global.h"
 #include "..\..\..\..\Input\const_input.h"
 #include "..\..\..\..\Output\stdout.h"
 
-#define Parent InputLoopThread::ConsoleCommandFunction_Level1
-
-void Parent::exit_quiet()
+void Parent_Prefetch::exit_quiet()
 {
     // Remove MainWindow
     Global::qMainWindow->hide();
@@ -17,7 +15,7 @@ void Parent::exit_quiet()
     Global::qGuiApplication->quit();
 }
 
-void Parent::exit()
+void Parent_Prefetch::exit()
 {
     using namespace Const_Input::Message;
     StdOut::printLine(TryingToExit1);

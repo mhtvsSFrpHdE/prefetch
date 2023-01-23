@@ -1,11 +1,9 @@
 #include <QTimer>
 
-#include "..\..\input_loop_thread.h"
+#include "parent_define.h"
 #include "..\..\..\..\Global\global.h"
 
-#define Parent InputLoopThread::ConsoleCommandFunction_Level1
-
-void Parent::traydc()
+void Parent_Prefetch::traydc()
 {
     auto mainWindowVisible = Global::qMainWindow->isVisible();
     if (mainWindowVisible)

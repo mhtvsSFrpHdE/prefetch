@@ -1,13 +1,11 @@
-#include "..\..\input_loop_thread.h"
+#include "parent_define.h"
 #include "..\..\..\..\Input\const_input.h"
 #include "..\..\..\..\Output\stdout.h"
 #include "..\..\..\..\Core\scan_cache.h"
 #include "..\..\..\..\Core\ReadFile\read_file.h"
 #include "..\..\..\..\Global\global.h"
 
-#define Parent InputLoopThread::ConsoleCommandFunction_Level1
-
-void Parent::expiresc()
+void Parent_Prefetch::expiresc()
 {
     using namespace Const_Input;
     using namespace Const_Input::Message;

@@ -1,19 +1,17 @@
 #ifndef run_cpp_cpp
 #define run_cpp_cpp
 
-#include "..\..\input_loop_thread.h"
+#include "parent_define.h"
 #include "..\..\..\..\Core\start_process.h"
 #include "..\..\..\..\Input\const_input.h"
 #include "..\..\..\..\Output\stdout.h"
 
-#define Parent InputLoopThread::ConsoleCommandFunction_Level2
-
-void Parent::run_quiet(QString command)
+void Parent_Prefetch::run_quiet(QString command)
 {
     StartProcess::startProcess(command);
 }
 
-void Parent::run(QString command)
+void Parent_Prefetch::run(QString command)
 {
     using namespace Const_Input::Message;
 

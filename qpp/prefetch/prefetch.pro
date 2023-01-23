@@ -19,7 +19,10 @@ HEADERS += \
     Source/Core/startup.h \
     Source/Define/define.h \
     Source/Global/global.h \
+    Source/Input/Thread/Command/Level1/parent_define.h \
+    Source/Input/Thread/Command/Level2/parent_define.h \
     Source/Input/Thread/input_loop_thread.h \
+    Source/Input/Thread/receive_text_thread.h \
     Source/Input/command_line_argument.h \
     Source/Input/stdin.h \
     Source/Interface/Dpi/dpi.h \
@@ -63,6 +66,7 @@ SOURCES += \
     Source/Input/Thread/Command/Level2/lang.cpp \
     Source/Input/Thread/Command/Level2/run.cpp \
     Source/Input/Thread/input_loop_thread.cpp \
+    Source/Input/Thread/receive_text_thread.cpp \
     Source/Input/cli_constructor.cpp \
     Source/Input/cli_to_string.cpp \
     Source/Input/command_line_argument.cpp \

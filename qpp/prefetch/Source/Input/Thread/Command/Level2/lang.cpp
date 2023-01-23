@@ -1,6 +1,6 @@
 #include <QTranslator>
 
-#include "..\..\input_loop_thread.h"
+#include "parent_define.h"
 #include "..\..\..\..\Input\const_input.h"
 #include "..\..\..\..\Output\stdout.h"
 #include "..\..\..\..\Define\define.h"
@@ -10,9 +10,7 @@
 #include "..\..\..\..\Translate\translate_tool.h"
 #include "..\..\..\..\Output\log.h"
 
-#define Parent InputLoopThread::ConsoleCommandFunction_Level2
-
-void Parent::lang(QString command)
+void Parent_Prefetch::lang(QString command)
 {
     LAST_KNOWN_POSITION(0)
 
