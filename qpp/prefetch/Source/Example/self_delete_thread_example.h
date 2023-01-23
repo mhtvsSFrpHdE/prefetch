@@ -11,9 +11,17 @@ class SlefDeleteThreadExample : public QObject
 {
     Q_OBJECT
 public:
-    SlefDeleteThreadExample(QThread *thread);
+    SlefDeleteThreadExample(QThread *thread)
+    {
+        SlefDeleteThreadExample::thread = thread;
+        connect(thread, SIGNAL(finished()), this, SLOT(deleteThis()));
+    }
 public slots:
-    void deleteThis();
+    void deleteThis()
+    {
+        delete thread;
+        deleteLater();
+    }
 
 private:
     QThread *thread = NULL;

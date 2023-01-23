@@ -57,7 +57,6 @@ SOURCES += \
     Source/Core/scan_cache.cpp \
     Source/Core/start_process.cpp \
     Source/Core/startup.cpp \
-    Source/Example/self_delete_thread_example.cpp \
     Source/Global/const_global.cpp \
     Source/Global/global.cpp \
     Source/Input/Thread/Command/Level1/exit.cpp \
