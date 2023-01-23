@@ -73,6 +73,10 @@ SOURCES += \
     Source/Interface/MainWindow/const_mainwindow.cpp \
     Source/Interface/MainWindow/const_mainwindow_tdummy.cpp \
     Source/Interface/MainWindow/mainwindow.cpp \
+    Source/Interface/MainWindow/slot_io.cpp \
+    Source/Interface/MainWindow/slot_scroll_bar.cpp \
+    Source/Interface/MainWindow/slot_window_event.cpp \
+    Source/Interface/MainWindow/stdout.cpp \
     Source/Interface/TrayIcon/Action/custom_action.cpp \
     Source/Interface/TrayIcon/const_tray_icon.cpp \
     Source/Interface/TrayIcon/const_tray_icon_tdummy.cpp \

@@ -1,18 +1,13 @@
-#include <QScrollBar>
-#include <QTimer>
-
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "..\..\Global\global.h"
-#include "..\..\Global\const_global.h"
 #include "..\..\Setting\setting.h"
 #include "..\..\Setting\const_setting.h"
+#include "..\..\Global\global.h"
+#include "..\..\Global\const_global.h"
 #include "..\Dpi\dpi.h"
-#include "..\..\Input\const_input.h"
 #include "const_mainwindow.h"
-#include "..\..\Output\stdout.h"
+#include "..\..\Input\const_input.h"
 #include "..\..\Output\log.h"
-#include "..\..\Core\const_core.h"
 #include "..\..\Translate\translate_tool.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
@@ -24,7 +19,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     using namespace Const_Setting::MainWindow_ConfigKeyName;
     using namespace Const_Global::CommonString;
     using namespace Const_MainWindow::ButtonText;
-    using namespace Const_Core::Arg;
 
     ui->setupUi(this);
 
@@ -108,133 +102,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::scrollBarToBottom_slot()
-{
-    // Background update is not necessary
-    if (isVisible() == false)
-    {
-        return;
-    }
-
-    auto scrollBar = ui->stdOut_plainTextEdit->verticalScrollBar();
-    auto scrollBarMaxSize = scrollBar->maximum();
-
-    // Fix scroll bar position
-    // Default maximum will left two empty line in text view
-    scrollBarMaxSize = scrollBarMaxSize - printOffset;
-    scrollBar->setValue(scrollBarMaxSize);
-}
-
-void MainWindow::updateScrollBar_slot()
-{
-    // Fix scroll bar position on restore
-    // If change text in QPlainTextEdit during window.hide()
-    //     After show(), QPlainTextEdit's scroll bar will have wrong maximum() value
-    //
-    // ensureCursorVisible() only "scroll to cursor", but position still bad
-    LAST_KNOWN_POSITION(0)
-    StdOut::lock();
-
-    auto existText = ui->stdOut_plainTextEdit->toPlainText();
-    ui->stdOut_plainTextEdit->setPlainText(existText);
-    scrollBarToBottom_slot();
-
-    StdOut::unlock();
-    LAST_KNOWN_POSITION(1)
-}
-
-void MainWindow::minimized_slot()
-{
-    // Check minimize to tray enabled
-    if (minimizeToTray == false)
-    {
-        // No action on false
-        return;
-    }
-
-    // Hide (minimize to tray)
-    QTimer::singleShot(0, this, SLOT(hide()));
-}
-
-void MainWindow::restored_slot()
-{
-    // Restore and bring to front if minimized before hide
-    setWindowState(Qt::WindowState::WindowActive);
-
-    updateScrollBar_slot();
-}
-
-void MainWindow::StdOut_print(QString textToPrint)
-{
-    emit print_signal(textToPrint);
-
-    // Save to line cache
-
-    // If line cache is clear
-    if (lastKnownLineCommitted)
-    {
-        // Set cache status to dirty
-        lastKnownLineCommitted = false;
-        // First statement, assign directly
-        lastKnownLine = textToPrint;
-    }
-    // Line cache is dirty
-    else
-    {
-        // Append to line cache
-        lastKnownLine += textToPrint;
-    }
-}
-
-void MainWindow::StdOut_printLine(QString textToPrint)
-{
-    using namespace Const_Global::CommonString;
-    emit print_signal(textToPrint + NewLine);
-
-    // Save to line cache
-    //
-    // Print line is always make the cache clear
-    lastKnownLineCommitted = true;
-    lastKnownLine = textToPrint;
-}
-
-void MainWindow::StdOut_flush()
-{
-    // Mark line cache is clear
-    lastKnownLineCommitted = true;
-}
-
-void MainWindow::start()
-{
-    if (startToTray == false)
-    {
-        this->show();
-    }
-}
-
-void MainWindow::print_slot(QString textToPrint)
-{
-    // Make sure text is inserted after last character
-    // User may copy text to clipboard, so cursor position is changed
-    auto cursor = ui->stdOut_plainTextEdit->textCursor();
-    cursor.movePosition(QTextCursor::End);
-    ui->stdOut_plainTextEdit->setTextCursor(cursor);
-
-    ui->stdOut_plainTextEdit->insertPlainText(textToPrint);
-}
-
-void MainWindow::sendCommand_slot()
-{
-    // Copy text
-    auto command = ui->command_lineEdit->text();
-
-    // Send to StdIn
-    Global::inputLoopThreadAddress->receiveText(command);
-
-    // Clear command editor
-    ui->command_lineEdit->clear();
-}
-
 void MainWindow::closeEvent(QCloseEvent *closeEventAddress)
 {
     closeEventAddress->accept();
@@ -274,5 +141,13 @@ void MainWindow::changeEvent(QEvent *changeEventAddress)
 
         TranslateTool::unlock();
         LAST_KNOWN_POSITION(4)
+    }
+}
+
+void MainWindow::start()
+{
+    if (startToTray == false)
+    {
+        this->show();
     }
 }
