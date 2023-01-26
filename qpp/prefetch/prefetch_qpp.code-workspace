@@ -13,6 +13,6 @@
 			"**/ThirdParty/**": "cpp"
 		},
 		"C_Cpp.intelliSenseCachePath": "${workspaceFolder}\\cpptools\\intelliSenseCachePath\\dummy",
-		"C_Cpp.intelliSenseCacheSize": 10240
+		"C_Cpp.intelliSenseCacheSize": 9216
 	}
 }

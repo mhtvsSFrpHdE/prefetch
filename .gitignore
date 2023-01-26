@@ -21,6 +21,11 @@ qpp/prefetch/env.bat
 # VSCode cpptools
 qpp/prefetch/cpptools
 
+# VSCode clangd
+qpp/prefetch/.cache
+qpp/prefetch/.clangd
+qpp/prefetch/compile_commands.json
+
 # Tool environment
 qpp/prefetch/Tool/env.bat
 qpp/prefetch/Tool/create_symbolic_link_env.bat
