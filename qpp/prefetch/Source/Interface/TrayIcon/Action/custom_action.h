@@ -1,3 +1,6 @@
+#ifndef TrayIcon_CustomAction_h
+#define TrayIcon_CustomAction_h
+
 #include <QAction>
 #include <QString>
 
@@ -33,3 +36,5 @@ public:
 public slots:
     void triggered_slot();
 };
+
+#endif

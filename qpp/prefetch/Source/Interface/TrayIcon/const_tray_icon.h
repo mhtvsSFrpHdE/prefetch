@@ -5,6 +5,8 @@
 
 namespace Const_TrayIcon
 {
+    const int DefaultLabelPadding = 10;
+
     namespace Resource
     {
         const QString QIconPath = ":/qrc/Resource/icon/main/prefetch.png";

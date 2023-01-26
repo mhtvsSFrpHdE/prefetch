@@ -32,6 +32,7 @@ HEADERS += \
     Source/Interface/TrayIcon/Action/custom_action.h \
     Source/Interface/TrayIcon/const_tray_icon.h \
     Source/Interface/TrayIcon/tray_icon.h \
+    Source/Interface/TrayIcon/tray_icon_object.h \
     Source/Output/log.h \
     Source/Output/const_log.h \
     Source/Output/stdout.h \
@@ -79,7 +80,7 @@ SOURCES += \
     Source/Interface/MainWindow/const_mainwindow.cpp \
     Source/Interface/MainWindow/const_mainwindow_tdummy.cpp \
     Source/Interface/MainWindow/mainwindow.cpp \
-    Source/Interface/MainWindow/sendCommand.cpp \
+    Source/Interface/MainWindow/send_command.cpp \
     Source/Interface/MainWindow/slot_io.cpp \
     Source/Interface/MainWindow/slot_scroll_bar.cpp \
     Source/Interface/MainWindow/slot_window_event.cpp \
@@ -87,7 +88,9 @@ SOURCES += \
     Source/Interface/TrayIcon/Action/custom_action.cpp \
     Source/Interface/TrayIcon/const_tray_icon.cpp \
     Source/Interface/TrayIcon/const_tray_icon_tdummy.cpp \
+    Source/Interface/TrayIcon/init.cpp \
     Source/Interface/TrayIcon/tray_icon.cpp \
+    Source/Interface/TrayIcon/tray_icon_object.cpp \
     Source/Output/log.cpp \
     Source/Output/const_log.cpp \
     Source/Output/stdout.cpp \

@@ -1,3 +1,6 @@
+#ifndef Tray_Icon_h
+#define Tray_Icon_h
+
 #include <QSystemTrayIcon>
 
 // In Qt 4, can't connect signals to static QObject class
@@ -20,6 +23,8 @@ public:
     // Remove system tray icon
     static void stop();
 
+    static int trayMenuMinimalWidth;
+
 public slots:
     void action_stop();
     void action_start();
@@ -33,3 +38,5 @@ public slots:
 private:
     static QSystemTrayIcon *systemTrayIcon;
 };
+
+#endif
