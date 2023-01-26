@@ -1,5 +1,4 @@
 #include "input_loop_thread.h"
-#include "Source/Input/stdin.h"
 #include "receive_text_thread.h"
 #include "..\..\Example\self_delete_thread_example.h"
 #include "..\..\Define\define.h"
@@ -14,6 +13,14 @@ void InputLoopThread::receiveText(QString input, void (*callback)())
     auto threadManager = new SlefDeleteThreadExample(receiveTextThread);
     receiveTextThread->start();
 }
+
+#if CONSOLE_ENABLED
+// Run stdin_restore on ui thread
+void run_callback_toOrdinary()
+{
+    Global::runOnUiThreadAddress->run_block(&StdIn::restore);
+}
+#endif
 
 void InputLoopThread::run()
 {
@@ -34,9 +41,9 @@ void InputLoopThread::run()
             continue;
         }
 
-        Global::runOnUiThreadAddress->runVoid(&StdIn::restore);
+        Global::runOnUiThreadAddress->run_block(&StdIn::freeze);
 
-        receiveText(input, &StdIn::restore);
+        receiveText(input, &run_callback_toOrdinary);
     }
 #endif
 }
