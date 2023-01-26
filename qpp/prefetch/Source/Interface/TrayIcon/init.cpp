@@ -80,16 +80,17 @@ void TrayIcon::init()
     connect(startMenu, SIGNAL(triggered()), this, SLOT(action_start()));
     qMenu->addAction(startMenu);
 
-    exitMenu = new QAction(MenuText::Exit, qMenu);
-    connect(exitMenu, SIGNAL(triggered()), this, SLOT(action_exit()));
-    qMenu->addAction(exitMenu);
-
     // Test code entry
 #if TEST_TRAY_MENU_ENABLED
     testMenu = new QAction(MenuText::Test, qMenu);
     connect(testMenu, SIGNAL(triggered()), this, SLOT(action_test()));
     qMenu->addAction(testMenu);
 #endif
+
+    // Exit always at bottom
+    exitMenu = new QAction(MenuText::Exit, qMenu);
+    connect(exitMenu, SIGNAL(triggered()), this, SLOT(action_exit()));
+    qMenu->addAction(exitMenu);
 
     // Menu style
     qMenu->setFixedWidth(Dpi::multiply(trayMenuMinimalWidth));
