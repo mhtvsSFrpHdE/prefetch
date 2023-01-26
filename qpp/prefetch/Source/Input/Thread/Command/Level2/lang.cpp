@@ -10,7 +10,7 @@
 #include "..\..\..\..\Translate\translate_tool.h"
 #include "..\..\..\..\Output\log.h"
 
-void Parent_Prefetch::lang(QString command)
+void Parent_Prefetch::lang_onUiThread(void *value)
 {
     LAST_KNOWN_POSITION(0)
 
@@ -18,6 +18,8 @@ void Parent_Prefetch::lang(QString command)
     using namespace Const_Global::CommonString;
 
 #if TRANSLATE_ENABLED
+    QString command = *(QString *)value;
+
     StdOut::printLine(TryingToLoadTranslate + command);
 
     LAST_KNOWN_POSITION(3)
@@ -72,4 +74,9 @@ void Parent_Prefetch::lang(QString command)
 #endif
 
     LAST_KNOWN_POSITION(1)
+}
+
+void Parent_Prefetch::lang(QString command)
+{
+    Global::runOnUiThreadAddress->runVoidPointer_block(&lang_onUiThread, &command);
 }

@@ -36,6 +36,7 @@ private:
     public:
         static void run_quiet(QString command);
         static void run(QString command);
+        static void lang_onUiThread(void *value);
         static void lang(QString command);
     };
 
