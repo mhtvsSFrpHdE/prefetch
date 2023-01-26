@@ -1,0 +1,21 @@
+﻿# Emulate VSCode cpptools formatter
+# https://code.visualstudio.com/docs/cpp/cpp-ide#_code-formatting
+# https://zed0.co.uk/clang-format-configurator
+---
+AccessModifierOffset: '-4'
+AllowShortIfStatementsOnASingleLine: Never
+BreakBeforeBraces: Allman
+ColumnLimit: '0'
+FixNamespaceComments: 'false'
+IndentCaseLabels: 'false'
+IndentWidth: '4'
+IndentWrappedFunctionNames: 'false'
+Language: Cpp
+MaxEmptyLinesToKeep: '1'
+NamespaceIndentation: All
+SortIncludes: 'false'
+SortUsingDeclarations: 'false'
+UseTab: Never
+
+...
+
