@@ -4,49 +4,39 @@
 #include "ui_mainwindow.h"
 #include "..\..\Global\global.h"
 #include "..\..\Output\log.h"
+#include "..\..\Input\stdin.h"
 
-void MainWindow::sendCommand_freeze_slot()
+void MainWindow::sendCommand_freeze()
 {
     ui->sendCommand_pushButton->setEnabled(false);
     ui->command_lineEdit->setEnabled(false);
 }
 
-void MainWindow::sendCommand_restore_slot()
+void MainWindow::sendCommand_restore()
 {
     ui->sendCommand_pushButton->setEnabled(true);
     ui->command_lineEdit->setEnabled(true);
 }
 
-// UI thread callback function
-// Target: sendCommand_restore_slot
-void sendCommand_restore_slot_toOrdinary()
-{
-    Global::qMainWindow->sendCommand_restore_slot();
-}
-
-void MainWindow::sendCommand_restore()
-{
-    emit callbackOnUiThread_signal(&sendCommand_restore_slot_toOrdinary);
-}
-
-// Input loop callback function
-// Target: sendCommand_restore
+// Run sendCommand_restore on ui thread
 void sendCommand_restore_callback_toOrdinary()
 {
-    Global::qMainWindow->sendCommand_restore();
+    Global::runOnUiThreadAddress->runVoid(&StdIn::restore);
 }
 
 void MainWindow::sendCommand_action_slot()
 {
     // Lock mutex
     LAST_KNOWN_POSITION(3)
-    sendCommand_freezeMutex->lock();
+    bool locked = StdIn::freezeMutex->tryLock();
+    if (locked == false)
+    {
+        // Ignore request without hint right now
+        // TODO
+        return;
+    }
 
-    // Disable button
-    sendCommand_freeze_slot();
-
-    // Disable tray menu
-    Global::trayIconInstanceAddress->freeze();
+    StdIn::freeze();
 
     // Copy text
     auto command = ui->command_lineEdit->text();
@@ -56,8 +46,4 @@ void MainWindow::sendCommand_action_slot()
 
     // Clear command editor
     ui->command_lineEdit->clear();
-
-    // Release mutex
-    LAST_KNOWN_POSITION(4)
-    sendCommand_freezeMutex->unlock();
 }

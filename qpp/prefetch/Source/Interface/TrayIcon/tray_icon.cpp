@@ -2,6 +2,7 @@
 #include "tray_icon_object.h"
 #include "const_tray_icon.h"
 #include "..\..\Global\global.h"
+#include "..\..\Output\log.h"
 #include "..\..\Input\stdin.h"
 #include "..\..\Input\const_input.h"
 #include "..\Dpi\dpi.h"
@@ -39,10 +40,28 @@ void TrayIcon::stop()
 
 namespace ConsoleCommandFunction
 {
+    // Run stdin_restore on ui thread
+    void stdin_restore_callback_toOrdinary()
+    {
+        Global::runOnUiThreadAddress->runVoid(&StdIn::restore);
+    }
     // Actually is not stdin, but behaves very similarly
     void sendTextToStdIn(QString text)
     {
-        Global::inputLoopThreadAddress->receiveText(text);
+        // Lock mutex
+        LAST_KNOWN_POSITION(3)
+        bool locked = StdIn::freezeMutex->tryLock();
+        if (locked == false)
+        {
+            // Ignore request without hint right now
+            // TODO
+            return;
+        }
+
+        StdIn::freeze();
+
+        // Send to StdIn
+        Global::inputLoopThreadAddress->receiveText(text, &stdin_restore_callback_toOrdinary);
     }
 }
 

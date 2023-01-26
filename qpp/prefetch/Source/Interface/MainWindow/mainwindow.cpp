@@ -82,18 +82,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     // Send button
 
-    // Mutex
-    sendCommand_freezeMutex = new QMutex();
-
     // Action
 
     // Click
     connect(ui->sendCommand_pushButton, SIGNAL(clicked()), this, SLOT(sendCommand_action_slot()));
     // Enter on command edit
     connect(ui->command_lineEdit, SIGNAL(returnPressed()), this, SLOT(sendCommand_action_slot()));
-
-    // Callback on UI thread
-    connect(this, SIGNAL(callbackOnUiThread_signal(mocFunctionPointer)), this, SLOT(callbackOnUiThread_slot(mocFunctionPointer)));
 
     // Interface text
 

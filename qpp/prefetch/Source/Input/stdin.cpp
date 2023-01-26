@@ -12,6 +12,9 @@ void StdIn::init()
     consoleInput = new QTextStream(stdin);
 #endif
 
+    // Mutex
+    freezeMutex = new QMutex();
+
     Global::inputLoopThreadAddress = new InputLoopThread();
 }
 
