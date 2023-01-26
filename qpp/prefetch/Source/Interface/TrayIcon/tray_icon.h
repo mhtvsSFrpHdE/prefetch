@@ -16,6 +16,9 @@ public:
     void init();
     // Update translate text
     void reloadTranslate();
+    // Multi thread
+    void freeze();
+    void restore();
 
     // Show system tray icon
     static void start();

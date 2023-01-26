@@ -88,6 +88,7 @@ SOURCES += \
     Source/Interface/TrayIcon/Action/custom_action.cpp \
     Source/Interface/TrayIcon/const_tray_icon.cpp \
     Source/Interface/TrayIcon/const_tray_icon_tdummy.cpp \
+    Source/Interface/TrayIcon/freeze_restore.cpp \
     Source/Interface/TrayIcon/init.cpp \
     Source/Interface/TrayIcon/tray_icon.cpp \
     Source/Interface/TrayIcon/tray_icon_object.cpp \
