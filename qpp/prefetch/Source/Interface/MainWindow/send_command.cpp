@@ -45,6 +45,9 @@ void MainWindow::sendCommand_action_slot()
     // Disable button
     sendCommand_freeze_slot();
 
+    // Disable tray menu
+    Global::trayIconInstanceAddress->freeze();
+
     // Copy text
     auto command = ui->command_lineEdit->text();
 
