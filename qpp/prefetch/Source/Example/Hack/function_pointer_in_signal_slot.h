@@ -5,6 +5,7 @@
 
 // See "function_pointer_in_signal_slot.h" for more details
 typedef void (*mocFunctionPointer)();
+typedef void (*mocVoidPointerFunctionPointer)(void *);
 
 // Qt component `moc_` does not support function pointer in signals/slots declare
 // Code example provided in `HACK.md`
@@ -34,6 +35,7 @@ public:
     static void init()
     {
         qRegisterMetaType<mocFunctionPointer>("mocFunctionPointer");
+        qRegisterMetaType<mocVoidPointerFunctionPointer>("mocVoidPointerFunctionPointer");
     }
 };
 
