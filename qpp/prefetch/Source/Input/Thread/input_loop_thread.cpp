@@ -18,7 +18,7 @@ void InputLoopThread::receiveText(QString input, void (*callback)())
 // Run stdin_restore on ui thread
 void run_callback_toOrdinary()
 {
-    Global::runOnUiThreadAddress->run_block(&StdIn::restore);
+    Global::runOnUiThreadAddress->run(&StdIn::restore);
 }
 #endif
 

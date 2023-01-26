@@ -21,7 +21,7 @@ void MainWindow::sendCommand_restore()
 // Run sendCommand_restore on ui thread
 void sendCommand_restore_callback_toOrdinary()
 {
-    Global::runOnUiThreadAddress->runVoid(&StdIn::restore);
+    Global::runOnUiThreadAddress->run(&StdIn::restore);
 }
 
 void MainWindow::sendCommand_action_slot()

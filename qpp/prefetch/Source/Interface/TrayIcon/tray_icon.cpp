@@ -43,7 +43,7 @@ namespace ConsoleCommandFunction
     // Run stdin_restore on ui thread
     void stdin_restore_callback_toOrdinary()
     {
-        Global::runOnUiThreadAddress->runVoid(&StdIn::restore);
+        Global::runOnUiThreadAddress->run(&StdIn::restore);
     }
     // Actually is not stdin, but behaves very similarly
     void sendTextToStdIn(QString text)
