@@ -1,9 +1,10 @@
 #include "stdin.h"
 
 #include "..\Global\global.h"
-#include "..\Define\define.h"
 
+#if CONSOLE_ENABLED
 QTextStream *StdIn::consoleInput;
+#endif
 
 void StdIn::init()
 {
