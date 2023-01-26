@@ -50,11 +50,8 @@ public slots:
     void updateScrollBar_slot();
     void minimized_slot();
     void restored_slot();
-    void callbackOnUiThread_slot(mocFunctionPointer callback);
-
 signals:
     void print_signal(QString textToPrint);
-    void callbackOnUiThread_signal(mocFunctionPointer callback);
 
 private:
     Ui::MainWindow *ui;

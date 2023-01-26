@@ -1,7 +1,6 @@
 #include <QStringList>
 
 #include "global.h"
-#include "..\Example\Hack\function_pointer_in_signal_slot.h"
 #include "..\Input\stdin.h"
 #include "..\Output\stdout.h"
 #include "..\Translate\translator_loader.h"
@@ -15,6 +14,7 @@
 #include "..\Core\Thread\Read\read_thread.h"
 
 QApplication *Global::qGuiApplication = NULL;
+RunOnUiThreadExample *Global::runOnUiThreadAddress = NULL;
 MainWindow *Global::qMainWindow = NULL;
 InputLoopThread *Global::inputLoopThreadAddress = NULL;
 ReadFile *Global::readFileLoopThreadAddress = NULL;
@@ -29,7 +29,8 @@ void Global::init(int argc, char *argv[])
 
     // QApplication
     qGuiApplication = new QApplication(argc, argv);
-    MocFunctionPointer::init();
+    runOnUiThreadAddress = new RunOnUiThreadExample();
+    runOnUiThreadAddress->init();
 
     // Command line argument
     auto argvQStringList = QApplication::arguments();

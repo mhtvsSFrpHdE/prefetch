@@ -3,6 +3,7 @@
 
 #include <QApplication>
 
+#include "..\Example\run_on_ui_thread_example.h"
 #include "..\Input\Thread\input_loop_thread.h"
 #include "..\Core\ReadFile\read_file.h"
 #include "..\Interface\TrayIcon\tray_icon.h"
@@ -13,6 +14,8 @@ class Global
 {
 public:
     static QApplication *qGuiApplication;
+
+    static RunOnUiThreadExample *runOnUiThreadAddress;
 
     static MainWindow *qMainWindow;
 

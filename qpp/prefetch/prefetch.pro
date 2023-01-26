@@ -19,6 +19,7 @@ HEADERS += \
     Source/Core/start_process.h \
     Source/Core/startup.h \
     Source/Define/define.h \
+    Source/Example/run_on_ui_thread_example.h \
     Source/Example/self_delete_thread_example.h \
     Source/Global/global.h \
     Source/Input/Thread/Command/Level1/parent_define.h \

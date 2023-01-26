@@ -161,8 +161,3 @@ void MainWindow::start()
         this->show();
     }
 }
-
-void MainWindow::callbackOnUiThread_slot(mocFunctionPointer callback)
-{
-    (*callback)();
-}
