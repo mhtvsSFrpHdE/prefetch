@@ -3,8 +3,6 @@
 
 #include <QThread>
 
-#include "..\..\Example\self_delete_thread_example.h"
-
 class InputLoopThread : public QThread
 {
     Q_OBJECT

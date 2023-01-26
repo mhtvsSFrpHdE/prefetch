@@ -77,6 +77,7 @@ SOURCES += \
     Source/Input/const_input.cpp \
     Source/Input/const_input_tdummy.cpp \
     Source/Input/stdin.cpp \
+    Source/Input/stdin_freeze_restore.cpp \
     Source/Interface/Dpi/dpi.cpp \
     Source/Interface/MainWindow/const_mainwindow.cpp \
     Source/Interface/MainWindow/const_mainwindow_tdummy.cpp \
