@@ -2,20 +2,23 @@
 # https://code.visualstudio.com/docs/cpp/cpp-ide#_code-formatting
 # https://zed0.co.uk/clang-format-configurator
 ---
-AccessModifierOffset: '-4'
-AllowShortIfStatementsOnASingleLine: Never
+# From VSCode document
+UseTab: Never
+IndentWidth: '4'
 BreakBeforeBraces: Allman
+AllowShortIfStatementsOnASingleLine: false
+IndentCaseLabels: 'false'
+# Emulate
+AccessModifierOffset: '-4'
 ColumnLimit: '0'
 FixNamespaceComments: 'false'
-IndentCaseLabels: 'false'
-IndentWidth: '4'
-IndentWrappedFunctionNames: 'false'
-Language: Cpp
 MaxEmptyLinesToKeep: '1'
 NamespaceIndentation: All
+# You can fail to compile if sort certain include sequence
+# For example "translate_tool.h"
 SortIncludes: 'false'
 SortUsingDeclarations: 'false'
-UseTab: Never
-
+# Other
+Language: Cpp
 ...
 
