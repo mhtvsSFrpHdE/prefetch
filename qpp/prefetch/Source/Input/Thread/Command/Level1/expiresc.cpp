@@ -42,6 +42,6 @@ void Parent_Prefetch::expiresc()
     Global::inputLoopThreadAddress->receiveText(self_command);
 
     // Exit
-    Global::qMainWindow->exitRequested = true;
+    Global::qMainWindow->exitMutex.lock();
     Global::inputLoopThreadAddress->receiveText(Command_Level1::exit);
 }

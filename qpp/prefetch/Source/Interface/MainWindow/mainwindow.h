@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMutex>
 
 namespace Ui
 {
@@ -33,7 +34,7 @@ public:
     QString lastKnownLine;
 
     // Tell closeEvent function ignore handle this exit event
-    bool exitRequested = false;
+    QMutex exitMutex;
 
 public slots:
     void print_slot(QString textToPrint);

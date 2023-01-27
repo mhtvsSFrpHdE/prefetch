@@ -133,13 +133,16 @@ MainWindow::~MainWindow()
 
 void MainWindow::closeEvent(QCloseEvent *closeEventAddress)
 {
+    // Do not forward event to other handler
     closeEventAddress->accept();
 
-    if (exitRequested)
+    // If exit mutex unavailable, do nothing
+    bool exitMutexLocked = exitMutex.tryLock();
+    if (exitMutexLocked == false)
     {
         return;
     }
-    exitRequested = true;
+    // Mutex locked
 
     // Use command interface to do actual exit
     using namespace Const_Input;
