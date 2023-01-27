@@ -2,7 +2,7 @@ cd /d %~dp0
 
 call env.bat
 
-@set path=%path%;%qtPath%;%mingwPath%
+@set path=%path%;%qtPath%;%mingwPath%;%clangdPath%
 
 call clean_vscode.bat
 @REM VSCode chromium gpu

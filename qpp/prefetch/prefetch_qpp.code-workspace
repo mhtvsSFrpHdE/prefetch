@@ -7,12 +7,19 @@
 	"settings": {
 		"files.insertFinalNewline": true,
 		"python.languageServer": "Pylance",
-		"C_Cpp.autoAddFileAssociations": false,
 		"files.associations": {
 			"**/include/**": "cpp",
 			"**/ThirdParty/**": "cpp"
 		},
-		"C_Cpp.intelliSenseCachePath": "${workspaceFolder}\\cpptools\\intelliSenseCachePath\\dummy",
-		"C_Cpp.intelliSenseCacheSize": 9216
+		"clangd.arguments": [
+			"--compile-commands-dir=${workspaceFolder}\\..\\build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Debug\\.qtc_clangd",
+			"--background-index",
+			"--header-insertion=never",
+			"--limit-results=100",
+			"--limit-references=0",
+			"--clang-tidy=0",
+			"--background-index-priority=low",
+			"--use-dirty-headers"
+		]
 	}
 }

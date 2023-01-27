@@ -1,0 +1,7 @@
+Hover:
+  ShowAKA: Yes
+Diagnostics:
+  UnusedIncludes: Strict
+  # Disable Qt 4.8.7 warning
+  # -Winconsistent-missing-override
+  Suppress: -Winconsistent-missing-override

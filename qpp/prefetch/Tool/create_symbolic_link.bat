@@ -14,12 +14,4 @@ mklink /d "boost" "%boost%"
 
 cd ..
 
-@REM clangd
-cd prefetch
-
-rm "compile_commands.json"
-mklink "compile_commands.json" "%clang_compile_commands%"
-
-cd ..
-
 pause
