@@ -7,6 +7,7 @@
 #include "..\..\Global\global.h"
 
 // Process input text
+// Non blocking
 void InputLoopThread::receiveText(QString input, void (*callback)())
 {
     auto receiveTextThread = new ReceiveTextThread(input, callback);

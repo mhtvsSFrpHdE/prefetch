@@ -7,12 +7,12 @@
 
 // Run function pointer on UI thread
 //
-// Connect use Qt::BlockingQueuedConnection
-//     so run function will block until function pointer done
-//
-// For unknown reason, only first call will work
-//     2nd call will lead to dead lock (It shouldn't)
-//     Careful if you do need block
+// run_block connect use Qt::BlockingQueuedConnection
+//     So function will block until function pointer done
+//     For unknown reason, only first call will work
+//         2nd call will lead to dead lock (It shouldn't)
+//         Careful if you do need block
+//         May be same bug mentioned in Hack\QTimer and Qt event
 class RunOnUiThreadExample : public QObject
 {
     Q_OBJECT
@@ -29,14 +29,17 @@ public:
     {
         emit runOnUiThread_signal(voidFunctionPointer);
     }
+    // Unstable! Possible to deadlock when use twice
     void run_block(mocFunctionPointer voidFunctionPointer)
     {
         emit runOnUiThread_block_signal(voidFunctionPointer);
     }
+    // Unstable! Possible to deadlock when continuous use twice
     void runVoidPointer(mocVoidPointerFunctionPointer voidPointerFunctionPointer, void *value)
     {
         emit runVoidPointerOnUiThread_signal(voidPointerFunctionPointer, value);
     }
+    // Unstable! Possible to deadlock when continuous use twice
     void runVoidPointer_block(mocVoidPointerFunctionPointer voidPointerFunctionPointer, void *value)
     {
         emit runVoidPointerOnUiThread_block_signal(voidPointerFunctionPointer, value);

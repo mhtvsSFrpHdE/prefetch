@@ -13,6 +13,8 @@ public:
 
     void (*callback)();
 
+    // After command function done, callback will run
+    // Try block inside command function until safe to callback
     void run() override;
 
 private:
