@@ -21,5 +21,5 @@ void Parent_Prefetch::exit()
     StdOut::printLine(TryingToExit1);
     StdOut::printLine(TryingToExit2);
 
-    exit_quiet();
+    Global::runOnUiThreadAddress->run_block(&exit_quiet);
 }
