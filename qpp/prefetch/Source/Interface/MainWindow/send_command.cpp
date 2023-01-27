@@ -15,7 +15,11 @@ void MainWindow::sendCommand_freeze()
 void MainWindow::sendCommand_restore()
 {
     ui->sendCommand_pushButton->setEnabled(true);
+
     ui->command_lineEdit->setEnabled(true);
+    ui->command_lineEdit->setFocus();
+    // See Hack.md for more details
+    // QTimer::singleShot(0, ui->command_lineEdit, SLOT(setFocus()));
 }
 
 // Run sendCommand_restore on ui thread

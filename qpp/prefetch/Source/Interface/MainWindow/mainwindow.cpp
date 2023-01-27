@@ -124,6 +124,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
         // Send command button text
         ui->sendCommand_pushButton->setText(SendCommand_PushButton);
     }
+
+    // Focus command editor
+    {
+        ui->command_lineEdit->setFocus();
+    }
 }
 
 MainWindow::~MainWindow()
