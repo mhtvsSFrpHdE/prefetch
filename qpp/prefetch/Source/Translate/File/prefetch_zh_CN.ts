@@ -35,7 +35,7 @@
     </message>
     <message>
         <location filename="../../Core/const_core_tdummy.cpp" line="21"/>
-        <source>ss.zzz</source>
+        <source>.zzz</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

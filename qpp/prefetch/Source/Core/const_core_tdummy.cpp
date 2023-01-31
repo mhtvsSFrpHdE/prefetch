@@ -17,8 +17,8 @@ void Const_Core::Message::tdummy()
     Idle_Sec = tr(" Sec");
 #define DEFINE_ScanFolder_Time "Scan complete, Time: "
     ScanFolder_Time = tr("Scan complete, Time: ");
-#define DEFINE_CodeExecuteTimeFormatter "ss.zzz"
-    CodeExecuteTimeFormatter = tr("ss.zzz");
+#define DEFINE_CodeExecuteTimeFormatter ".zzz"
+    CodeExecuteTimeFormatter = tr(".zzz");
 #define DEFINE_RescanIntervalReached1 "Rescan interval reached."
     RescanIntervalReached1 = tr("Rescan interval reached.");
 #define DEFINE_RescanIntervalReached2 "Cache will expire on next run."
