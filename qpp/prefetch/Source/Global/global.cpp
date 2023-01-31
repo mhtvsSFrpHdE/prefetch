@@ -21,12 +21,12 @@ ReadFile *Global::readFileLoopThreadAddress = NULL;
 TrayIcon *Global::trayIconInstanceAddress = NULL;
 CommandLineArgument *Global::commandLineArgumentAddress = NULL;
 
+#define gn Const_Setting::ConfigGroupName
+#define ikn Const_Setting::ConfigKeyName::Instance
+#define ifv Const_Setting::Value::Instance::Font
+
 void Global::init(int argc, char *argv[])
 {
-    using namespace Const_Setting;
-    using namespace Const_Setting::ConfigGroupName;
-    using namespace Const_Setting::Instance_ConfigKeyName;
-
     // QApplication
     qGuiApplication = new QApplication(argc, argv);
     runOnUiThreadAddress = new RunOnUiThreadExample();
@@ -74,8 +74,8 @@ void Global::init(int argc, char *argv[])
     defaultFont.setPixelSize(Dpi::defaultFontSize_pixel);
 
     // If value was given, update font family
-    auto getFontFamily = Setting::getString(Instance, Font, Setting::setting);
-    if (getFontFamily != Instance_Font_Value::Default)
+    auto getFontFamily = Setting::getString(gn::Instance, ikn::Font, Setting::setting);
+    if (getFontFamily != ifv::Default)
     {
         defaultFont.setFamily(getFontFamily);
     }

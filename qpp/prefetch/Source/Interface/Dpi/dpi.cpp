@@ -20,13 +20,13 @@ const cpp_bin_float_single Dpi::assumeOsPointEachInch = 96;
 int Dpi::defaultFontSize_point;
 int Dpi::defaultFontSize_pixel;
 
+#define gn Const_Setting::ConfigGroupName
+#define ikn Const_Setting::ConfigKeyName::Instance
+
 void Dpi::init()
 {
-    using namespace Const_Setting::ConfigGroupName;
-    using namespace Const_Setting::Instance_ConfigKeyName;
-
     // Zoom level
-    auto getZoomLevel = Setting::getInt(Instance, ZoomLevel, Setting::setting);
+    auto getZoomLevel = Setting::getInt(gn::Instance, ikn::ZoomLevel, Setting::setting);
     zoomLevel = getZoomLevel.result;
 
     // Ratio
@@ -34,7 +34,7 @@ void Dpi::init()
     pointToPixelMultiplier = assumeQtPointEachInch / assumeOsPointEachInch;
 
     // Font size
-    auto getFontSize = Setting::getInt(Instance, FontSize, Setting::setting);
+    auto getFontSize = Setting::getInt(gn::Instance, ikn::FontSize, Setting::setting);
     defaultFontSize_point = getFontSize.result;
     defaultFontSize_pixel = ptToPx(defaultFontSize_point);
 }

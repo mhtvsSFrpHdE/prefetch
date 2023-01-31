@@ -10,16 +10,16 @@ QList<QRunnable *> ReadFile::readThreadQueue = QList<QRunnable *>();
 QThreadPool *ReadFile::readThreadPool = new QThreadPool();
 int ReadFile::count_taskComplete = 0;
 
-using namespace Const_Setting;
+using namespace Const_Setting::Value::Thread;
 // Cool stuff: https://stackoverflow.com/questions/8157625/how-do-i-populate-values-of-a-static-qmap-in-c-qt
 // Use initializer list and one of the QMap constructor
 QMap<QString, QThread::Priority> ReadFile::priorityMap(
     std::map<QString, QThread::Priority>{
-        {ReadThreadPriority_Value::IdlePriority, QThread::IdlePriority},
-        {ReadThreadPriority_Value::LowestPriority, QThread::LowestPriority},
-        {ReadThreadPriority_Value::LowPriority, QThread::LowPriority},
-        {ReadThreadPriority_Value::NormalPriority, QThread::NormalPriority},
-        {ReadThreadPriority_Value::HighPriority, QThread::HighPriority},
-        {ReadThreadPriority_Value::HighestPriority, QThread::HighestPriority},
-        {ReadThreadPriority_Value::TimeCriticalPriority, QThread::TimeCriticalPriority},
-        {ReadThreadPriority_Value::InheritPriority, QThread::InheritPriority}});
+        {ReadThreadPriority::IdlePriority, QThread::IdlePriority},
+        {ReadThreadPriority::LowestPriority, QThread::LowestPriority},
+        {ReadThreadPriority::LowPriority, QThread::LowPriority},
+        {ReadThreadPriority::NormalPriority, QThread::NormalPriority},
+        {ReadThreadPriority::HighPriority, QThread::HighPriority},
+        {ReadThreadPriority::HighestPriority, QThread::HighestPriority},
+        {ReadThreadPriority::TimeCriticalPriority, QThread::TimeCriticalPriority},
+        {ReadThreadPriority::InheritPriority, QThread::InheritPriority}});

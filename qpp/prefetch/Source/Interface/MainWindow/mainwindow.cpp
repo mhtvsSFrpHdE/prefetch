@@ -10,13 +10,15 @@
 #include "..\..\Output\log.h"
 #include "..\..\Translate\translate_tool.h"
 
+#define gn Const_Setting::ConfigGroupName
+#define ikn Const_Setting::ConfigKeyName::Instance
+#define mkn Const_Setting::ConfigKeyName::MainWindow
+#define mpv Const_Setting::Value::MainWindow::Position
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
                                           ui(new Ui::MainWindow)
 {
     using namespace Const_Setting;
-    using namespace Const_Setting::ConfigGroupName;
-    using namespace Const_Setting::Instance_ConfigKeyName;
-    using namespace Const_Setting::MainWindow_ConfigKeyName;
     using namespace Const_Global::CommonString;
     using namespace Const_MainWindow::ButtonText;
 
@@ -26,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     // Start to tray
     {
-        startToTray = Setting::getBool(Instance, StartToTray, Setting::setting);
+        startToTray = Setting::getBool(gn::Instance, ikn::StartToTray, Setting::setting);
 
         // Command line override
         bool commandLineOverride = Global::commandLineArgumentAddress->getShowMainWindow();
@@ -38,13 +40,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     // Minimize to try
     {
-        minimizeToTray = Setting::getBool(Instance, MinimizeToTray, Setting::setting);
+        minimizeToTray = Setting::getBool(gn::Instance, ikn::MinimizeToTray, Setting::setting);
     }
 
     // Resizeable
     {
-        auto resizable = Setting::getBool(cgn_MainWindow, Resizable, Setting::setting);
-        auto sizeArray = Setting::getStringList(cgn_MainWindow, Size, Setting::setting);
+        auto resizable = Setting::getBool(gn::MainWindow, mkn::Resizable, Setting::setting);
+        auto sizeArray = Setting::getStringList(gn::MainWindow, mkn::Size, Setting::setting);
         auto sizeWidth = sizeArray[0].toInt();
         auto sizeHeight = sizeArray[1].toInt();
 
@@ -60,18 +62,17 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     // Print offset
     {
-        auto getPrintOffset = Setting::getInt(Instance, PrintOffset, Setting::setting);
+        auto getPrintOffset = Setting::getInt(gn::Instance, ikn::PrintOffset, Setting::setting);
         printOffset = getPrintOffset.result;
     }
 
     // Position
     {
-
         // If value was given, update position
-        auto getPosition = Setting::getString(cgn_MainWindow, Position, Setting::setting);
-        if (getPosition != MainWindow_Position_Value::Default)
+        auto getPosition = Setting::getString(gn::MainWindow, mkn::Position, Setting::setting);
+        if (getPosition != mpv::Default)
         {
-            auto positionArray = Setting::getStringList(cgn_MainWindow, Position, Setting::setting);
+            auto positionArray = Setting::getStringList(gn::MainWindow, mkn::Position, Setting::setting);
             this->move(positionArray[0].toInt(), positionArray[1].toInt());
         }
     }
@@ -91,7 +92,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     // Log size limit to prevent memory leak
     {
-        auto getMaximumBlockCount = Setting::getInt(Instance, MaximumBlockCount, Setting::setting);
+        auto getMaximumBlockCount = Setting::getInt(gn::Instance, ikn::MaximumBlockCount, Setting::setting);
         ui->stdOut_plainTextEdit->setMaximumBlockCount(getMaximumBlockCount.result);
     }
 
@@ -116,7 +117,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     // Interface text
     {
         // Get instance name
-        auto instanceName = Setting::getString(Instance, Name, Setting::setting);
+        auto instanceName = Setting::getString(gn::Instance, ikn::Name, Setting::setting);
 
         // MainWindow title
         setWindowTitle(instanceName);

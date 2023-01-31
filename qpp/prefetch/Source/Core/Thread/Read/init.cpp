@@ -3,14 +3,14 @@
 #include "..\..\..\Setting\const_setting.h"
 #include "const_read_thread.h"
 
+#define gn Const_Setting::ConfigGroupName
+#define kn Const_Setting::ConfigKeyName::Thread
 void ReadThread::init()
 {
-    using namespace Const_Setting::ConfigGroupName;
-    using namespace Const_Setting::Thread_ConfigKeyName;
     using namespace Const_ReadThread;
 
     // Get read buffer size from config
-    auto getReadBufferSize = Setting::getInt(Thread, ReadBufferSize, Setting::setting);
+    auto getReadBufferSize = Setting::getInt(gn::Thread, kn::ReadBufferSize, Setting::setting);
     sharedReadBufferSize = getReadBufferSize.result;
 
     // Confirm useBuffer

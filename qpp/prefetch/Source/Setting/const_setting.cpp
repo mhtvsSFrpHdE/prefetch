@@ -6,8 +6,8 @@ using namespace Const_Global::CommonString;
 QString Const_Setting::PathSplitter = QtPathSplitter;
 QString Const_Setting::StringListSplitter = StringListSplitterType1;
 
-QString Const_Setting::Instance_Font_Value::Default = DefaultValueType1;
-QString Const_Setting::Instance_Language_Value::Default = DefaultValueType1;
-QString Const_Setting::Instance_TranslateFolder_Value::Default = DefaultValueType1;
+QString Const_Setting::Value::Instance::Font::Default = DefaultValueType1;
+QString Const_Setting::Value::Instance::Language::Default = DefaultValueType1;
+QString Const_Setting::Value::Instance::TranslateFolder::Default = DefaultValueType1;
 
-QString Const_Setting::MainWindow_Position_Value::Default = DefaultValueType1;
+QString Const_Setting::Value::MainWindow::Position::Default = DefaultValueType1;

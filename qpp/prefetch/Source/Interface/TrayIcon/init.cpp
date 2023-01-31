@@ -8,10 +8,11 @@
 #include "const_tray_icon.h"
 #include "..\Dpi\dpi.h"
 
+#define gn Const_Setting::ConfigGroupName
+#define ikn Const_Setting::ConfigKeyName::Instance
+
 void TrayIcon::init()
 {
-    using namespace Const_Setting::ConfigGroupName;
-    using namespace Const_Setting::Instance_ConfigKeyName;
     using namespace TrayIconObject;
     using namespace Const_TrayIcon;
 
@@ -20,14 +21,14 @@ void TrayIcon::init()
     qMenu = new QMenu();
 
     // Get instance name
-    auto instanceName = Setting::getString(Instance, Name, Setting::setting);
+    auto instanceName = Setting::getString(gn::Instance, ikn::Name, Setting::setting);
 
     // Text may not show when mouse hover in newer operating system
     // https://bugreports.qt.io/browse/QTBUG-18821
     systemTrayIcon->setToolTip(instanceName);
 
     // Get default menu width
-    auto getTrayMenuMinimalWidth = Setting::getInt(Instance, TrayMenuMinimalWidth, Setting::setting);
+    auto getTrayMenuMinimalWidth = Setting::getInt(gn::Instance, ikn::TrayMenuMinimalWidth, Setting::setting);
     trayMenuMinimalWidth = getTrayMenuMinimalWidth.result;
 
     // Tray menu content
@@ -51,7 +52,7 @@ void TrayIcon::init()
     customAction = new QList<CustomAction *>();
 
     // Get custom tray menu
-    auto getCustomTrayMenu = Setting::getArray(CustomTrayMenu, Setting::setting);
+    auto getCustomTrayMenu = Setting::getArray(gn::CustomTrayMenu, Setting::setting);
 
     // Find key value pair if exist
     auto customTrayMenuName = getCustomTrayMenu.keys();

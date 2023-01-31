@@ -3,7 +3,6 @@
 
 #include "setting.h"
 #include "const_setting.h"
-#include "..\Core\const_core.h"
 #include "..\Global\global.h"
 
 QSettings *Setting::setting = NULL;

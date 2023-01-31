@@ -12,6 +12,11 @@
 
 QList<QTranslator *> TranslatorLoader::installedTranslator = QList<QTranslator *>();
 
+#define gn Const_Setting::ConfigGroupName
+#define ikn Const_Setting::ConfigKeyName::Instance
+#define ilv Const_Setting::Value::Instance::Language
+#define itv Const_Setting::Value::Instance::TranslateFolder
+
 // If false, translate file is not loaded, related install is ignored
 bool loadTranslate_load_tryInstall(QTranslator *translator, QString translateFileName, QString translateFolder)
 {
@@ -58,8 +63,7 @@ bool loadTranslate_load(
     QString translateFileSuffix,
     QString languageName)
 {
-    using namespace Const_Setting::ConfigGroupName;
-    using namespace Const_Setting::Instance_ConfigKeyName;
+    // using namespace Const_Setting::Instance_ConfigKeyName;
     using namespace Const_Setting;
 
     // In certain case, do not fallback to en_US
@@ -68,8 +72,8 @@ bool loadTranslate_load(
     // languageName NULL, get from setting
     if (languageName == NULL)
     {
-        languageName = Setting::getString(Instance, Language, Setting::setting);
-        if (languageName == Instance_Language_Value::Default)
+        languageName = Setting::getString(gn::Instance, ikn::Language, Setting::setting);
+        if (languageName == ilv::Default)
         {
             languageName = loadTranslate_load_getTranslateFile(translateName, translateFileSuffix);
         }
@@ -139,11 +143,9 @@ bool loadTranslate_load(
 // prefetch/translateFolder/prefetch
 QString loadTranslate_getTranslateFolder(QString translateFolder, QString qtPathSplitter, QString translateName)
 {
-    using namespace Const_Setting::Instance_TranslateFolder_Value;
-
-    if (translateFolder == Default)
+    if (translateFolder == itv::Default)
     {
-        translateFolder = DefaultIs;
+        translateFolder = itv::DefaultIs;
     }
 
     return Global::qGuiApplication->applicationDirPath() + qtPathSplitter + translateFolder + qtPathSplitter + translateName;
@@ -176,14 +178,12 @@ bool loadTranslate(QString translateName, QString translateFolderFromSetting, QS
 void TranslatorLoader::initFile(QString languageName)
 {
     using namespace Const_TranslatorLoader;
-    using namespace Const_Setting::ConfigGroupName;
-    using namespace Const_Setting::Instance_ConfigKeyName;
 
     const QString qtPathSplitter = "/";
     const QString translateFileSuffix = ".qm";
 
     // Get translate folder from setting
-    QString translateFolderFromSetting = Setting::getString(Instance, TranslateFolder, Setting::setting);
+    QString translateFolderFromSetting = Setting::getString(gn::Instance, ikn::TranslateFolder, Setting::setting);
 
     // Qt translate
     // Fail safe, no translation provided in Qt 4.8.7 installation
