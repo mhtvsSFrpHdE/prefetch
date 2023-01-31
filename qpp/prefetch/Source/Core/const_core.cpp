@@ -18,6 +18,8 @@ QString Const_Core::Message::RescanIntervalReached2 = Tab + DEFINE_RescanInterva
 
 QString Const_Core::Message::RunStartupItems = DEFINE_RunStartupItems;
 
+QString Const_Core::Message::SkipProcessDetected = DEFINE_SkipProcessDetected;
+
 void Const_Core::Message::init()
 {
     ScanFolder = trr(tscope, DEFINE_ScanFolder);
@@ -32,6 +34,8 @@ void Const_Core::Message::init()
     RescanIntervalReached2 = Tab + trr(tscope, DEFINE_RescanIntervalReached2);
 
     RunStartupItems = trr(tscope, DEFINE_RunStartupItems);
+
+    SkipProcessDetected = Tab + trr(tscope, DEFINE_SkipProcessDetected);
 }
 
 QString Const_Cache::PathSplitter = Const_Setting::PathSplitter;

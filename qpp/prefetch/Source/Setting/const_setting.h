@@ -23,6 +23,8 @@ namespace Const_Setting
         const QString ExcludeFolder = "ExcludeFolder";
         const QString PriorityIncludePattern = "PriorityIncludePattern";
         const QString StartupItem = "StartupItem";
+        const QString Skip = "Skip";
+        const QString SkipProcess = "SkipProcess";
         const QString Thread = "Thread";
         const QString Instance = "Instance";
         const QString CustomTrayMenu = "CustomTrayMenu";
@@ -31,6 +33,10 @@ namespace Const_Setting
 
     namespace ConfigKeyName
     {
+        namespace SkipProcess
+        {
+            const QString AssumeProcess = "AssumeProcess";
+        }
 
         namespace Thread
         {

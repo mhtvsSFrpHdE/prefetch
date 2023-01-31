@@ -46,12 +46,17 @@
     <message>
         <location filename="../../Core/const_core_tdummy.cpp" line="25"/>
         <source>Cache will expire on next run.</source>
-        <translation>可缓存文件列表将在下次运行前删除。</translation>
+        <translation>可缓存文件列表将在下次运行前删除</translation>
     </message>
     <message>
         <location filename="../../Core/const_core_tdummy.cpp" line="28"/>
         <source>Run startup items...</source>
         <translation>运行开机启动项...</translation>
+    </message>
+    <message>
+        <location filename="../../Core/const_core_tdummy.cpp" line="31"/>
+        <source>Skip process detected</source>
+        <translation>发现跳过的进程</translation>
     </message>
 </context>
 <context>

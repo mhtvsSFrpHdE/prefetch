@@ -53,6 +53,11 @@
         <source>Run startup items...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../Core/const_core_tdummy.cpp" line="31"/>
+        <source>Skip process detected</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Const_Input::Message</name>

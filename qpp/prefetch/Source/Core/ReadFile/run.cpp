@@ -9,6 +9,7 @@
 #include "..\scan_cache.h"
 #include "run_timer.h"
 #include "..\..\Output\log.h"
+#include "..\skip.h"
 
 void run_runThreadPool_DeleteExcludedFile(QList<QRunnable *> *readThreadQueueAddress)
 {
@@ -230,6 +231,19 @@ void ReadFile::run()
             // Since block already done, no need to keep mutex on hand
             LAST_KNOWN_POSITION(4)
             ReadThread::stopMutex->unlock();
+
+            bool checkProcess = Skip::check();
+            if (checkProcess == false)
+            {
+                // Report skip process detected
+                StdOut::printLine(SkipProcessDetected);
+
+                // Wait for prefetch interval
+                Run_Sleep::sleep();
+
+                // Skip
+                continue;
+            }
 
             // Activate thread pool and wait result
             bool runResult = run_runThreadPool(rescanInterval);

@@ -22,6 +22,9 @@ namespace Const_Core
         // startup
         extern QString RunStartupItems;
 
+        // check process
+        extern QString SkipProcessDetected;
+
         extern void init();
 
         // See translate_define.h for more information

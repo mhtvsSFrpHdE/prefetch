@@ -6,6 +6,7 @@ CONFIG -= app_bundle
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 HEADERS += \
+    Source/Core/skip.h \
     Source/Example/Hack/function_pointer_in_signal_slot.h \
     Source/Example/mutex_example.h \
     Source/Core/ReadFile/run_sleep.h \
@@ -57,6 +58,7 @@ SOURCES += \
     Source/Core/const_core.cpp \
     Source/Core/const_core_tdummy.cpp \
     Source/Core/scan_cache.cpp \
+    Source/Core/skip.cpp \
     Source/Core/start_process.cpp \
     Source/Core/startup.cpp \
     Source/Global/const_global.cpp \

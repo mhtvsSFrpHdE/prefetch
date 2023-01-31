@@ -26,4 +26,7 @@ void Const_Core::Message::tdummy()
 
 #define DEFINE_RunStartupItems "Run startup items..."
     RunStartupItems = tr("Run startup items...");
+
+#define DEFINE_SkipProcessDetected "Skip process detected"
+    SkipProcessDetected = tr("Skip process detected");
 }

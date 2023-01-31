@@ -11,6 +11,7 @@
 #include "..\Define\define.h"
 #include "..\Output\log.h"
 #include "..\Core\startup.h"
+#include "..\Core\skip.h"
 #include "..\Core\Thread\Read\read_thread.h"
 
 QApplication *Global::qGuiApplication = NULL;
@@ -59,6 +60,10 @@ void Global::init(int argc, char *argv[])
 #endif
 
     Startup::init();
+    LAST_KNOWN_POSITION(2)
+
+    // Skip
+    Skip::init();
     LAST_KNOWN_POSITION(2)
 
     ScanCache::init();
