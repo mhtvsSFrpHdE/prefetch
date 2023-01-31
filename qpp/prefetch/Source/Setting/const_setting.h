@@ -16,7 +16,7 @@ namespace Const_Setting
         const QString PrefetchFolder = "PrefetchFolder";
         const QString ExcludeFolder = "ExcludeFolder";
         const QString PriorityIncludePattern = "PriorityIncludePattern";
-        const QString AfterPrefetch = "AfterPrefetch";
+        const QString StartupItem = "StartupItem";
         const QString Thread = "Thread";
         const QString Instance = "Instance";
         const QString CustomTrayMenu = "CustomTrayMenu";

@@ -37,10 +37,10 @@ void Startup::_startOnce()
     startOnce_remove();
 
     // Get startup items
-    auto afterPrefetch = Setting::getArrayValue(AfterPrefetch, Setting::setting);
-    for (int i = 0; i < afterPrefetch.size(); ++i)
+    auto startupItem = Setting::getArrayValue(StartupItem, Setting::setting);
+    for (int i = 0; i < startupItem.size(); ++i)
     {
-        auto fileName = afterPrefetch[i];
+        auto fileName = startupItem[i];
         StartProcess::startProcess(fileName);
     }
 
