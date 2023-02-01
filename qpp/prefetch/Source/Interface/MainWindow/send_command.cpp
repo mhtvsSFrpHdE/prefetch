@@ -18,7 +18,7 @@ void MainWindow::sendCommand_restore()
 
     ui->command_lineEdit->setEnabled(true);
     ui->command_lineEdit->setFocus();
-    // See Hack.md for more details
+    // See KnownIssue for more details
     // QTimer::singleShot(0, ui->command_lineEdit, SLOT(setFocus()));
 }
 

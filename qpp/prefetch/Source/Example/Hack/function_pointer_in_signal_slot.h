@@ -8,7 +8,7 @@ typedef void (*mocFunctionPointer)();
 typedef void (*mocVoidPointerFunctionPointer)(void *);
 
 // Qt component `moc_` does not support function pointer in signals/slots declare
-// Code example provided in `HACK.md`
+// Code example provided in `KnownIssue`
 //
 // Use typedef to spoof `moc_` parser, let it to think `void` does not repeat twice
 // Then use `qRegisterMetaType` to tell Qt this new custom type available for connect
