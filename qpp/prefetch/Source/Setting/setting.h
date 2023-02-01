@@ -4,6 +4,7 @@
 #include <QSettings>
 #include <QString>
 
+// Look at GenericCpp\ReturnByReference first
 class Setting
 {
 public:

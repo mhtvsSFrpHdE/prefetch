@@ -6,15 +6,12 @@
 QString Skip::assumeProcess;
 QStringList Skip::skipProcessList;
 
+#define gn Const_Setting::ConfigGroupName
+#define skn Const_Setting::ConfigKeyName::SkipProcess
 void Skip::init()
 {
-    using namespace Const_Setting;
-    using namespace Const_Setting::ConfigGroupName;
-    using namespace Const_Setting::ConfigKeyName::SkipProcess;
-
-    assumeProcess = Setting::getString(ConfigGroupName::Skip, AssumeProcess, Setting::setting);
-    // TODO: better to use pointer to avoid deep copy?
-    skipProcessList = Setting::getArrayValue(SkipProcess, Setting::setting);
+    assumeProcess = Setting::getString(gn::Skip, skn::AssumeProcess, Setting::setting);
+    skipProcessList.append(Setting::getArrayValue(gn::SkipProcess, Setting::setting));
 }
 
 bool Skip::check()

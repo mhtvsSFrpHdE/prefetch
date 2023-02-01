@@ -37,8 +37,7 @@ void InputLoopThread::run()
         bool locked = StdIn::freezeMutex->tryLock();
         if (locked == false)
         {
-            // Ignore request without hint right now
-            // TODO
+            // Ignore request
             continue;
         }
 

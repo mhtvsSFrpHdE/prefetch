@@ -28,11 +28,10 @@ public:
     static QThreadPool *readThreadPool;
 
 private:
-    // Setting ReadThreadPriority
+    // Setting
+    QStringList prefetchFolders;
     QThread::Priority readThreadPriority;
-    // Setting RescanInterval
     int rescanInterval;
-    // Setting PrefetchInterval
     unsigned long prefetchIntervalInSecond;
 
     // Read config file
@@ -65,8 +64,6 @@ private:
     //     true: No need to rescan folder
     //     false: Reached rescan interval, must rescan folder
     static bool run_runThreadPool(int rescanInterval);
-
-    QStringList prefetchFolders;
 };
 
 #endif
