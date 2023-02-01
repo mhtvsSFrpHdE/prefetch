@@ -16,7 +16,7 @@ void ReadFile::init()
     }
 
     // Get prefetch folder
-    prefetchFolders = Setting::getArrayValue(gn::PrefetchFolder, Setting::setting);
+    prefetchFolders.append(Setting::getArrayValue(gn::PrefetchFolder, Setting::setting));
 
     // Get exclude folder
     auto excludeFolders = Setting::getArrayValue(gn::ExcludeFolder, Setting::setting);
