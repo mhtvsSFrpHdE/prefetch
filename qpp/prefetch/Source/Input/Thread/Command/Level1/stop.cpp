@@ -3,10 +3,14 @@
 #include "..\..\..\..\Output\stdout.h"
 #include "..\..\..\..\Core\ReadFile\read_file_thread.h"
 #include "..\..\..\..\Output\log.h"
+#include "..\..\..\..\Example\semaphore_example.h"
 
 void Parent_Prefetch::stop()
 {
     using namespace Const_Input::Message;
+
+    typedef Core_ReadFileThread crft;
+    typedef SemaphoreExample se;
 
     // Report trying to stop
     StdOut::printLine(TryingToStop);
@@ -25,7 +29,7 @@ void Parent_Prefetch::stop()
     //
     // Once locked, read loop will be blocked at check point
     LAST_KNOWN_POSITION(3)
-    Core_ReadFileThread::stopMutex->lock();
+    se::lock(crft::stopSemaphore);
 
     // Set stop status, thread pool will skip run
     Core_ReadFileThread::stop = true;

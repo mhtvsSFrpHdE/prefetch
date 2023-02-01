@@ -3,10 +3,14 @@
 #include "..\..\..\..\Output\stdout.h"
 #include "..\..\..\..\Core\ReadFile\read_file_thread.h"
 #include "..\..\..\..\Core\core.h"
+#include "..\..\..\..\Example\semaphore_example.h"
 
 void Parent_Prefetch::start()
 {
     using namespace Const_Input::Message;
+
+    typedef Core_ReadFileThread crft;
+    typedef SemaphoreExample se;
 
     // Report trying to start
     StdOut::printLine(TryingToStart);
@@ -23,6 +27,6 @@ void Parent_Prefetch::start()
     else
     {
         Core_ReadFileThread::stop = false;
-        Core_ReadFileThread::stopMutex->unlock();
+        se::unlock(crft::stopSemaphore);
     }
 }

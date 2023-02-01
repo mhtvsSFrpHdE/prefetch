@@ -1,3 +1,6 @@
+#ifndef Log_h
+#define Log_h
+
 #include <QStringList>
 #include <QString>
 #include <QFile>
@@ -86,3 +89,5 @@ public:
     // Close log file
     static void shutdown();
 };
+
+#endif

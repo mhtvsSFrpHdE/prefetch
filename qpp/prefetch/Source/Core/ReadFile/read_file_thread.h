@@ -4,6 +4,7 @@
 #include <QRunnable>
 #include <QString>
 #include <QMutex>
+#include <QSemaphore>
 #include <QStringList>
 #include <QMap>
 #include <QFile>
@@ -24,11 +25,11 @@ public:
     static QStringList priorityIncludePatterns;
 
     // Default is false, if set to true from other thread,
-    //     each read will not happen but return immediately
+    //     each queued read should not happen but return immediately
     static bool stop;
 
     // Unless available, do not start read loop
-    static QMutex *stopMutex;
+    static QSemaphore *stopSemaphore;
 
     // A thread that report it can be delete goes here
     static QList<QRunnable *> pendingDeleteThread;

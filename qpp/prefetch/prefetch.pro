@@ -22,6 +22,7 @@ HEADERS += \
     Source/Define/define.h \
     Source/Example/run_on_ui_thread_example.h \
     Source/Example/self_delete_thread_example.h \
+    Source/Example/semaphore_example.h \
     Source/Global/global.h \
     Source/Input/Thread/Command/Level1/parent_define.h \
     Source/Input/Thread/Command/Level2/parent_define.h \

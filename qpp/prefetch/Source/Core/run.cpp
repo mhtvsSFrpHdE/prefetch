@@ -10,6 +10,7 @@
 #include "Time\time.h"
 #include "..\Output\log.h"
 #include "Skip\skip.h"
+#include "..\Example\semaphore_example.h"
 
 void run_runThreadPool_DeleteExcludedFile(QList<QRunnable *> *readThreadQueueAddress)
 {
@@ -169,6 +170,9 @@ void Core::run()
 {
     using namespace Const_Core::Message;
 
+    typedef Core_ReadFileThread crft;
+    typedef SemaphoreExample se;
+
     init();
 
     // Set thread priority
@@ -223,14 +227,14 @@ void Core::run()
             //
             // If mutex unavailable, block will happen until mutex available
             LAST_KNOWN_POSITION(3)
-            Core_ReadFileThread::stopMutex->lock();
+            se::lock(crft::stopSemaphore);
 
             // Release stop mutex
             //
             // Lock mutex is for being block
             // Since block already done, no need to keep mutex on hand
             LAST_KNOWN_POSITION(4)
-            Core_ReadFileThread::stopMutex->unlock();
+            se::unlock(crft::stopSemaphore);
 
             bool checkProcess = Core_Skip::check();
             if (checkProcess == false)

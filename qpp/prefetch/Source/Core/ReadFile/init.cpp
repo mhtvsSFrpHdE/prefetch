@@ -2,6 +2,7 @@
 #include "..\..\Setting\setting.h"
 #include "..\..\Setting\const_setting.h"
 #include "const_read_file_thread.h"
+#include "..\..\Example\semaphore_example.h"
 
 #define gn Const_Setting::ConfigGroupName
 #define kn Const_Setting::ConfigKeyName::Thread
@@ -38,6 +39,6 @@ void Core_ReadFileThread::init()
         deleteSharedReadBuffer_action = &deleteSharedReadBuffer_Directly;
     }
 
-    // Create mutex
-    stopMutex = new QMutex();
+    // Create semaphore
+    stopSemaphore = SemaphoreExample::getMutex();
 }

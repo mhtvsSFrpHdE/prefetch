@@ -6,7 +6,7 @@ bool Core_ReadFileThread::autoDeletePreset = true;
 QStringList Core_ReadFileThread::excludeFolders = QStringList();
 QStringList Core_ReadFileThread::priorityIncludePatterns = QStringList();
 bool Core_ReadFileThread::stop = false;
-QMutex *Core_ReadFileThread::stopMutex = NULL;
+QSemaphore *Core_ReadFileThread::stopSemaphore = NULL;
 QList<QRunnable *> Core_ReadFileThread::pendingDeleteThread = QList<QRunnable *>();
 QMutex Core_ReadFileThread::pendingDeleteThreadMutex(QMutex::NonRecursive);
 char *Core_ReadFileThread::sharedReadBuffer;
