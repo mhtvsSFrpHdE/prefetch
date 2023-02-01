@@ -35,20 +35,6 @@ void Core_ReadFileThread::deleteSharedReadBuffer_Directly()
     // Do nothing
 }
 
-void Core_ReadFileThread::lockPendingDeleteThread()
-{
-    // Too much of them only turn on if serious problem occur
-    // LAST_KNOWN_POSITION(3)
-    pendingDeleteThreadMutex.lock();
-}
-
-void Core_ReadFileThread::unlockPendingDeleteThread()
-{
-    pendingDeleteThreadMutex.unlock();
-    // Too much of them only turn on if serious problem occur
-    // LAST_KNOWN_POSITION(4)
-}
-
 Core_ReadFileThread::Core_ReadFileThread(QString filePath)
 {
     Core_ReadFileThread::filePath = filePath;

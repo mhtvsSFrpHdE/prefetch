@@ -36,8 +36,6 @@ public:
     // QList only support one at same time
     //     Or the list can lose some change
     static QMutex pendingDeleteThreadMutex;
-    static void lockPendingDeleteThread();
-    static void unlockPendingDeleteThread();
 
     void run() override;
 
