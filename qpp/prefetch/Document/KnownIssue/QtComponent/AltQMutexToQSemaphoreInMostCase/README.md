@@ -17,7 +17,8 @@ semaphore.acquire();
 semaphore.release();
 ```
 
-If a mutex is meant to be unlocked from another thread, go with QSemaphore.
+If a mutex is meant to be unlocked from another thread, go with QSemaphore.  
+Or as long as you don't unlock without lock first, use mutex is safe.
 
 https://stackoverflow.com/a/28670244
 https://doc.qt.io/archives/qt-4.8/qmutex.html
