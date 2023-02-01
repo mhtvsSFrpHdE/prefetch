@@ -1,30 +1,30 @@
 #include <QElapsedTimer>
 
-#include "read_file.h"
-#include "..\const_core.h"
-#include "..\..\Output\stdout.h"
-#include "..\Thread\Read\read_thread.h"
-#include "run_sleep.h"
-#include "..\startup.h"
-#include "..\scan_cache.h"
-#include "run_timer.h"
-#include "..\..\Output\log.h"
-#include "..\skip.h"
+#include "core.h"
+#include "const_core.h"
+#include "..\Output\stdout.h"
+#include "ReadFile\read_file_thread.h"
+#include "Sleep\sleep.h"
+#include "Startup\startup.h"
+#include "ScanCache\scan_cache.h"
+#include "Time\time.h"
+#include "..\Output\log.h"
+#include "Skip\skip.h"
 
 void run_runThreadPool_DeleteExcludedFile(QList<QRunnable *> *readThreadQueueAddress)
 {
-    ReadThread::pendingDeleteThreadMutex.lock();
-    for (int i = 0; i < ReadThread::pendingDeleteThread.size(); ++i)
+    Core_ReadFileThread::pendingDeleteThreadMutex.lock();
+    for (int i = 0; i < Core_ReadFileThread::pendingDeleteThread.size(); ++i)
     {
-        auto threadPointer = ReadThread::pendingDeleteThread[i];
+        auto threadPointer = Core_ReadFileThread::pendingDeleteThread[i];
         readThreadQueueAddress->removeOne(threadPointer);
         delete threadPointer;
     }
-    ReadThread::pendingDeleteThread.clear();
-    ReadThread::pendingDeleteThreadMutex.unlock();
+    Core_ReadFileThread::pendingDeleteThread.clear();
+    Core_ReadFileThread::pendingDeleteThreadMutex.unlock();
 }
 
-bool ReadFile::run_runThreadPool(int rescanInterval)
+bool Core::run_runThreadPool(int rescanInterval)
 {
     using namespace Const_Core::Message;
 
@@ -35,7 +35,7 @@ bool ReadFile::run_runThreadPool(int rescanInterval)
     threadPoolTimer.start();
 
     // Allocate RAM
-    (*ReadThread::newSharedReadBuffer_action)();
+    (*Core_ReadFileThread::newSharedReadBuffer_action)();
 
     // Consume thread queue
     for (int i = 0; i < readThreadQueue.size(); ++i)
@@ -47,21 +47,21 @@ bool ReadFile::run_runThreadPool(int rescanInterval)
     readThreadPool->waitForDone();
 
     // Release RAM
-    (*ReadThread::deleteSharedReadBuffer_action)();
+    (*Core_ReadFileThread::deleteSharedReadBuffer_action)();
 
     // Get code execute time (only measure read, without other action)
     auto threadPoolTimeConsumed_miliseconds = threadPoolTimer.elapsed();
-    auto threadPoolTimeConsumed_formatedString = Run_Timer::timeConsumed(threadPoolTimeConsumed_miliseconds);
+    auto threadPoolTimeConsumed_formatedString = Core_Time::timeConsumed(threadPoolTimeConsumed_miliseconds);
 
     // Delete excluded file thread
     run_runThreadPool_DeleteExcludedFile(&readThreadQueue);
 
     // Save scan cache
-    ScanCache::saveScanCache(&readThreadQueue);
+    Core_ScanCache::saveScanCache(&readThreadQueue);
 
     // Run startup items
 #if SKIP_STARTUP_ITEM == false
-    (*Startup::startOnce)();
+    (*Core_Startup::startOnce)();
 #endif
 
     // Increase task count
@@ -113,15 +113,15 @@ bool ReadFile::run_runThreadPool(int rescanInterval)
     return true;
 }
 
-void ReadFile::run_scanFolder_createReadFileThread_ququeThread(QString filePath, bool skipSearch)
+void Core::run_scanFolder_createReadFileThread_ququeThread(QString filePath, bool skipSearch)
 {
-    auto readThread = new ReadThread(filePath);
+    auto readThread = new Core_ReadFileThread(filePath);
     readThread->skipSearch = skipSearch;
 
-    ReadFile::readThreadQueue.append(readThread);
+    Core::readThreadQueue.append(readThread);
 }
 
-void ReadFile::run_scanFolder_createReadFileThread(QDir *prefetchFolder)
+void Core::run_scanFolder_createReadFileThread(QDir *prefetchFolder)
 {
     prefetchFolder->setFilter(QDir::Files);
     auto subFileList = prefetchFolder->entryInfoList();
@@ -134,7 +134,7 @@ void ReadFile::run_scanFolder_createReadFileThread(QDir *prefetchFolder)
     }
 }
 
-void ReadFile::run_scanFolder(QString prefetchFolderName)
+void Core::run_scanFolder(QString prefetchFolderName)
 {
     auto prefetchFolder = QDir(prefetchFolderName);
 
@@ -165,7 +165,7 @@ void ReadFile::run_scanFolder(QString prefetchFolderName)
     run_scanFolder_createReadFileThread(&prefetchFolder);
 };
 
-void ReadFile::run()
+void Core::run()
 {
     using namespace Const_Core::Message;
 
@@ -186,10 +186,10 @@ void ReadFile::run()
         StdOut::printLine(ScanFolder);
 
         // If scan cache available, skip parse prefetch folder
-        if (ScanCache::cacheFileExist)
+        if (Core_ScanCache::cacheFileExist)
         {
             StdOut::printLine(CacheFound);
-            ScanCache::loadScanCache(&readThreadQueue);
+            Core_ScanCache::loadScanCache(&readThreadQueue);
         }
         else
         {
@@ -197,13 +197,13 @@ void ReadFile::run()
             {
                 auto prefetchFolderName = prefetchFolders[i];
 
-                ReadFile::run_scanFolder(prefetchFolderName);
+                Core::run_scanFolder(prefetchFolderName);
             }
         }
 
         // Get code execute time (only measure read, without other action)
         auto scanFolderTimeConsumed_miliseconds = scanFolderTimer.elapsed();
-        auto scanFolderTimeConsumed_formatedString = Run_Timer::timeConsumed(scanFolderTimeConsumed_miliseconds);
+        auto scanFolderTimeConsumed_formatedString = Core_Time::timeConsumed(scanFolderTimeConsumed_miliseconds);
 
         // Scan complete, show execute time
         StdOut::print(ScanFolder_Time);
@@ -223,23 +223,23 @@ void ReadFile::run()
             //
             // If mutex unavailable, block will happen until mutex available
             LAST_KNOWN_POSITION(3)
-            ReadThread::stopMutex->lock();
+            Core_ReadFileThread::stopMutex->lock();
 
             // Release stop mutex
             //
             // Lock mutex is for being block
             // Since block already done, no need to keep mutex on hand
             LAST_KNOWN_POSITION(4)
-            ReadThread::stopMutex->unlock();
+            Core_ReadFileThread::stopMutex->unlock();
 
-            bool checkProcess = Skip::check();
+            bool checkProcess = Core_Skip::check();
             if (checkProcess == false)
             {
                 // Report skip process detected
                 StdOut::printLine(SkipProcessDetected);
 
                 // Wait for prefetch interval
-                Run_Sleep::sleep();
+                Core_Sleep::sleep();
 
                 // Skip
                 continue;
@@ -256,17 +256,17 @@ void ReadFile::run()
                 StdOut::printLine(RescanIntervalReached2);
 
                 // Expire cache
-                ScanCache::expireCache();
+                Core_ScanCache::expireCache();
 
                 // Wait for prefetch interval
-                Run_Sleep::sleep();
+                Core_Sleep::sleep();
 
                 // Exit while loop, trigger rescan
                 break;
             }
 
             // Wait for prefetch interval
-            Run_Sleep::sleep();
+            Core_Sleep::sleep();
         }
     }
 }

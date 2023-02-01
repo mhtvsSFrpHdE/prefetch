@@ -6,12 +6,12 @@
 #include <QDir>
 #include <QMap>
 
-#include "..\Thread\Sleep\sleep_thread.h"
+#include "Sleep\sleep_thread.h"
 
-class ReadFile : public QThread
+class Core : public QThread
 {
 public:
-    ReadFile() {}
+    Core() {}
 
     // Start read file
     // while(true), do not run directly on main thread

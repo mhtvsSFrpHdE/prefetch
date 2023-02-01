@@ -20,10 +20,13 @@ public:
     void init()
     {
         MocFunctionPointer::init();
+        // clang-format off
+        // Qt suggest `void*` instead of `void *`
         connect(this, SIGNAL(runOnUiThread_signal(mocFunctionPointer)), this, SLOT(runOnUiThread_slot(mocFunctionPointer)), Qt::BlockingQueuedConnection);
         connect(this, SIGNAL(runOnUiThread_block_signal(mocFunctionPointer)), this, SLOT(runOnUiThread_block_slot(mocFunctionPointer)), Qt::BlockingQueuedConnection);
-        connect(this, SIGNAL(runVoidPointerOnUiThread_signal(mocVoidPointerFunctionPointer, void *)), this, SLOT(runVoidPointerOnUiThread_slot(mocVoidPointerFunctionPointer, void *)), Qt::BlockingQueuedConnection);
-        connect(this, SIGNAL(runVoidPointerOnUiThread_block_signal(mocVoidPointerFunctionPointer, void *)), this, SLOT(runVoidPointerOnUiThread_block_slot(mocVoidPointerFunctionPointer, void *)), Qt::BlockingQueuedConnection);
+        connect(this, SIGNAL(runVoidPointerOnUiThread_signal(mocVoidPointerFunctionPointer,void*)), this, SLOT(runVoidPointerOnUiThread_slot(mocVoidPointerFunctionPointer,void*)), Qt::BlockingQueuedConnection);
+        connect(this, SIGNAL(runVoidPointerOnUiThread_block_signal(mocVoidPointerFunctionPointer,void*)), this, SLOT(runVoidPointerOnUiThread_block_slot(mocVoidPointerFunctionPointer,void*)), Qt::BlockingQueuedConnection);
+        // clang-format on
     }
     void run(mocFunctionPointer voidFunctionPointer)
     {

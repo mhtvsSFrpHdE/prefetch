@@ -1,7 +1,6 @@
 #include <QString>
 
-// Wrapper to access QTimer functions
-class Run_Timer
+class Core_Time
 {
 public:
     static QString timeConsumed(qint64 miliseconds);

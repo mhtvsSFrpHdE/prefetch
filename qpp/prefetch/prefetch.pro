@@ -6,19 +6,19 @@ CONFIG -= app_bundle
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 HEADERS += \
-    Source/Core/skip.h \
+    Source/Core/ReadFile/const_read_file_thread.h \
+    Source/Core/ReadFile/read_file_thread.h \
+    Source/Core/ScanCache/scan_cache.h \
+    Source/Core/Skip/skip.h \
+    Source/Core/Sleep/sleep.h \
+    Source/Core/Sleep/sleep_thread.h \
+    Source/Core/StartProcess/start_process.h \
+    Source/Core/Startup/startup.h \
+    Source/Core/Time/time.h \
+    Source/Core/const_core.h \
+    Source/Core/core.h \
     Source/Example/Hack/function_pointer_in_signal_slot.h \
     Source/Example/mutex_example.h \
-    Source/Core/ReadFile/run_sleep.h \
-    Source/Core/ReadFile/run_timer.h \
-    Source/Core/Thread/Read/const_read_thread.h \
-    Source/Core/Thread/Read/read_thread.h \
-    Source/Core/Thread/Sleep/sleep_thread.h \
-    Source/Core/ReadFile/read_file.h \
-    Source/Core/const_core.h \
-    Source/Core/scan_cache.h \
-    Source/Core/start_process.h \
-    Source/Core/startup.h \
     Source/Define/define.h \
     Source/Example/run_on_ui_thread_example.h \
     Source/Example/self_delete_thread_example.h \
@@ -47,20 +47,20 @@ HEADERS += \
 
 SOURCES += \
     Source/Core/ReadFile/init.cpp \
+    Source/Core/ReadFile/read_file_thread.cpp \
     Source/Core/ReadFile/run.cpp \
-    Source/Core/ReadFile/run_sleep.cpp \
-    Source/Core/ReadFile/run_timer.cpp \
-    Source/Core/ReadFile/read_file.cpp \
-    Source/Core/Thread/Read/init.cpp \
-    Source/Core/Thread/Read/read_thread.cpp \
-    Source/Core/Thread/Read/run.cpp \
-    Source/Core/Thread/Sleep/sleep_thread.cpp \
+    Source/Core/ScanCache/scan_cache.cpp \
+    Source/Core/Skip/skip.cpp \
+    Source/Core/Sleep/sleep.cpp \
+    Source/Core/Sleep/sleep_thread.cpp \
+    Source/Core/StartProcess/start_process.cpp \
+    Source/Core/Startup/startup.cpp \
+    Source/Core/Time/time.cpp \
     Source/Core/const_core.cpp \
     Source/Core/const_core_tdummy.cpp \
-    Source/Core/scan_cache.cpp \
-    Source/Core/skip.cpp \
-    Source/Core/start_process.cpp \
-    Source/Core/startup.cpp \
+    Source/Core/init.cpp \
+    Source/Core/read_file.cpp \
+    Source/Core/run.cpp \
     Source/Global/const_global.cpp \
     Source/Global/global.cpp \
     Source/Input/Thread/Command/Level1/exit.cpp \

@@ -2,7 +2,7 @@
 #include <QRunnable>
 #include <QSettings>
 
-class ScanCache
+class Core_ScanCache
 {
 public:
     static QSettings *cache;

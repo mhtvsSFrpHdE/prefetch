@@ -1,12 +1,13 @@
-#include "read_file.h"
-#include "..\..\Setting\setting.h"
-#include "..\Thread\Read\read_thread.h"
-#include "..\..\Setting\const_setting.h"
-#include "run_sleep.h"
+#include "core.h"
+#include "..\Setting\setting.h"
+#include "..\Setting\const_setting.h"
+#include "ReadFile\read_file_thread.h"
+#include "Sleep\sleep.h"
 
 #define gn Const_Setting::ConfigGroupName
 #define kn Const_Setting::ConfigKeyName::Thread
-void ReadFile::init()
+
+void Core::init()
 {
     // Get and set thread number
     auto getThreadNumber = Setting::getInt(gn::Thread, kn::MaxThreadCount, Setting::setting);
@@ -23,7 +24,7 @@ void ReadFile::init()
     for (int i = 0; i < excludeFolders.size(); ++i)
     {
         auto excludeFolderName = QDir(excludeFolders[i]).absolutePath();
-        ReadThread::excludeFolders.append(excludeFolderName);
+        Core_ReadFileThread::excludeFolders.append(excludeFolderName);
     }
 
     // Get priority include search patterns
@@ -31,7 +32,7 @@ void ReadFile::init()
     for (int i = 0; i < priorityIncludePatterns.size(); ++i)
     {
         auto priorityIncludePattern = priorityIncludePatterns[i];
-        ReadThread::priorityIncludePatterns.append(priorityIncludePattern);
+        Core_ReadFileThread::priorityIncludePatterns.append(priorityIncludePattern);
     }
 
     // Get rescan interval
@@ -51,5 +52,5 @@ void ReadFile::init()
     readThreadPriority = priorityMap[getReadThreadPriority];
 
     // Set do not auto delete for thread instance
-    ReadThread::autoDeletePreset = false;
+    Core_ReadFileThread::autoDeletePreset = false;
 }

@@ -1,17 +1,17 @@
 #include <QFile>
 
-#include "read_thread.h"
-#include "const_read_thread.h"
+#include "read_file_thread.h"
+#include "const_read_file_thread.h"
 
-bool ReadThread::run_SearchExclude()
+#define crft Const_ReadFileThread
+
+bool Core_ReadFileThread::run_SearchExclude()
 {
-    using namespace Const_ReadThread;
-
     // Extract folder from exclude folders
     for (int i = 0; i < excludeFolders.size(); ++i)
     {
         auto excludeFolder = excludeFolders[i];
-        auto searchPattern = QRegExp(SearchPatternTemplate.arg(excludeFolder), Qt::CaseInsensitive, QRegExp::Wildcard);
+        auto searchPattern = QRegExp(crft::SearchPatternTemplate.arg(excludeFolder), Qt::CaseInsensitive, QRegExp::Wildcard);
         auto searchResult = filePath.indexOf(searchPattern);
 
         // Assume file not under exclude folder
@@ -29,7 +29,7 @@ bool ReadThread::run_SearchExclude()
     return false;
 }
 
-bool ReadThread::run_SearchInclude()
+bool Core_ReadFileThread::run_SearchInclude()
 {
     // Extract search pattern from priority include patterns
     for (int i = 0; i < priorityIncludePatterns.size(); ++i)
@@ -49,7 +49,7 @@ bool ReadThread::run_SearchInclude()
     return false;
 }
 
-void ReadThread::run_RequestDelete()
+void Core_ReadFileThread::run_RequestDelete()
 {
     QRunnable *currentThreadPointer = this;
 
@@ -58,7 +58,7 @@ void ReadThread::run_RequestDelete()
     pendingDeleteThreadMutex.unlock();
 }
 
-void ReadThread::run_read_WithBuffer(QFile *file)
+void Core_ReadFileThread::run_read_WithBuffer(QFile *file)
 {
     qint64 readResult = sharedReadBufferSize;
     while (readResult > 0)
@@ -67,12 +67,12 @@ void ReadThread::run_read_WithBuffer(QFile *file)
     }
 }
 
-void ReadThread::run_read_Directly(QFile *file)
+void Core_ReadFileThread::run_read_Directly(QFile *file)
 {
     auto fileBytes = file->readAll();
 }
 
-void ReadThread::run_read()
+void Core_ReadFileThread::run_read()
 {
     // Read file
     QFile file(filePath);
@@ -89,7 +89,7 @@ void ReadThread::run_read()
     }
 }
 
-void ReadThread::run()
+void Core_ReadFileThread::run()
 {
     // Thread is known to skip
     if (stop)

@@ -5,7 +5,7 @@
 
 #include "..\Example\run_on_ui_thread_example.h"
 #include "..\Input\Thread\input_loop_thread.h"
-#include "..\Core\ReadFile\read_file.h"
+#include "..\Core\core.h"
 #include "..\Interface\TrayIcon\tray_icon.h"
 #include "..\Interface\MainWindow\mainwindow.h"
 #include "..\Input\command_line_argument.h"
@@ -21,7 +21,7 @@ public:
 
     static InputLoopThread *inputLoopThreadAddress;
 
-    static ReadFile *readFileLoopThreadAddress;
+    static Core *coreLoopThreadAddress;
 
     static TrayIcon *trayIconInstanceAddress;
 

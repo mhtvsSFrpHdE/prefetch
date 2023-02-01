@@ -2,13 +2,13 @@
 #define run_cpp_cpp
 
 #include "parent_define.h"
-#include "..\..\..\..\Core\start_process.h"
+#include "..\..\..\..\Core\StartProcess\start_process.h"
 #include "..\..\..\..\Input\const_input.h"
 #include "..\..\..\..\Output\stdout.h"
 
 void Parent_Prefetch::run_quiet(QString command)
 {
-    StartProcess::startProcess(command);
+    Core_StartProcess::startProcess(command);
 }
 
 void Parent_Prefetch::run(QString command)

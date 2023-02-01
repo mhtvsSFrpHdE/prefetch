@@ -1,6 +1,6 @@
 #include <QString>
 
-class StartProcess
+class Core_StartProcess
 {
 public:
     // Cool stuff

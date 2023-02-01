@@ -1,9 +1,8 @@
 #include "parent_define.h"
 #include "..\..\..\..\Input\const_input.h"
 #include "..\..\..\..\Output\stdout.h"
-#include "..\..\..\..\Core\Thread\Read\read_thread.h"
+#include "..\..\..\..\Core\ReadFile\read_file_thread.h"
 #include "..\..\..\..\Output\log.h"
-#include "..\..\..\..\Core\ReadFile\read_file.h"
 
 void Parent_Prefetch::stop()
 {
@@ -13,7 +12,7 @@ void Parent_Prefetch::stop()
     StdOut::printLine(TryingToStop);
 
     // Check stop status
-    if (ReadThread::stop)
+    if (Core_ReadFileThread::stop)
     {
         // Report stop success
         StdOut::printLine(StopRequested);
@@ -26,10 +25,10 @@ void Parent_Prefetch::stop()
     //
     // Once locked, read loop will be blocked at check point
     LAST_KNOWN_POSITION(3)
-    ReadThread::stopMutex->lock();
+    Core_ReadFileThread::stopMutex->lock();
 
     // Set stop status, thread pool will skip run
-    ReadThread::stop = true;
+    Core_ReadFileThread::stop = true;
 
     // Report stop success
     StdOut::printLine(StopRequested);

@@ -3,7 +3,7 @@
 
 #include <QString>
 
-namespace Const_ReadThread
+namespace Const_ReadFileThread
 {
     // %1: Qt format path, something like "C:/"
     const QString SearchPatternTemplate = "%1*";

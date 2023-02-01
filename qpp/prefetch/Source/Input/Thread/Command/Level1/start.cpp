@@ -1,8 +1,8 @@
 #include "parent_define.h"
 #include "..\..\..\..\Input\const_input.h"
 #include "..\..\..\..\Output\stdout.h"
-#include "..\..\..\..\Core\Thread\Read\read_thread.h"
-#include "..\..\..\..\Core\ReadFile\read_file.h"
+#include "..\..\..\..\Core\ReadFile\read_file_thread.h"
+#include "..\..\..\..\Core\core.h"
 
 void Parent_Prefetch::start()
 {
@@ -12,17 +12,17 @@ void Parent_Prefetch::start()
     StdOut::printLine(TryingToStart);
 
     // Discard rest sleep time if sleep running
-    ReadFile::sleepThreadAddress->discard();
+    Core::sleepThreadAddress->discard();
 
     // Not pausing
-    if (ReadThread::stop == false)
+    if (Core_ReadFileThread::stop == false)
     {
         return;
     }
     // Pausing
     else
     {
-        ReadThread::stop = false;
-        ReadThread::stopMutex->unlock();
+        Core_ReadFileThread::stop = false;
+        Core_ReadFileThread::stopMutex->unlock();
     }
 }

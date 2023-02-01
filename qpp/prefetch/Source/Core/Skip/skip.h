@@ -1,7 +1,7 @@
 #include <QString>
 #include <QStringList>
 
-class Skip
+class Core_Skip
 {
 public:
     // Any init code

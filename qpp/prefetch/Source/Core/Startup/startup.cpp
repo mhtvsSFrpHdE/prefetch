@@ -1,21 +1,19 @@
 #include <QProcess>
 
 #include "startup.h"
-#include "..\Setting\setting.h"
-#include "..\Setting\const_setting.h"
-#include "..\Output\stdout.h"
-#include "const_core.h"
-#include "start_process.h"
-#include "..\Global\global.h"
+#include "..\..\Setting\setting.h"
+#include "..\..\Setting\const_setting.h"
+#include "..\..\Output\stdout.h"
+#include "..\const_core.h"
+#include "..\StartProcess\start_process.h"
+#include "..\..\Global\global.h"
 
-using namespace Const_Setting::ConfigGroupName;
+#define gn Const_Setting::ConfigGroupName
 
-void (*Startup::startOnce)() = &_startOnce;
+void (*Core_Startup::startOnce)() = &_startOnce;
 
-void Startup::init()
+void Core_Startup::init()
 {
-    using namespace Const_Core::Arg;
-
     bool skipStartup = Global::commandLineArgumentAddress->getSkipStartup();
 
     if (skipStartup)
@@ -25,23 +23,23 @@ void Startup::init()
     }
 }
 
-void Startup::startOnce_remove()
+void Core_Startup::startOnce_remove()
 {
 
     startOnce = &Global::dummyFunction;
 }
 
-void Startup::_startOnce()
+void Core_Startup::_startOnce()
 {
     // Disable after fist run
     startOnce_remove();
 
     // Get startup items
-    auto startupItem = Setting::getArrayValue(StartupItem, Setting::setting);
+    auto startupItem = Setting::getArrayValue(gn::StartupItem, Setting::setting);
     for (int i = 0; i < startupItem.size(); ++i)
     {
         auto fileName = startupItem[i];
-        StartProcess::startProcess(fileName);
+        Core_StartProcess::startProcess(fileName);
     }
 
     using namespace Const_Core::Message;

@@ -8,10 +8,10 @@
 #include <QMap>
 #include <QFile>
 
-class ReadThread : public QRunnable
+class Core_ReadFileThread : public QRunnable
 {
 public:
-    ReadThread(QString filePath);
+    Core_ReadFileThread(QString filePath);
 
     // Everytime creating a new instance, call set setAutoDelete
     // Default: true

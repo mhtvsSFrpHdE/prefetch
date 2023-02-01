@@ -1,4 +1,4 @@
-class Startup
+class Core_Startup
 {
 public:
     static void init();

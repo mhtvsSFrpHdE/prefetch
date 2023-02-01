@@ -1,14 +1,14 @@
-#include "read_thread.h"
-#include "..\..\..\Setting\setting.h"
-#include "..\..\..\Setting\const_setting.h"
-#include "const_read_thread.h"
+#include "read_file_thread.h"
+#include "..\..\Setting\setting.h"
+#include "..\..\Setting\const_setting.h"
+#include "const_read_file_thread.h"
 
 #define gn Const_Setting::ConfigGroupName
 #define kn Const_Setting::ConfigKeyName::Thread
-void ReadThread::init()
-{
-    using namespace Const_ReadThread;
+#define crft Const_ReadFileThread
 
+void Core_ReadFileThread::init()
+{
     // Get read buffer size from config
     auto getReadBufferSize = Setting::getInt(gn::Thread, kn::ReadBufferSize, Setting::setting);
     sharedReadBufferSize = getReadBufferSize.result;
@@ -18,7 +18,7 @@ void ReadThread::init()
     if (useBuffer)
     {
         // Convert read buffer size
-        sharedReadBufferSize = getReadBufferSize.result * MegabyteMultiplier;
+        sharedReadBufferSize = getReadBufferSize.result * crft::MegabyteMultiplier;
 
         // Read action function pointer
         run_read_action = &run_read_WithBuffer;

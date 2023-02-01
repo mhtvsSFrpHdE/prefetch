@@ -7,18 +7,18 @@
 #include "..\Setting\setting.h"
 #include "..\Setting\const_setting.h"
 #include "..\Interface\Dpi\dpi.h"
-#include "..\Core\scan_cache.h"
+#include "..\Core\ScanCache\scan_cache.h"
+#include "..\Core\Startup\startup.h"
+#include "..\Core\Skip\skip.h"
+#include "..\Core\ReadFile\read_file_thread.h"
 #include "..\Define\define.h"
 #include "..\Output\log.h"
-#include "..\Core\startup.h"
-#include "..\Core\skip.h"
-#include "..\Core\Thread\Read\read_thread.h"
 
 QApplication *Global::qGuiApplication = NULL;
 RunOnUiThreadExample *Global::runOnUiThreadAddress = NULL;
 MainWindow *Global::qMainWindow = NULL;
 InputLoopThread *Global::inputLoopThreadAddress = NULL;
-ReadFile *Global::readFileLoopThreadAddress = NULL;
+Core *Global::coreLoopThreadAddress = NULL;
 TrayIcon *Global::trayIconInstanceAddress = NULL;
 CommandLineArgument *Global::commandLineArgumentAddress = NULL;
 
@@ -59,14 +59,14 @@ void Global::init(int argc, char *argv[])
     LAST_KNOWN_POSITION(2)
 #endif
 
-    Startup::init();
+    Core_Startup::init();
     LAST_KNOWN_POSITION(2)
 
     // Skip
-    Skip::init();
+    Core_Skip::init();
     LAST_KNOWN_POSITION(2)
 
-    ScanCache::init();
+    Core_ScanCache::init();
     LAST_KNOWN_POSITION(2)
 
     Dpi::init();
@@ -90,10 +90,10 @@ void Global::init(int argc, char *argv[])
     Global::qGuiApplication->setFont(defaultFont);
 
     // ReadThread
-    ReadThread::init();
+    Core_ReadFileThread::init();
 
     // ReadFile thread instance
-    readFileLoopThreadAddress = new ReadFile();
+    coreLoopThreadAddress = new Core();
     LAST_KNOWN_POSITION(2)
 
     // Tray icon

@@ -1,19 +1,19 @@
 #include <QTime>
 
-#include "run_timer.h"
+#include "time.h"
 #include "..\const_core.h"
 
-QString Run_Timer::timeConsumed(qint64 miliseconds)
-{
-    using namespace Const_Core::Message;
+#define cm Const_Core::Message
 
+QString Core_Time::timeConsumed(qint64 miliseconds)
+{
     // 28
     auto msInSec = QString::number(miliseconds / 1000);
 
     // .105
     auto result = QTime()
                       .addMSecs(miliseconds)
-                      .toString(CodeExecuteTimeFormatter);
+                      .toString(cm::CodeExecuteTimeFormatter);
 
     // .105 -> .10
     result.chop(1);
