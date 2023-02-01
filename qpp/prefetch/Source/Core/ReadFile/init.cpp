@@ -1,55 +1,43 @@
-#include "read_file.h"
-#include "..\..\Setting\setting.h"
-#include "..\Thread\Read\read_thread.h"
-#include "..\..\Setting\const_setting.h"
-#include "run_sleep.h"
+#include "read_thread.h"
+#include "..\..\..\Setting\setting.h"
+#include "..\..\..\Setting\const_setting.h"
+#include "const_read_thread.h"
 
 #define gn Const_Setting::ConfigGroupName
 #define kn Const_Setting::ConfigKeyName::Thread
-void ReadFile::init()
+void ReadThread::init()
 {
-    // Get and set thread number
-    auto getThreadNumber = Setting::getInt(gn::Thread, kn::MaxThreadCount, Setting::setting);
-    if (getThreadNumber.success && getThreadNumber.result >= 1)
+    using namespace Const_ReadThread;
+
+    // Get read buffer size from config
+    auto getReadBufferSize = Setting::getInt(gn::Thread, kn::ReadBufferSize, Setting::setting);
+    sharedReadBufferSize = getReadBufferSize.result;
+
+    // Confirm useBuffer
+    bool useBuffer = sharedReadBufferSize > 0;
+    if (useBuffer)
     {
-        readThreadPool->setMaxThreadCount(getThreadNumber.result);
+        // Convert read buffer size
+        sharedReadBufferSize = getReadBufferSize.result * MegabyteMultiplier;
+
+        // Read action function pointer
+        run_read_action = &run_read_WithBuffer;
+
+        // Shared buffer action function pointer
+        newSharedReadBuffer_action = &newSharedReadBuffer_WithBuffer;
+        deleteSharedReadBuffer_action = &deleteSharedReadBuffer_WithBuffer;
+    }
+    // Buffer not enabled
+    else
+    {
+        // Read action function pointer
+        run_read_action = &run_read_Directly;
+
+        // Shared buffer action function pointer
+        newSharedReadBuffer_action = &newSharedReadBuffer_Directly;
+        deleteSharedReadBuffer_action = &deleteSharedReadBuffer_Directly;
     }
 
-    // Get prefetch folder
-    prefetchFolders.append(Setting::getArrayValue(gn::PrefetchFolder, Setting::setting));
-
-    // Get exclude folder
-    auto excludeFolders = Setting::getArrayValue(gn::ExcludeFolder, Setting::setting);
-    for (int i = 0; i < excludeFolders.size(); ++i)
-    {
-        auto excludeFolderName = QDir(excludeFolders[i]).absolutePath();
-        ReadThread::excludeFolders.append(excludeFolderName);
-    }
-
-    // Get priority include search patterns
-    auto priorityIncludePatterns = Setting::getArrayValue(gn::PriorityIncludePattern, Setting::setting);
-    for (int i = 0; i < priorityIncludePatterns.size(); ++i)
-    {
-        auto priorityIncludePattern = priorityIncludePatterns[i];
-        ReadThread::priorityIncludePatterns.append(priorityIncludePattern);
-    }
-
-    // Get rescan interval
-    auto getRescanInterval = Setting::getInt(gn::Thread, kn::RescanInterval, Setting::setting);
-    rescanInterval = getRescanInterval.result;
-
-    // Get prefetch interval
-    auto getPrefetchInterval = Setting::getUnsignedLong(gn::Thread, kn::PrefetchInterval, Setting::setting);
-    prefetchIntervalInSecond = getPrefetchInterval.result;
-
-    // Set prefetch interval to sleep thread
-    sleepThreadAddress = new SleepThread();
-    sleepThreadAddress->sleepTimeInSeconds = prefetchIntervalInSecond;
-
-    // Get read thread priority
-    auto getReadThreadPriority = Setting::getString(gn::Thread, kn::ReadThreadPriority, Setting::setting);
-    readThreadPriority = priorityMap[getReadThreadPriority];
-
-    // Set do not auto delete for thread instance
-    ReadThread::autoDeletePreset = false;
+    // Create mutex
+    stopMutex = new QMutex();
 }
