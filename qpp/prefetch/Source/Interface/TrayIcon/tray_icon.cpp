@@ -6,6 +6,7 @@
 #include "..\..\Input\stdin.h"
 #include "..\..\Input\const_input.h"
 #include "..\Dpi\dpi.h"
+#include "..\..\Example\semaphore_example.h"
 
 QSystemTrayIcon *TrayIcon::systemTrayIcon = NULL;
 
@@ -50,7 +51,7 @@ namespace ConsoleCommandFunction
     {
         // Lock mutex
         LAST_KNOWN_POSITION(3)
-        bool locked = StdIn::freezeMutex->tryLock();
+        bool locked = SemaphoreExample::tryLock(StdIn::freezeSemaphore);
         if (locked == false)
         {
             // Ignore request

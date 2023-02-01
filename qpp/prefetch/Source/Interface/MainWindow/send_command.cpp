@@ -5,6 +5,7 @@
 #include "..\..\Global\global.h"
 #include "..\..\Output\log.h"
 #include "..\..\Input\stdin.h"
+#include "..\..\Example\semaphore_example.h"
 
 void MainWindow::sendCommand_freeze()
 {
@@ -32,7 +33,7 @@ void MainWindow::sendCommand_action_slot()
 {
     // Lock mutex
     LAST_KNOWN_POSITION(3)
-    bool locked = StdIn::freezeMutex->tryLock();
+    bool locked = SemaphoreExample::tryLock(StdIn::freezeSemaphore);
     if (locked == false)
     {
         // Ignore request

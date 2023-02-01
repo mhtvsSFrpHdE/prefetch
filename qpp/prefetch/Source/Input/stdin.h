@@ -1,7 +1,7 @@
 #ifndef StdIn_h
 #define StdIn_h
 
-#include <QMutex>
+#include <QSemaphore>
 
 #include "..\Define\define.h"
 
@@ -17,7 +17,7 @@ public:
 #endif
 
     // Prevent "click multiple times simultaneously"
-    static QMutex *freezeMutex;
+    static QSemaphore *freezeSemaphore;
 
     // Any init code
     static void init();

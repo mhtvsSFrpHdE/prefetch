@@ -2,8 +2,9 @@
 
 #include "..\Global\global.h"
 #include "..\Output\log.h"
+#include "..\Example\semaphore_example.h"
 
-QMutex *StdIn::freezeMutex = NULL;
+QSemaphore *StdIn::freezeSemaphore = NULL;
 
 void StdIn::freeze()
 {
@@ -24,5 +25,5 @@ void StdIn::restore()
 
     // Release mutex
     LAST_KNOWN_POSITION(4)
-    StdIn::freezeMutex->unlock();
+    SemaphoreExample::unlock(StdIn::freezeSemaphore);
 }

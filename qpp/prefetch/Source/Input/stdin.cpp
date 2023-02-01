@@ -1,6 +1,7 @@
 #include "stdin.h"
 
 #include "..\Global\global.h"
+#include "..\Example\semaphore_example.h"
 
 #if CONSOLE_ENABLED
 QTextStream *StdIn::consoleInput;
@@ -13,7 +14,7 @@ void StdIn::init()
 #endif
 
     // Mutex
-    freezeMutex = new QMutex();
+    freezeSemaphore = SemaphoreExample::getMutex();
 
     Global::inputLoopThreadAddress = new InputLoopThread();
 }

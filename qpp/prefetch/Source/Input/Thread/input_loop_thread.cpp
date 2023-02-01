@@ -1,6 +1,7 @@
 #include "input_loop_thread.h"
 #include "receive_text_thread.h"
 #include "..\..\Example\self_delete_thread_example.h"
+#include "..\..\Example\semaphore_example.h"
 #include "..\..\Define\define.h"
 #include "..\..\Input\stdin.h"
 #include "..\..\Output\log.h"
@@ -34,7 +35,7 @@ void InputLoopThread::run()
 
         // Lock mutex
         LAST_KNOWN_POSITION(3)
-        bool locked = StdIn::freezeMutex->tryLock();
+        bool locked = SemaphoreExample::tryLock(StdIn::freezeSemaphore);
         if (locked == false)
         {
             // Ignore request
