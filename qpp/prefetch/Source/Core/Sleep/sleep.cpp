@@ -10,7 +10,8 @@ void Core_Sleep::sleep()
     typedef SemaphoreExample se;
 
     // Do not run new sleep thread in stop status
-    if (se::available(crft::stopSemaphore))
+    bool stopped = se::available(crft::stopSemaphore) == false;
+    if (stopped)
     {
         return;
     }
