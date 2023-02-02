@@ -3,9 +3,11 @@
 # Tested on Python 3.9.10
 
 # Command line arguments example:
-#    `python ParseProcmonLog.py Logfile.CSV firefox.exe path.txt`
+#    `python ParseProcmonLog.py Logfile.CSV firefox path.txt`
+# Exclude
+#    Look at exclude section below
 
-# The result shold look like: "firefox.exe$|\\.ja$|\\.db-wal$|\\.js$|\\.filter$|..."
+# The result shold look like: "firefox\.exe$|^(?!.*http)^(?!.*archive)^(?!.*log)..."
 
 import sys
 import csv
@@ -16,7 +18,7 @@ exeName = None
 saveTo = None
 
 csvFilePath = "Logfile.CSV"
-exeName = "firefox.exe"
+exeName = "firefox"
 saveTo = "path.txt"
 
 # Read command line arguments
@@ -51,12 +53,26 @@ fileNameLinesArrayLength = len(fileNameLinesRemoveDuplicate) - 1
 outputFile = open(saveTo, 'w', encoding='utf-8-sig')
 
 # Save exe itself at the very beginning
-outputFile.write(exeName + '$|')
+outputFile.write(exeName + '\\.exe' + '$|')
+
+# Exclude
+outputFile.write('^(?!.*http)')
+outputFile.write('^(?!.*archive)')
+outputFile.write('^(?!.*log)')
+outputFile.write('^(?!.*backup)')
+outputFile.write('^(?!.*debug)')
+outputFile.write('^(?!.*crash)')
+
+# Open parentheses
+outputFile.write('(')
 
 # Write every extension found to output file
 for index, line in enumerate(fileNameLinesRemoveDuplicate):
     if index < fileNameLinesArrayLength:
-        outputFile.write('\\\\' + line + '$|')
+        outputFile.write('.*\\\\' + line + '$|')
     # The last one don't have pipe symbol
     else:
-        outputFile.write('\\\\' + line + '$')
+        outputFile.write('.*\\\\' + line + '$')
+
+# Close parentheses
+outputFile.write(')')
