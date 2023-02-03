@@ -131,8 +131,7 @@ void TrayIcon::action_custom(void *command)
 {
     using namespace Command_Level2;
 
-    auto commandAsQStringAddress = (QString *)command;
-    QString commandAsQString = run_withSplitter + *commandAsQStringAddress;
+    QString commandAsQString = *((QString *)command);
 
     ConsoleCommandFunction::sendTextToStdIn(commandAsQString);
 }
