@@ -2,6 +2,7 @@
 #include "..\..\Setting\setting.h"
 #include "..\..\Setting\const_setting.h"
 #include "..\StartProcess\start_process.h"
+#include "..\..\Global\global.h"
 
 QString Core_Skip::assumeProcess;
 QStringList Core_Skip::skipProcessList;
@@ -17,8 +18,16 @@ void Core_Skip::init()
 
 bool Core_Skip::check()
 {
-    // Default to true if skipProcessList is empty
+    // If skipProcessList is empty
+    // Default to true
     bool processNotRunning = true;
+
+    // Ignore check when rocket launch specified
+    bool rocketLaunch = Global::commandLineArgumentAddress->getRocketLaunch();
+    if (rocketLaunch)
+    {
+        return processNotRunning;
+    }
 
     for (int i = 0; i < skipProcessList.size(); ++i)
     {
