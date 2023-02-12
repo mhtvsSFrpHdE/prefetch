@@ -41,6 +41,7 @@ namespace Const_Core
         const QString BoolFlagBeginWith = "-";
         const QString SkipStartup = "skipStartup";
         const QString ShowMainWindow = "showMainWindow";
+        const QString RocketLaunch = "rocketLaunch";
     }
 }
 

@@ -24,3 +24,7 @@ void CommandLineArgument::setShowMainWindow(bool value)
 {
     showMainWindow = value;
 }
+bool CommandLineArgument::getRocketLaunch()
+{
+    return rocketLaunch;
+}

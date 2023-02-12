@@ -65,6 +65,17 @@ void CommandLineArgument::CommandLineArgument_parseShowMainWindow(int argIndex, 
     }
 }
 
+void CommandLineArgument::CommandLineArgument_parseRocketLaunch(int argIndex, QStringList *argv)
+{
+    using namespace Const_Core::Arg;
+
+    bool get = CommandLineArgument_parseBoolFlag(RocketLaunch, argIndex, argv);
+    if (get)
+    {
+        rocketLaunch = true;
+    }
+}
+
 CommandLineArgument::CommandLineArgument(int argc, QStringList argv)
 {
     using namespace Const_Core;
@@ -81,6 +92,7 @@ CommandLineArgument::CommandLineArgument(int argc, QStringList argv)
         scanCacheFilePath = Const_Cache::DefaultCacheFilePath;
         skipStartup = false;
         showMainWindow = false;
+        rocketLaunch = false;
 
         // Terminate
         return;
@@ -93,5 +105,6 @@ CommandLineArgument::CommandLineArgument(int argc, QStringList argv)
     {
         CommandLineArgument_parseStartup(argIndex, &argv);
         CommandLineArgument_parseShowMainWindow(argIndex, &argv);
+        CommandLineArgument_parseRocketLaunch(argIndex, &argv);
     }
 }

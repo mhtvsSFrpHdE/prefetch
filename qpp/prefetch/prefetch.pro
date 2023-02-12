@@ -8,6 +8,7 @@ CONFIG -= app_bundle
 HEADERS += \
     Source/Core/ReadFile/const_read_file_thread.h \
     Source/Core/ReadFile/read_file_thread.h \
+    Source/Core/RocketLaunch/rocket_launch.h \
     Source/Core/ScanCache/scan_cache.h \
     Source/Core/Skip/skip.h \
     Source/Core/Sleep/sleep.h \
@@ -50,6 +51,7 @@ SOURCES += \
     Source/Core/ReadFile/init.cpp \
     Source/Core/ReadFile/read_file_thread.cpp \
     Source/Core/ReadFile/run.cpp \
+    Source/Core/RocketLaunch/rocket_launch.cpp \
     Source/Core/ScanCache/scan_cache.cpp \
     Source/Core/Skip/skip.cpp \
     Source/Core/Sleep/sleep.cpp \

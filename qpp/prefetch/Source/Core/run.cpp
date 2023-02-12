@@ -11,6 +11,7 @@
 #include "..\Output\log.h"
 #include "Skip\skip.h"
 #include "..\Example\semaphore_example.h"
+#include "RocketLaunch\rocket_launch.h"
 
 void run_runThreadPool_DeleteExcludedFile(QList<QRunnable *> *readThreadQueueAddress)
 {
@@ -268,6 +269,9 @@ void Core::run()
                 // Exit while loop, trigger rescan
                 break;
             }
+
+            // Rocket launch
+            (*Core_RocketLaunch::rocketLaunch_action)();
 
             // Wait for prefetch interval
             Core_Sleep::sleep();

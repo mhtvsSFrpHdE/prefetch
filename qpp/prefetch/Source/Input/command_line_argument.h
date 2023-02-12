@@ -17,6 +17,7 @@ public:
     bool getShowMainWindow();
     // Only use if reasonable, because command line argument is generally read only
     void setShowMainWindow(bool value);
+    bool getRocketLaunch();
 
     // Generate restart command
     QString toString();
@@ -27,6 +28,7 @@ private:
     QString scanCacheFilePath;
     bool skipStartup;
     bool showMainWindow;
+    bool rocketLaunch;
 
     // Parse first argument (setting file name, but also use as instance name like scan cache)
     void CommandLineArgument_parseSettingFileName(int *argIndex, QStringList *argv);
@@ -36,6 +38,9 @@ private:
 
     // Parse show main window
     void CommandLineArgument_parseShowMainWindow(int argIndex, QStringList *argv);
+
+    // Parse rocket launch
+    void CommandLineArgument_parseRocketLaunch(int argIndex, QStringList *argv);
 
     // Disallow create without argument
     CommandLineArgument() {}

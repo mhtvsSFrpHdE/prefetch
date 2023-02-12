@@ -10,6 +10,7 @@
 #include "..\Core\ScanCache\scan_cache.h"
 #include "..\Core\Startup\startup.h"
 #include "..\Core\Skip\skip.h"
+#include "..\Core\RocketLaunch\rocket_launch.h"
 #include "..\Core\ReadFile\read_file_thread.h"
 #include "..\Define\define.h"
 #include "..\Output\log.h"
@@ -62,8 +63,10 @@ void Global::init(int argc, char *argv[])
     Core_Startup::init();
     LAST_KNOWN_POSITION(2)
 
-    // Skip
     Core_Skip::init();
+    LAST_KNOWN_POSITION(2)
+
+    Core_RocketLaunch::init();
     LAST_KNOWN_POSITION(2)
 
     Core_ScanCache::init();

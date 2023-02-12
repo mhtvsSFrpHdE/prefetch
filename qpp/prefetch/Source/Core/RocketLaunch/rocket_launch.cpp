@@ -1,0 +1,34 @@
+#include "rocket_launch.h"
+#include "..\..\Global\global.h"
+#include "..\..\Input\const_input.h"
+#include "..\..\Example\semaphore_example.h"
+
+void (*Core_RocketLaunch::rocketLaunch_action)();
+
+void Core_RocketLaunch::rocketLaunch_exit()
+{
+    using namespace Const_Input;
+
+    Global::inputLoopThreadAddress->receiveText(Command_Level1::exit);
+
+    // Block execute, never return
+    auto blockSemaphore = SemaphoreExample::getLockedSemaphore();
+    SemaphoreExample::lock(blockSemaphore);
+}
+
+void Core_RocketLaunch::rocketLaunch_ignore()
+{
+}
+
+void Core_RocketLaunch::init()
+{
+    bool rocketLaunch = Global::commandLineArgumentAddress->getRocketLaunch();
+    if (rocketLaunch)
+    {
+        rocketLaunch_action = &rocketLaunch_exit;
+    }
+    else
+    {
+        rocketLaunch_action = &rocketLaunch_ignore;
+    }
+}
