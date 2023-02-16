@@ -18,7 +18,7 @@ public:
     void run() override;
 
 private:
-    QString input;
+    QString rawInput;
 
     void run_callback();
 
@@ -31,6 +31,7 @@ private:
         static void exit();
         static void traydc();
         static void expiresc();
+        static void startup();
         static void test();
     };
     class ConsoleCommandFunction_Level2

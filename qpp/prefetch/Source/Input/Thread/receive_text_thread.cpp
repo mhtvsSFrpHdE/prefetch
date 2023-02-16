@@ -1,6 +1,9 @@
+#include <QStringList>
+
 #include "receive_text_thread.h"
 #include "..\..\Input\const_input.h"
 #include "..\..\Output\stdout.h"
+#include "..\..\Global\const_global.h"
 
 void ReceiveTextThread::run_callback()
 {
@@ -14,50 +17,67 @@ void ReceiveTextThread::run_callback()
 
 void ReceiveTextThread::run()
 {
-    // Find level 1 command
-    // Assume input is "stop"
-    {
-        if (commandMap_level1.contains(input))
-        {
-            // Run command
-            auto target = commandMap_level1[input];
-            (*target)();
+    using namespace Const_Global::CommonString;
 
-            run_callback();
-            return;
+    // Parse input string list
+    auto inputStringList = rawInput.split(NewLine);
+    bool inputHandled = false;
+
+    // Consume input string list
+    for (int i = 0; i < inputStringList.size(); ++i)
+    {
+        // Get individual input
+        auto input = inputStringList[i];
+
+        // Find level 1 command
+        // Assume input is "stop"
+        {
+            if (commandMap_level1.contains(input))
+            {
+                // Run command
+                auto target = commandMap_level1[input];
+                (*target)();
+
+                inputHandled = true;
+                continue;
+            }
+        }
+
+        // Find level 2 command
+        // Assume input is "run explorer Firefox.lnk"
+        {
+            using namespace Const_Input::Command_Level2;
+
+            // Get "run" part and sumbit to command map
+            auto commandPart = input.section(splitter, 0, 0);
+            if (commandMap_level2.contains(commandPart))
+            {
+                // Get "explorer Firefox.lnk" part and sumbit to target function
+                auto parameterPart = input.section(splitter, 1);
+
+                auto target = commandMap_level2[commandPart];
+                (*target)(parameterPart);
+
+                inputHandled = true;
+                continue;
+            }
         }
     }
 
-    // Find level 2 command
-    // Assume input is "run explorer Firefox.lnk"
+    // No match, report invalid command
+    if (inputHandled == false)
     {
-        using namespace Const_Input::Command_Level2;
-
-        // Get "run" part and sumbit to command map
-        auto commandPart = input.section(splitter, 0, 0);
-        if (commandMap_level2.contains(commandPart))
-        {
-            // Get "explorer Firefox.lnk" part and sumbit to target function
-            auto parameterPart = input.section(splitter, 1);
-
-            auto target = commandMap_level2[commandPart];
-            (*target)(parameterPart);
-
-            run_callback();
-            return;
-        }
+        StdOut::printLine(Const_Input::Message::InvalidCommand);
     }
 
-    // No match, invalid command
-    using namespace Const_Input::Message;
-    StdOut::printLine(InvalidCommand);
+    // End input
     run_callback();
     return;
 }
 
 ReceiveTextThread::ReceiveTextThread(QString input, void (*callback)())
 {
-    ReceiveTextThread::input = input;
+    ReceiveTextThread::rawInput = input;
     ReceiveTextThread::callback = callback;
 }
 
@@ -71,7 +91,8 @@ QMap<QString, void (*)()> ReceiveTextThread::commandMap_level1(
         {Command_Level1::test, &ConsoleCommandFunction_Level1::test},
         {Command_Level1::exit, &ConsoleCommandFunction_Level1::exit},
         {Command_Level1::traydc, &ConsoleCommandFunction_Level1::traydc},
-        {Command_Level1::expiresc, &ConsoleCommandFunction_Level1::expiresc}});
+        {Command_Level1::expiresc, &ConsoleCommandFunction_Level1::expiresc},
+        {Command_Level1::startup, &ConsoleCommandFunction_Level1::startup}});
 QMap<QString, void (*)(QString)> ReceiveTextThread::commandMap_level2(
     std::map<QString, void (*)(QString)>{
         {Command_Level2::run, &ConsoleCommandFunction_Level2::run},
