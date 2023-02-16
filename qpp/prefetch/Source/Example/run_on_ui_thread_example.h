@@ -10,6 +10,7 @@
 // run_block connect use Qt::BlockingQueuedConnection
 //     So function will block until function pointer done
 //     For unknown reason, only first call will work
+//         before you return current function,
 //         2nd call will lead to dead lock (It shouldn't)
 //         Careful if you do need block
 //         May be same bug mentioned in Hack\QTimer and Qt event

@@ -9,11 +9,13 @@
 
 // Process input text
 // Non blocking
-void InputLoopThread::receiveText(QString input, void (*callback)())
+void *InputLoopThread::receiveText(QString input, void (*callback)())
 {
     auto receiveTextThread = new ReceiveTextThread(input, callback);
     auto threadManager = new SlefDeleteThreadExample(receiveTextThread);
     receiveTextThread->start();
+
+    return receiveTextThread;
 }
 
 void InputLoopThread::receiveText_block(QString input, void (*callback)())

@@ -33,5 +33,5 @@ void Core_Startup::_startOnce()
     startOnce_remove();
 
     using namespace Const_Input;
-    Global::inputLoopThreadAddress->receiveText(Command_Level1::startup);
+    Global::inputLoopThreadAddress->receiveText_block(Command_Level1::startup);
 }
