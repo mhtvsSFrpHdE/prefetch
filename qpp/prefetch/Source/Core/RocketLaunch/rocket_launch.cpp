@@ -9,7 +9,7 @@ void Core_RocketLaunch::rocketLaunch_exit()
 {
     using namespace Const_Input;
 
-    Global::inputLoopThreadAddress->receiveText(Command_Level1::exit);
+    Global::inputLoopThreadAddress->receiveText_threaded(Command_Level1::exit);
 
     // Block execute, never return
     auto blockSemaphore = SemaphoreExample::getLockedSemaphore();

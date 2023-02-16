@@ -10,7 +10,7 @@ public:
     void run() override;
 
     // Input from remote
-    void *receiveText(QString input, void (*callback)() = NULL);
+    void receiveText_threaded(QString input, void (*callback)() = NULL);
     void receiveText_block(QString input, void (*callback)() = NULL);
 };
 

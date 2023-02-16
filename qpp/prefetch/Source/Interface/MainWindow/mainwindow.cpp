@@ -152,7 +152,7 @@ void MainWindow::closeEvent(QCloseEvent *closeEventAddress)
 
     // Use command interface to do actual exit
     using namespace Const_Input;
-    Global::inputLoopThreadAddress->receiveText(Command_Level1::exit);
+    Global::inputLoopThreadAddress->receiveText_threaded(Command_Level1::exit);
 }
 
 void MainWindow::changeEvent(QEvent *changeEventAddress)

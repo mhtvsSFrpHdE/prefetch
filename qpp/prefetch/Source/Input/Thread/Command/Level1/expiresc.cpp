@@ -39,9 +39,9 @@ void Parent_Prefetch::expiresc()
     //   + `"<.exe>"`
     //   + `"<.ini>" <other flag>`
     auto self_command = Global::commandLineArgumentAddress->toString();
-    Global::inputLoopThreadAddress->receiveText(self_command);
+    Global::inputLoopThreadAddress->receiveText_threaded(self_command);
 
     // Exit
     Global::qMainWindow->exitMutex.lock();
-    Global::inputLoopThreadAddress->receiveText(Command_Level1::exit);
+    Global::inputLoopThreadAddress->receiveText_threaded(Command_Level1::exit);
 }

@@ -56,7 +56,7 @@ namespace ConsoleCommandFunction
         StdIn::freeze();
 
         // Send to StdIn
-        Global::inputLoopThreadAddress->receiveText(text, &StdInExample::restore_ordinary);
+        Global::inputLoopThreadAddress->receiveText_threaded(text, &StdInExample::restore_ordinary);
     }
 }
 

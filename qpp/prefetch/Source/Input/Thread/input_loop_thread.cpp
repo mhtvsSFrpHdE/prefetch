@@ -9,13 +9,11 @@
 
 // Process input text
 // Non blocking
-void *InputLoopThread::receiveText(QString input, void (*callback)())
+void InputLoopThread::receiveText_threaded(QString input, void (*callback)())
 {
     auto receiveTextThread = new ReceiveTextThread(input, callback);
     auto threadManager = new SlefDeleteThreadExample(receiveTextThread);
     receiveTextThread->start();
-
-    return receiveTextThread;
 }
 
 void InputLoopThread::receiveText_block(QString input, void (*callback)())
@@ -45,7 +43,7 @@ void InputLoopThread::run()
 
         Global::runOnUiThreadAddress->run_block(&StdIn::freeze);
 
-        receiveText(input, &StdInExample::restore_ordinary);
+        receiveText_threaded(input, &StdInExample::restore_ordinary);
     }
 #endif
 }

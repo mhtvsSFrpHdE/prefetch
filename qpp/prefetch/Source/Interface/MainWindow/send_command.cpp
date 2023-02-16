@@ -40,7 +40,7 @@ void MainWindow::sendCommand_action_slot()
     auto command = ui->command_lineEdit->text();
 
     // Send to StdIn
-    Global::inputLoopThreadAddress->receiveText(command, &StdInExample::restore_ordinary);
+    Global::inputLoopThreadAddress->receiveText_threaded(command, &StdInExample::restore_ordinary);
 
     // Clear command editor
     ui->command_lineEdit->clear();
