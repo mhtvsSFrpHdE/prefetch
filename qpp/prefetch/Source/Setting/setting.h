@@ -3,6 +3,7 @@
 
 #include <QSettings>
 #include <QString>
+#include <QStringList>
 
 // Look at GenericCpp\ReturnByReference first
 class Setting
