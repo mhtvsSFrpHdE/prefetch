@@ -16,10 +16,6 @@ void Core_RocketLaunch::rocketLaunch_exit()
     SemaphoreExample::lock(blockSemaphore);
 }
 
-void Core_RocketLaunch::rocketLaunch_ignore()
-{
-}
-
 void Core_RocketLaunch::init()
 {
     bool rocketLaunch = Global::commandLineArgumentAddress->getRocketLaunch();
@@ -29,6 +25,6 @@ void Core_RocketLaunch::init()
     }
     else
     {
-        rocketLaunch_action = &rocketLaunch_ignore;
+        rocketLaunch_action = &Global::dummyFunction;
     }
 }

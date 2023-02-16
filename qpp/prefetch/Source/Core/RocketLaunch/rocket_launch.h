@@ -10,5 +10,4 @@ public:
 private:
     // If rocket launch is enabled, send exit command
     static void rocketLaunch_exit();
-    static void rocketLaunch_ignore();
 };
