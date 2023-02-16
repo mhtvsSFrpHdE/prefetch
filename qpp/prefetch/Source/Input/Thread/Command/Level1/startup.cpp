@@ -26,6 +26,7 @@ void Parent_Prefetch::startup()
     //     When rocket launch and code run too fast
     //     desired process may not run
     //     (QProcess::waitForStarted not work)
+    // Even msleep(0) will do the trick, strange
     bool rocketLaunch = Global::commandLineArgumentAddress->getRocketLaunch();
     if (rocketLaunch)
     {
