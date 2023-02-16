@@ -45,6 +45,7 @@ namespace Const_Setting
             const QString PrefetchInterval = "PrefetchInterval";
             const QString ReadThreadPriority = "ReadThreadPriority";
             const QString ReadBufferSize = "ReadBufferSize";
+            const QString StartupItemCooldown = "StartupItemCooldown";
         }
 
         namespace Instance
