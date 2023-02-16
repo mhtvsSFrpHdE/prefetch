@@ -11,6 +11,8 @@
 
 void Parent_Prefetch::startup()
 {
+    StdOut::printLine(Const_Core::Message::RunStartupItems);
+
     // Get startup items
     auto startupItem = Setting::getArrayValue(gn::StartupItem, Setting::setting);
     for (int i = 0; i < startupItem.size(); ++i)
@@ -30,6 +32,4 @@ void Parent_Prefetch::startup()
         auto getStartupItemCooldownMilliseconds = Setting::getUnsignedLong(gn::Thread, tkn::StartupItemCooldown, Setting::setting);
         msleep(getStartupItemCooldownMilliseconds.result);
     }
-
-    StdOut::printLine(Const_Core::Message::RunStartupItems);
 }

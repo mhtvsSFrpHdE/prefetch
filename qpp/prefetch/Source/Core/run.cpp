@@ -117,8 +117,7 @@ bool Core::run_runThreadPool(int rescanInterval)
 
 void Core::run_scanFolder_createReadFileThread_ququeThread(QString filePath, bool skipSearch)
 {
-    auto readThread = new Core_ReadFileThread(filePath);
-    readThread->skipSearch = skipSearch;
+    auto readThread = new Core_ReadFileThread(filePath, skipSearch);
 
     Core::readThreadQueue.append(readThread);
 }

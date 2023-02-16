@@ -4,6 +4,10 @@
 #include <QStringList>
 #include <QString>
 
+#include "..\Global\const_global.h"
+
+using namespace Const_Global;
+
 class CommandLineArgument
 {
 public:
@@ -24,11 +28,11 @@ public:
 
 private:
     // Read only internal variable
-    QString settingFilePath;
-    QString scanCacheFilePath;
-    bool skipStartup;
-    bool showMainWindow;
-    bool rocketLaunch;
+    QString settingFilePath = CommonString::EmptyString;
+    QString scanCacheFilePath = CommonString::EmptyString;
+    bool skipStartup = false;
+    bool showMainWindow = false;
+    bool rocketLaunch = false;
 
     // Parse first argument (setting file name, but also use as instance name like scan cache)
     void CommandLineArgument_parseSettingFileName(int *argIndex, QStringList *argv);

@@ -12,7 +12,7 @@
 class Core_ReadFileThread : public QRunnable
 {
 public:
-    Core_ReadFileThread(QString filePath);
+    Core_ReadFileThread(QString filePath, bool skipSearch);
 
     // Everytime creating a new instance, call set setAutoDelete
     // Default: true

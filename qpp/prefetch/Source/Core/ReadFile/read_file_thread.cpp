@@ -35,9 +35,10 @@ void Core_ReadFileThread::deleteSharedReadBuffer_Directly()
     // Do nothing
 }
 
-Core_ReadFileThread::Core_ReadFileThread(QString filePath)
+Core_ReadFileThread::Core_ReadFileThread(QString filePath, bool skipSearch)
 {
     Core_ReadFileThread::filePath = filePath;
+    Core_ReadFileThread::skipSearch = skipSearch;
 
     setAutoDelete(autoDeletePreset);
 }

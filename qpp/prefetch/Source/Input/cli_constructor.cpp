@@ -90,9 +90,6 @@ CommandLineArgument::CommandLineArgument(int argc, QStringList argv)
         // Put default value
         settingFilePath = Const_Setting::DefaultSettingFilePath;
         scanCacheFilePath = Const_Cache::DefaultCacheFilePath;
-        skipStartup = false;
-        showMainWindow = false;
-        rocketLaunch = false;
 
         // Terminate
         return;

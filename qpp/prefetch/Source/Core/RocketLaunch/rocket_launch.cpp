@@ -2,12 +2,15 @@
 #include "..\..\Global\global.h"
 #include "..\..\Input\const_input.h"
 #include "..\..\Example\semaphore_example.h"
+#include "..\..\Output\log.h"
 
 void (*Core_RocketLaunch::rocketLaunch_action)();
 
 void Core_RocketLaunch::rocketLaunch_exit()
 {
     using namespace Const_Input;
+
+    LAST_KNOWN_POSITION(2)
 
     Global::inputLoopThreadAddress->receiveText_threaded(Command_Level1::exit);
 
