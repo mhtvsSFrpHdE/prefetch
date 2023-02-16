@@ -6,6 +6,7 @@ void Core_StartProcess::startProcess(QString fileName)
 {
     QProcess process;
     process.startDetached(fileName);
+    process.waitForStarted();
 }
 
 QString Core_StartProcess::startProcessGetStdOut(QString fileName)
