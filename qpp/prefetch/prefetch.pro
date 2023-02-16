@@ -62,7 +62,7 @@ SOURCES += \
     Source/Core/const_core.cpp \
     Source/Core/const_core_tdummy.cpp \
     Source/Core/init.cpp \
-    Source/Core/read_file.cpp \
+    Source/Core/core.cpp \
     Source/Core/run.cpp \
     Source/Global/const_global.cpp \
     Source/Global/global.cpp \
