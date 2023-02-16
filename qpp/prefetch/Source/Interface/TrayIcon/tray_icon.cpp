@@ -41,11 +41,6 @@ void TrayIcon::stop()
 
 namespace ConsoleCommandFunction
 {
-    // Run stdin_restore on ui thread
-    void stdin_restore_callback_toOrdinary()
-    {
-        Global::runOnUiThreadAddress->run(&StdIn::restore);
-    }
     // Actually is not stdin, but behaves very similarly
     void sendTextToStdIn(QString text)
     {
@@ -61,7 +56,7 @@ namespace ConsoleCommandFunction
         StdIn::freeze();
 
         // Send to StdIn
-        Global::inputLoopThreadAddress->receiveText(text, &stdin_restore_callback_toOrdinary);
+        Global::inputLoopThreadAddress->receiveText(text, &StdInExample::restore_ordinary);
     }
 }
 

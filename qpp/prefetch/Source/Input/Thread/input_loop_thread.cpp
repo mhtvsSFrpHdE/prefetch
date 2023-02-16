@@ -16,13 +16,12 @@ void InputLoopThread::receiveText(QString input, void (*callback)())
     receiveTextThread->start();
 }
 
-#if CONSOLE_ENABLED
-// Run stdin_restore on ui thread
-void run_callback_toOrdinary()
+void InputLoopThread::receiveText_block(QString input, void (*callback)())
 {
-    Global::runOnUiThreadAddress->run(&StdIn::restore);
+    auto receiveTextThread = (ReceiveTextThread *)(receiveText(input, callback));
+
+    receiveTextThread->wait();
 }
-#endif
 
 void InputLoopThread::run()
 {
@@ -44,7 +43,7 @@ void InputLoopThread::run()
 
         Global::runOnUiThreadAddress->run_block(&StdIn::freeze);
 
-        receiveText(input, &run_callback_toOrdinary);
+        receiveText(input, &StdInExample::restore_ordinary);
     }
 #endif
 }

@@ -25,3 +25,8 @@ void StdIn::start()
     Global::inputLoopThreadAddress->start();
 #endif
 }
+
+void StdInExample::restore_ordinary()
+{
+    Global::runOnUiThreadAddress->run(&StdIn::restore);
+}

@@ -31,4 +31,11 @@ public:
     static void restore();
 };
 
+namespace StdInExample
+{
+    // Run stdin_restore on ui thread
+    // Convert class member function to oridinary function
+    void restore_ordinary();
+}
+
 #endif

@@ -24,6 +24,8 @@ typedef void (*mocVoidPointerFunctionPointer)(void *);
 //     }
 //     ...
 //     emit callbackOnUiThread_signal(&sendCommand_restore_toOrdinary);
+// Or you may put them into a namespace along with feature provider
+//     See stdin.h StdInExample for more details
 //
 // https://stackoverflow.com/questions/27001844/why-doesnt-this-code-with-a-function-pointers-compile
 // https://forum.qt.io/topic/78818/make-sure-mat-is-registered-using-qregistermetatype-error

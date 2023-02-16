@@ -23,12 +23,6 @@ void MainWindow::sendCommand_restore()
     // QTimer::singleShot(0, ui->command_lineEdit, SLOT(setFocus()));
 }
 
-// Run sendCommand_restore on ui thread
-void sendCommand_restore_callback_toOrdinary()
-{
-    Global::runOnUiThreadAddress->run(&StdIn::restore);
-}
-
 void MainWindow::sendCommand_action_slot()
 {
     // Lock mutex
@@ -46,7 +40,7 @@ void MainWindow::sendCommand_action_slot()
     auto command = ui->command_lineEdit->text();
 
     // Send to StdIn
-    Global::inputLoopThreadAddress->receiveText(command, &sendCommand_restore_callback_toOrdinary);
+    Global::inputLoopThreadAddress->receiveText(command, &StdInExample::restore_ordinary);
 
     // Clear command editor
     ui->command_lineEdit->clear();
