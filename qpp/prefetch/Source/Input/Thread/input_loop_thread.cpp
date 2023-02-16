@@ -18,9 +18,11 @@ void InputLoopThread::receiveText_threaded(QString input, void (*callback)())
 
 void InputLoopThread::receiveText_block(QString input, void (*callback)())
 {
-    auto receiveTextThread = (ReceiveTextThread *)(receiveText(input, callback));
+    auto receiveTextThread = new ReceiveTextThread(input, callback);
 
+    receiveTextThread->start();
     receiveTextThread->wait();
+    delete receiveTextThread;
 }
 
 void InputLoopThread::run()
