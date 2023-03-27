@@ -24,7 +24,7 @@ void Core_ScanCache::init()
 
     // Get cache file path
     cacheFilePath = Global::commandLineArgumentAddress->getScanCacheFilePath();
-    cacheFilePath = QApplication::applicationDirPath() + Const_Cache::PathSplitter + cacheFilePath;
+    cacheFilePath = QApplication::applicationDirPath() + Const_Cache::PathSplitter() + cacheFilePath;
     cacheFileExist = init_cacheFileExist();
 
     // Read ini from exe stored folder

@@ -49,7 +49,7 @@ namespace Const_Cache
 {
     const QString DefaultCacheFilePath = "prefetch.cache.ini";
     const QString DefaultCacheFilePathSuffix = ".cache.ini";
-    extern QString PathSplitter;
+    QString PathSplitter();
 
     namespace ConfigGroupName
     {

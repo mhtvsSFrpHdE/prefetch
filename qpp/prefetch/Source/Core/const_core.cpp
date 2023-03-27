@@ -38,4 +38,7 @@ void Const_Core::Message::init()
     SkipProcessDetected = Tab + trr(tscope, DEFINE_SkipProcessDetected);
 }
 
-QString Const_Cache::PathSplitter = Const_Setting::PathSplitter;
+QString Const_Cache::PathSplitter()
+{
+    return Const_Setting::PathSplitter;
+}
