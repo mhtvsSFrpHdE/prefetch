@@ -1,0 +1,6 @@
+.git
+qpp/prefetch/.venv
+qpp/ThirdParty/qt
+qpp/ThirdParty/boost
+qpp/build-*
+*.pro.user
