@@ -1,7 +1,7 @@
 #include "sleep.h"
-#include "..\core.h"
-#include "..\ReadFile\read_file_thread.h"
-#include "..\..\Example\semaphore_example.h"
+#include "../core.h"
+#include "../ReadFile/read_file_thread.h"
+#include "../../Example/semaphore_example.h"
 
 // Sleep prefetch interval, unlock stop mutex after sleep done
 void Core_Sleep::sleep()

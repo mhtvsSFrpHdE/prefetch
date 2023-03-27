@@ -1,5 +1,5 @@
 #include <QMutex>
-#include "..\Global\global.h"
+#include "../Global/global.h"
 
 #include "translate_tool.h" // <- last one to include
 

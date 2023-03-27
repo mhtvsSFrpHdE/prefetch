@@ -1,7 +1,7 @@
 #include "stdin.h"
 
-#include "..\Global\global.h"
-#include "..\Example\semaphore_example.h"
+#include "../Global/global.h"
+#include "../Example/semaphore_example.h"
 
 #if CONSOLE_ENABLED
 QTextStream *StdIn::consoleInput;

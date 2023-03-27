@@ -3,7 +3,7 @@
 
 #include <QSemaphore>
 
-#include "..\Define\define.h"
+#include "../Define/define.h"
 
 #if CONSOLE_ENABLED
 #include <QTextStream>

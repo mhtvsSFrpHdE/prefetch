@@ -2,10 +2,10 @@
 #include <QApplication>
 
 #include "scan_cache.h"
-#include "..\ReadFile\read_file_thread.h"
-#include "..\..\Setting\setting.h"
-#include "..\const_core.h"
-#include "..\..\Global\global.h"
+#include "../ReadFile/read_file_thread.h"
+#include "../../Setting/setting.h"
+#include "../const_core.h"
+#include "../../Global/global.h"
 
 QSettings *Core_ScanCache::cache = NULL;
 QString Core_ScanCache::cacheFilePath = NULL;

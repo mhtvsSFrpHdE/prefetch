@@ -1,6 +1,6 @@
 #include "const_input_tdummy.cpp"
 
-#include "..\Global\const_global.h"
+#include "../Global/const_global.h"
 
 using namespace Const_Input;
 using namespace Const_Global::CommonString;

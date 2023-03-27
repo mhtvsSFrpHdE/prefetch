@@ -7,7 +7,7 @@
 #include <QTextStream>
 #include <QMutex>
 
-#include "..\Define\define.h"
+#include "../Define/define.h"
 #include "const_log.h"
 
 // Automatically lock and unlock log mutex

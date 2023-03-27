@@ -1,9 +1,9 @@
 #include "command_line_argument.h"
-#include "..\Core\const_core.h"
-#include "..\Global\const_global.h"
+#include "../Core/const_core.h"
+#include "../Global/const_global.h"
 #include "const_input.h"
-#include "..\Setting\const_setting.h"
-#include "..\Global\global.h"
+#include "../Setting/const_setting.h"
+#include "../Global/global.h"
 
 void toString_appendBoolFlag(QString flag, QString *command)
 {

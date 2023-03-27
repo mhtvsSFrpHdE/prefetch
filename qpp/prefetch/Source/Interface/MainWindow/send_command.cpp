@@ -2,10 +2,10 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "..\..\Global\global.h"
-#include "..\..\Output\log.h"
-#include "..\..\Input\stdin.h"
-#include "..\..\Example\semaphore_example.h"
+#include "../../Global/global.h"
+#include "../../Output/log.h"
+#include "../../Input/stdin.h"
+#include "../../Example/semaphore_example.h"
 
 void MainWindow::sendCommand_freeze()
 {

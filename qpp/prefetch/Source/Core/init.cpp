@@ -1,8 +1,8 @@
 #include "core.h"
-#include "..\Setting\setting.h"
-#include "..\Setting\const_setting.h"
-#include "ReadFile\read_file_thread.h"
-#include "Sleep\sleep.h"
+#include "../Setting/setting.h"
+#include "../Setting/const_setting.h"
+#include "ReadFile/read_file_thread.h"
+#include "Sleep/sleep.h"
 
 #define gn Const_Setting::ConfigGroupName
 #define kn Const_Setting::ConfigKeyName::Thread

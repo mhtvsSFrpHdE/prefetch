@@ -1,8 +1,8 @@
 #include "stdin.h"
 
-#include "..\Global\global.h"
-#include "..\Output\log.h"
-#include "..\Example\semaphore_example.h"
+#include "../Global/global.h"
+#include "../Output/log.h"
+#include "../Example/semaphore_example.h"
 
 QSemaphore *StdIn::freezeSemaphore = NULL;
 

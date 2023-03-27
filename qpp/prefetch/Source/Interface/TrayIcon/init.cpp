@@ -2,11 +2,11 @@
 
 #include "tray_icon.h"
 #include "tray_icon_object.h"
-#include "..\..\Global\global.h"
-#include "..\..\Setting\setting.h"
-#include "..\..\Setting\const_setting.h"
+#include "../../Global/global.h"
+#include "../../Setting/setting.h"
+#include "../../Setting/const_setting.h"
 #include "const_tray_icon.h"
-#include "..\Dpi\dpi.h"
+#include "../Dpi/dpi.h"
 
 #define gn Const_Setting::ConfigGroupName
 #define ikn Const_Setting::ConfigKeyName::Instance

@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include "Hack\function_pointer_in_signal_slot.h"
+#include "Hack/function_pointer_in_signal_slot.h"
 
 // Run function pointer on UI thread
 //

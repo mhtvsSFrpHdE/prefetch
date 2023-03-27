@@ -1,10 +1,10 @@
 #include <QProcess>
 
 #include "startup.h"
-#include "..\..\Output\stdout.h"
-#include "..\StartProcess\start_process.h"
-#include "..\..\Global\global.h"
-#include "..\..\Input\const_input.h"
+#include "../../Output/stdout.h"
+#include "../StartProcess/start_process.h"
+#include "../../Global/global.h"
+#include "../../Input/const_input.h"
 
 #define gn Const_Setting::ConfigGroupName
 

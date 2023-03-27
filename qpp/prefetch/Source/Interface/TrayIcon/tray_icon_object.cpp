@@ -1,5 +1,5 @@
 #include "tray_icon_object.h"
-#include "..\..\Define\define.h"
+#include "../../Define/define.h"
 
 namespace TrayIconObject
 {

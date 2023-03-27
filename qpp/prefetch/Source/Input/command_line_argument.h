@@ -4,7 +4,7 @@
 #include <QStringList>
 #include <QString>
 
-#include "..\Global\const_global.h"
+#include "../Global/const_global.h"
 
 using namespace Const_Global;
 

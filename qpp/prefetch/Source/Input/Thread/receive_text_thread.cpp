@@ -1,9 +1,9 @@
 #include <QStringList>
 
 #include "receive_text_thread.h"
-#include "..\..\Input\const_input.h"
-#include "..\..\Output\stdout.h"
-#include "..\..\Global\const_global.h"
+#include "../../Input/const_input.h"
+#include "../../Output/stdout.h"
+#include "../../Global/const_global.h"
 
 void ReceiveTextThread::run_callback()
 {

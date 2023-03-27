@@ -2,7 +2,7 @@
 #include <QString>
 
 #include "core.h"
-#include "..\Setting\const_setting.h"
+#include "../Setting/const_setting.h"
 
 SleepThread *Core::sleepThreadAddress = NULL;
 int Core::count_start_scanFolder = 0;

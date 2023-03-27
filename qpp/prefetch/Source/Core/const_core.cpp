@@ -1,7 +1,7 @@
 #include "const_core_tdummy.cpp"
 
-#include "..\Setting\const_setting.h"
-#include "..\Global\const_global.h"
+#include "../Setting/const_setting.h"
+#include "../Global/const_global.h"
 
 using namespace Const_Global::CommonString;
 

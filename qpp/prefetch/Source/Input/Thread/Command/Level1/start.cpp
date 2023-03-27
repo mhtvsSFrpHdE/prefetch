@@ -1,9 +1,9 @@
 #include "parent_define.h"
-#include "..\..\..\..\Input\const_input.h"
-#include "..\..\..\..\Output\stdout.h"
-#include "..\..\..\..\Core\ReadFile\read_file_thread.h"
-#include "..\..\..\..\Core\core.h"
-#include "..\..\..\..\Example\semaphore_example.h"
+#include "../../../../Input/const_input.h"
+#include "../../../../Output/stdout.h"
+#include "../../../../Core/ReadFile/read_file_thread.h"
+#include "../../../../Core/core.h"
+#include "../../../../Example/semaphore_example.h"
 
 void Parent_Prefetch::start()
 {

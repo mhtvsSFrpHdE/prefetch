@@ -1,7 +1,7 @@
 #include <QTimer>
 
 #include "parent_define.h"
-#include "..\..\..\..\Global\global.h"
+#include "../../../../Global/global.h"
 
 void traydc_hide()
 {

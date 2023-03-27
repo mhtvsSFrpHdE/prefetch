@@ -5,7 +5,7 @@
 #include <QLabel>
 #include <QWidgetAction>
 
-#include "Action\custom_action.h"
+#include "Action/custom_action.h"
 
 namespace TrayIconObject
 {

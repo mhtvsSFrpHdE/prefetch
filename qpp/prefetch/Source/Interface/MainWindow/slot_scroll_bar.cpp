@@ -2,8 +2,8 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "..\..\Output\log.h"
-#include "..\..\Output\stdout.h"
+#include "../../Output/log.h"
+#include "../../Output/stdout.h"
 
 void MainWindow::scrollBarToBottom_slot()
 {

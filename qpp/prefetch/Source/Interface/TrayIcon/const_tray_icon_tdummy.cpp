@@ -1,5 +1,5 @@
 #include "const_tray_icon.h"
-#include "..\..\Translate\translate_tool.h"
+#include "../../Translate/translate_tool.h"
 
 #define tscope "Const_TrayIcon::MenuText"
 

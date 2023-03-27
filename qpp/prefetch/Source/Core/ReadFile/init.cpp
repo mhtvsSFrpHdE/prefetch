@@ -1,8 +1,8 @@
 #include "read_file_thread.h"
-#include "..\..\Setting\setting.h"
-#include "..\..\Setting\const_setting.h"
+#include "../../Setting/setting.h"
+#include "../../Setting/const_setting.h"
 #include "const_read_file_thread.h"
-#include "..\..\Example\semaphore_example.h"
+#include "../../Example/semaphore_example.h"
 
 #define gn Const_Setting::ConfigGroupName
 #define kn Const_Setting::ConfigKeyName::Thread

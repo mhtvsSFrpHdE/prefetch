@@ -3,12 +3,12 @@
 
 #include <QApplication>
 
-#include "..\Example\run_on_ui_thread_example.h"
-#include "..\Input\Thread\input_loop_thread.h"
-#include "..\Core\core.h"
-#include "..\Interface\TrayIcon\tray_icon.h"
-#include "..\Interface\MainWindow\mainwindow.h"
-#include "..\Input\command_line_argument.h"
+#include "../Example/run_on_ui_thread_example.h"
+#include "../Input/Thread/input_loop_thread.h"
+#include "../Core/core.h"
+#include "../Interface/TrayIcon/tray_icon.h"
+#include "../Interface/MainWindow/mainwindow.h"
+#include "../Input/command_line_argument.h"
 
 class Global
 {

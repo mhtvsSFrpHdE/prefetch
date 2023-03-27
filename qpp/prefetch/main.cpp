@@ -1,6 +1,6 @@
-#include "Source\Global\global.h"
-#include "Source\Input\stdin.h"
-#include "Source\Output\log.h"
+#include "Source/Global/global.h"
+#include "Source/Input/stdin.h"
+#include "Source/Output/log.h"
 
 int main(int argc, char *argv[])
 {

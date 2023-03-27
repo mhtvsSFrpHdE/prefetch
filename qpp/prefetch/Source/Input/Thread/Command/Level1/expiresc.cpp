@@ -1,9 +1,9 @@
 #include "parent_define.h"
-#include "..\..\..\..\Input\const_input.h"
-#include "..\..\..\..\Output\stdout.h"
-#include "..\..\..\..\Core\ScanCache\scan_cache.h"
-#include "..\..\..\..\Core\ReadFile\read_file_thread.h"
-#include "..\..\..\..\Global\global.h"
+#include "../../../../Input/const_input.h"
+#include "../../../../Output/stdout.h"
+#include "../../../../Core/ScanCache/scan_cache.h"
+#include "../../../../Core/ReadFile/read_file_thread.h"
+#include "../../../../Global/global.h"
 
 void Parent_Prefetch::expiresc()
 {

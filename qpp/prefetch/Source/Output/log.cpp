@@ -2,9 +2,9 @@
 #include <QApplication>
 
 #include "log.h"
-#include "..\Setting\setting.h"
-#include "..\Core\const_core.h"
-#include "..\Example\mutex_example.h"
+#include "../Setting/setting.h"
+#include "../Core/const_core.h"
+#include "../Example/mutex_example.h"
 
 QString Log::logFilePath;
 QFile *Log::logFile;

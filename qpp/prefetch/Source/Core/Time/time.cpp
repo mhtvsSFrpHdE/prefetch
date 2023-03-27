@@ -1,7 +1,7 @@
 #include <QTime>
 
 #include "time.h"
-#include "..\const_core.h"
+#include "../const_core.h"
 
 #define cm Const_Core::Message
 

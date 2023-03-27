@@ -1,12 +1,12 @@
 #include "tray_icon.h"
 #include "tray_icon_object.h"
 #include "const_tray_icon.h"
-#include "..\..\Global\global.h"
-#include "..\..\Output\log.h"
-#include "..\..\Input\stdin.h"
-#include "..\..\Input\const_input.h"
-#include "..\Dpi\dpi.h"
-#include "..\..\Example\semaphore_example.h"
+#include "../../Global/global.h"
+#include "../../Output/log.h"
+#include "../../Input/stdin.h"
+#include "../../Input/const_input.h"
+#include "../Dpi/dpi.h"
+#include "../../Example/semaphore_example.h"
 
 QSystemTrayIcon *TrayIcon::systemTrayIcon = NULL;
 

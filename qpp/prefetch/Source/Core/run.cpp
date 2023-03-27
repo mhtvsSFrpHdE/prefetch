@@ -2,16 +2,16 @@
 
 #include "core.h"
 #include "const_core.h"
-#include "..\Output\stdout.h"
-#include "ReadFile\read_file_thread.h"
-#include "Sleep\sleep.h"
-#include "Startup\startup.h"
-#include "ScanCache\scan_cache.h"
-#include "Time\time.h"
-#include "..\Output\log.h"
-#include "Skip\skip.h"
-#include "..\Example\semaphore_example.h"
-#include "RocketLaunch\rocket_launch.h"
+#include "../Output/stdout.h"
+#include "ReadFile/read_file_thread.h"
+#include "Sleep/sleep.h"
+#include "Startup/startup.h"
+#include "ScanCache/scan_cache.h"
+#include "Time/time.h"
+#include "../Output/log.h"
+#include "Skip/skip.h"
+#include "../Example/semaphore_example.h"
+#include "RocketLaunch/rocket_launch.h"
 
 void run_runThreadPool_DeleteExcludedFile(QList<QRunnable *> *readThreadQueueAddress)
 {

@@ -1,10 +1,10 @@
 #include "parent_define.h"
-#include "..\..\..\..\Setting\setting.h"
-#include "..\..\..\..\Setting\const_setting.h"
-#include "..\..\..\..\Core\StartProcess\start_process.h"
-#include "..\..\..\..\Output\stdout.h"
-#include "..\..\..\..\Core\const_core.h"
-#include "..\..\..\..\Global\global.h"
+#include "../../../../Setting/setting.h"
+#include "../../../../Setting/const_setting.h"
+#include "../../../../Core/StartProcess/start_process.h"
+#include "../../../../Output/stdout.h"
+#include "../../../../Core/const_core.h"
+#include "../../../../Global/global.h"
 
 #define gn Const_Setting::ConfigGroupName
 #define tkn Const_Setting::ConfigKeyName::Thread

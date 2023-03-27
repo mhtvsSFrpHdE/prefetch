@@ -1,14 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "..\..\Setting\setting.h"
-#include "..\..\Setting\const_setting.h"
-#include "..\..\Global\global.h"
-#include "..\..\Global\const_global.h"
-#include "..\Dpi\dpi.h"
+#include "../../Setting/setting.h"
+#include "../../Setting/const_setting.h"
+#include "../../Global/global.h"
+#include "../../Global/const_global.h"
+#include "../Dpi/dpi.h"
 #include "const_mainwindow.h"
-#include "..\..\Input\const_input.h"
-#include "..\..\Output\log.h"
-#include "..\..\Translate\translate_tool.h"
+#include "../../Input/const_input.h"
+#include "../../Output/log.h"
+#include "../../Translate/translate_tool.h"
 
 #define gn Const_Setting::ConfigGroupName
 #define ikn Const_Setting::ConfigKeyName::Instance

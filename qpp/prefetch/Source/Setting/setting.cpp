@@ -3,7 +3,7 @@
 
 #include "setting.h"
 #include "const_setting.h"
-#include "..\Global\global.h"
+#include "../Global/global.h"
 
 QSettings *Setting::setting = NULL;
 QString Setting::settingFilePath = NULL;

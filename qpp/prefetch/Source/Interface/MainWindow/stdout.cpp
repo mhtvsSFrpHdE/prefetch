@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include "..\..\Global\const_global.h"
+#include "../../Global/const_global.h"
 
 void MainWindow::StdOut_print(QString textToPrint)
 {

@@ -1,14 +1,14 @@
 #include <QTranslator>
 
 #include "parent_define.h"
-#include "..\..\..\..\Input\const_input.h"
-#include "..\..\..\..\Output\stdout.h"
-#include "..\..\..\..\Define\define.h"
-#include "..\..\..\..\Translate\translator_loader.h"
-#include "..\..\..\..\Global\global.h"
-#include "..\..\..\..\Global\const_global.h"
-#include "..\..\..\..\Translate\translate_tool.h"
-#include "..\..\..\..\Output\log.h"
+#include "../../../../Input/const_input.h"
+#include "../../../../Output/stdout.h"
+#include "../../../../Define/define.h"
+#include "../../../../Translate/translator_loader.h"
+#include "../../../../Global/global.h"
+#include "../../../../Global/const_global.h"
+#include "../../../../Translate/translate_tool.h"
+#include "../../../../Output/log.h"
 
 void Parent_Prefetch::lang_onUiThread(void *value)
 {

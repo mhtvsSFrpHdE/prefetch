@@ -1,8 +1,8 @@
 #include "skip.h"
-#include "..\..\Setting\setting.h"
-#include "..\..\Setting\const_setting.h"
-#include "..\StartProcess\start_process.h"
-#include "..\..\Global\global.h"
+#include "../../Setting/setting.h"
+#include "../../Setting/const_setting.h"
+#include "../StartProcess/start_process.h"
+#include "../../Global/global.h"
 
 QString Core_Skip::assumeProcess;
 QStringList Core_Skip::skipProcessList;

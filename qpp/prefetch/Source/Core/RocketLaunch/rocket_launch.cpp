@@ -1,8 +1,8 @@
 #include "rocket_launch.h"
-#include "..\..\Global\global.h"
-#include "..\..\Input\const_input.h"
-#include "..\..\Example\semaphore_example.h"
-#include "..\..\Output\log.h"
+#include "../../Global/global.h"
+#include "../../Input/const_input.h"
+#include "../../Example/semaphore_example.h"
+#include "../../Output/log.h"
 
 void (*Core_RocketLaunch::rocketLaunch_action)();
 

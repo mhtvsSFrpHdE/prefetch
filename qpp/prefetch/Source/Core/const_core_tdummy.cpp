@@ -1,5 +1,5 @@
 #include "const_core.h"
-#include "..\Translate\translate_tool.h"
+#include "../Translate/translate_tool.h"
 
 #define tscope "Const_Core::Message"
 

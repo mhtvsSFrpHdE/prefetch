@@ -3,7 +3,7 @@
 
 #include <QSemaphore>
 
-#include "..\Output\log.h"
+#include "../Output/log.h"
 
 // QSemaphore doesn't provide an accessible copy constructor
 // https://stackoverflow.com/questions/22659453/is-this-an-issue-with-mutable-member-qmutex-as-a-private-member

@@ -1,7 +1,7 @@
 #include "parent_define.h"
-#include "..\..\..\..\Global\global.h"
-#include "..\..\..\..\Input\const_input.h"
-#include "..\..\..\..\Output\stdout.h"
+#include "../../../../Global/global.h"
+#include "../../../../Input/const_input.h"
+#include "../../../../Output/stdout.h"
 
 void Parent_Prefetch::exit_quiet()
 {

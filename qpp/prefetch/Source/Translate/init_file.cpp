@@ -4,11 +4,11 @@
 #include <stdexcept>
 
 #include "translator_loader.h"
-#include "..\Global\global.h"
-#include "..\Output\log.h"
+#include "../Global/global.h"
+#include "../Output/log.h"
 #include "const_translator_loader.h"
-#include "..\Setting\setting.h"
-#include "..\Setting\const_setting.h"
+#include "../Setting/setting.h"
+#include "../Setting/const_setting.h"
 
 QList<QTranslator *> TranslatorLoader::installedTranslator = QList<QTranslator *>();
 

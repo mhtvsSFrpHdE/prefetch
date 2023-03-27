@@ -1,6 +1,6 @@
 #include "stdout.h"
-#include "..\Global\global.h"
-#include "..\Global\const_global.h"
+#include "../Global/global.h"
+#include "../Global/const_global.h"
 #include "log.h"
 
 QMutex StdOut::printLock(QMutex::NonRecursive);
