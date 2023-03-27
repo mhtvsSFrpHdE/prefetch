@@ -43,9 +43,10 @@ In VSCode:
 - [x] `.clang-format` Emulate VSCode cpptools formatter
 
 ## qmake build profile
+Build directory: `%{sourceDir}\..\<qt build directory name>`
 
 Debug: `"DEFINES += LOG_ENABLED=true" "DEFINES += TEST_TRAY_MENU_ENABLED=true" "DEFINES += CONSOLE_ENABLED=true" "CONFIG += console"`  
-Debug build steps: `python, build.py Debug, %{buildDir}\..\prefetch\Tool`
+Debug build steps: `python, build.py Debug, %{sourceDir}\Tool`
 
 Release: Use default settings  
 Release_Performance: `"DEFINES += TRANSLATE_ENABLED=false"`  

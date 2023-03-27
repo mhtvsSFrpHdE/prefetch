@@ -4,6 +4,7 @@ qpp/build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Release
 qpp/build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Release_Verbose
 qpp/build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Release_Performance
 qpp/Pack
+qpp/Pack_Linux
 
 # Qt translate file
 *.qm
