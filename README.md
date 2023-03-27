@@ -2,7 +2,10 @@
 
 ## Download
 
-https://github.com/mhtvsSFrpHdE/prefetch/releases
+https://github.com/mhtvsSFrpHdE/prefetch/releases  
+
+Linux version may not up to date during active development.  
+Most recent Linux version: https://github.com/mhtvsSFrpHdE/prefetch/releases/tag/4.5
 
 ## How to use
 
