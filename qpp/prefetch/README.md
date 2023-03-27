@@ -41,3 +41,12 @@ In VSCode:
 - [x] `compile_commands.json`: Already set in `prefetch_qpp.code-workspace`
 - [x] `.clangd` Copy from Qt Creator 9 `config.yaml`, Adjusted for Qt 4.8.7
 - [x] `.clang-format` Emulate VSCode cpptools formatter
+
+## qmake build profile
+
+Debug: `"DEFINES += LOG_ENABLED=true" "DEFINES += TEST_TRAY_MENU_ENABLED=true" "DEFINES += CONSOLE_ENABLED=true" "CONFIG += console"`  
+Debug build steps: `python, build.py Debug, %{buildDir}\..\prefetch\Tool`
+
+Release: Use default settings  
+Release_Performance: `"DEFINES += TRANSLATE_ENABLED=false"`  
+Release_Verbose: `"DEFINES += LOG_ENABLED=true"`

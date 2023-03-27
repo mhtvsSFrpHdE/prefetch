@@ -126,6 +126,7 @@ FORMS += \
 # My setting
 
 # Compile with console
+# This setting can be change by qmake command line arguments
 #CONFIG += console
 
 # Enable c++11 for QT 4.8.7
