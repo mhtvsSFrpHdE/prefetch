@@ -29,6 +29,7 @@ namespace Const_Setting
         const QString Instance = "Instance";
         const QString CustomTrayMenu = "CustomTrayMenu";
         const QString Instance_MainWindow = "Instance_MainWindow";
+        const QString MetaData = "MetaData";
     }
 
     namespace ConfigKeyName
@@ -68,6 +69,11 @@ namespace Const_Setting
             const QString Position = "Position";
             const QString Size = "Size";
             const QString Resizable = "Resizable";
+        }
+
+        namespace MetaData
+        {
+            const QString ConfigVersion = "ConfigVersion";
         }
     }
 
@@ -117,5 +123,10 @@ namespace Const_Setting
         }
     }
 
+    namespace Exception
+    {
+        const QString IncompatibleConfigVersion = "IncompatibleConfigVersion";
+        const QString IncompatibleConfigVersion_UI = ": ";
+    }
 }
 #endif

@@ -4,6 +4,7 @@
 #include "setting.h"
 #include "const_setting.h"
 #include "../Global/global.h"
+#include "../Output/stdout.h"
 
 QSettings *Setting::setting = NULL;
 QString Setting::settingFilePath = NULL;
@@ -20,6 +21,18 @@ void Setting::init()
 
     // Read ini from exe stored folder
     setting = new QSettings(settingFilePath, QSettings::IniFormat);
+
+    // Check config version
+    bool configVersionExist = getExist(ConfigGroupName::MetaData, ConfigKeyName::MetaData::ConfigVersion, setting);
+    if (configVersionExist == false)
+    {
+        using namespace Exception;
+
+        QString exceptionUiText = IncompatibleConfigVersion + IncompatibleConfigVersion_UI + settingFilePath;
+        StdOut::printLine(exceptionUiText);
+
+        throw std::runtime_error(IncompatibleConfigVersion.toStdString());
+    }
 }
 
 Setting::GetGenericResult<int> Setting::getInt(QString groupName, QString keyName, QSettings *qSettings)
@@ -222,4 +235,29 @@ QVariant Setting::getQVariant(QString groupName, QString keyName, QSettings *qSe
     qSettings->endGroup();
 
     return result;
+}
+
+bool Setting::getExist(QString groupName, QString keyName, QSettings *qSettings)
+{
+    // All child group from root node
+    auto rootChildGroups = qSettings->childGroups();
+
+    bool groupNameNotExist = rootChildGroups.contains(groupName) == false;
+    if (groupNameNotExist)
+    {
+        return false;
+    }
+
+    // All child key from group name
+    qSettings->beginGroup(groupName);
+    auto groupChildKeys = qSettings->childKeys();
+    qSettings->endGroup();
+
+    bool keyNameNotExist = groupChildKeys.contains(keyName) == false;
+    if (keyNameNotExist)
+    {
+        return false;
+    }
+
+    return true;
 }

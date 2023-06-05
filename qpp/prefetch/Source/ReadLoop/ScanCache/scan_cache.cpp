@@ -4,8 +4,10 @@
 #include "scan_cache.h"
 #include "../ReadFile/read_file_thread.h"
 #include "../../Setting/setting.h"
+#include "../../Setting/const_setting.h"
 #include "../const_read_loop.h"
 #include "../../Global/global.h"
+#include "../../Output/stdout.h"
 
 #define gn Const_Cache::ConfigGroupName
 #define mkn Const_Cache::MetaData_ConfigKeyName
@@ -33,6 +35,18 @@ void ReadLoop_ScanCache::init()
 
     // Read ini from exe stored folder
     cache = new QSettings(cacheFilePath, QSettings::IniFormat);
+
+    // Check config version
+    bool configVersionExist = Setting::getExist(gn::MetaData, mkn::ConfigVersion, cache);
+    if (configVersionExist == false)
+    {
+        using namespace Const_Setting::Exception;
+
+        QString exceptionUiText = IncompatibleConfigVersion + IncompatibleConfigVersion_UI + cacheFilePath;
+        StdOut::printLine(exceptionUiText);
+
+        throw std::runtime_error(IncompatibleConfigVersion.toStdString());
+    }
 }
 
 void ReadLoop_ScanCache::saveScanCache(QList<QRunnable *> *readThreadQueueAddress, bool override)

@@ -73,6 +73,9 @@ public:
     // Act like getArrayValue, but sorting by array index
     static QStringList getOrderedArrayValue(QString groupName, int size, QSettings *qSettings);
 
+    // Give setting group name and key name, confirm exist in config
+    static bool getExist(QString groupName, QString keyName, QSettings *qSettings);
+
 // Act like getOrderedArrayValue
 //     Pick up this one to iterate only once
 #define Setting_getOrderedArrayValue_macro(groupName, sizeExpression, valueCallback, qSettings) \
