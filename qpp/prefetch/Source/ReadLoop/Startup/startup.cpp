@@ -8,9 +8,9 @@
 
 #define gn Const_Setting::ConfigGroupName
 
-void (*Core_Startup::startOnce)() = &_startOnce;
+void (*ReadLoop_Startup::startOnce)() = &_startOnce;
 
-void Core_Startup::init()
+void ReadLoop_Startup::init()
 {
     bool skipStartup = Global::commandLineArgumentAddress->getSkipStartup();
 
@@ -21,13 +21,13 @@ void Core_Startup::init()
     }
 }
 
-void Core_Startup::startOnce_remove()
+void ReadLoop_Startup::startOnce_remove()
 {
 
     startOnce = &Global::dummyFunction;
 }
 
-void Core_Startup::_startOnce()
+void ReadLoop_Startup::_startOnce()
 {
     // Disable after fist run
     startOnce_remove();

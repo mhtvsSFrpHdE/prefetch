@@ -8,10 +8,10 @@
 
 #include "Sleep/sleep_thread.h"
 
-class Core : public QThread
+class ReadLoop : public QThread
 {
 public:
-    Core() {}
+    ReadLoop() {}
 
     // Start read file
     // while(true), do not run directly on main thread

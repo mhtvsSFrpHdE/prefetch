@@ -1,4 +1,4 @@
-class Core_Sleep
+class ReadLoop_Sleep
 {
 public:
     static void sleep();

@@ -2,13 +2,13 @@
 
 #include "start_process.h"
 
-void Core_StartProcess::startProcess(QString fileName)
+void ReadLoop_StartProcess::startProcess(QString fileName)
 {
     QProcess process;
     process.startDetached(fileName);
 }
 
-QString Core_StartProcess::startProcessGetStdOut(QString fileName)
+QString ReadLoop_StartProcess::startProcessGetStdOut(QString fileName)
 {
     QProcess process;
     process.start(fileName);

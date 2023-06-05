@@ -1,8 +1,8 @@
 #include "parent_define.h"
 #include "../../../../Input/const_input.h"
 #include "../../../../Output/stdout.h"
-#include "../../../../Core/ScanCache/scan_cache.h"
-#include "../../../../Core/ReadFile/read_file_thread.h"
+#include "../../../../ReadLoop/ScanCache/scan_cache.h"
+#include "../../../../ReadLoop/ReadFile/read_file_thread.h"
 #include "../../../../Global/global.h"
 
 void Parent_Prefetch::expiresc()
@@ -12,7 +12,7 @@ void Parent_Prefetch::expiresc()
 
     StdOut::printLine(TryingToExpireScanCache);
 
-    if (Core_ScanCache::cacheFileExist == false)
+    if (ReadLoop_ScanCache::cacheFileExist == false)
     {
         StdOut::printLine(ScanCacheNotFound);
         return;
@@ -23,10 +23,10 @@ void Parent_Prefetch::expiresc()
 
     // Stop running thread
     stop();
-    Core::readThreadPool->waitForDone();
+    ReadLoop::readThreadPool->waitForDone();
 
     // Delete cache file
-    QFile::remove(Core_ScanCache::cacheFilePath);
+    QFile::remove(ReadLoop_ScanCache::cacheFilePath);
 
     // Open self again
 

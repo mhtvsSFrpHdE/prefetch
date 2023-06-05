@@ -4,9 +4,9 @@
 #include "../../Example/semaphore_example.h"
 #include "../../Output/log.h"
 
-void (*Core_RocketLaunch::rocketLaunch_action)();
+void (*ReadLoop_RocketLaunch::rocketLaunch_action)();
 
-void Core_RocketLaunch::rocketLaunch_exit()
+void ReadLoop_RocketLaunch::rocketLaunch_exit()
 {
     using namespace Const_Input;
 
@@ -19,7 +19,7 @@ void Core_RocketLaunch::rocketLaunch_exit()
     SemaphoreExample::lock(blockSemaphore);
 }
 
-void Core_RocketLaunch::init()
+void ReadLoop_RocketLaunch::init()
 {
     bool rocketLaunch = Global::commandLineArgumentAddress->getRocketLaunch();
     if (rocketLaunch)

@@ -1,5 +1,5 @@
 #include "command_line_argument.h"
-#include "../Core/const_core.h"
+#include "../ReadLoop/const_read_loop.h"
 #include "../Global/const_global.h"
 #include "const_input.h"
 #include "../Setting/const_setting.h"
@@ -8,7 +8,7 @@
 void toString_appendBoolFlag(QString flag, QString *command)
 {
     using namespace Const_Global::CommonString;
-    using namespace Const_Core;
+    using namespace Const_ReadLoop;
 
     *command = *command + Space + Arg::BoolFlagBeginWith + flag;
 }
@@ -16,7 +16,7 @@ QString CommandLineArgument::toString()
 {
     using namespace Const_Input;
     using namespace Const_Global::CommonString;
-    using namespace Const_Core;
+    using namespace Const_ReadLoop;
 
     // Get self exe full path
     auto argv = Global::qGuiApplication->arguments();

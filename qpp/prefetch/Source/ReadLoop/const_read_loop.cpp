@@ -1,26 +1,26 @@
-#include "const_core_tdummy.cpp"
+#include "const_read_loop_tdummy.cpp"
 
 #include "../Setting/const_setting.h"
 #include "../Global/const_global.h"
 
 using namespace Const_Global::CommonString;
 
-QString Const_Core::Message::ScanFolder = DEFINE_ScanFolder;
-QString Const_Core::Message::CacheFound = Tab + DEFINE_CacheFound;
-QString Const_Core::Message::Prefetching = DEFINE_Prefetching;
-QString Const_Core::Message::Idle_Time = Tab + DEFINE_Idle_Time;
-QString Const_Core::Message::Idle_Sec = DEFINE_Idle_Sec;
-QString Const_Core::Message::ScanFolder_Time = Tab + DEFINE_ScanFolder_Time;
-QString Const_Core::Message::ScanFolder_Sec = Idle_Sec;
-QString Const_Core::Message::CodeExecuteTimeFormatter = DEFINE_CodeExecuteTimeFormatter;
-QString Const_Core::Message::RescanIntervalReached1 = DEFINE_RescanIntervalReached1;
-QString Const_Core::Message::RescanIntervalReached2 = Tab + DEFINE_RescanIntervalReached2;
+QString Const_ReadLoop::Message::ScanFolder = DEFINE_ScanFolder;
+QString Const_ReadLoop::Message::CacheFound = Tab + DEFINE_CacheFound;
+QString Const_ReadLoop::Message::Prefetching = DEFINE_Prefetching;
+QString Const_ReadLoop::Message::Idle_Time = Tab + DEFINE_Idle_Time;
+QString Const_ReadLoop::Message::Idle_Sec = DEFINE_Idle_Sec;
+QString Const_ReadLoop::Message::ScanFolder_Time = Tab + DEFINE_ScanFolder_Time;
+QString Const_ReadLoop::Message::ScanFolder_Sec = Idle_Sec;
+QString Const_ReadLoop::Message::CodeExecuteTimeFormatter = DEFINE_CodeExecuteTimeFormatter;
+QString Const_ReadLoop::Message::RescanIntervalReached1 = DEFINE_RescanIntervalReached1;
+QString Const_ReadLoop::Message::RescanIntervalReached2 = Tab + DEFINE_RescanIntervalReached2;
 
-QString Const_Core::Message::RunStartupItems = DEFINE_RunStartupItems;
+QString Const_ReadLoop::Message::RunStartupItems = DEFINE_RunStartupItems;
 
-QString Const_Core::Message::SkipProcessDetected = DEFINE_SkipProcessDetected;
+QString Const_ReadLoop::Message::SkipProcessDetected = DEFINE_SkipProcessDetected;
 
-void Const_Core::Message::init()
+void Const_ReadLoop::Message::init()
 {
     ScanFolder = trr(tscope, DEFINE_ScanFolder);
     CacheFound = Tab + trr(tscope, DEFINE_CacheFound);

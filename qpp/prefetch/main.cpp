@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     Global::qMainWindow->start();
     LAST_KNOWN_POSITION(2)
 
-    Global::coreLoopThreadAddress->start();
+    Global::readLoopThreadAddress->start();
     LAST_KNOWN_POSITION(2)
 
     TrayIcon::start();

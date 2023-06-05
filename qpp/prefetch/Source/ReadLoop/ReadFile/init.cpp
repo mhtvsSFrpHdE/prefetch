@@ -8,7 +8,7 @@
 #define kn Const_Setting::ConfigKeyName::Thread
 #define crft Const_ReadFileThread
 
-void Core_ReadFileThread::init()
+void ReadLoop_ReadFileThread::init()
 {
     // Get read buffer size from config
     auto getReadBufferSize = Setting::getInt(gn::Thread, kn::ReadBufferSize, Setting::setting);

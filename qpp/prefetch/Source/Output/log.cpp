@@ -3,7 +3,7 @@
 
 #include "log.h"
 #include "../Setting/setting.h"
-#include "../Core/const_core.h"
+#include "../ReadLoop/const_read_loop.h"
 #include "../Example/mutex_example.h"
 
 QString Log::logFilePath;
@@ -13,7 +13,7 @@ QMutex *Log::logMutex = MutexExample::getLockedMutex();
 
 Setting::GetGenericResult<QString> init_getLogFilePath(int argc, QStringList argv)
 {
-    using namespace Const_Core;
+    using namespace Const_ReadLoop;
 
     Setting::GetGenericResult<QString> getLogFilePath;
 

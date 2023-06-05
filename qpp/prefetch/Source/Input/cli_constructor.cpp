@@ -1,12 +1,12 @@
 #include <QFileInfo>
 
 #include "command_line_argument.h"
-#include "../Core/const_core.h"
+#include "../ReadLoop/const_read_loop.h"
 #include "../Setting/const_setting.h"
 
 void CommandLineArgument::CommandLineArgument_parseSettingFileName(int *argIndex, QStringList *argv)
 {
-    using namespace Const_Core;
+    using namespace Const_ReadLoop;
 
     {
         // Assume this argument is the first argument, and not start with "-"
@@ -45,7 +45,7 @@ bool CommandLineArgument_parseBoolFlag(QString match, int argIndex, QStringList 
 
 void CommandLineArgument::CommandLineArgument_parseStartup(int argIndex, QStringList *argv)
 {
-    using namespace Const_Core::Arg;
+    using namespace Const_ReadLoop::Arg;
 
     bool get = CommandLineArgument_parseBoolFlag(SkipStartup, argIndex, argv);
     if (get)
@@ -56,7 +56,7 @@ void CommandLineArgument::CommandLineArgument_parseStartup(int argIndex, QString
 
 void CommandLineArgument::CommandLineArgument_parseShowMainWindow(int argIndex, QStringList *argv)
 {
-    using namespace Const_Core::Arg;
+    using namespace Const_ReadLoop::Arg;
 
     bool get = CommandLineArgument_parseBoolFlag(ShowMainWindow, argIndex, argv);
     if (get)
@@ -67,7 +67,7 @@ void CommandLineArgument::CommandLineArgument_parseShowMainWindow(int argIndex, 
 
 void CommandLineArgument::CommandLineArgument_parseRocketLaunch(int argIndex, QStringList *argv)
 {
-    using namespace Const_Core::Arg;
+    using namespace Const_ReadLoop::Arg;
 
     bool get = CommandLineArgument_parseBoolFlag(RocketLaunch, argIndex, argv);
     if (get)
@@ -78,7 +78,7 @@ void CommandLineArgument::CommandLineArgument_parseRocketLaunch(int argIndex, QS
 
 CommandLineArgument::CommandLineArgument(int argc, QStringList argv)
 {
-    using namespace Const_Core;
+    using namespace Const_ReadLoop;
 
     // Create loop index
     // This variable may modify by function before loop

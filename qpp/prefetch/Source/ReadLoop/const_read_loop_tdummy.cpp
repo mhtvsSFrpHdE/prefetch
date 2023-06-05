@@ -1,9 +1,9 @@
-#include "const_core.h"
+#include "const_read_loop.h"
 #include "../Translate/translate_tool.h"
 
-#define tscope "Const_Core::Message"
+#define tscope "Const_ReadLoop::Message"
 
-void Const_Core::Message::tdummy()
+void Const_ReadLoop::Message::tdummy()
 {
 #define DEFINE_ScanFolder "Scan folder..."
     ScanFolder = tr("Scan folder...");

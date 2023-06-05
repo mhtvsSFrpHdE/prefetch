@@ -1,4 +1,4 @@
-class Core_RocketLaunch
+class ReadLoop_RocketLaunch
 {
 public:
     // Any init code

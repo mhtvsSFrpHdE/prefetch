@@ -2,7 +2,7 @@
 #include <QRunnable>
 #include <QSettings>
 
-class Core_ScanCache
+class ReadLoop_ScanCache
 {
 public:
     static QSettings *cache;

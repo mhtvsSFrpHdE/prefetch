@@ -1,7 +1,7 @@
 #include <QString>
 #include <QStringList>
 
-class Core_Skip
+class ReadLoop_Skip
 {
 public:
     // Any init code

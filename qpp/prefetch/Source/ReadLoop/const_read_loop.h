@@ -1,9 +1,9 @@
-#ifndef Const_Core_h
-#define Const_Core_h
+#ifndef Const_ReadLoop_h
+#define Const_ReadLoop_h
 
 #include <QString>
 
-namespace Const_Core
+namespace Const_ReadLoop
 {
     namespace Message
     {

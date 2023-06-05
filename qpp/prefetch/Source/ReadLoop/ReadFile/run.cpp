@@ -5,7 +5,7 @@
 
 #define crft Const_ReadFileThread
 
-bool Core_ReadFileThread::run_SearchExclude()
+bool ReadLoop_ReadFileThread::run_SearchExclude()
 {
     // Extract folder from exclude folders
     for (int i = 0; i < excludeFolders.size(); ++i)
@@ -29,7 +29,7 @@ bool Core_ReadFileThread::run_SearchExclude()
     return false;
 }
 
-bool Core_ReadFileThread::run_SearchInclude()
+bool ReadLoop_ReadFileThread::run_SearchInclude()
 {
     // Extract search pattern from priority include patterns
     for (int i = 0; i < priorityIncludePatterns.size(); ++i)
@@ -49,7 +49,7 @@ bool Core_ReadFileThread::run_SearchInclude()
     return false;
 }
 
-void Core_ReadFileThread::run_RequestDelete()
+void ReadLoop_ReadFileThread::run_RequestDelete()
 {
     QRunnable *currentThreadPointer = this;
 
@@ -58,7 +58,7 @@ void Core_ReadFileThread::run_RequestDelete()
     pendingDeleteThreadMutex.unlock();
 }
 
-void Core_ReadFileThread::run_read_WithBuffer(QFile *file)
+void ReadLoop_ReadFileThread::run_read_WithBuffer(QFile *file)
 {
     qint64 readResult = sharedReadBufferSize;
     while (readResult > 0)
@@ -67,12 +67,12 @@ void Core_ReadFileThread::run_read_WithBuffer(QFile *file)
     }
 }
 
-void Core_ReadFileThread::run_read_Directly(QFile *file)
+void ReadLoop_ReadFileThread::run_read_Directly(QFile *file)
 {
     auto fileBytes = file->readAll();
 }
 
-void Core_ReadFileThread::run_read()
+void ReadLoop_ReadFileThread::run_read()
 {
     // Read file
     QFile file(filePath);
@@ -89,7 +89,7 @@ void Core_ReadFileThread::run_read()
     }
 }
 
-void Core_ReadFileThread::run()
+void ReadLoop_ReadFileThread::run()
 {
     // Thread is known to skip
     if (stop)

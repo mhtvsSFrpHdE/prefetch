@@ -1,7 +1,7 @@
 #include <QElapsedTimer>
 
-#include "core.h"
-#include "const_core.h"
+#include "read_loop.h"
+#include "const_read_loop.h"
 #include "../Output/stdout.h"
 #include "ReadFile/read_file_thread.h"
 #include "Sleep/sleep.h"
@@ -15,20 +15,20 @@
 
 void run_runThreadPool_DeleteExcludedFile(QList<QRunnable *> *readThreadQueueAddress)
 {
-    Core_ReadFileThread::pendingDeleteThreadMutex.lock();
-    for (int i = 0; i < Core_ReadFileThread::pendingDeleteThread.size(); ++i)
+    ReadLoop_ReadFileThread::pendingDeleteThreadMutex.lock();
+    for (int i = 0; i < ReadLoop_ReadFileThread::pendingDeleteThread.size(); ++i)
     {
-        auto threadPointer = Core_ReadFileThread::pendingDeleteThread[i];
+        auto threadPointer = ReadLoop_ReadFileThread::pendingDeleteThread[i];
         readThreadQueueAddress->removeOne(threadPointer);
         delete threadPointer;
     }
-    Core_ReadFileThread::pendingDeleteThread.clear();
-    Core_ReadFileThread::pendingDeleteThreadMutex.unlock();
+    ReadLoop_ReadFileThread::pendingDeleteThread.clear();
+    ReadLoop_ReadFileThread::pendingDeleteThreadMutex.unlock();
 }
 
-bool Core::run_runThreadPool(int rescanInterval)
+bool ReadLoop::run_runThreadPool(int rescanInterval)
 {
-    using namespace Const_Core::Message;
+    using namespace Const_ReadLoop::Message;
 
     StdOut::printLine(Prefetching);
 
@@ -37,7 +37,7 @@ bool Core::run_runThreadPool(int rescanInterval)
     threadPoolTimer.start();
 
     // Allocate RAM
-    (*Core_ReadFileThread::newSharedReadBuffer_action)();
+    (*ReadLoop_ReadFileThread::newSharedReadBuffer_action)();
 
     // Consume thread queue
     for (int i = 0; i < readThreadQueue.size(); ++i)
@@ -49,21 +49,21 @@ bool Core::run_runThreadPool(int rescanInterval)
     readThreadPool->waitForDone();
 
     // Release RAM
-    (*Core_ReadFileThread::deleteSharedReadBuffer_action)();
+    (*ReadLoop_ReadFileThread::deleteSharedReadBuffer_action)();
 
     // Get code execute time (only measure read, without other action)
     auto threadPoolTimeConsumed_miliseconds = threadPoolTimer.elapsed();
-    auto threadPoolTimeConsumed_formatedString = Core_Time::timeConsumed(threadPoolTimeConsumed_miliseconds);
+    auto threadPoolTimeConsumed_formatedString = ReadLoop_Time::timeConsumed(threadPoolTimeConsumed_miliseconds);
 
     // Delete excluded file thread
     run_runThreadPool_DeleteExcludedFile(&readThreadQueue);
 
     // Save scan cache
-    Core_ScanCache::saveScanCache(&readThreadQueue);
+    ReadLoop_ScanCache::saveScanCache(&readThreadQueue);
 
     // Run startup items
 #if SKIP_STARTUP_ITEM == false
-    (*Core_Startup::startOnce)();
+    (*ReadLoop_Startup::startOnce)();
 #endif
 
     // Increase task count
@@ -115,14 +115,14 @@ bool Core::run_runThreadPool(int rescanInterval)
     return true;
 }
 
-void Core::run_scanFolder_createReadFileThread_ququeThread(QString filePath, bool skipSearch)
+void ReadLoop::run_scanFolder_createReadFileThread_ququeThread(QString filePath, bool skipSearch)
 {
-    auto readThread = new Core_ReadFileThread(filePath, skipSearch);
+    auto readThread = new ReadLoop_ReadFileThread(filePath, skipSearch);
 
-    Core::readThreadQueue.append(readThread);
+    ReadLoop::readThreadQueue.append(readThread);
 }
 
-void Core::run_scanFolder_createReadFileThread(QDir *prefetchFolder)
+void ReadLoop::run_scanFolder_createReadFileThread(QDir *prefetchFolder)
 {
     prefetchFolder->setFilter(QDir::Files);
     auto subFileList = prefetchFolder->entryInfoList();
@@ -135,7 +135,7 @@ void Core::run_scanFolder_createReadFileThread(QDir *prefetchFolder)
     }
 }
 
-void Core::run_scanFolder(QString prefetchFolderName)
+void ReadLoop::run_scanFolder(QString prefetchFolderName)
 {
     auto prefetchFolder = QDir(prefetchFolderName);
 
@@ -166,11 +166,11 @@ void Core::run_scanFolder(QString prefetchFolderName)
     run_scanFolder_createReadFileThread(&prefetchFolder);
 };
 
-void Core::run()
+void ReadLoop::run()
 {
-    using namespace Const_Core::Message;
+    using namespace Const_ReadLoop::Message;
 
-    typedef Core_ReadFileThread crft;
+    typedef ReadLoop_ReadFileThread crft;
     typedef SemaphoreExample se;
 
     init();
@@ -190,10 +190,10 @@ void Core::run()
         StdOut::printLine(ScanFolder);
 
         // If scan cache available, skip parse prefetch folder
-        if (Core_ScanCache::cacheFileExist)
+        if (ReadLoop_ScanCache::cacheFileExist)
         {
             StdOut::printLine(CacheFound);
-            Core_ScanCache::loadScanCache(&readThreadQueue);
+            ReadLoop_ScanCache::loadScanCache(&readThreadQueue);
         }
         else
         {
@@ -201,13 +201,13 @@ void Core::run()
             {
                 auto prefetchFolderName = prefetchFolders[i];
 
-                Core::run_scanFolder(prefetchFolderName);
+                ReadLoop::run_scanFolder(prefetchFolderName);
             }
         }
 
         // Get code execute time (only measure read, without other action)
         auto scanFolderTimeConsumed_miliseconds = scanFolderTimer.elapsed();
-        auto scanFolderTimeConsumed_formatedString = Core_Time::timeConsumed(scanFolderTimeConsumed_miliseconds);
+        auto scanFolderTimeConsumed_formatedString = ReadLoop_Time::timeConsumed(scanFolderTimeConsumed_miliseconds);
 
         // Scan complete, show execute time
         StdOut::print(ScanFolder_Time);
@@ -236,14 +236,14 @@ void Core::run()
             LAST_KNOWN_POSITION(4)
             se::unlock(crft::stopSemaphore);
 
-            bool checkProcess = Core_Skip::check();
+            bool checkProcess = ReadLoop_Skip::check();
             if (checkProcess == false)
             {
                 // Report skip process detected
                 StdOut::printLine(SkipProcessDetected);
 
                 // Wait for prefetch interval
-                Core_Sleep::sleep();
+                ReadLoop_Sleep::sleep();
 
                 // Skip
                 continue;
@@ -260,20 +260,20 @@ void Core::run()
                 StdOut::printLine(RescanIntervalReached2);
 
                 // Expire cache
-                Core_ScanCache::expireCache();
+                ReadLoop_ScanCache::expireCache();
 
                 // Wait for prefetch interval
-                Core_Sleep::sleep();
+                ReadLoop_Sleep::sleep();
 
                 // Exit while loop, trigger rescan
                 break;
             }
 
             // Rocket launch
-            (*Core_RocketLaunch::rocketLaunch_action)();
+            (*ReadLoop_RocketLaunch::rocketLaunch_action)();
 
             // Wait for prefetch interval
-            Core_Sleep::sleep();
+            ReadLoop_Sleep::sleep();
         }
     }
 }

@@ -7,11 +7,11 @@
 #include "../Setting/setting.h"
 #include "../Setting/const_setting.h"
 #include "../Interface/Dpi/dpi.h"
-#include "../Core/ScanCache/scan_cache.h"
-#include "../Core/Startup/startup.h"
-#include "../Core/Skip/skip.h"
-#include "../Core/RocketLaunch/rocket_launch.h"
-#include "../Core/ReadFile/read_file_thread.h"
+#include "../ReadLoop/ScanCache/scan_cache.h"
+#include "../ReadLoop/Startup/startup.h"
+#include "../ReadLoop/Skip/skip.h"
+#include "../ReadLoop/RocketLaunch/rocket_launch.h"
+#include "../ReadLoop/ReadFile/read_file_thread.h"
 #include "../Define/define.h"
 #include "../Output/log.h"
 
@@ -19,7 +19,7 @@ QApplication *Global::qGuiApplication = NULL;
 RunOnUiThreadExample *Global::runOnUiThreadAddress = NULL;
 MainWindow *Global::qMainWindow = NULL;
 InputLoopThread *Global::inputLoopThreadAddress = NULL;
-Core *Global::coreLoopThreadAddress = NULL;
+ReadLoop *Global::readLoopThreadAddress = NULL;
 TrayIcon *Global::trayIconInstanceAddress = NULL;
 CommandLineArgument *Global::commandLineArgumentAddress = NULL;
 
@@ -60,16 +60,16 @@ void Global::init(int argc, char *argv[])
     LAST_KNOWN_POSITION(2)
 #endif
 
-    Core_Startup::init();
+    ReadLoop_Startup::init();
     LAST_KNOWN_POSITION(2)
 
-    Core_Skip::init();
+    ReadLoop_Skip::init();
     LAST_KNOWN_POSITION(2)
 
-    Core_RocketLaunch::init();
+    ReadLoop_RocketLaunch::init();
     LAST_KNOWN_POSITION(2)
 
-    Core_ScanCache::init();
+    ReadLoop_ScanCache::init();
     LAST_KNOWN_POSITION(2)
 
     Dpi::init();
@@ -93,10 +93,10 @@ void Global::init(int argc, char *argv[])
     Global::qGuiApplication->setFont(defaultFont);
 
     // ReadThread
-    Core_ReadFileThread::init();
+    ReadLoop_ReadFileThread::init();
 
     // ReadFile thread instance
-    coreLoopThreadAddress = new Core();
+    readLoopThreadAddress = new ReadLoop();
     LAST_KNOWN_POSITION(2)
 
     // Tray icon

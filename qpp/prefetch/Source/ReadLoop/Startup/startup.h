@@ -1,4 +1,4 @@
-class Core_Startup
+class ReadLoop_Startup
 {
 public:
     static void init();

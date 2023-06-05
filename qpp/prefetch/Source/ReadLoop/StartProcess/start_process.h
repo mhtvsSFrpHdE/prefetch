@@ -1,6 +1,6 @@
 #include <QString>
 
-class Core_StartProcess
+class ReadLoop_StartProcess
 {
 public:
     // Cool stuff

@@ -4,19 +4,19 @@
 #include "../StartProcess/start_process.h"
 #include "../../Global/global.h"
 
-QString Core_Skip::assumeProcess;
-QStringList Core_Skip::skipProcessList;
+QString ReadLoop_Skip::assumeProcess;
+QStringList ReadLoop_Skip::skipProcessList;
 
 #define gn Const_Setting::ConfigGroupName
 #define skn Const_Setting::ConfigKeyName::SkipProcess
 
-void Core_Skip::init()
+void ReadLoop_Skip::init()
 {
     assumeProcess = Setting::getString(gn::Skip, skn::AssumeProcess, Setting::setting);
     skipProcessList.append(Setting::getArrayValue(gn::SkipProcess, Setting::setting));
 }
 
-bool Core_Skip::check()
+bool ReadLoop_Skip::check()
 {
     // If skipProcessList is empty
     // Default to true
@@ -32,7 +32,7 @@ bool Core_Skip::check()
     for (int i = 0; i < skipProcessList.size(); ++i)
     {
         auto skipProcessName = skipProcessList[i];
-        auto processOutput = Core_StartProcess::startProcessGetStdOut(skipProcessName);
+        auto processOutput = ReadLoop_StartProcess::startProcessGetStdOut(skipProcessName);
 
         processNotRunning = processOutput.startsWith(assumeProcess);
         if (processNotRunning == false)

@@ -1,11 +1,11 @@
 #include <QTime>
 
 #include "time.h"
-#include "../const_core.h"
+#include "../const_read_loop.h"
 
-#define cm Const_Core::Message
+#define cm Const_ReadLoop::Message
 
-QString Core_Time::timeConsumed(qint64 miliseconds)
+QString ReadLoop_Time::timeConsumed(qint64 miliseconds)
 {
     // 28
     auto msInSec = QString::number(miliseconds / 1000);

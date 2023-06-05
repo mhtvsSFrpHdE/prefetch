@@ -12,18 +12,18 @@ TARGET = prefetch_qt_creator_3_4_2
 TEMPLATE = app
 
 HEADERS  += \
-    Source/Core/ReadFile/const_read_file_thread.h \
-    Source/Core/ReadFile/read_file_thread.h \
-    Source/Core/RocketLaunch/rocket_launch.h \
-    Source/Core/ScanCache/scan_cache.h \
-    Source/Core/Skip/skip.h \
-    Source/Core/Sleep/sleep.h \
-    Source/Core/Sleep/sleep_thread.h \
-    Source/Core/StartProcess/start_process.h \
-    Source/Core/Startup/startup.h \
-    Source/Core/Time/time.h \
-    Source/Core/const_core.h \
-    Source/Core/core.h \
+    Source/ReadLoop/ReadFile/const_read_file_thread.h \
+    Source/ReadLoop/ReadFile/read_file_thread.h \
+    Source/ReadLoop/RocketLaunch/rocket_launch.h \
+    Source/ReadLoop/ScanCache/scan_cache.h \
+    Source/ReadLoop/Skip/skip.h \
+    Source/ReadLoop/Sleep/sleep.h \
+    Source/ReadLoop/Sleep/sleep_thread.h \
+    Source/ReadLoop/StartProcess/start_process.h \
+    Source/ReadLoop/Startup/startup.h \
+    Source/ReadLoop/Time/time.h \
+    Source/ReadLoop/const_read_loop.h \
+    Source/ReadLoop/read_loop.h \
     Source/Define/define.h \
     Source/Example/Hack/function_pointer_in_signal_slot.h \
     Source/Example/mutex_example.h \
@@ -59,22 +59,22 @@ HEADERS  += \
 
 SOURCES += \
     main.cpp\
-    Source/Core/ReadFile/init.cpp \
-    Source/Core/ReadFile/read_file_thread.cpp \
-    Source/Core/ReadFile/run.cpp \
-    Source/Core/RocketLaunch/rocket_launch.cpp \
-    Source/Core/ScanCache/scan_cache.cpp \
-    Source/Core/Skip/skip.cpp \
-    Source/Core/Sleep/sleep.cpp \
-    Source/Core/Sleep/sleep_thread.cpp \
-    Source/Core/StartProcess/start_process.cpp \
-    Source/Core/Startup/startup.cpp \
-    Source/Core/Time/time.cpp \
-    Source/Core/const_core.cpp \
-    Source/Core/const_core_tdummy.cpp \
-    Source/Core/core.cpp \
-    Source/Core/init.cpp \
-    Source/Core/run.cpp \
+    Source/ReadLoop/ReadFile/init.cpp \
+    Source/ReadLoop/ReadFile/read_file_thread.cpp \
+    Source/ReadLoop/ReadFile/run.cpp \
+    Source/ReadLoop/RocketLaunch/rocket_launch.cpp \
+    Source/ReadLoop/ScanCache/scan_cache.cpp \
+    Source/ReadLoop/Skip/skip.cpp \
+    Source/ReadLoop/Sleep/sleep.cpp \
+    Source/ReadLoop/Sleep/sleep_thread.cpp \
+    Source/ReadLoop/StartProcess/start_process.cpp \
+    Source/ReadLoop/Startup/startup.cpp \
+    Source/ReadLoop/Time/time.cpp \
+    Source/ReadLoop/const_read_loop.cpp \
+    Source/ReadLoop/const_read_loop_tdummy.cpp \
+    Source/ReadLoop/read_loop.cpp \
+    Source/ReadLoop/init.cpp \
+    Source/ReadLoop/run.cpp \
     Source/Global/const_global.cpp \
     Source/Global/global.cpp \
     Source/Input/Thread/Command/Level1/exit.cpp \
