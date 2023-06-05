@@ -45,8 +45,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
     // Resizeable
     {
-        auto resizable = Setting::getBool(gn::MainWindow, mkn::Resizable, Setting::setting);
-        auto sizeArray = Setting::getStringList(gn::MainWindow, mkn::Size, Setting::setting);
+        auto resizable = Setting::getBool(gn::Instance_MainWindow, mkn::Resizable, Setting::setting);
+        auto sizeArray = Setting::getStringList(gn::Instance_MainWindow, mkn::Size, Setting::setting);
         auto sizeWidth = sizeArray[0].toInt();
         auto sizeHeight = sizeArray[1].toInt();
 
@@ -69,10 +69,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     // Position
     {
         // If value was given, update position
-        auto getPosition = Setting::getString(gn::MainWindow, mkn::Position, Setting::setting);
+        auto getPosition = Setting::getString(gn::Instance_MainWindow, mkn::Position, Setting::setting);
         if (getPosition != mpv::Default)
         {
-            auto positionArray = Setting::getStringList(gn::MainWindow, mkn::Position, Setting::setting);
+            auto positionArray = Setting::getStringList(gn::Instance_MainWindow, mkn::Position, Setting::setting);
             this->move(positionArray[0].toInt(), positionArray[1].toInt());
         }
     }

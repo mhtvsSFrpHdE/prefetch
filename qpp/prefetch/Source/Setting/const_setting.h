@@ -28,7 +28,7 @@ namespace Const_Setting
         const QString Thread = "Thread";
         const QString Instance = "Instance";
         const QString CustomTrayMenu = "CustomTrayMenu";
-        const QString MainWindow = "MainWindow";
+        const QString Instance_MainWindow = "Instance_MainWindow";
     }
 
     namespace ConfigKeyName
@@ -45,7 +45,7 @@ namespace Const_Setting
             const QString PrefetchInterval = "PrefetchInterval";
             const QString ReadThreadPriority = "ReadThreadPriority";
             const QString ReadBufferSize = "ReadBufferSize";
-            const QString StartupItemCooldown = "StartupItemCooldown";
+            const QString ProcessStartCooldown = "ProcessStartCooldown";
         }
 
         namespace Instance
