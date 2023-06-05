@@ -21,16 +21,11 @@ void Parent_Prefetch::startup()
         ReadLoop_StartProcess::startProcess(fileName);
     }
 
-    // Hack rocket launch
-    // If run startup item without manually sleep
-    //     When rocket launch and code run too fast
-    //     desired process may not run
-    //     (QProcess::waitForStarted not work)
-    // Even msleep(0) will do the trick, strange
     bool rocketLaunch = Global::commandLineArgumentAddress->getRocketLaunch();
     if (rocketLaunch)
     {
-        auto getStartupItemCooldownMilliseconds = Setting::getUnsignedLong(gn::Thread, tkn::StartupItemCooldown, Setting::setting);
-        msleep(getStartupItemCooldownMilliseconds.result);
+        auto getProcessStartCooldownMilliseconds = Setting::getUnsignedLong(gn::Thread, tkn::ProcessStartCooldown, Setting::setting);
+        // msleep: See Document\KnownIssue\QtComponent\ProcessStart\README.md for more details
+        msleep(getProcessStartCooldownMilliseconds.result);
     }
 }
