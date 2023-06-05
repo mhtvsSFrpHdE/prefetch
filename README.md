@@ -14,6 +14,7 @@ Most recent Linux version: https://github.com/mhtvsSFrpHdE/prefetch/releases/tag
 - [Command line arguments](https://github.com/mhtvsSFrpHdE/prefetch/wiki/Command-line-arguments)
 - [Command interface](https://github.com/mhtvsSFrpHdE/prefetch/wiki/Command-interface)
 - [Tray icon interface](https://github.com/mhtvsSFrpHdE/prefetch/wiki/Tray-icon-interface)
+- [Known issue (Exception)](https://github.com/mhtvsSFrpHdE/prefetch/wiki/Known-issue-(Exception))
 - [Compile](https://github.com/mhtvsSFrpHdE/prefetch/wiki/Compile)
 
 ## Frequently asked questions
