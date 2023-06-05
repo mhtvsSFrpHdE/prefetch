@@ -7,6 +7,10 @@
 #include "../const_read_loop.h"
 #include "../../Global/global.h"
 
+#define gn Const_Cache::ConfigGroupName
+#define mkn Const_Cache::MetaData_ConfigKeyName
+#define mcv Const_Cache::Value::MetaData
+
 QSettings *ReadLoop_ScanCache::cache = NULL;
 QString ReadLoop_ScanCache::cacheFilePath = NULL;
 bool ReadLoop_ScanCache::cacheFileExist = false;
@@ -40,18 +44,16 @@ void ReadLoop_ScanCache::saveScanCache(QList<QRunnable *> *readThreadQueueAddres
         return;
     }
 
-    using namespace Const_Cache::ConfigGroupName;
-    using namespace Const_Cache::MetaData_ConfigKeyName;
-
     // Clear exist cache
-    cache->remove(ScanFolder);
+    cache->remove(gn::ScanFolder);
 
     // Snapshot current thread pool
     auto readThreadQueue = *readThreadQueueAddress;
-    Setting_setArray_macro(ScanFolder, readThreadQueue, readThreadQueue.size(), ReadLoop_ReadFileThread *, item->filePath, cache);
+    Setting_setArray_macro(gn::ScanFolder, readThreadQueue, readThreadQueue.size(), ReadLoop_ReadFileThread *, item->filePath, cache);
 
     // Save metadata
-    Setting::setValue(MetaData, Size, QString::number(readThreadQueue.size()), cache);
+    Setting::setValue(gn::MetaData, mkn::Size, QString::number(readThreadQueue.size()), cache);
+    Setting::setValue(gn::MetaData, mkn::ConfigVersion, QString::number(mcv::ConfigVersion), cache);
 
     // Mark cache exist after save
     cacheFileExist = true;

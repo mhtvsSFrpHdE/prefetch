@@ -60,6 +60,15 @@ namespace Const_Cache
     namespace MetaData_ConfigKeyName
     {
         const QString Size = "Size";
+        const QString ConfigVersion = "ConfigVersion";
+    }
+
+    namespace Value
+    {
+        namespace MetaData
+        {
+            const int ConfigVersion = 0;
+        }
     }
 }
 
