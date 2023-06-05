@@ -6,6 +6,7 @@
 #include "translator_loader.h"
 #include "../Global/global.h"
 #include "../Output/log.h"
+#include "../Output/stdout.h"
 #include "const_translator_loader.h"
 #include "../Setting/setting.h"
 #include "../Setting/const_setting.h"
@@ -196,6 +197,7 @@ void TranslatorLoader::initFile(QString languageName)
     if (loadSuccess == false)
     {
         LAST_KNOWN_POSITION(2)
-        throw std::runtime_error(Exception::FailedToLoadAnyTranslateFile);
+        StdOut::printLine(Exception::FailedToLoadAnyTranslateFile);
+        throw std::runtime_error(Exception::FailedToLoadAnyTranslateFile.toStdString());
     }
 }

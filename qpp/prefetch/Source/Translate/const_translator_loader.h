@@ -13,7 +13,7 @@ namespace Const_TranslatorLoader
 
     namespace Exception
     {
-        const std::string &FailedToLoadAnyTranslateFile = "FailedToLoadAnyTranslateFile";
+        const QString FailedToLoadAnyTranslateFile = "FailedToLoadAnyTranslateFile";
     }
 }
 
