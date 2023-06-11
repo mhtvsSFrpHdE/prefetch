@@ -24,6 +24,10 @@ void ReadLoop_ReadFileThread::newSharedReadBuffer_Directly()
 {
     // Do nothing
 }
+void ReadLoop_ReadFileThread::newSharedReadBuffer_ScanOnly()
+{
+    // Do nothing
+}
 
 void ReadLoop_ReadFileThread::deleteSharedReadBuffer_WithBuffer()
 {
@@ -31,6 +35,10 @@ void ReadLoop_ReadFileThread::deleteSharedReadBuffer_WithBuffer()
 }
 
 void ReadLoop_ReadFileThread::deleteSharedReadBuffer_Directly()
+{
+    // Do nothing
+}
+void ReadLoop_ReadFileThread::deleteSharedReadBuffer_ScanOnly()
 {
     // Do nothing
 }

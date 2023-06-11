@@ -3,6 +3,7 @@
 #include "../../Setting/const_setting.h"
 #include "const_read_file_thread.h"
 #include "../../Example/semaphore_example.h"
+#include "../../Global/global.h"
 
 #define gn Const_Setting::ConfigGroupName
 #define kn Const_Setting::ConfigKeyName::Thread
@@ -37,6 +38,18 @@ void ReadLoop_ReadFileThread::init()
         // Shared buffer action function pointer
         newSharedReadBuffer_action = &newSharedReadBuffer_Directly;
         deleteSharedReadBuffer_action = &deleteSharedReadBuffer_Directly;
+    }
+
+    // Confirm scanOnly (it can override useBuffer results)
+    bool scanOnly = Global::commandLineArgumentAddress->getScanOnly();
+    if (scanOnly)
+    {
+        // Read action function pointer
+        run_read_action = &run_read_ScanOnly;
+
+        // Shared buffer action function pointer
+        newSharedReadBuffer_action = &newSharedReadBuffer_ScanOnly;
+        deleteSharedReadBuffer_action = &deleteSharedReadBuffer_ScanOnly;
     }
 
     // Create semaphore

@@ -74,6 +74,7 @@ private:
     static void (*run_read_action)(QFile *);
     static void run_read_WithBuffer(QFile *file);
     static void run_read_Directly(QFile *file);
+    static void run_read_ScanOnly(QFile *file);
 
     // Reduce waste, try read different file bytes to same RAM space
     // This variable should never be read from elsewhere:
@@ -89,10 +90,12 @@ private:
     // Note: New twice = Memory leak
     static void newSharedReadBuffer_WithBuffer();
     static void newSharedReadBuffer_Directly();
+    static void newSharedReadBuffer_ScanOnly();
 
     // Note: Delete twice is undefined behavior
     static void deleteSharedReadBuffer_WithBuffer();
     static void deleteSharedReadBuffer_Directly();
+    static void deleteSharedReadBuffer_ScanOnly();
 };
 
 #endif

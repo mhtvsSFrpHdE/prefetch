@@ -72,6 +72,11 @@ void ReadLoop_ReadFileThread::run_read_Directly(QFile *file)
     auto fileBytes = file->readAll();
 }
 
+void ReadLoop_ReadFileThread::run_read_ScanOnly(QFile *file)
+{
+    // Do nothing
+}
+
 void ReadLoop_ReadFileThread::run_read()
 {
     // Read file
