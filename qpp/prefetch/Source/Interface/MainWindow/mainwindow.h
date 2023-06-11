@@ -21,9 +21,20 @@ public:
     void sendCommand_restore();
 
     // Implement Output::StdOut
-    void StdOut_print(QString textToPrint);
-    void StdOut_printLine(QString textToPrint);
-    void StdOut_flush();
+    // StdOut will init first, fill these by dummy function
+    // At this stage, print to StdOut will not sync to MainWindow since it isn't init yet
+    static void (*StdOut_print)(QString);
+    static void (*StdOut_printLine)(QString);
+    static void (*StdOut_flush)();
+    // These function will be available after MainWindow init
+    void StdOut_print_action(QString textToPrint);
+    void StdOut_printLine_action(QString textToPrint);
+    void StdOut_flush_action();
+    // After MainWindow init, replace dummy function with these
+    // Call to static function pointer will run at here and redirect to class member function
+    static void StdOut_print_redirect(QString textToPrint);
+    static void StdOut_printLine_redirect(QString textToPrint);
+    static void StdOut_flush_redirect();
 
     // If start with window set to false, skip show MainWindow
     void start();

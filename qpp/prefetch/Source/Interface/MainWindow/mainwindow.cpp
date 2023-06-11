@@ -130,6 +130,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     {
         ui->command_lineEdit->setFocus();
     }
+
+    // StdOut interface
+    {
+        StdOut_print = &StdOut_print_redirect;
+        StdOut_printLine = &StdOut_printLine_redirect;
+        StdOut_flush = &StdOut_flush_redirect;
+    }
 }
 
 MainWindow::~MainWindow()

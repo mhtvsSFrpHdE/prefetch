@@ -10,6 +10,12 @@ QTextStream *StdOut::consoleOutput;
 void StdOut::init()
 {
     consoleOutput = new QTextStream(stdout);
+
+    // StdOut init before MainWindow
+    // skip sync output to MainWindow
+    Global::qMainWindow->StdOut_print = &Global::dummyFunctionT<QString>;
+    Global::qMainWindow->StdOut_printLine = &Global::dummyFunctionT<QString>;
+    Global::qMainWindow->StdOut_flush = &Global::dummyFunction;
 }
 
 void (*StdOut::print_address)(QString) = &_print;
@@ -25,7 +31,7 @@ void StdOut::_print(QString textToPrint)
 
     *consoleOutput << textToPrint;
 
-    Global::qMainWindow->StdOut_print(textToPrint);
+    (*Global::qMainWindow->StdOut_print)(textToPrint);
 
     unlock();
 }
@@ -45,7 +51,7 @@ void StdOut::_printLine(QString textToPrint)
                    << endl;
     consoleOutput->flush();
 
-    Global::qMainWindow->StdOut_printLine(textToPrint);
+    (*Global::qMainWindow->StdOut_printLine)(textToPrint);
 
     unlock();
 }
@@ -63,7 +69,7 @@ void StdOut::_printEndl()
     *consoleOutput << endl;
 
     using namespace Const_Global::CommonString;
-    Global::qMainWindow->StdOut_print(NewLine);
+    (*Global::qMainWindow->StdOut_print)(NewLine);
 
     unlock();
 }
@@ -80,7 +86,7 @@ void StdOut::_flush()
 
     consoleOutput->flush();
 
-    Global::qMainWindow->StdOut_flush();
+    (*Global::qMainWindow->StdOut_flush)();
 
     unlock();
 }
