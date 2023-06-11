@@ -37,7 +37,8 @@ void ReadLoop_ScanCache::init()
     cache = new QSettings(cacheFilePath, QSettings::IniFormat);
 
     // Check config version
-    bool configVersionExist = Setting::getExist(gn::MetaData, mkn::ConfigVersion, cache);
+    // Newly created config will always have config version, if cache file NOT exist, ignore this check
+    bool configVersionExist = cacheFileExist == false || Setting::getExist(gn::MetaData, mkn::ConfigVersion, cache);
     if (configVersionExist == false)
     {
         using namespace Const_Setting::Exception;
