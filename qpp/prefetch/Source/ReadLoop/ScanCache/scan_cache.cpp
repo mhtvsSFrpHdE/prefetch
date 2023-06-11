@@ -1,5 +1,6 @@
 #include <QFileInfo>
 #include <QApplication>
+#include <QMessageBox>
 
 #include "scan_cache.h"
 #include "../ReadFile/read_file_thread.h"
@@ -8,6 +9,8 @@
 #include "../const_read_loop.h"
 #include "../../Global/global.h"
 #include "../../Output/stdout.h"
+#include "../../Define/define_runtime.h"
+#include "../../Output/log.h"
 
 #define gn Const_Cache::ConfigGroupName
 #define mkn Const_Cache::MetaData_ConfigKeyName
@@ -45,6 +48,11 @@ void ReadLoop_ScanCache::init()
 
         QString exceptionUiText = IncompatibleConfigVersion + IncompatibleConfigVersion_UI + cacheFilePath;
         StdOut::printLine(exceptionUiText);
+        LAST_KNOWN_POSITION(2)
+        if (Define_Runtime::getConsoleEnabled() == false)
+        {
+            QMessageBox::critical(Global::qMainWindow, Const_Global::CommonString::EmptyString, exceptionUiText);
+        }
 
         throw std::runtime_error(IncompatibleConfigVersion.toStdString());
     }

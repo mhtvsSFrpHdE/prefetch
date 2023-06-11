@@ -1,10 +1,13 @@
 #include <QDir>
 #include <QApplication>
+#include <QMessageBox>
 
 #include "setting.h"
 #include "const_setting.h"
 #include "../Global/global.h"
 #include "../Output/stdout.h"
+#include "../Define/define_runtime.h"
+#include "../Output/log.h"
 
 QSettings *Setting::setting = NULL;
 QString Setting::settingFilePath = NULL;
@@ -30,6 +33,11 @@ void Setting::init()
 
         QString exceptionUiText = IncompatibleConfigVersion + IncompatibleConfigVersion_UI + settingFilePath;
         StdOut::printLine(exceptionUiText);
+        LAST_KNOWN_POSITION(2)
+        if (Define_Runtime::getConsoleEnabled() == false)
+        {
+            QMessageBox::critical(Global::qMainWindow, Const_Global::CommonString::EmptyString, exceptionUiText);
+        }
 
         throw std::runtime_error(IncompatibleConfigVersion.toStdString());
     }

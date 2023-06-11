@@ -2,6 +2,7 @@
 #include <QLocale>
 #include <QStringList>
 #include <stdexcept>
+#include <QMessageBox>
 
 #include "translator_loader.h"
 #include "../Global/global.h"
@@ -10,6 +11,7 @@
 #include "const_translator_loader.h"
 #include "../Setting/setting.h"
 #include "../Setting/const_setting.h"
+#include "../Define/define_runtime.h"
 
 QList<QTranslator *> TranslatorLoader::installedTranslator = QList<QTranslator *>();
 
@@ -196,8 +198,13 @@ void TranslatorLoader::initFile(QString languageName)
     // Final check, program should end if global init doesn't find any translate file
     if (loadSuccess == false)
     {
-        LAST_KNOWN_POSITION(2)
         StdOut::printLine(Exception::FailedToLoadAnyTranslateFile);
+        LAST_KNOWN_POSITION(2)
+        if (Define_Runtime::getConsoleEnabled() == false)
+        {
+            QMessageBox::critical(Global::qMainWindow, Const_Global::CommonString::EmptyString, Exception::FailedToLoadAnyTranslateFile);
+        }
+
         throw std::runtime_error(Exception::FailedToLoadAnyTranslateFile.toStdString());
     }
 }
