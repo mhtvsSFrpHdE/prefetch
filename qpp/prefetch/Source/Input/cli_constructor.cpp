@@ -54,6 +54,17 @@ void CommandLineArgument::CommandLineArgument_parseStartup(int argIndex, QString
     }
 }
 
+void CommandLineArgument::CommandLineArgument_parseScanOnly(int argIndex, QStringList *argv)
+{
+    using namespace Const_ReadLoop::Arg;
+
+    bool get = CommandLineArgument_parseBoolFlag(ScanOnly, argIndex, argv);
+    if (get)
+    {
+        scanOnly = true;
+    }
+}
+
 void CommandLineArgument::CommandLineArgument_parseShowMainWindow(int argIndex, QStringList *argv)
 {
     using namespace Const_ReadLoop::Arg;
@@ -101,6 +112,7 @@ CommandLineArgument::CommandLineArgument(int argc, QStringList argv)
     for (; argIndex < argc; argIndex++)
     {
         CommandLineArgument_parseStartup(argIndex, &argv);
+        CommandLineArgument_parseScanOnly(argIndex, &argv);
         CommandLineArgument_parseShowMainWindow(argIndex, &argv);
         CommandLineArgument_parseRocketLaunch(argIndex, &argv);
     }

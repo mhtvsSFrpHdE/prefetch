@@ -16,6 +16,7 @@ public:
     QString getSettingFilePath();
     QString getScanCacheFilePath();
     bool getSkipStartup();
+    bool getScanOnly();
     // Only use if reasonable, because command line argument is generally read only
     void setSkipStartup(bool value);
     bool getShowMainWindow();
@@ -31,6 +32,7 @@ private:
     QString settingFilePath = CommonString::EmptyString;
     QString scanCacheFilePath = CommonString::EmptyString;
     bool skipStartup = false;
+    bool scanOnly = false;
     bool showMainWindow = false;
     bool rocketLaunch = false;
 
@@ -39,6 +41,9 @@ private:
 
     // Parse skip startup
     void CommandLineArgument_parseStartup(int argIndex, QStringList *argv);
+
+    // Parse scan only
+    void CommandLineArgument_parseScanOnly(int argIndex, QStringList *argv);
 
     // Parse show main window
     void CommandLineArgument_parseShowMainWindow(int argIndex, QStringList *argv);

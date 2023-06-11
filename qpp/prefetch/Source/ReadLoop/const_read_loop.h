@@ -40,6 +40,7 @@ namespace Const_ReadLoop
         const int IniArgi = 1;
         const QString BoolFlagBeginWith = "-";
         const QString SkipStartup = "skipStartup";
+        const QString ScanOnly = "scanOnly";
         const QString ShowMainWindow = "showMainWindow";
         const QString RocketLaunch = "rocketLaunch";
     }

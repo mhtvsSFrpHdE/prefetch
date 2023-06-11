@@ -12,6 +12,10 @@ bool CommandLineArgument::getSkipStartup()
 {
     return skipStartup;
 }
+bool CommandLineArgument::getScanOnly()
+{
+    return scanOnly;
+}
 void CommandLineArgument::setSkipStartup(bool value)
 {
     skipStartup = value;
