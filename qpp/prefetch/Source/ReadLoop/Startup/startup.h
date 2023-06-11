@@ -1,4 +1,9 @@
-class ReadLoop_Startup
+#ifndef ReadLoopStartup_h
+#define ReadLoopStartup_h
+
+#include <QThread>
+
+class ReadLoop_Startup : public QThread
 {
 public:
     static void init();
@@ -10,3 +15,5 @@ private:
     static void _startOnce();
     static void startOnce_remove();
 };
+
+#endif

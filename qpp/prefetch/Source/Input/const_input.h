@@ -36,7 +36,6 @@ namespace Const_Input
         const QString exit = "exit";
         const QString traydc = "traydc";
         const QString expiresc = "expiresc";
-        const QString startup = "startup";
     }
     namespace Command_Level2
     {

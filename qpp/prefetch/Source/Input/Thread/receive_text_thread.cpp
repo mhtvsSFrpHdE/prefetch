@@ -91,8 +91,7 @@ QMap<QString, void (*)()> ReceiveTextThread::commandMap_level1(
         {Command_Level1::test, &ConsoleCommandFunction_Level1::test},
         {Command_Level1::exit, &ConsoleCommandFunction_Level1::exit},
         {Command_Level1::traydc, &ConsoleCommandFunction_Level1::traydc},
-        {Command_Level1::expiresc, &ConsoleCommandFunction_Level1::expiresc},
-        {Command_Level1::startup, &ConsoleCommandFunction_Level1::startup}});
+        {Command_Level1::expiresc, &ConsoleCommandFunction_Level1::expiresc}});
 QMap<QString, void (*)(QString)> ReceiveTextThread::commandMap_level2(
     std::map<QString, void (*)(QString)>{
         {Command_Level2::run, &ConsoleCommandFunction_Level2::run},
