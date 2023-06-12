@@ -7,6 +7,7 @@ CONFIG -= app_bundle
 
 HEADERS += \
     Source/Example/exception_example.h \
+    Source/Example/windows_ini_example.h \
     Source/ReadLoop/ReadFile/const_read_file_thread.h \
     Source/ReadLoop/ReadFile/read_file_thread.h \
     Source/ReadLoop/RocketLaunch/rocket_launch.h \
@@ -43,6 +44,7 @@ HEADERS += \
     Source/Output/stdout.h \
     Source/Setting/const_setting.h \
     Source/Setting/setting.h \
+    Source/Setting/setting_interface.h \
     Source/Translate/const_translator_loader.h \
     Source/Translate/translate_define.h \
     Source/Translate/translate_tool.h \
@@ -50,6 +52,8 @@ HEADERS += \
 
 SOURCES += \
     Source/Example/exception_example.cpp \
+    Source/Example/windows_ini_example.cpp \
+    Source/Example/windows_ini_reader_example.cpp \
     Source/ReadLoop/ReadFile/init.cpp \
     Source/ReadLoop/ReadFile/read_file_thread.cpp \
     Source/ReadLoop/ReadFile/run.cpp \
