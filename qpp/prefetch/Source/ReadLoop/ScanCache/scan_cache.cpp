@@ -9,7 +9,7 @@
 #include "../const_read_loop.h"
 #include "../../Global/global.h"
 #include "../../Output/stdout.h"
-#include "../../Define/define_runtime.h"
+#include "../../Example/exception_example.h"
 #include "../../Output/log.h"
 
 #define gn Const_Cache::ConfigGroupName
@@ -46,15 +46,10 @@ void ReadLoop_ScanCache::init()
     {
         using namespace Const_Setting::Exception;
 
-        QString exceptionUiText = IncompatibleConfigVersion + IncompatibleConfigVersion_UI + cacheFilePath;
-        StdOut::printLine(exceptionUiText);
+        QString exception = IncompatibleConfigVersion;
+        QString exceptionUiText = exception + IncompatibleConfigVersion_UI + cacheFilePath;
         LAST_KNOWN_POSITION(2)
-        if (Define_Runtime::getConsoleEnabled() == false)
-        {
-            QMessageBox::critical(Global::qMainWindow, Const_Global::CommonString::EmptyString, exceptionUiText);
-        }
-
-        throw std::runtime_error(IncompatibleConfigVersion.toStdString());
+        ExceptionExample::throwException(exception, exceptionUiText);
     }
 }
 

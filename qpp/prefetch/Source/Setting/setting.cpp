@@ -6,7 +6,7 @@
 #include "const_setting.h"
 #include "../Global/global.h"
 #include "../Output/stdout.h"
-#include "../Define/define_runtime.h"
+#include "../Example/exception_example.h"
 #include "../Output/log.h"
 
 QSettings *Setting::setting = NULL;
@@ -31,15 +31,10 @@ void Setting::init()
     {
         using namespace Exception;
 
-        QString exceptionUiText = IncompatibleConfigVersion + IncompatibleConfigVersion_UI + settingFilePath;
-        StdOut::printLine(exceptionUiText);
+        QString exception = IncompatibleConfigVersion;
+        QString exceptionUiText = exception + IncompatibleConfigVersion_UI + settingFilePath;
         LAST_KNOWN_POSITION(2)
-        if (Define_Runtime::getConsoleEnabled() == false)
-        {
-            QMessageBox::critical(Global::qMainWindow, Const_Global::CommonString::EmptyString, exceptionUiText);
-        }
-
-        throw std::runtime_error(IncompatibleConfigVersion.toStdString());
+        ExceptionExample::throwException(exception, exceptionUiText);
     }
 }
 
