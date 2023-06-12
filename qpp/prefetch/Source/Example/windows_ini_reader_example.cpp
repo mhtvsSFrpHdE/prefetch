@@ -20,13 +20,10 @@ QStringList WindowsIniReaderExample::childGroups()
 }
 QStringList WindowsIniReaderExample::childKeys()
 {
+    auto setting = *settingAddress;
     auto groupContent = (*settingAddress)[groupName];
 
-    QStringList childKeys;
-    for (int i = 0; i < groupContent.size(); ++i)
-    {
-        childKeys.append(groupContent.at(i).keys());
-    }
+    QStringList childKeys = groupContent.keys();
 
     return childKeys;
 }

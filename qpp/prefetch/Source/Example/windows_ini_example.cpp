@@ -16,18 +16,12 @@ void WindowsIniExample::init()
     // Fill with applicationDirPath
     settingFilePath = QApplication::applicationDirPath() + PathSplitter + settingFilePath;
 
-    // Create QSetting
-    // setting = new QSettings(settingFilePath + ".temp", QSettings::IniFormat);
-
     // Read ini from exe stored folder
     QFile file(settingFilePath);
     LAST_KNOWN_POSITION(2)
     readWindowsIniFile(file, setting);
 
-    // Check config version
-    bool configVersionExist = getExist(ConfigGroupName::MetaData, ConfigKeyName::MetaData::ConfigVersion, &setting);
-
-    bool doNothing = true;
+    // Config version check is done by QSettings
 }
 
 void WindowsIniExample::readWindowsIniFile(QFile &file, WindowsIniFormatExample &qsetting)
@@ -45,7 +39,7 @@ void WindowsIniExample::readWindowsIniFile(QFile &file, WindowsIniFormatExample 
     }
 
     QString groupName = DefaultGroupName;
-    QList<QMap<QString, QString>> groupContent;
+    QMap<QString, QString> groupContent;
 
     // Read through QIODevice (QFile)
     while (file.atEnd() == false)
@@ -81,9 +75,7 @@ void WindowsIniExample::readWindowsIniFile(QFile &file, WindowsIniFormatExample 
             // No preserve '=' in value string
             auto value = lineContent.mid(splitterIndex + 1);
 
-            QMap<QString, QString> keyValue;
-            keyValue.insert(keyName, value);
-            groupContent.append(keyValue);
+            groupContent.insert(keyName, value);
         }
     }
 

@@ -26,7 +26,7 @@ void Setting::init()
     setting = new QSettings(settingFilePath, QSettings::IniFormat);
 
     // Check config version
-    bool configVersionExist = Global::qSettingInterfaceAddress->getExist(ConfigGroupName::MetaData, ConfigKeyName::MetaData::ConfigVersion, setting);
+    bool configVersionExist = Global::qSettingAddress->getExist(ConfigGroupName::MetaData, ConfigKeyName::MetaData::ConfigVersion, setting);
     if (configVersionExist == false)
     {
         using namespace Exception;

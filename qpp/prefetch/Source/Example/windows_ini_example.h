@@ -7,7 +7,7 @@
 
 #include "../Setting/setting_interface.h"
 
-typedef QHash<QString, QList<QMap<QString, QString>>> WindowsIniFormatExample;
+typedef QHash<QString, QMap<QString, QString>> WindowsIniFormatExample;
 
 // QSettings always come with file on disk or registry on Windows platform (persistence storage)
 // To prevent that, use type WindowsIniFormatExample

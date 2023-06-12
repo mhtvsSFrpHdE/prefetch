@@ -4,7 +4,6 @@
 #include "../Input/stdin.h"
 #include "../Output/stdout.h"
 #include "../Translate/translator_loader.h"
-#include "../Setting/setting.h"
 #include "../Setting/const_setting.h"
 #include "../Interface/Dpi/dpi.h"
 #include "../ReadLoop/ScanCache/scan_cache.h"
@@ -14,7 +13,6 @@
 #include "../ReadLoop/ReadFile/read_file_thread.h"
 #include "../Define/define.h"
 #include "../Output/log.h"
-#include "../Example/windows_ini_example.h"
 
 QApplication *Global::qGuiApplication = NULL;
 RunOnUiThreadExample *Global::runOnUiThreadAddress = NULL;
@@ -23,7 +21,8 @@ InputLoopThread *Global::inputLoopThreadAddress = NULL;
 ReadLoop *Global::readLoopThreadAddress = NULL;
 TrayIcon *Global::trayIconInstanceAddress = NULL;
 CommandLineArgument *Global::commandLineArgumentAddress = NULL;
-SettingInterface *Global::qSettingInterfaceAddress = NULL;
+Setting *Global::qSettingAddress = NULL;
+WindowsIniExample *Global::windowsIniExampleAddress = NULL;
 
 #define gn Const_Setting::ConfigGroupName
 #define ikn Const_Setting::ConfigKeyName::Instance
@@ -45,7 +44,6 @@ void Global::init(int argc, char *argv[])
     LAST_KNOWN_POSITION(0)
 
     commandLineArgumentAddress = new CommandLineArgument(argc, argvQStringList);
-    qSettingInterfaceAddress = new Setting();
 
     StdIn::init();
     LAST_KNOWN_POSITION(2)
@@ -53,10 +51,12 @@ void Global::init(int argc, char *argv[])
     StdOut::init();
     LAST_KNOWN_POSITION(2)
 
-    WindowsIniExample windowsIniExample;
-    windowsIniExample.init();
+    WindowsIniExample *windowsIniExample = new WindowsIniExample();
+    windowsIniExample->init();
+    windowsIniExampleAddress = windowsIniExample;
     LAST_KNOWN_POSITION(2)
 
+    qSettingAddress = new Setting();
     Setting::init();
     LAST_KNOWN_POSITION(2)
 

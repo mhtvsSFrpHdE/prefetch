@@ -9,7 +9,8 @@
 #include "../Interface/TrayIcon/tray_icon.h"
 #include "../Interface/MainWindow/mainwindow.h"
 #include "../Input/command_line_argument.h"
-#include "../Setting/setting_interface.h"
+#include "../Setting/setting.h"
+#include "../Example/windows_ini_example.h"
 
 class Global
 {
@@ -28,7 +29,9 @@ public:
 
     static CommandLineArgument *commandLineArgumentAddress;
 
-    static SettingInterface *qSettingInterfaceAddress;
+    static Setting *qSettingAddress;
+
+    static WindowsIniExample *windowsIniExampleAddress;
 
     // Any init code
     static void init(int argc, char *argv[]);
