@@ -38,7 +38,7 @@ void ReadLoop_Startup::_startOnce()
     StdOut::printLine(Const_ReadLoop::Message::RunStartupItems);
 
     // Get startup items
-    auto startupItem = Setting::getArrayValue(gn::StartupItem, Setting::setting);
+    auto startupItem = Global::windowsIniExampleAddress->getArrayValue(gn::StartupItem, &Global::windowsIniExampleAddress->setting);
     for (int i = 0; i < startupItem.size(); ++i)
     {
         auto fileName = startupItem[i];

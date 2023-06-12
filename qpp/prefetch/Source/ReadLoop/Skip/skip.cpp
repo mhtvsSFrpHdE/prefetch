@@ -13,7 +13,7 @@ QStringList ReadLoop_Skip::skipProcessList;
 void ReadLoop_Skip::init()
 {
     assumeProcess = Setting::getString(gn::Skip, skn::AssumeProcess, Setting::setting);
-    skipProcessList.append(Setting::getArrayValue(gn::SkipProcess, Setting::setting));
+    skipProcessList.append(Global::qSettingAddress->getArrayValue(gn::SkipProcess, Setting::setting));
 }
 
 bool ReadLoop_Skip::check()

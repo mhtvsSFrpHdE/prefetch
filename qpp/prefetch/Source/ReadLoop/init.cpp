@@ -3,6 +3,7 @@
 #include "../Setting/const_setting.h"
 #include "ReadFile/read_file_thread.h"
 #include "Sleep/sleep.h"
+#include "../GLobal/global.h"
 
 #define gn Const_Setting::ConfigGroupName
 #define kn Const_Setting::ConfigKeyName::Thread
@@ -17,10 +18,10 @@ void ReadLoop::init()
     }
 
     // Get prefetch folder
-    prefetchFolders.append(Setting::getArrayValue(gn::PrefetchFolder, Setting::setting));
+    prefetchFolders.append(Global::windowsIniExampleAddress->getArrayValue(gn::PrefetchFolder, &Global::windowsIniExampleAddress->setting));
 
     // Get exclude folder
-    auto excludeFolders = Setting::getArrayValue(gn::ExcludeFolder, Setting::setting);
+    auto excludeFolders = Global::windowsIniExampleAddress->getArrayValue(gn::ExcludeFolder, &Global::windowsIniExampleAddress->setting);
     for (int i = 0; i < excludeFolders.size(); ++i)
     {
         auto excludeFolderName = QDir(excludeFolders[i]).absolutePath();
@@ -28,7 +29,7 @@ void ReadLoop::init()
     }
 
     // Get priority include search patterns
-    auto priorityIncludePatterns = Setting::getArrayValue(gn::PriorityIncludePattern, Setting::setting);
+    auto priorityIncludePatterns = Global::qSettingAddress->getArrayValue(gn::PriorityIncludePattern, Setting::setting);
     for (int i = 0; i < priorityIncludePatterns.size(); ++i)
     {
         auto priorityIncludePattern = priorityIncludePatterns[i];
