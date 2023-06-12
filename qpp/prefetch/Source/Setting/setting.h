@@ -5,8 +5,10 @@
 #include <QString>
 #include <QStringList>
 
+#include "setting_interface.h"
+
 // Look at GenericCpp\ReturnByReference first
-class Setting
+class Setting : public SettingInterface
 {
 public:
     static QSettings *setting;
@@ -73,8 +75,7 @@ public:
     // Act like getArrayValue, but sorting by array index
     static QStringList getOrderedArrayValue(QString groupName, int size, QSettings *qSettings);
 
-    // Give setting group name and key name, confirm exist in config
-    static bool getExist(QString groupName, QString keyName, QSettings *qSettings);
+    bool getExist(QString groupName, QString keyName, void *settingAddress) override;
 
 // Act like getOrderedArrayValue
 //     Pick up this one to iterate only once

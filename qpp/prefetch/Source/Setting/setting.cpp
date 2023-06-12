@@ -26,7 +26,7 @@ void Setting::init()
     setting = new QSettings(settingFilePath, QSettings::IniFormat);
 
     // Check config version
-    bool configVersionExist = getExist(ConfigGroupName::MetaData, ConfigKeyName::MetaData::ConfigVersion, setting);
+    bool configVersionExist = Global::qSettingInterfaceAddress->getExist(ConfigGroupName::MetaData, ConfigKeyName::MetaData::ConfigVersion, setting);
     if (configVersionExist == false)
     {
         using namespace Exception;
@@ -240,8 +240,10 @@ QVariant Setting::getQVariant(QString groupName, QString keyName, QSettings *qSe
     return result;
 }
 
-bool Setting::getExist(QString groupName, QString keyName, QSettings *qSettings)
+bool Setting::getExist(QString groupName, QString keyName, void *settingAddress)
 {
+    QSettings *qSettings = (QSettings *)settingAddress;
+
     // All child group from root node
     auto rootChildGroups = qSettings->childGroups();
 

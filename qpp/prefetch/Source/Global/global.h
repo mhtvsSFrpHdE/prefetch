@@ -9,6 +9,7 @@
 #include "../Interface/TrayIcon/tray_icon.h"
 #include "../Interface/MainWindow/mainwindow.h"
 #include "../Input/command_line_argument.h"
+#include "../Setting/setting_interface.h"
 
 class Global
 {
@@ -26,6 +27,8 @@ public:
     static TrayIcon *trayIconInstanceAddress;
 
     static CommandLineArgument *commandLineArgumentAddress;
+
+    static SettingInterface *qSettingInterfaceAddress;
 
     // Any init code
     static void init(int argc, char *argv[]);

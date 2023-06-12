@@ -11,3 +11,5 @@ QString Const_Setting::Value::Instance::Language::Default = DefaultValueType1;
 QString Const_Setting::Value::Instance::TranslateFolder::Default = DefaultValueType1;
 
 QString Const_Setting::Value::MainWindow::Position::Default = DefaultValueType1;
+
+QString Const_Setting::Exception::FailedToOpenFile_UI = IncompatibleConfigVersion_UI;

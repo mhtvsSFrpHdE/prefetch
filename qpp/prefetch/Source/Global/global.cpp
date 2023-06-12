@@ -14,6 +14,7 @@
 #include "../ReadLoop/ReadFile/read_file_thread.h"
 #include "../Define/define.h"
 #include "../Output/log.h"
+#include "../Example/windows_ini_example.h"
 
 QApplication *Global::qGuiApplication = NULL;
 RunOnUiThreadExample *Global::runOnUiThreadAddress = NULL;
@@ -22,6 +23,7 @@ InputLoopThread *Global::inputLoopThreadAddress = NULL;
 ReadLoop *Global::readLoopThreadAddress = NULL;
 TrayIcon *Global::trayIconInstanceAddress = NULL;
 CommandLineArgument *Global::commandLineArgumentAddress = NULL;
+SettingInterface *Global::qSettingInterfaceAddress = NULL;
 
 #define gn Const_Setting::ConfigGroupName
 #define ikn Const_Setting::ConfigKeyName::Instance
@@ -43,11 +45,16 @@ void Global::init(int argc, char *argv[])
     LAST_KNOWN_POSITION(0)
 
     commandLineArgumentAddress = new CommandLineArgument(argc, argvQStringList);
+    qSettingInterfaceAddress = new Setting();
 
     StdIn::init();
     LAST_KNOWN_POSITION(2)
 
     StdOut::init();
+    LAST_KNOWN_POSITION(2)
+
+    WindowsIniExample windowsIniExample;
+    windowsIniExample.init();
     LAST_KNOWN_POSITION(2)
 
     Setting::init();

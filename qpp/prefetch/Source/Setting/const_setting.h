@@ -127,6 +127,15 @@ namespace Const_Setting
     {
         const QString IncompatibleConfigVersion = "IncompatibleConfigVersion";
         const QString IncompatibleConfigVersion_UI = ": ";
+        const QString FailedToOpenFile = "FailedToOpenFile";
+        extern QString FailedToOpenFile_UI;
+    }
+
+    namespace WindowsIniFormat
+    {
+        const QString DefaultGroupName = "DefaultGroupName";
+        const QChar BeginGroup = '[';
+        const QChar KeyValueSplitter = '=';
     }
 }
 #endif
