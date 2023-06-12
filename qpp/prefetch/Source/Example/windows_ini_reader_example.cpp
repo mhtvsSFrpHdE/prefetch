@@ -27,3 +27,9 @@ QStringList WindowsIniReaderExample::childKeys()
 
     return childKeys;
 }
+QString WindowsIniReaderExample::value(QString key)
+{
+    QString value = (*settingAddress)[groupName][key];
+
+    return value;
+}

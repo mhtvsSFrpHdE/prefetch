@@ -112,3 +112,27 @@ bool WindowsIniExample::getExist(QString groupName, QString keyName, void *setti
 
     return true;
 }
+
+QStringList WindowsIniExample::getArrayValue(QString groupName, void *settingAddress)
+{
+    WindowsIniFormatExample *typedSettingAddress = (WindowsIniFormatExample *)settingAddress;
+    WindowsIniReaderExample setting(typedSettingAddress);
+
+    QStringList values;
+
+    setting.beginGroup(groupName);
+
+    auto keysInGroup = setting.childKeys();
+    for (int i = 0; i < keysInGroup.size(); ++i)
+    {
+
+        auto key = keysInGroup[i];
+        auto value = setting.value(key);
+
+        values << value;
+    };
+
+    setting.endGroup();
+
+    return values;
+}

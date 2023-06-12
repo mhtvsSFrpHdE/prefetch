@@ -134,23 +134,25 @@ void Setting::setValue(QString groupName, QString keyName, QString value, QSetti
     return;
 }
 
-QStringList Setting::getArrayValue(QString groupName, QSettings *qSettings)
+QStringList Setting::getArrayValue(QString groupName, void *settingAddress)
 {
+    QSettings *setting = (QSettings *)settingAddress;
+
     QStringList values;
 
-    qSettings->beginGroup(groupName);
+    setting->beginGroup(groupName);
 
-    auto keysInGroup = qSettings->childKeys();
+    auto keysInGroup = setting->childKeys();
     for (int i = 0; i < keysInGroup.size(); ++i)
     {
 
         auto key = keysInGroup[i];
-        auto value = qSettings->value(key).toString();
+        auto value = setting->value(key).toString();
 
         values << value;
     };
 
-    qSettings->endGroup();
+    setting->endGroup();
 
     return values;
 }

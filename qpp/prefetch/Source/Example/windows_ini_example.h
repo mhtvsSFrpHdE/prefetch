@@ -17,6 +17,7 @@ public:
     void init();
     void readWindowsIniFile(QFile &file, WindowsIniFormatExample &setting);
     bool getExist(QString groupName, QString keyName, void *settingAddress) override;
+    QStringList getArrayValue(QString groupName, void *settingAddress) override;
 
     WindowsIniFormatExample setting;
     QString settingFilePath;
@@ -31,6 +32,7 @@ public:
     void endGroup();
     QStringList childGroups();
     QStringList childKeys();
+    QString value(QString key);
 
     WindowsIniFormatExample *settingAddress;
     QString groupName;

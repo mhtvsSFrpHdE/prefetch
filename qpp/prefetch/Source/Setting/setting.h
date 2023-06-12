@@ -59,18 +59,7 @@ public:
     // Save setting value, QString should be fine for most type
     static void setValue(QString groupName, QString keyName, QString value, QSettings *qSettings);
 
-    // Give a setting group name, return all values under that group
-    // Use case: retrieve user input array
-    //
-    // Example:
-    //     setting.ini
-    //         [Array]
-    //         value1=1
-    //         value2=2
-    //         value3=3
-    //     auto myArrayValue = getArrayValue("Array");
-    //         myArrayValue content: {1,2,3}
-    static QStringList getArrayValue(QString groupName, QSettings *qSettings);
+    QStringList getArrayValue(QString groupName, void *settingAddress) override;
 
     // Act like getArrayValue, but sorting by array index
     static QStringList getOrderedArrayValue(QString groupName, int size, QSettings *qSettings);
