@@ -37,6 +37,10 @@
 #define SKIP_STARTUP_ITEM false
 #endif
 
+#ifndef SKIP_CUSTOM_FONT
+#define SKIP_CUSTOM_FONT false
+#endif
+
 #ifndef TRANSLATE_ENABLED
 #define TRANSLATE_ENABLED true
 #endif

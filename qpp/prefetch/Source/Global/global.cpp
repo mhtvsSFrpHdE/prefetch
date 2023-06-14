@@ -89,12 +89,14 @@ void Global::init(int argc, char *argv[])
     defaultFont.setPixelSize(Dpi::defaultFontSize_pixel);
 
     // If value was given, update font family
+#if SKIP_CUSTOM_FONT == false
     auto getFontFamily = Setting::getString(gn::Instance, ikn::Font, Setting::setting);
     if (getFontFamily != ifv::Default)
     {
         defaultFont.setFamily(getFontFamily);
     }
     LAST_KNOWN_POSITION(2)
+#endif
 
     // Update default font
     Global::qGuiApplication->setFont(defaultFont);
