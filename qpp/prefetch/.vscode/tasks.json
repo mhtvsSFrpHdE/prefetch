@@ -130,7 +130,8 @@
 				"-spec",
 				"win32-g++",
 				"CONFIG+=release",
-				"DEFINES += TRANSLATE_ENABLED=false"
+				"DEFINES += TRANSLATE_ENABLED=false",
+				"DEFINES += SKIP_CUSTOM_FONT=true"
 			],
 			"options": {
 				"cwd": "${workspaceFolder}\\..\\build-prefetch-Desktop_x86_windows_mingw4_8_2_32bit-Release_Performance"
