@@ -20,5 +20,5 @@ SortIncludes: 'false'
 SortUsingDeclarations: 'false'
 # Other
 Language: Cpp
-...
+# ...
 
